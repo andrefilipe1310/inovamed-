@@ -154,3 +154,61 @@ graph TD
     A --> D[Entrar]
     A --> E[Esqueceu a senha?]
 ```
+```mermaid
+graph TD
+    A[Cadastrar Paciente] --> B[Nome]
+    A --> C[Email]
+    A --> D[Data de Nascimento]
+    A --> E[Consentir uso dos dados]
+    A --> F[Cadastrar]
+```
+```mermaid
+graph TD
+    A[Painel do Médico] --> B[Buscar Estudos]
+    A --> C[Meus Pacientes]
+    A --> D[Notificações]
+    A --> E[Listagem de Pacientes]
+```
+```mermaid
+    graph TD
+    A[Buscar Estudos Clínicos] --> B[Buscar por nome do estudo]
+    A --> C[Filtros]
+    C --> D[Área de pesquisa]
+    C --> E[Status do estudo]
+    A --> F[Listagem de Estudos]
+    A --> G[Candidatar Paciente]
+```
+```mermaid
+graph TD
+    A[Detalhes do Estudo] --> B[Título do Estudo]
+    A --> C[Descrição]
+    A --> D[Critérios de Inclusão/Exclusão]
+    A --> E[Listagem de Pacientes]
+    A --> F[Candidatar Paciente]
+
+```
+```mermaid
+graph TD
+    A[Notificações] --> B[Listagem de Notificações]
+    A --> C[Marcar como lida]
+
+```
+```mermaid
+graph TD
+    A[Gerenciamento de Estudos] --> B[Listagem de Estudos]
+    A --> C[Adicionar Novo Estudo]
+    A --> D[Editar Estudo]
+    A --> E[Excluir Estudo]
+```
+```mermaid
+graph TD
+    A[Resultados de Estudos] --> B[Listagem de Resultados]
+    A --> C[Gráficos/Estatísticas]
+```
+```mermaid
+graph TD
+    A[Configurações de Conta] --> B[Nome]
+    A --> C[Email]
+    A --> D[Senha]
+    A --> E[Salvar Alterações]
+```
