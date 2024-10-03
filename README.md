@@ -44,6 +44,7 @@ flowchart TD
 ```
 ## Diagrama Caso do uso
 ```mermaid
+%% Diagrama de Caso de Uso para a aplicação InovaMed
 actor Paciente
 actor Medico
 actor RepresentanteEstudo
@@ -58,23 +59,23 @@ usecase UC6 as "Aprovar/rejeitar paciente"
 usecase UC7 as "Gerenciar estudos"
 usecase UC8 as "Visualizar resultados do estudo"
 
-Paciente -- UC1
-Medico -- UC2
-Medico -- UC3
-Medico -- UC4
-Medico -- UC5
-RepresentanteEstudo -- UC6
-RepresentanteEstudo -- UC7
-Medico -- UC8
+Paciente --> UC1
+Medico --> UC2
+Medico --> UC3
+Medico --> UC4
+Medico --> UC5
+RepresentanteEstudo --> UC6
+RepresentanteEstudo --> UC7
+Medico --> UC8
 
-SistemaInovaMed -- UC1
-SistemaInovaMed -- UC2
-SistemaInovaMed -- UC3
-SistemaInovaMed -- UC4
-SistemaInovaMed -- UC5
-SistemaInovaMed -- UC6
-SistemaInovaMed -- UC7
-SistemaInovaMed -- UC8
+SistemaInovaMed --> UC1
+SistemaInovaMed --> UC2
+SistemaInovaMed --> UC3
+SistemaInovaMed --> UC4
+SistemaInovaMed --> UC5
+SistemaInovaMed --> UC6
+SistemaInovaMed --> UC7
+SistemaInovaMed --> UC8
 ```
 ## Diagrama ER
 ```mermaid
