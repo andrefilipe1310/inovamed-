@@ -1,6 +1,7 @@
 # inovamed-
 Plataforma para conectar pacientes, medicos e ensaios clinicos
 ## Fluxograma
+### F1
 ```mermaid
 graph TD;
     A[Cadastro de Estudo] -->|salva no banco de dados e notifica médicos| B[Visualização de Estudos Clínicos];
