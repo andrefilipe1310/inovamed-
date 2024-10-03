@@ -42,41 +42,21 @@ flowchart TD
     %% Alternativa se o paciente quiser se candidatar a outro estudo
     W --> F[Paciente pode ser redirecionado para outro estudo disponível]
 ```
-## Diagrama Caso do uso
-```plantuml
-@startuml
-actor Paciente
-actor Medico
-actor RepresentanteEstudo
-actor SistemaInovaMed as Sistema
+## Diagrama de implantação 
+```mermaid
+graph TD
+  subgraph Cliente
+    navegador(Navegador)
+  end
 
-usecase UC1 as "Consentir com uso dos dados"
-usecase UC2 as "Cadastrar dados do paciente"
-usecase UC3 as "Buscar estudos clínicos"
-usecase UC4 as "Candidatar paciente a estudo"
-usecase UC5 as "Receber notificações do estudo"
-usecase UC6 as "Aprovar/rejeitar paciente"
-usecase UC7 as "Gerenciar estudos"
-usecase UC8 as "Visualizar resultados do estudo"
+  subgraph Servidor
+    api[API REST]
+    banco[(Banco de Dados)]
+  end
 
-Paciente --> UC1
-Medico --> UC2
-Medico --> UC3
-Medico --> UC4
-Medico --> UC5
-RepresentanteEstudo --> UC6
-RepresentanteEstudo --> UC7
-Medico --> UC8
+  navegador --> api
+  api --> banco
 
-Sistema --> UC1
-Sistema --> UC2
-Sistema --> UC3
-Sistema --> UC4
-Sistema --> UC5
-Sistema --> UC6
-Sistema --> UC7
-Sistema --> UC8
-@enduml
 ```
 ## Diagrama ER
 ```mermaid
