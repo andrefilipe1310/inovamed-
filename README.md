@@ -43,9 +43,7 @@ flowchart TD
     W --> F[Paciente pode ser redirecionado para outro estudo disponível]
 ```
 ## Diagrama Caso do uso
-```mermaid
-
-%% Diagrama de Caso de Uso para a aplicação InovaMed
+@startuml
 actor Paciente
 actor Medico
 actor RepresentanteEstudo
@@ -77,7 +75,7 @@ Sistema --> UC5
 Sistema --> UC6
 Sistema --> UC7
 Sistema --> UC8
-```
+@enduml
 ## Diagrama ER
 ```mermaid
 erDiagram
