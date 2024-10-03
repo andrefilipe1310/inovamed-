@@ -147,6 +147,7 @@ classDiagram
   EstudoClinico --> Paciente : envia resultados para
 ```
 ## Fluxo de telas
+### Tela login
 ```mermaid
 graph TD
     A[Login] --> B[Email]
@@ -154,6 +155,7 @@ graph TD
     A --> D[Entrar]
     A --> E[Esqueceu a senha?]
 ```
+### Tela de Cadastro de Paciente
 ```mermaid
 graph TD
     A[Cadastrar Paciente] --> B[Nome]
@@ -162,6 +164,7 @@ graph TD
     A --> E[Consentir uso dos dados]
     A --> F[Cadastrar]
 ```
+### Painel do Médico
 ```mermaid
 graph TD
     A[Painel do Médico] --> B[Buscar Estudos]
@@ -169,6 +172,7 @@ graph TD
     A --> D[Notificações]
     A --> E[Listagem de Pacientes]
 ```
+### Tela de Busca de Estudos Clínicos
 ```mermaid
     graph TD
     A[Buscar Estudos Clínicos] --> B[Buscar por nome do estudo]
@@ -178,6 +182,7 @@ graph TD
     A --> F[Listagem de Estudos]
     A --> G[Candidatar Paciente]
 ```
+### Tela de Detalhes do Estudo
 ```mermaid
 graph TD
     A[Detalhes do Estudo] --> B[Título do Estudo]
@@ -187,12 +192,14 @@ graph TD
     A --> F[Candidatar Paciente]
 
 ```
+### Tela de Notificações
 ```mermaid
 graph TD
     A[Notificações] --> B[Listagem de Notificações]
     A --> C[Marcar como lida]
 
 ```
+### Tela de Gerenciamento de Estudos (para Representante de Estudos)
 ```mermaid
 graph TD
     A[Gerenciamento de Estudos] --> B[Listagem de Estudos]
@@ -200,10 +207,13 @@ graph TD
     A --> D[Editar Estudo]
     A --> E[Excluir Estudo]
 ```
+### Tela de Configurações de Conta
 ```mermaid
 graph TD
-    A[Resultados de Estudos] --> B[Listagem de Resultados]
-    A --> C[Gráficos/Estatísticas]
+    A[Configurações de Conta] --> B[Nome]
+    A --> C[Email]
+    A --> D[Senha]
+    A --> E[Salvar Alterações]
 ```
 ```mermaid
 graph TD
