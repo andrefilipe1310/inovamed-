@@ -42,6 +42,42 @@ flowchart TD
     %% Alternativa se o paciente quiser se candidatar a outro estudo
     W --> F[Paciente pode ser redirecionado para outro estudo disponível]
 ```
+## Diagrama Caso do uso
+```mermaid
+%% Diagrama de Caso de Uso para a aplicação InovaMed
+actor Paciente
+actor Medico
+actor RepresentanteEstudo
+actor SistemaInovaMed as Sistema
+
+usecase UC1 as "Consentir com uso dos dados"
+usecase UC2 as "Cadastrar dados do paciente"
+usecase UC3 as "Buscar estudos clínicos"
+usecase UC4 as "Candidatar paciente a estudo"
+usecase UC5 as "Receber notificações do estudo"
+usecase UC6 as "Aprovar/rejeitar paciente"
+usecase UC7 as "Gerenciar estudos"
+usecase UC8 as "Visualizar resultados do estudo"
+
+Paciente -- UC1
+Medico -- UC2
+Medico -- UC3
+Medico -- UC4
+Medico -- UC5
+RepresentanteEstudo -- UC6
+RepresentanteEstudo -- UC7
+Medico -- UC8
+
+SistemaInovaMed -- UC1
+SistemaInovaMed -- UC2
+SistemaInovaMed -- UC3
+SistemaInovaMed -- UC4
+SistemaInovaMed -- UC5
+SistemaInovaMed -- UC6
+SistemaInovaMed -- UC7
+SistemaInovaMed -- UC8
+
+```
 ## Diagrama ER
 ```mermaid
 erDiagram
