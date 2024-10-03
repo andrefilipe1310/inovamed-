@@ -78,6 +78,7 @@ erDiagram
         string email
         string telefone
         string senha
+        string cidade
     }
 
     MEDICO {
@@ -113,11 +114,12 @@ erDiagram
         string data_envio
     }
 
-PACIENTE ||--o{ CANDIDATURA : faz
+    PACIENTE ||--o{ CANDIDATURA : faz
     CANDIDATURA }o--|| ESTUDO_CLINICO : se_inscreve
     MEDICO ||--o{ ESTUDO_CLINICO : gerencia
     MEDICO ||--o{ NOTIFICACAO : envia
     PACIENTE ||--o{ NOTIFICACAO : recebe
+
 ```
 ## Diagrama UML
 ```mermaid
