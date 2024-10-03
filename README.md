@@ -1,7 +1,8 @@
 # inovamed-
 Plataforma para conectar pacientes, medicos e ensaios clinicos
 ## Fluxograma
-### F1
+
+### Fluxo 1
 ```mermaid
 graph TD;
     A[Cadastro de Estudo] -->|salva no banco de dados e notifica médicos| B[Visualização de Estudos Clínicos];
@@ -9,6 +10,7 @@ graph TD;
     C -->|atualiza status no banco de dados| D[Gerenciamento de Pacientes];
     D -->|envia notificações para médicos| E[Notificações para Médicos];
 ```
+### Fluxo 2
 ```mermaid
 flowchart TD
     A[Paciente deseja participar de um estudo] --> B[Paciente acessa a plataforma via médico]
