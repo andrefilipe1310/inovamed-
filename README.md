@@ -135,7 +135,7 @@ classDiagram
   
   class Medico {
     +int id
-    +String nome # (expor parcialmente, ex: "D****")
+    +String nome 
     +String especialidade
     +String crm
     +cadastrarPaciente()
