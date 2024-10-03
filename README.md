@@ -125,7 +125,7 @@ erDiagram
 ```mermaid
 classDiagram
   class Paciente {
-    +String id
+    +Long id
     +String nome
     +String email
     +String cidade
@@ -134,19 +134,37 @@ classDiagram
   }
   
   class Medico {
-    +String id
+    +Long id
     +String nome
+    +String crm
     +String especialidade
     +cadastrarPaciente()
     +aprovarPaciente()
   }
 
   class EstudoClinico {
-    +String id
+    +Long id
     +String titulo
     +String descricao
+    +String criterios_inclusao
+    +String criterios_exclusao
     +boolean aprovado
     +gerenciarEstudo()
+  }
+
+  class Candidatura {
+    +Long id
+    +Long paciente_id
+    +Long estudo_id
+    +String status
+    +String data_candidatura
+  }
+
+  class Notificacao {
+    +Long id
+    +Long usuario_id
+    +String mensagem
+    +String data_envio
   }
 
   class DataMasker {
