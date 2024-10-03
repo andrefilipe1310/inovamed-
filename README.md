@@ -124,17 +124,18 @@ PACIENTE ||--o{ CANDIDATURA : faz
 classDiagram
   class Paciente {
     +int id
-    +String nome
+    +String nome # (expor parcialmente, ex: "J****")
     +String email
-    +boolean consentirUsoDados
     +String telefone
-    +String endereco
+    +String cidade
+    +boolean consentirUsoDados
+    +String assinaturaDigital
     +consentirUsoDados()
   }
   
   class Medico {
     +int id
-    +String nome
+    +String nome # (expor parcialmente, ex: "D****")
     +String especialidade
     +String crm
     +cadastrarPaciente()
