@@ -149,16 +149,8 @@ classDiagram
 ## Fluxo de telas
 ```mermaid
 graph TD
-    A[Tela de Cadastro de Paciente] --> B[Nome]
-    A --> C[Email]
-    A --> D[Consentimento]
-    A --> E[Botão: Cadastrar]
-    A --> F[Mensagem de Sucesso]
-    
-    B --> |"Campo de texto"| G[Entrada do Nome]
-    C --> |"Campo de texto"| H[Entrada do Email]
-    D --> |"Checkbox"| I[Consentir uso dos dados]
-
-    E --> |"Ao clicar"| J[Salvar dados]
-    J --> F
+    A[Login] --> B[Email]
+    A --> C[Senha]
+    A --> D[Entrar]
+    A --> E[Esqueceu a senha?]
 ```
