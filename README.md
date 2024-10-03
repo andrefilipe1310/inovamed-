@@ -116,4 +116,30 @@ PACIENTE ||--o{ CANDIDATURA : faz
     MEDICO ||--o{ NOTIFICACAO : envia
     PACIENTE ||--o{ NOTIFICACAO : recebe
 ```
-    
+## Diagrama UML
+```mermaid
+classDiagram
+  class Paciente {
+    +String nome
+    +String email
+    +consentirUsoDados()
+  }
+  
+  class Medico {
+    +String nome
+    +String especialidade
+    +cadastrarPaciente()
+    +aprovarPaciente()
+  }
+
+  class EstudoClinico {
+    +String titulo
+    +String descricao
+    +boolean aprovado
+    +gerenciarEstudo()
+  }
+  
+  Paciente --> Medico : é cadastrado por
+  Medico --> EstudoClinico : candidata paciente a
+  EstudoClinico --> Paciente : envia resultados para
+```
