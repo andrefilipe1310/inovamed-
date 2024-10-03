@@ -123,38 +123,38 @@ PACIENTE ||--o{ CANDIDATURA : faz
 ```mermaid
 classDiagram
   class Paciente {
-    +int id
-    +String nome # (expor parcialmente, ex: "J****")
+    +String id
+    +String nome
     +String email
-    +String telefone
     +String cidade
-    +boolean consentirUsoDados
-    +String assinaturaDigital
     +consentirUsoDados()
+    +@Masked
   }
   
   class Medico {
-    +int id
-    +String nome 
+    +String id
+    +String nome
     +String especialidade
-    +String crm
     +cadastrarPaciente()
     +aprovarPaciente()
   }
 
   class EstudoClinico {
-    +int id
+    +String id
     +String titulo
     +String descricao
     +boolean aprovado
-    +String criteriosInclusao
-    +String criteriosExclusao
     +gerenciarEstudo()
   }
-  
+
+  class DataMasker {
+    +maskData(Object obj)
+  }
+
   Paciente --> Medico : é cadastrado por
   Medico --> EstudoClinico : candidata paciente a
   EstudoClinico --> Paciente : envia resultados para
+  DataMasker --> Paciente : aplica máscara aos dados
 
 ```
 ## Fluxo de telas
