@@ -123,28 +123,38 @@ PACIENTE ||--o{ CANDIDATURA : faz
 ```mermaid
 classDiagram
   class Paciente {
+    +int id
     +String nome
     +String email
+    +boolean consentirUsoDados
+    +String telefone
+    +String endereco
     +consentirUsoDados()
   }
   
   class Medico {
+    +int id
     +String nome
     +String especialidade
+    +String crm
     +cadastrarPaciente()
     +aprovarPaciente()
   }
 
   class EstudoClinico {
+    +int id
     +String titulo
     +String descricao
     +boolean aprovado
+    +String criteriosInclusao
+    +String criteriosExclusao
     +gerenciarEstudo()
   }
   
   Paciente --> Medico : é cadastrado por
   Medico --> EstudoClinico : candidata paciente a
   EstudoClinico --> Paciente : envia resultados para
+
 ```
 ## Fluxo de telas
 ### Tela login
