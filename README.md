@@ -46,15 +46,15 @@ flowchart TD
 ```mermaid
 graph TD
   subgraph "Usuário Final"
-    paciente[Navegador do Paciente]
-    medico[Navegador do Médico]
-    representante[Navegador do Representante do Estudo]
+    paciente[Navegador Paciente]
+    medico[Navegador Médico]
+    representante[Navegador Representante Estudo]
   end
 
   subgraph "Sistema InovaMed"
-    frontend[Frontend Web (React/Angular)]
-    backend[API REST (Spring Boot)]
-    db[(Banco de Dados PostgreSQL)]
+    frontend[Frontend Web]
+    backend[API REST]
+    db[(Banco de Dados)]
   end
 
   paciente --> frontend
