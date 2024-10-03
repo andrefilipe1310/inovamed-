@@ -45,17 +45,24 @@ flowchart TD
 ## Diagrama de implantação 
 ```mermaid
 graph TD
-  subgraph Cliente
-    navegador(Navegador)
+  subgraph "Usuário Final"
+    paciente[Navegador do Paciente]
+    medico[Navegador do Médico]
+    representante[Navegador do Representante do Estudo]
   end
 
-  subgraph Servidor
-    api[API REST]
-    banco[(Banco de Dados)]
+  subgraph "Sistema InovaMed"
+    frontend[Frontend Web (React/Angular)]
+    backend[API REST (Spring Boot)]
+    db[(Banco de Dados PostgreSQL)]
   end
 
-  navegador --> api
-  api --> banco
+  paciente --> frontend
+  medico --> frontend
+  representante --> frontend
+  
+  frontend --> backend
+  backend --> db
 
 ```
 ## Diagrama ER
