@@ -64,6 +64,7 @@ graph TD
   frontend --> backend
   backend --> db
 
+
 ```
 ## Diagrama ER
 ```mermaid
