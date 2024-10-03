@@ -7,7 +7,8 @@ graph TD;
     B -->|recomenda estudo a paciente| C[Recomendações de Estudos];
     C -->|atualiza status no banco de dados| D[Gerenciamento de Pacientes];
     D -->|envia notificações para médicos| E[Notificações para Médicos];
-
+```
+```mermaid
 flowchart TD
     A[Paciente deseja participar de um estudo] --> B[Paciente acessa a plataforma via médico]
     B --> C[Paciente fornece dados com consentimento]
@@ -40,7 +41,6 @@ flowchart TD
 
     %% Alternativa se o paciente quiser se candidatar a outro estudo
     W --> F[Paciente pode ser redirecionado para outro estudo disponível]
-
 ```
 ## Diagrama ER
 ```mermaid
