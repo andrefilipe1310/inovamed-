@@ -1,0 +1,35 @@
+.container-page{
+    padding-left: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-border{
+    width: 25vw;
+    background: linear-gradient(to top, #0b42ce,#12d2ff);
+    padding: 1px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: 0px 4px rgb(153, 153, 153);
+  }
+  .card-pesquisas{
+    width: 100%;
+    background-color: white;
+    padding: 1vw;
+    box-sizing: border-box;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .card-pesquisas div{
+    width: 100%;
+  }
+  .card-pesquisas h1{
+    width: 100%;
+    margin: 0vw;
+    font-size: 1.5vw;
+    border-bottom: solid 1px black;
+    text-align: center;
+  }
+  
