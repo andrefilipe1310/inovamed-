@@ -49,34 +49,35 @@ flowchart TD
 ```mermaid
 classDiagram
     class Research {
-        nome: String
-        descricao: String
-        pacientes: int
-        dataInicio: String
-        dataConclusao: String
-        documentoOficial: String
+        name: String
+        description: String
+        patients: int
+        startDate: String
+        endDate: String
+        officialDocument: String
     }
     
     class Notification {
-        nome: String
-        medicos: List~String~
-        mensagem: String
+        name: String
+        doctors: List~String~
+        message: String
         link: String
-        anexo: String
+        attachment: String
     }
     
     class User {
         id: int
         name: String
-        assinaturaDigitalConsentimento: boolean
-        medicoResponsavel: boolean
-        autorizacoes: List~String~
-        pesquisas: List~Research~
-        notificacoes: List~Notification~
+        digitalSignatureConsent: boolean
+        responsibleDoctor: boolean
+        authorizations: List~String~
+        researches: List~Research~
+        notifications: List~Notification~
     }
     
     User "1" -- "*" Research : has
     User "1" -- "*" Notification : receives
+
 
 ```
 
