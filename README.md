@@ -47,6 +47,40 @@ flowchart TD
 ```
 ## Diagrama de implantação 
 ```mermaid
+classDiagram
+    class Research {
+        nome: String
+        descricao: String
+        pacientes: int
+        dataInicio: String
+        dataConclusao: String
+        documentoOficial: String
+    }
+    
+    class Notification {
+        nome: String
+        medicos: List~String~
+        mensagem: String
+        link: String
+        anexo: String
+    }
+    
+    class User {
+        id: int
+        name: String
+        assinaturaDigitalConsentimento: boolean
+        medicoResponsavel: boolean
+        autorizacoes: List~String~
+        pesquisas: List~Research~
+        notificacoes: List~Notification~
+    }
+    
+    User "1" -- "*" Research : has
+    User "1" -- "*" Notification : receives
+
+```
+
+```mermaid
 graph TD
   subgraph "Usuário Final"
     paciente[Navegador Paciente]
