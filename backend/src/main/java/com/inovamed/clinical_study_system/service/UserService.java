@@ -1,6 +1,6 @@
 package com.inovamed.clinical_study_system.service;
 
-import com.inovamed.clinical_study_system.model.User;
+import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

@@ -1,5 +1,4 @@
 package com.inovamed.clinical_study_system.model.doctor;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,8 +31,6 @@ public class Doctor {
         return new DoctorResponseDTO(id, name, email, specialty, Crm);
     }
 
-
-
     public void update(DoctorRequestDTO doctorRequestDTO) {
         this.name = doctorRequestDTO.name();
         this.email = doctorRequestDTO.email();
@@ -43,13 +40,9 @@ public class Doctor {
     }
 
     public void registerPatient() {
-
     }
 
-
-
     public void approvePatient() {
-
     }
 
 
