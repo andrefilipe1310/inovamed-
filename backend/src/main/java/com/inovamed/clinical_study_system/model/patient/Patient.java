@@ -30,10 +30,12 @@ public class Patient {
     private Doctor doctor;
 
     public Patient(PatientRequestDTO patientRequestDTO){
+        this.update(patientRequestDTO);
+    }
+    public void update(PatientRequestDTO patientRequestDTO){
         this.name = patientRequestDTO.name();
         this.form = patientRequestDTO.form();
     }
-
     public PatientResponseDTO toDTO(){
         if (this.doctor != null) {
             return new PatientResponseDTO(
