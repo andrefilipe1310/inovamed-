@@ -27,13 +27,14 @@ public class WebSecurityConfig {
                 })
                 .authorizeHttpRequests(authorize -> {
                     authorize
+
                             .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
                             .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
                             .requestMatchers(HttpMethod.POST, "/doctor").permitAll()
                             .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                            .requestMatchers(HttpMethod.POST, "/patient").permitAll()
                             .requestMatchers(HttpMethod.POST, "/study-representative").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/patient").hasRole("STUDYREPRESENTATIVE")
+                            .requestMatchers(HttpMethod.GET, "/patient").hasRole("DOCTOR")
+                            .requestMatchers(HttpMethod.POST, "/patient").hasRole("DOCTOR")
                             .anyRequest().authenticated();
 
                 }).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
