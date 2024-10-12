@@ -35,7 +35,7 @@ public class WebSecurityConfig {
                     authorize.requestMatchers(HttpMethod.POST, "/patient").hasRole("DOCTOR");
 
 
-                    authorize.anyRequest().authenticated();
+                    authorize.anyRequest().permitAll();
 
                 }).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
