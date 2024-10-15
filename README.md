@@ -46,6 +46,66 @@ flowchart TD
     W --> F[Paciente pode ser redirecionado para outro estudo disponível]
 ```
 ## Diagrama de implantação 
+
+```mermaid
+classDiagram
+    class Doctor {
+        +String name
+        +String email
+        +String clinic
+        +String contactNumber
+        +String specialty
+        +String crm
+        +String experience
+    }
+
+    class Patient {
+        +int id
+        +int code
+        +String name
+        +int age
+        +String gender
+        +boolean digitalSignatureConsent
+        +boolean responsibleDoctor
+        +List~String~ authorizations
+    }
+
+    class Research {
+        +int id
+        +String title
+        +String description
+        +int numberOfPatients
+        +String responsibleDoctor
+        +String inclusionCriteria
+        +String exclusionCriteria
+        +Date startDate
+        +Date endDate
+        +String location
+        +String officialDocument
+    }
+
+    class Document {
+        +String name
+        +String link
+    }
+
+    class Notification {
+        +String title
+        +String sender
+        +String message
+        +String link
+        +String attachment
+    }
+
+    Doctor "1" --> "*" Research : receives
+    Doctor "1" --> "*" Patient : registers for
+    Research "1" --> "*" Patient : includes
+    Research "1" --> "*" Document : includes
+    Doctor "1" --> "*" Notification : receives
+    Patient "1" --> "*" Notification : receives
+
+```
+
 ```mermaid
 classDiagram
     class Doctor {
