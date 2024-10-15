@@ -59,7 +59,7 @@ classDiagram
         +String experience
     }
 
-    class User {
+    class Patient {
         +int id
         +String name
         +boolean digitalSignatureConsent
@@ -69,7 +69,7 @@ classDiagram
         +List~Notification~ notifications
     }
 
-    class Patient {
+    class PatientFeature {
         +int id
         +int code
         +String name
@@ -103,12 +103,12 @@ classDiagram
     }
 
     Doctor "1" --> "*" Research : receives
-    Doctor "1" --> "*" Patient : registers for
-    Research "1" --> "*" Patient : includes
+    Doctor "1" --> "*" PatientFeature : registers for
+    Research "1" --> "*" PatientFeature : includes
     Research "1" --> "*" Document : includes
     Doctor "1" --> "*" Notification : receives
-    User "1" --> "*" Notification : receives
-    User "1" --> "*" Patient : has
+    Patient "1" --> "*" Notification : receives
+    Patient "1" --> "*" PatientFeature : has
 
 
 
