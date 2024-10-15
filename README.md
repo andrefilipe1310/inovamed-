@@ -59,15 +59,14 @@ classDiagram
         +String experience
     }
 
-    class Patient {
+    class User {
         +int id
-        +int code
         +String name
-        +int age
-        +String gender
         +boolean digitalSignatureConsent
         +boolean responsibleDoctor
         +List~String~ authorizations
+        +List~Research~ researches
+        +List~Notification~ notifications
     }
 
     class Research {
@@ -75,7 +74,6 @@ classDiagram
         +String title
         +String description
         +int numberOfPatients
-        +String responsibleDoctor
         +String inclusionCriteria
         +String exclusionCriteria
         +Date startDate
@@ -98,11 +96,12 @@ classDiagram
     }
 
     Doctor "1" --> "*" Research : receives
-    Doctor "1" --> "*" Patient : registers for
-    Research "1" --> "*" Patient : includes
+    Doctor "1" --> "*" User : registers for
+    Research "1" --> "*" User : includes
     Research "1" --> "*" Document : includes
     Doctor "1" --> "*" Notification : receives
-    Patient "1" --> "*" Notification : receives
+    User "1" --> "*" Notification : receives
+
 
 ```
 
