@@ -69,6 +69,13 @@ classDiagram
         +List~Notification~ notifications
     }
 
+    class Patient {
+        +int id
+        +int code
+        +String name
+        +int age
+    }
+
     class Research {
         +int id
         +String title
@@ -96,11 +103,13 @@ classDiagram
     }
 
     Doctor "1" --> "*" Research : receives
-    Doctor "1" --> "*" User : registers for
-    Research "1" --> "*" User : includes
+    Doctor "1" --> "*" Patient : registers for
+    Research "1" --> "*" Patient : includes
     Research "1" --> "*" Document : includes
     Doctor "1" --> "*" Notification : receives
     User "1" --> "*" Notification : receives
+    User "1" --> "*" Patient : has
+
 
 
 ```
