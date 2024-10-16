@@ -172,6 +172,7 @@ classDiagram
     Research --> Document : "includes"
     Doctor --> Research : "participates in"
     Doctor --> Notification : "receives"
+    Notification --> Attachment : "has many"
     Patient --> Research : "participates in"
     Patient --> Notification : "receives"
     Patient --> MedicalHistory : "he has"
