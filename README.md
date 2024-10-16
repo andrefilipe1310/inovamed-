@@ -116,7 +116,7 @@ classDiagram
         LocalDate birth
         String phone
         String password
-        String doctorKey
+        Doctor doctor
         boolean digitalSignatureConsent
         boolean responsibleDoctor
         String digitalSignature
