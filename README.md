@@ -65,7 +65,7 @@ classDiagram
         +boolean digitalSignatureConsent
         +boolean responsibleDoctor
         +List~String~ authorizations
-        +List~Research~ researches
+        +List~ResearchFeature~ researches
         +List~Notification~ notifications
     }
 
@@ -76,7 +76,7 @@ classDiagram
         +int age
     }
 
-    class Research {
+    class ResearchFeature {
         +int id
         +String title
         +String description
@@ -102,10 +102,10 @@ classDiagram
         +String attachment
     }
 
-    Doctor "1" --> "*" Research : receives
+    Doctor "1" --> "*" ResearchFeature : receives
     Doctor "1" --> "*" PatientFeature : registers for
-    Research "1" --> "*" PatientFeature : includes
-    Research "1" --> "*" Document : includes
+    ResearchFeature "1" --> "*" PatientFeature : includes
+    ResearchFeature "1" --> "*" Document : includes
     Doctor "1" --> "*" Notification : receives
     Patient "1" --> "*" Notification : receives
     Patient "1" --> "*" PatientFeature : has
