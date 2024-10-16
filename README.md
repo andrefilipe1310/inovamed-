@@ -103,6 +103,9 @@ classDiagram
     class Patient {
         int id
         String name
+        String email
+        String gender
+        LocalDate birth
         boolean digitalSignatureConsent
         boolean responsibleDoctor
         List<String> authorizations
