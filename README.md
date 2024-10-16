@@ -110,6 +110,7 @@ classDiagram
         String password
         boolean digitalSignatureConsent
         boolean responsibleDoctor
+        String digitalSignature
         List<String> authorizations
         List<Research> researches
         List<Notification> notifications
