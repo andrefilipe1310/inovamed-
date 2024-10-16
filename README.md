@@ -108,6 +108,7 @@ classDiagram
         LocalDate birth
         String phone
         String password
+        String doctorKey
         boolean digitalSignatureConsent
         boolean responsibleDoctor
         String digitalSignature
