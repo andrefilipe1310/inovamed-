@@ -172,6 +172,7 @@ classDiagram
     Patient --> Research : "participates in"
     Patient --> Notification : "receives"
     Patient --> MedicalHistory : "he has"
+    Patient --> Doctor : "has a"
     PatientFeatureDTO --> Application : "contains justification"
     Application --> Doctor : "notifies"
     Application --> Patient : "notifies"
