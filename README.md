@@ -102,7 +102,7 @@ classDiagram
         
     }
 
-    Class Attachment {
+    class Attachment {
         Long id
         String name
         String link
