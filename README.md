@@ -77,7 +77,7 @@ classDiagram
         List<String> phases
         int currentPhase
         String location
-        List<Document> attachments
+        List<Attachment> attachments
     }
 
     class Criteria {
@@ -157,10 +157,6 @@ classDiagram
         List<Notification> notifications
     }
 
-    class Document {
-        String name
-        String link
-    }
 
     %% Relations
     ClinicalStudyRepresentative --> Research : "has many"
@@ -169,10 +165,10 @@ classDiagram
     Research --> Criteria
     Research --> Dates
     Research --> Doctor : "has many"
-    Research --> Document : "includes"
+    Research --> Attachment : "includes"
     Doctor --> Research : "participates in"
     Doctor --> Notification : "receives"
-    Notification --> Attachment : "has many"
+    Notification --> Attachment : "includes"
     Patient --> Research : "participates in"
     Patient --> Notification : "receives"
     Patient --> MedicalHistory : "he has"
