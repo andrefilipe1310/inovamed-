@@ -46,7 +46,84 @@ flowchart TD
     W --> F[Paciente pode ser redirecionado para outro estudo disponível]
 ```
 ## Diagrama de implantação 
+```mermaid
+classDiagram
+    class User {
+        Long id
+        String name
+        String email
+        String phone
+        String role
+        String experiences
+        String password
+        List<Research> researchFeatures
+        List<Notification> notifications
+        List<Candidate> candidates
+        List<Research> researches
+    }
 
+    class Research {
+        Long id
+        String title
+        String area
+        int code
+        int numberOfPatients
+        int availableSpots
+        List<String> responsibleDoctors
+        List<String> institution
+        String description
+        Criteria criteria
+        Dates dates
+        List<String> phases
+        int currentPhase
+        String location
+        List<String> attachments
+    }
+
+    class Criteria {
+        String inclusion
+        String exclusion
+    }
+
+    class Dates {
+        String start
+        String end
+    }
+
+    class Notification {
+        Long id
+        String title
+        String description
+        List<Long> recipientEntities
+        int researchCode
+        List<String> attachments
+        int senderCode
+    }
+
+    class Candidate {
+        int code
+        int age
+        String gender
+        String history
+        String status
+        Application application
+    }
+
+    class Application {
+        int patientCode
+        int doctorCode
+        String message
+    }
+
+    %% Relations
+    User --> Research : "has many"
+    User --> Notification : "has many"
+    User --> Candidate : "has many"
+    Research --> Criteria
+    Research --> Dates
+    Candidate --> Application
+
+```
 ```mermaid
 classDiagram
     class Doctor {
