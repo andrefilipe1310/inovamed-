@@ -98,7 +98,7 @@ classDiagram
         String title
         String message
         int researchCode
-        List<Attachment> attachments
+        List<String> attachments
         
     }
 
