@@ -58,7 +58,7 @@ classDiagram
         String password
         List<Research> researchFeatures
         List<Notification> notifications
-        List<Candidate> candidates
+        List<PatientFeatureDTO> patientFeatures
         List<Research> researches
     }
 
@@ -100,19 +100,30 @@ classDiagram
         int senderCode
     }
 
-    class Candidate {
+    class Patient {
+        int id
+        String name
+        boolean digitalSignatureConsent
+        boolean responsibleDoctor
+        List<String> authorizations
+        List<Research> researches
+        List<Notification> notifications
+    }
+
+    class PatientFeatureDTO {
         int code
         int age
         String gender
         String history
         String status
-        Application application
+        Application justification
     }
 
     class Application {
         int patientCode
         int doctorCode
         String message
+        String type  %% Type: rejection, expulsion, or approval
     }
 
     class Doctor {
@@ -127,16 +138,6 @@ classDiagram
         List<Notification> notifications
     }
 
-    class Patient {
-        int id
-        String name
-        boolean digitalSignatureConsent
-        boolean responsibleDoctor
-        List<String> authorizations
-        List<Research> researches
-        List<Notification> notifications
-    }
-
     class Document {
         String name
         String link
@@ -145,7 +146,7 @@ classDiagram
     %% Relations
     ClinicalStudyRepresentative --> Research : "has many"
     ClinicalStudyRepresentative --> Notification : "has many"
-    ClinicalStudyRepresentative --> Candidate : "has many"
+    ClinicalStudyRepresentative --> PatientFeatureDTO : "tracks candidates"
     Research --> Criteria
     Research --> Dates
     Research --> Doctor : "has many"
@@ -154,7 +155,10 @@ classDiagram
     Doctor --> Notification : "receives"
     Patient --> Research : "participates in"
     Patient --> Notification : "receives"
-    Candidate --> Application : "submits"
+    PatientFeatureDTO --> Application : "contains justification"
+    Application --> Doctor : "notifies"
+    Application --> Patient : "notifies"
+
 
 ```
 
