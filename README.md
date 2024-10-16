@@ -53,7 +53,7 @@ classDiagram
         String name
         String email
         String phone
-        String roleClinical
+        String clinicalRole
         String experiences
         String password
         List<Research> researchFeatures
