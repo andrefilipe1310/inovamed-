@@ -48,6 +48,118 @@ flowchart TD
 ## Diagrama de implantação 
 ```mermaid
 classDiagram
+    class ClinicalStudyRepresentative {
+        Long id
+        String name
+        String email
+        String phone
+        String clinicalRole
+        String experiences
+        String password
+        List<Research> researchFeatures
+        List<Notification> notifications
+        List<Candidate> candidates
+        List<Research> researches
+    }
+
+    class Research {
+        Long id
+        String title
+        String area
+        int code
+        int numberOfPatients
+        int availableSpots
+        List<Doctor> responsibleDoctors
+        List<String> institutions
+        String description
+        Criteria criteria
+        Dates dates
+        List<String> phases
+        int currentPhase
+        String location
+        List<Document> attachments
+    }
+
+    class Criteria {
+        String inclusion
+        String exclusion
+    }
+
+    class Dates {
+        String start
+        String end
+    }
+
+    class Notification {
+        Long id
+        String title
+        String description
+        List<Long> recipientEntities
+        int researchCode
+        List<String> attachments
+        int senderCode
+    }
+
+    class Candidate {
+        int code
+        int age
+        String gender
+        String history
+        String status
+        Application application
+    }
+
+    class Application {
+        int patientCode
+        int doctorCode
+        String message
+    }
+
+    class Doctor {
+        String name
+        String email
+        String clinic
+        String contactNumber
+        String specialty
+        String crm
+        String experience
+        List<Research> researches
+        List<Notification> notifications
+    }
+
+    class Patient {
+        int id
+        String name
+        boolean digitalSignatureConsent
+        boolean responsibleDoctor
+        List<String> authorizations
+        List<Research> researches
+        List<Notification> notifications
+    }
+
+    class Document {
+        String name
+        String link
+    }
+
+    %% Relations
+    ClinicalStudyRepresentative --> Research : "has many"
+    ClinicalStudyRepresentative --> Notification : "has many"
+    ClinicalStudyRepresentative --> Candidate : "has many"
+    Research --> Criteria
+    Research --> Dates
+    Research --> Doctor : "has many"
+    Research --> Document : "includes"
+    Doctor --> Research : "participates in"
+    Doctor --> Notification : "receives"
+    Patient --> Research : "participates in"
+    Patient --> Notification : "receives"
+    Candidate --> Application : "submits"
+
+```
+
+```mermaid
+classDiagram
     class clinicalStudyRepresentative {
         Long id
         String name
