@@ -92,12 +92,20 @@ classDiagram
 
     class Notification {
         Long id
+        String sender
+        Long senderCode
+        List<Long> recipientsCode
         String title
-        String description
-        List<Long> recipientEntities
+        String message
         int researchCode
-        List<String> attachments
-        int senderCode
+        List<Attachment> attachments
+        
+    }
+
+    Class Attachment {
+        Long id
+        String name
+        String link
     }
 
     class Patient {
