@@ -48,7 +48,7 @@ flowchart TD
 ## Diagrama de implantação 
 ```mermaid
 classDiagram
-    class User {
+    class clinicalStudyRepresentative {
         Long id
         String name
         String email
@@ -116,9 +116,9 @@ classDiagram
     }
 
     %% Relations
-    User --> Research : "has many"
-    User --> Notification : "has many"
-    User --> Candidate : "has many"
+    clinicalStudyRepresentative --> Research : "has many"
+    clinicalStudyRepresentative --> Notification : "has many"
+    clinicalStudyRepresentative --> Candidate : "has many"
     Research --> Criteria
     Research --> Dates
     Candidate --> Application
