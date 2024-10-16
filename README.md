@@ -106,6 +106,8 @@ classDiagram
         String email
         String gender
         LocalDate birth
+        String phone
+        String password
         boolean digitalSignatureConsent
         boolean responsibleDoctor
         List<String> authorizations
