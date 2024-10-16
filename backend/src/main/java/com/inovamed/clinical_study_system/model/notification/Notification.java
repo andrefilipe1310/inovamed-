@@ -18,8 +18,8 @@ public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private List<String> doctors;
+    private String title;
+    private String sender;
     private String message;
     private String link;
     private String attachment;
