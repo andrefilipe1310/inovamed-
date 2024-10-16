@@ -115,6 +115,10 @@ classDiagram
         List<Research> researches
         List<Notification> notifications
     }
+    class MedicalHistory {
+        int id
+        String text
+    }
 
     class PatientFeatureDTO {
         int code
@@ -161,6 +165,7 @@ classDiagram
     Doctor --> Notification : "receives"
     Patient --> Research : "participates in"
     Patient --> Notification : "receives"
+    Patient --> MedicalHistory : "he has"
     PatientFeatureDTO --> Application : "contains justification"
     Application --> Doctor : "notifies"
     Application --> Patient : "notifies"
