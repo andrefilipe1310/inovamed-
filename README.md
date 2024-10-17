@@ -50,50 +50,38 @@ npm start
 ### Observações
 - Certifique-se de que o servidor do PostgreSQL esteja em execução antes de iniciar a aplicação.
 - Verifique as dependências e versões para evitar conflitos.
-## Fluxograma
+## Diagrama UML, Diagramas de Caso de Uso, Fluxogramas e Diagrama ER
 
-### Fluxo 1
-```mermaid
-graph TD;
-    A[Cadastro de Estudo] -->|salva no banco de dados e notifica médicos| B[Visualização de Estudos Clínicos];
-    B -->|recomenda estudo a paciente| C[Recomendações de Estudos];
-    C -->|atualiza status no banco de dados| D[Gerenciamento de Pacientes];
-    D -->|envia notificações para médicos| E[Notificações para Médicos];
-```
-### Fluxo 2
+### Fluxograma (cadastro paciente)
 ```mermaid
 flowchart TD
-    A[Paciente deseja participar de um estudo] --> B[Paciente acessa a plataforma via médico]
-    B --> C[Paciente fornece dados com consentimento]
-    C --> D[Médico cadastra os dados na plataforma]
-    D --> E[Médico busca estudos disponíveis]
-    E --> F[Estudos filtrados com base nos dados do paciente]
-    F --> G[Médico avalia critérios de inclusão/exclusão]
-    G --> H[Médico seleciona o estudo adequado]
-    H --> I[Candidatura ao estudo é feita]
-    I --> J[Estudo clínico recebe candidatura]
+    A[Início do Cadastro do Paciente] --> B{Médico fornece a chave do paciente}
+    B -- Sim --> C[Preencher informações do paciente]
+    B -- Não --> D[Erro: Chave do médico é necessária]
+    D --> E[Fim do Cadastro]
+    C --> F[Validar informações]
+    F --> |Válidas| G[Cadastrar paciente]
+    F --> |Inválidas| H[Erro: Informações inválidas]
+    H --> E
+    G --> I[Paciente cadastrado com sucesso]
+    I --> E[Fim do Cadastro]
+```
+### Fluxograma (cadidatar paciente)
+```mermaid
+flowchart TD
+    A[Início do Processo de Candidatura] --> B[Médico seleciona paciente para candidatura]
+    B --> C[Verificar se o paciente é elegível]
+    C --> |Sim| D[Médico envia candidatura]
+    D --> E[Notificar o representante do estudo]
+    E --> F[Representante do estudo recebe candidatura]
+    F --> G[Representante avalia candidatura]
+    G --> |Aprovar| H[Notificar médico e paciente sobre aprovação]
+    G --> |Rejeitar| I[Notificar médico e paciente sobre rejeição]
+    C --> |Não| J[Notificar médico: Paciente não é elegível]
+    J --> K[Fim do Processo]
+    H --> K
+    I --> K
 
-    J --> K{Estudo aceita ou rejeita candidatura}
-    K --> L[Notificação de aprovação/rejeição enviada ao médico]
-    L --> M[Notificação ao médico sobre status da candidatura]
-
-    M --> N[Médico informa paciente sobre a aceitação ou rejeição]
-    N --> O{Paciente aceita ou recusa participação no estudo}
-    O --> |Aceita| P[Participação confirmada]
-    O --> |Recusa| Q[Processo encerrado]
-
-    %% Feedback loop quando um estudo é aprovado
-    P --> R[Estudo começa a ser conduzido]
-    R --> S[Médico monitora progresso do paciente]
-    S --> T[Estudo clínico fornece atualizações ao médico]
-    T --> U[Notificações enviadas ao médico]
-
-    %% Caso o estudo seja rejeitado
-    K --> |Rejeita| V[Notificação de rejeição ao médico]
-    V --> W[Médico informa o paciente sobre a rejeição]
-
-    %% Alternativa se o paciente quiser se candidatar a outro estudo
-    W --> F[Paciente pode ser redirecionado para outro estudo disponível]
 ```
 ## Diagrama de implantação 
 
