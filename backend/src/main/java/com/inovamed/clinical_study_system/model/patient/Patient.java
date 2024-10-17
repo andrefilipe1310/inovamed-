@@ -19,7 +19,7 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String code;
     private String name;
     private String email;
@@ -29,15 +29,26 @@ public class Patient {
     private String password;
     private Boolean digitalSignatureConsent;
     private Boolean responsibleDoctor;
+    private String signature;
+
+    @ElementCollection
+    @CollectionTable(name = "authorizations", joinColumns = @JoinColumn(name = "patient_id"))
+    @Column(name = "authorization")
     private List<String> authorizations;
-    @OneToMany(cascade = CascadeType.ALL)
+
+    @ManyToMany
+    @JoinTable(name = "tb_patient_research",joinColumns = @JoinColumn(name = "patient_id"),
+            inverseJoinColumns = @JoinColumn(name = "research_id"))
     private List<Research> researches;
-    @OneToMany(cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL)
     private List<Notification> notifications;
+
     @OneToOne(cascade = CascadeType.ALL)
     private MedicalHistory medicalHistory;
-    private String signature;
-    @OneToOne
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
     public void update(PatientUpdateDTO patientUpdateDTO) {

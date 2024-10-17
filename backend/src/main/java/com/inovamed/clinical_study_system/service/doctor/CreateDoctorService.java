@@ -15,10 +15,12 @@ import org.springframework.stereotype.Service;
 public class CreateDoctorService {
     @Autowired
     private DoctorRepository doctorRepository;
+    @Autowired
+    private DoctorDTOMapperService doctorDTOMapperService;
 
     public DoctorResponseDTO execute(DoctorRequestDTO doctorRequestDTO){
-        Doctor doctor = new Doctor(doctorRequestDTO);
-        return doctorRepository.save(doctor).toResponseDTO();
+        Doctor doctor = doctorDTOMapperService.toEntity(doctorRequestDTO);
+        return doctorDTOMapperService.toDTO(doctorRepository.save(doctor));
     };
 
 }

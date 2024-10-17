@@ -3,6 +3,7 @@ package com.inovamed.clinical_study_system.controller;
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.doctor.DoctorRequestDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
+import com.inovamed.clinical_study_system.model.doctor.DoctorUpdateDTO;
 import com.inovamed.clinical_study_system.service.doctor.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,8 +43,8 @@ public class DoctorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DoctorResponseDTO>  update(@PathVariable("id") Long id, @RequestBody DoctorRequestDTO doctorRequestDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(updateDoctorService.execute(id, doctorRequestDTO));
+    public ResponseEntity<DoctorResponseDTO>  update(@PathVariable("id") Long id, @RequestBody DoctorUpdateDTO DoctorUpdateDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(updateDoctorService.execute(id, DoctorUpdateDTO));
     }
 
     @DeleteMapping("/{id}")
