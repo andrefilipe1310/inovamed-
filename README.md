@@ -46,7 +46,9 @@ npm start
 ```
 5. **Acessar a Aplicação**
 - Abra seu navegador e acesse http://localhost:3000 para ver a aplicação em funcionamento.
-
+- 
+6. **Acessar as rotas da aplicação (swagger)**
+- Abra seu navegador e acesse http://localhost:8080/swagger-ui/index.html
 ### Observações
 - Certifique-se de que o servidor do PostgreSQL esteja em execução antes de iniciar a aplicação.
 - Verifique as dependências e versões para evitar conflitos.
