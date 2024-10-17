@@ -179,7 +179,50 @@ classDiagram
 
 
 ```
+```mermaid
+classDiagram
+    class Doctor {
+        +Long id
+        +String name
+        +String crm
+        +List<Patient> patients
+        +List<StudyApplication> studyApplications
+    }
 
+    class Patient {
+        +Long id
+        +String name
+        +String email
+        +Doctor doctor
+        +List<StudyApplication> studyApplications
+    }
+
+    class StudyRepresentative {
+        +Long id
+        +String name
+        +List<ClinicalStudy> studies
+    }
+
+    class ClinicalStudy {
+        +Long id
+        +String title
+        +String description
+        +StudyRepresentative studyRepresentative
+    }
+
+    class StudyApplication {
+        +Long id
+        +Patient patient
+        +ClinicalStudy clinicalStudy
+        +LocalDate applicationDate
+    }
+
+    Doctor "1" --> "0..*" Patient : manages >
+    Patient "0..*" --> "0..*" StudyApplication : applies >
+    StudyRepresentative "1" --> "0..*" ClinicalStudy : manages >
+    ClinicalStudy "0..*" --> "0..*" StudyApplication : isAppliedBy >
+
+```
 
 
 
