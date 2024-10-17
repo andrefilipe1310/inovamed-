@@ -353,7 +353,7 @@ erDiagram
 ### Equipe do Projeto
 
 - **André Filipe**
-  - **Função:** Desenvolvedor Backend e Gestor do projeto
+  - **Função:** Desenvolvedor Backend e Co-Gestor do projeto
   - **Email:** andrefilipef1310@gmail.com
   - **LinkedIn:** [André Filipe](https://linkedin.com/in/andre-filipe-/)
   - **Github:** [andrefilipef1310](https://github.com/andrefilipe1310/)
@@ -364,3 +364,10 @@ erDiagram
    - **Email:** amandakaawanny@gmail.com
    - **LinkedIn:** [Amanda Kaawanny](https://linkedin.com/in/amanda-lima-5bb61a1b0/)
    - **Github:** [amandaklima](github.com/amandaklima)
+
+
+ - **Ayrton Fernandes**
+   - **Função:** Desenvolvedor Backend e Co-Gestor do projeto
+   - **Email:** ayrtonleonardo14@gmail.com
+   - **LinkedIn:** [Ayrton Leonardo](https://www.linkedin.com/in/ayrton-leonardo-956a4026b/)
+   - **Github:** [AyrtonF](https://github.com/AyrtonF)
