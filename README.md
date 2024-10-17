@@ -7,6 +7,15 @@ InovaMed é uma plataforma digital inovadora desenvolvida para conectar paciente
 - **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as informações da aplicação.
 - **React**: Biblioteca JavaScript utilizada para construir a interface do usuário (front-end), proporcionando uma experiência interativa e dinâmica.
 
+## como instalar
+
+1. **Clone o repositório**
+
+   Abra seu terminal e execute o seguinte comando para clonar o repositório:
+
+   ```bash
+git clone https://github.com/seu-usuario/inovamed.git
+   ```
 ## Fluxograma
 
 ### Fluxo 1
