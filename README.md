@@ -15,7 +15,6 @@ InovaMed é uma plataforma digital inovadora desenvolvida para conectar paciente
 
 
  ```bash
-x = 10
 git clone https://github.com/seu-usuario/inovamed.git
 ```
 
