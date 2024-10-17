@@ -17,7 +17,10 @@ InovaMed é uma plataforma digital inovadora desenvolvida para conectar paciente
   git clone https://github.com/seu-usuario/inovamed.git
    ```
 
- 
+ ```ruby
+x = 10
+@Products = Product.all.order('name ASC')
+```
 
 ## Fluxograma
 
