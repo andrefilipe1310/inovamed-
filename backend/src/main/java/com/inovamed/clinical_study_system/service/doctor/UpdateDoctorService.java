@@ -1,7 +1,6 @@
 package com.inovamed.clinical_study_system.service.doctor;
 
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
-import com.inovamed.clinical_study_system.model.doctor.DoctorRequestDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorUpdateDTO;
 import com.inovamed.clinical_study_system.repository.DoctorRepository;

@@ -16,6 +16,7 @@ import java.util.List;
 public class Research {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "research_id")
     private Long id;
     private int code;
     private String title;

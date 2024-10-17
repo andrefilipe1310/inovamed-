@@ -6,6 +6,7 @@ import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,9 +22,9 @@ public class DoctorDTOMapperService {
                 doctor.getPhone(),
                 doctor.getSpecialty(),
                 doctor.getCrm(),
-                doctor.getApplicationsSubmitted(),
-                doctor.getNotifications(),
-                doctor.getPatients().stream().map(patient -> {
+                doctor.getApplicationsSubmitted() == null ? List.of():doctor.getApplicationsSubmitted(),
+                doctor.getNotifications() == null ? List.of() : doctor.getNotifications(),
+                doctor.getPatients() == null ? List.of() : doctor.getPatients().stream().map(patient -> {
                     return patient.getName();
                 }).collect(Collectors.toList())
         );

@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Entity(name = "tb_patient")
 @Getter
@@ -17,10 +18,10 @@ import java.util.List;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "patient_id")
     private Long id;
-    @Column(unique = true)
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String code;
+    @Column(unique = true, nullable = false)
+    private String code = UUID.randomUUID().toString();
     private String name;
     private String email;
     private String gender;
@@ -41,7 +42,7 @@ public class Patient {
             inverseJoinColumns = @JoinColumn(name = "research_id"))
     private List<Research> researches;
 
-    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "recipientsPatients", cascade = CascadeType.ALL)
     private List<Notification> notifications;
 
     @OneToOne(cascade = CascadeType.ALL)

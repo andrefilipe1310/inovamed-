@@ -8,8 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.print.Doc;
 import java.util.List;
 
 @Entity(name = "tb_notification")

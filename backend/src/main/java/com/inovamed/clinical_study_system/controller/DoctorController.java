@@ -1,6 +1,5 @@
 package com.inovamed.clinical_study_system.controller;
 
-import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.doctor.DoctorRequestDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorUpdateDTO;
@@ -8,7 +7,6 @@ import com.inovamed.clinical_study_system.service.doctor.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

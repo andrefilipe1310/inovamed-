@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity(name = "tb_doctor")
 @Getter
@@ -18,10 +19,10 @@ import java.util.List;
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "doctor_id")
     private Long id;
-    @Column(unique = true)
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String key;
+    @Column(unique = true, nullable = false)
+    private String key = UUID.randomUUID().toString();
 
     private String name;
     private String email;
