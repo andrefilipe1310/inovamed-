@@ -13,9 +13,6 @@ InovaMed é uma plataforma digital inovadora desenvolvida para conectar paciente
 
    Abra seu terminal e execute o seguinte comando para clonar o repositório:
 
-   ```bash
-  git clone https://github.com/seu-usuario/inovamed.git
-   ```
 
  ```bash
 x = 10
