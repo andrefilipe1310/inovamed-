@@ -7,7 +7,7 @@ InovaMed é uma plataforma digital inovadora desenvolvida para conectar paciente
 - **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as informações da aplicação.
 - **React**: Biblioteca JavaScript utilizada para construir a interface do usuário (front-end), proporcionando uma experiência interativa e dinâmica.
 
-## como Instalar
+## Como Instalar
 ### Pré-requisitos
 - [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 - [Maven](https://maven.apache.org/download.cgi)
