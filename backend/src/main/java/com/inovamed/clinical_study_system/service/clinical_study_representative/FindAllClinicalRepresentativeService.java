@@ -12,10 +12,12 @@ import java.util.stream.Collectors;
 public class FindAllClinicalRepresentativeService {
     @Autowired
     private ClinicalStudyRepresentiveRepository repository;
+    @Autowired
+    private ClinicalRepresentativeDTOMapperService clinicalRepresentativeDTOMapperService;
 
     public List<ClinicalStudyRepresentativeResponseDTO> execute(){
         return repository.findAll().stream().map((clinical)->{
-            return clinical.toDTO();
+            return clinicalRepresentativeDTOMapperService.toDTO(clinical);
         }).collect(Collectors.toList());
     }
 }

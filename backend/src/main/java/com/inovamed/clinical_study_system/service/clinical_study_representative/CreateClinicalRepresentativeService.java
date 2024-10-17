@@ -11,8 +11,11 @@ import org.springframework.stereotype.Service;
 public class CreateClinicalRepresentativeService {
     @Autowired
     private ClinicalStudyRepresentiveRepository clinicalRepository;
+    @Autowired
+    private ClinicalRepresentativeDTOMapperService clinicalRepresentativeDTOMapperService;
 
     public  ClinicalStudyRepresentativeResponseDTO execute(ClinicalStudyRepresentativeRequestDTO clincalRequestDTO){
-        return clinicalRepository.save(new ClinicalStudyRepresentative(clincalRequestDTO)).toDTO();
+        ClinicalStudyRepresentative clinicalRepresentative = clinicalRepresentativeDTOMapperService.toEntity(clincalRequestDTO);
+        return clinicalRepresentativeDTOMapperService.toDTO(clinicalRepository.save(clinicalRepresentative));
     }
 }

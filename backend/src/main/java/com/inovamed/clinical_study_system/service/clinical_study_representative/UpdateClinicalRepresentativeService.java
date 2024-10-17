@@ -12,12 +12,14 @@ import org.springframework.stereotype.Service;
 public class UpdateClinicalRepresentativeService {
     @Autowired
     private ClinicalStudyRepresentiveRepository clinicalRepository;
+    @Autowired
+    private ClinicalRepresentativeDTOMapperService clinicalRepresentativeDTOMapperService;
 
     public ClinicalStudyRepresentativeResponseDTO execute(Long id, ClinicalStudyRepresentativeRequestDTO clinicalStudyRepresentativeRequestDTO) {
         ClinicalStudyRepresentative updatedClinical = clinicalRepository.findById(id).orElseThrow(()->{
             return new RuntimeException("Clinical not found!");
         });
         updatedClinical.update(clinicalStudyRepresentativeRequestDTO);
-        return this.clinicalRepository.save(updatedClinical).toDTO();
+        return clinicalRepresentativeDTOMapperService.toDTO(this.clinicalRepository.save(updatedClinical));
 
 }}

@@ -29,8 +29,6 @@ public class ClinicalStudyRepresentative {
     private String experiences;
     private String password;
 
-    public ClinicalStudyRepresentative(ClinicalStudyRepresentativeRequestDTO clinicalRequestDTO) {this.update(clinicalRequestDTO);
-    }
 
 
     public ClinicalStudyRepresentativeResponseDTO toResponseDTO() {
@@ -45,14 +43,5 @@ public class ClinicalStudyRepresentative {
         this.experiences = requestDTO.experience();
         this.password = requestDTO.password();
     }
-    public ClinicalStudyRepresentativeResponseDTO toDTO(){
-        return new ClinicalStudyRepresentativeResponseDTO(
-                this.id,
-                this.name,
-                this.email,
-                this.phone,
-                this.clinicalRole,
-                this.experiences
-        );
-    }
+
 }

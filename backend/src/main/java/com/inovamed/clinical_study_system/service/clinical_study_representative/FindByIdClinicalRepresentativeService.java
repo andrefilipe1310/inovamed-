@@ -9,13 +9,15 @@ import org.springframework.stereotype.Service;
 public class FindByIdClinicalRepresentativeService {
     @Autowired
     private ClinicalStudyRepresentiveRepository clinicalRepository;
+    @Autowired
+    private ClinicalRepresentativeDTOMapperService clinicalRepresentativeDTOMapperService;
 
     public ClinicalStudyRepresentativeResponseDTO execute(Long id) {
-        return this.clinicalRepository.findById(id).orElseThrow(
+        return clinicalRepresentativeDTOMapperService.toDTO(this.clinicalRepository.findById(id).orElseThrow(
                 () -> {
                     return new RuntimeException("Clinical Not Found.");
                 }
-        ).toDTO();
+        ));
     }
 }
 
