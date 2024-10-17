@@ -15,6 +15,7 @@ public class DoctorDTOMapperService {
     public DoctorResponseDTO toDTO(Doctor doctor){
         return new DoctorResponseDTO(
                 doctor.getId(),
+                doctor.getKey(),
                 doctor.getName(),
                 doctor.getEmail(),
                 doctor.getDoctorExperienceEnum(),
