@@ -1,0 +1,9 @@
+com\inovamed\clinical_study_system\model\user\RegisterDTO.class
+com\inovamed\clinical_study_system\model\user\User.class
+com\inovamed\clinical_study_system\controller\AuthenticationController.class
+com\inovamed\clinical_study_system\service\token\TokenService.class
+com\inovamed\clinical_study_system\service\token\ITokenService.class
+com\inovamed\clinical_study_system\repository\UserRepository.class
+com\inovamed\clinical_study_system\model\user\AutenticateDTO.class
+com\inovamed\clinical_study_system\model\user\UserRoles.class
+com\inovamed\clinical_study_system\ClinicalStudySystemApplication.class

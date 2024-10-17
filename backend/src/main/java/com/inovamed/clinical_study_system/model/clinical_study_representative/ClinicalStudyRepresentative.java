@@ -1,6 +1,9 @@
 package com.inovamed.clinical_study_system.model.clinical_study_representative;
 
 
+import com.inovamed.clinical_study_system.model.doctor.DoctorRequestDTO;
+import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
+import com.inovamed.clinical_study_system.model.patient.PatientResponseDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,13 +29,30 @@ public class ClinicalStudyRepresentative {
     private String experiences;
     private String password;
 
-    public ClinicalStudyRepresentative(ClinicalStudyRepresentativeRequestDTO requestDTO){
-        this.name = requestDTO.name();
+    public ClinicalStudyRepresentative(ClinicalStudyRepresentativeRequestDTO clinicalRequestDTO) {this.update(clinicalRequestDTO);
     }
 
+
+    public ClinicalStudyRepresentativeResponseDTO toResponseDTO() {
+        return new ClinicalStudyRepresentativeResponseDTO(id, name, email, phone, clinicalRole, experiences);
+    }
+
+    public void update(ClinicalStudyRepresentativeRequestDTO requestDTO) {
+        this.name = requestDTO.name();
+        this.email = requestDTO.email();
+        this.clinicalRole = requestDTO.clinicalRole();
+        this.phone = requestDTO.phone();
+        this.experiences = requestDTO.experience();
+        this.password = requestDTO.password();
+    }
     public ClinicalStudyRepresentativeResponseDTO toDTO(){
         return new ClinicalStudyRepresentativeResponseDTO(
-
+                this.id,
+                this.name,
+                this.email,
+                this.phone,
+                this.clinicalRole,
+                this.experiences
         );
     }
 }
