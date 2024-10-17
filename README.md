@@ -367,7 +367,7 @@ erDiagram
 
 
  - **Ayrton Fernandes**
-  - **Função:** Desenvolvedor Backend e Co-Gestor do projeto
-  - **Email:** ayrtonleonardo14@gmail.com
-  - **LinkedIn:** [Ayrton Leonardo](https://www.linkedin.com/in/ayrton-leonardo-956a4026b/)
-  - **Github:** [AyrtonF](https://github.com/AyrtonF)
+   - **Função:** Desenvolvedor Backend e Co-Gestor do projeto
+   - **Email:** ayrtonleonardo14@gmail.com
+   - **LinkedIn:** [Ayrton Leonardo](https://www.linkedin.com/in/ayrton-leonardo-956a4026b/)
+   - **Github:** [AyrtonF](https://github.com/AyrtonF)
