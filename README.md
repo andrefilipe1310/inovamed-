@@ -83,7 +83,7 @@ flowchart TD
     I --> K
 
 ```
-## Diagrama de implantação 
+### Diagrama UML 
 
 ```mermaid
 classDiagram
@@ -217,7 +217,7 @@ classDiagram
 
 
 
-
+### Diagrama de implantação 
 ```mermaid
 graph TD
   subgraph "Usuário Final"
@@ -241,187 +241,116 @@ graph TD
 
 
 ```
-## Diagrama ER
+### Diagrama ER
 ```mermaid
 erDiagram
-    PACIENTE {
-        string id
+    CLINICAL_STUDY_REPRESENTATIVE {
+        string id PK
         string nome
         string email
         string telefone
-        string senha
-        string cidade
-    }
-
-    MEDICO {
-        string id
-        string nome
-        string crm
-        string especialidade
+        string papel_clinico
+        string experiencias
         string senha
     }
 
-    ESTUDO_CLINICO {
-        string id
+    RESEARCH {
+        string id PK
         string titulo
+        string area
+        int codigo
+        int numero_de_pacientes
+        int vagas_disponiveis
+        string localizacao
         string descricao
-        string criterios_inclusao
-        string criterios_exclusao
-        string contato
-        string status
+        string fases
+        int fase_atual
     }
 
-    CANDIDATURA {
-        string id
-        string paciente_id
-        string estudo_id
-        string status
-        string data_candidatura
+    CRITERIA {
+        string id PK
+        string inclusao
+        string exclusao
+    }
+
+    DATES {
+        string id PK
+        string inicio
+        string fim
     }
 
     NOTIFICACAO {
-        string id
-        string usuario_id
+        string id PK
+        string remetente
+        string codigo_remetente
         string mensagem
-        string data_envio
+        string titulo
+        string codigo_pesquisa
+        string anexos
+    }
+
+    ANEXO {
+        string id PK
+        string nome
+        string link
+    }
+
+    PACIENTE {
+        string id PK
+        string nome
+        string email
+        string genero
+        string telefone
+        string senha
+        boolean consentimento_assinatura_digital
+        string assinatura_digital
+        string autorizacoes
+    }
+
+    HISTORICO_MEDICO {
+        string id PK
+        string texto
+    }
+
+    CANDIDATURA {
+        string id PK
+        string codigo_paciente FK
+        string codigo_medico FK
+        string mensagem
+        string status
+        string pesquisa FK
+    }
+
+    MEDICO {
+        string id PK
+        string nome
+        string email
+        string clinica
+        string numero_de_contato
+        string especialidade
+        string crm
+        string experiencia
     }
 
     PACIENTE ||--o{ CANDIDATURA : faz
-    CANDIDATURA }o--|| ESTUDO_CLINICO : se_inscreve
-    MEDICO ||--o{ ESTUDO_CLINICO : gerencia
+    PACIENTE ||--|| HISTORICO_MEDICO : tem
+    CANDIDATURA }o--|| RESEARCH : se_inscreve
+    MEDICO ||--o{ RESEARCH : gerencia
     MEDICO ||--o{ NOTIFICACAO : envia
     PACIENTE ||--o{ NOTIFICACAO : recebe
+    RESEARCH ||--o{ CRITERIA : define
+    RESEARCH ||--o{ DATES : acontece_em
+    RESEARCH ||--o{ ANEXO : inclui
+```
 
-```
-## Diagrama UML
-```mermaid
-classDiagram
-  class Paciente {
-    +Long id
-    +String nome
-    +String email
-    +String cidade
-    +consentirUsoDados()
-    +@Masked
-  }
-  
-  class Medico {
-    +Long id
-    +String nome
-    +String crm
-    +String especialidade
-    +cadastrarPaciente()
-    +aprovarPaciente()
-  }
+## Prototipo de alta fidelidade (figma)
+- [link](https://www.figma.com/design/MAYIorwVh0L0GMI3fWkQ8p/inovamed?node-id=0-1&t=oOfMIo0CWC2Q0o69-1)
 
-  class EstudoClinico {
-    +Long id
-    +String titulo
-    +String descricao
-    +String criterios_inclusao
-    +String criterios_exclusao
-    +boolean aprovado
-    +gerenciarEstudo()
-  }
+## Responsáveis e Contato
 
-  class Candidatura {
-    +Long id
-    +Long paciente_id
-    +Long estudo_id
-    +String status
-    +String data_candidatura
-  }
+### Equipe do Projeto
 
-  class Notificacao {
-    +Long id
-    +Long usuario_id
-    +String mensagem
-    +String data_envio
-  }
-
-  class DataMasker {
-    +maskData(Object obj)
-  }
-
-  Paciente --> Medico : é cadastrado por
-  Medico --> EstudoClinico : candidata paciente a
-  EstudoClinico --> Paciente : envia resultados para
-  DataMasker --> Paciente : aplica máscara aos dados
-
-```
-## Fluxo de telas
-### Tela login
-```mermaid
-graph TD
-    A[Login] --> B[Email]
-    A --> C[Senha]
-    A --> D[Entrar]
-    A --> E[Esqueceu a senha?]
-```
-### Tela de Cadastro de Paciente
-```mermaid
-graph TD
-    A[Cadastrar Paciente] --> B[Nome]
-    A --> C[Email]
-    A --> D[Data de Nascimento]
-    A --> E[Consentir uso dos dados]
-    A --> F[Cadastrar]
-```
-### Painel do Médico
-```mermaid
-graph TD
-    A[Painel do Médico] --> B[Buscar Estudos]
-    A --> C[Meus Pacientes]
-    A --> D[Notificações]
-    A --> E[Listagem de Pacientes]
-```
-### Tela de Busca de Estudos Clínicos
-```mermaid
-    graph TD
-    A[Buscar Estudos Clínicos] --> B[Buscar por nome do estudo]
-    A --> C[Filtros]
-    C --> D[Área de pesquisa]
-    C --> E[Status do estudo]
-    A --> F[Listagem de Estudos]
-    A --> G[Candidatar Paciente]
-```
-### Tela de Detalhes do Estudo
-```mermaid
-graph TD
-    A[Detalhes do Estudo] --> B[Título do Estudo]
-    A --> C[Descrição]
-    A --> D[Critérios de Inclusão/Exclusão]
-    A --> E[Listagem de Pacientes]
-    A --> F[Candidatar Paciente]
-
-```
-### Tela de Notificações
-```mermaid
-graph TD
-    A[Notificações] --> B[Listagem de Notificações]
-    A --> C[Marcar como lida]
-
-```
-### Tela de Gerenciamento de Estudos (para Representante de Estudos)
-```mermaid
-graph TD
-    A[Gerenciamento de Estudos] --> B[Listagem de Estudos]
-    A --> C[Adicionar Novo Estudo]
-    A --> D[Editar Estudo]
-    A --> E[Excluir Estudo]
-```
-### Tela de Configurações de Conta
-```mermaid
-graph TD
-    A[Configurações de Conta] --> B[Nome]
-    A --> C[Email]
-    A --> D[Senha]
-    A --> E[Salvar Alterações]
-```
-```mermaid
-graph TD
-    A[Configurações de Conta] --> B[Nome]
-    A --> C[Email]
-    A --> D[Senha]
-    A --> E[Salvar Alterações]
-```
+- **André Filipe**
+  - **Função:** Desenvolvedor Backend e Gestor do projeto
+  - **Email:** andrefilipef1310@gmail.com
+  - **LinkedIn:** [André Filipe]linkedin.com/in/andre-filipe-/)
