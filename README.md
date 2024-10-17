@@ -191,6 +191,7 @@ classDiagram
         +String password
         +List<Research> researches
         +List<Notification> notifications
+        +List<Application> applicationsViewed
     }
 
     class Research {
@@ -210,6 +211,7 @@ classDiagram
         +int currentPhase
         +String location
         +List<Attachment> attachments
+        +List<Application> applications
     }
 
     class Criteria {
@@ -263,10 +265,12 @@ classDiagram
     }
 
     class Application {
+        +int id
         +int patientCode
         +int doctorCode
         +String message
         +String type  %% Type: rejection, expulsion, or approval
+        +Research research
     }
 
     class Doctor {
@@ -278,23 +282,29 @@ classDiagram
         +String crm
         +Enum experience
         +List<Research> researches
+        +List<Application> applicationsSubmitted
         +List<Notification> notifications
     }
 
     %% Relations
     ClinicalStudyRepresentative --> Research : "manages"
     ClinicalStudyRepresentative --> Notification : "receives updates"
+    ClinicalStudyRepresentative --> Application : "views"
     Research --> Criteria : "defines"
     Research --> Dates : "happens in"
     Research --> Doctor : "has many"
     Research --> Attachment : "includes"
+    Research --> Application : "receives"
+    Doctor --> Application : "submits"
+    Doctor --> Research : "participates in"
     Doctor --> Notification : "receives"
     Patient --> Research : "participates in"
     Patient --> Notification : "receives"
     Patient --> MedicalHistory : "has"
     Patient --> Doctor : "assigned to"
-    Application --> Doctor : "notifies"
-    Application --> Patient : "notifies"
+    Application --> Patient : "refers to"
+    Application --> Research : "relates to"
+    Application --> Doctor : "submitted by"
 
 ```
 ```mermaid
