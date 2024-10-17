@@ -353,12 +353,12 @@ erDiagram
 - **André Filipe**
   - **Função:** Desenvolvedor Backend e Gestor do projeto
   - **Email:** andrefilipef1310@gmail.com
-  - **LinkedIn:** [André Filipe](linkedin.com/in/andre-filipe-/)
+  - **LinkedIn:** [André Filipe](https://linkedin.com/in/andre-filipe-/)
   - **Github:** [andrefilipef1310](https://github.com/andrefilipe1310/)
 
 
  - **Amanda Lima**
   - **Função:** Desenvolvedora Front-end 
   - **Email:** amandakaawanny@gmail.com
-  - **LinkedIn:** [Amanda Kaawanny](linkedin.com/in/amanda-lima-5bb61a1b0/)
+  - **LinkedIn:** [Amanda Kaawanny](https://linkedin.com/in/amanda-lima-5bb61a1b0/)
   - **Github:** [amandaklima](github.com/amandaklima)
