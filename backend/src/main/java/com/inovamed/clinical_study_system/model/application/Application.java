@@ -1,10 +1,8 @@
 package com.inovamed.clinical_study_system.model.application;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.inovamed.clinical_study_system.model.doctor.Doctor;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +19,9 @@ public class Application {
     private Long id;
     private Long patientCode;
     private Long doctorCode;
+    @ManyToOne // Adicionando a relação de muitos-para-um
+    @JoinColumn(name = "doctor_id", nullable = false) // Nome da coluna que vai referenciar o médico
+    private Doctor doctor;
 
 
 }

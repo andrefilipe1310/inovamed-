@@ -33,8 +33,6 @@ public class Patient {
     private String signature;
 
     @ElementCollection
-    @CollectionTable(name = "authorizations", joinColumns = @JoinColumn(name = "patient_id"))
-    @Column(name = "authorization")
     private List<String> authorizations;
 
     @ManyToMany
@@ -42,7 +40,7 @@ public class Patient {
             inverseJoinColumns = @JoinColumn(name = "research_id"))
     private List<Research> researches;
 
-    @OneToMany(mappedBy = "recipientsPatients", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "recipientsPatients")
     private List<Notification> notifications;
 
     @OneToOne(cascade = CascadeType.ALL)

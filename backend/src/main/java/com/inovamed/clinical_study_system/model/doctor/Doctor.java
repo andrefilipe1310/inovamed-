@@ -21,7 +21,7 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "doctor_id")
     private Long id;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false,name = "key_doctor")
     private String key = UUID.randomUUID().toString();
 
     private String name;
@@ -37,7 +37,7 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<Application> applicationsSubmitted;
 
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "recipientsDoctors")
     private List<Notification> notifications;
 
     @OneToMany(mappedBy = "doctor")

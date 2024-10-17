@@ -7,6 +7,7 @@ import java.util.List;
 
 public record DoctorResponseDTO(Long id, String name, String email, DoctorExperienceEnum doctorExperienceEnum,
                                 String clinic, String phone, String specialty, String Crm,
-                                List<Application> applicationsSubmitted, List<Notification> notifications,
+                                List<Application> applicationsSubmitted,List<Notification> notifications,
                                 List<String> patientsNames) {
 }
+

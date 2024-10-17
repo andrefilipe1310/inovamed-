@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "tb_attachment")
 @Getter
 @Setter
 @NoArgsConstructor

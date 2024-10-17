@@ -27,15 +27,15 @@ public class Notification {
     private List<Attachment> attachment;
 
     @ManyToMany
-    @JoinTable(name = "notification_recipients",
+    @JoinTable(name = "notification_recipients_patients",
             joinColumns = @JoinColumn(name = "notification_id"),
-            inverseJoinColumns = @JoinColumn(name = "recipient_id"))
+            inverseJoinColumns = @JoinColumn(name = "patient_id"))
     private List<Patient> recipientsPatients;
 
     @ManyToMany
-    @JoinTable(name = "notification_recipients",
+    @JoinTable(name = "notification_recipients_doctors",
             joinColumns = @JoinColumn(name = "notification_id"),
-            inverseJoinColumns = @JoinColumn(name = "recipient_id"))
+            inverseJoinColumns = @JoinColumn(name = "doctor_id"))
     private List<Doctor> recipientsDoctors;
 
 }

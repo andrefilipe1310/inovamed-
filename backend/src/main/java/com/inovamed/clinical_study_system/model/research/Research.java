@@ -23,19 +23,23 @@ public class Research {
     private String area;
     private int numberOfPatients;
     private int availableVacancies;
+    @ElementCollection
     private List<String> responsibleDoctors;
+    @ElementCollection
     private List<String> institutions;
     private String description;
     @Embedded
     private Criteria criteria;
     @Embedded
     private StudyDuration studyDuration;
-    @Embedded
+    @ElementCollection
+    @CollectionTable(name = "research_phases", joinColumns = @JoinColumn(name = "research_id"))
     private List<Phases> phases;
     private int currentPhase;
     private String location;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "research_id")
     private List<Attachment> attachments;
-    @OneToMany
+    @ManyToMany(mappedBy = "researches")
     private List<Patient> patients;
 }
