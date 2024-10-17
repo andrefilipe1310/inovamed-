@@ -356,8 +356,8 @@ erDiagram
   - **LinkedIn:** [André Filipe](linkedin.com/in/andre-filipe-/)
 
 
- -**Amanda Lima**
-  -**Função:** Desenvolvedora Front-end 
-  -**Email:** amandakaawanny@gmail.com
-  -**LinkedIn:** (linkedin.com/in/amanda-lima-5bb61a1b0)
-  -**Github:** (github.com/amandaklima)
+ - **Amanda Lima**
+  - **Função:** Desenvolvedora Front-end 
+  - **Email:** amandakaawanny@gmail.com
+  - **LinkedIn:** (linkedin.com/in/amanda-lima-5bb61a1b0)
+  - **Github:** (github.com/amandaklima)
