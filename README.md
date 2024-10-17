@@ -201,6 +201,7 @@ classDiagram
         +Long id
         +String name
         +List<ClinicalStudy> studies
+        +List<StudyApplication> viewApplications()
     }
 
     class ClinicalStudy {
@@ -212,15 +213,18 @@ classDiagram
 
     class StudyApplication {
         +Long id
+        +Doctor doctor
         +Patient patient
         +ClinicalStudy clinicalStudy
         +LocalDate applicationDate
     }
 
     Doctor "1" --> "0..*" Patient : manages >
-    Patient "0..*" --> "0..*" StudyApplication : applies >
+    Doctor "1" --> "0..*" StudyApplication : submits >
+    Patient "0..*" --> "0..*" StudyApplication : isSubmittedFor >
     StudyRepresentative "1" --> "0..*" ClinicalStudy : manages >
-    ClinicalStudy "0..*" --> "0..*" StudyApplication : isAppliedBy >
+    ClinicalStudy "0..*" --> "0..*" StudyApplication : receives >
+    StudyApplication --> ClinicalStudy : refersTo >
 
 ```
 
