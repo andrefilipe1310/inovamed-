@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "041e6af9-b7e0-412b-ab36-94dc40411fbb",
+		"name": "inovamed",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34420077"
+	},
+	"item": [
+		{
+			"name": "autenticação",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\":\"andre2@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resgister",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"andre2@gmail.com\",\r\n    \"password\":\"12345\",\r\n    \"roles\":\"DOCTOR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "doctor",
+			"item": [
+				{
+					"name": "createDoctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Dr. Geraldo Silva\",\r\n  \"email\": \"geraldo.silva@example.com\",\r\n  \"doctorExperienceEnum\": \"NEVER\",\r\n  \"clinic\": \"Clínica Saúde e Vida\",\r\n  \"phone\": \"+55 11 91234-5678\",\r\n  \"password\": \"senhaSegura123\",\r\n  \"specialty\": \"Cardiologia\",\r\n  \"Crm\": \"123456\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/doctor",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllDoctors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/doctor",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIDDoctor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/doctor/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDoctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Dr. John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"clinic\": \"Health Clinic\",\r\n  \"specialty\": \"Cardiology\",\r\n  \"doctorExperienceEnum\": \"EXPERIENCE\",\r\n  \"crm\": \"123456\",\r\n  \"phone\": \"+1234567890\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/doctor/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteDoctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/doctor/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "patient",
+			"item": [
+				{
+					"name": "findAllPatient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/patient",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdPatient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/patient/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPatient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"gender\": \"Male\",\r\n  \"birth\": \"1990-05-15\",\r\n  \"phone\": \"+1234567890\",\r\n  \"password\": \"securePassword123\",\r\n  \"medicalHistory\": {\r\n   \r\n  },\r\n  \"signature\": \"Base64EncodedSignatureString\",\r\n  \"doctorKey\": \"ebf6cc56-c79b-4e6d-8ed2-8947b588563e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/patient",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePatient",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"janedoe@example.com\",\r\n  \"gender\": \"Female\",\r\n  \"birth\": \"1985-10-20\",\r\n  \"phone\": \"+9876543210\",\r\n  \"password\": \"newSecurePassword456\",\r\n  \"digitalSignatureConsent\": true,\r\n  \"responsibleDoctor\": false,\r\n  \"authorizations\": [\r\n    \"authorization_for_study_1\",\r\n    \"authorization_for_data_sharing\"\r\n  ],\r\n  \"researches\": [\r\n   \r\n  ],\r\n  \"notifications\": [\r\n    {\r\n      \"message\": \"New research opportunity available in Neurology\",\r\n      \"date\": \"2024-04-01\",\r\n      \"read\": false\r\n    },\r\n    {\r\n      \"id\": null,\r\n            \"sender\": \"pessoa\",\r\n            \"senderCode\": 1234,\r\n            \"title\": \"notificacao\",\r\n            \"message\": \"mensagem\",\r\n            \"attachment\": [],\r\n            \"recipientsPatients\": [],\r\n            \"recipientsDoctors\": []\r\n    }\r\n  ],\r\n  \"medicalHistory\": {\r\n   \r\n  },\r\n  \"signature\": \"UpdatedBase64EncodedSignature\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/patient/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePatient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/patient/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "clinical representative",
+			"item": [
+				{
+					"name": "findAllClinicalRepresentative",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clinical-representative",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clinical-representative"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdClinicalRepresentative",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clinical-representative/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clinical-representative",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createClinicalRepresentative",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Smith\",\r\n  \"email\": \"johnsmith@example.com\",\r\n  \"phone\": \"+1234567890\",\r\n  \"clinicalRole\": \"Principal Investigator\",\r\n  \"experience\": \"10 years in clinical research\",\r\n  \"password\": \"securePassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clinical-representative",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clinical-representative"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateClinicalRepresentative",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 12345,\r\n  \"name\": \"John22 Smith\",\r\n  \"email\": \"johnsmith@example.com\",\r\n  \"phone\": \"+1234567890\",\r\n  \"clinicalRole\": \"Principal Investigator\",\r\n  \"experience\": \"10 years in clinical research\",\r\n  \"password\": \"securePassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clinical-representative/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clinical-representative",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteClinicalRepresentative",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clinical-representative/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clinical-representative",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
