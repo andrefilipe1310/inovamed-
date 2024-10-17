@@ -353,4 +353,4 @@ erDiagram
 - **André Filipe**
   - **Função:** Desenvolvedor Backend e Gestor do projeto
   - **Email:** andrefilipef1310@gmail.com
-  - **LinkedIn:** [André Filipe]linkedin.com/in/andre-filipe-/)
+  - **LinkedIn:** [André Filipe](linkedin.com/in/andre-filipe-/)
