@@ -181,6 +181,124 @@ classDiagram
 ```
 ```mermaid
 classDiagram
+    class ClinicalStudyRepresentative {
+        +Long id
+        +String name
+        +String email
+        +String phone
+        +String clinicalRole
+        +String experiences
+        +String password
+        +List<Research> researches
+        +List<Notification> notifications
+    }
+
+    class Research {
+        +Long id
+        +String title
+        +String area
+        +int code
+        +int numberOfPatients
+        +int availableSpots
+        +Doctor principalDoctor
+        +List<Doctor> otherDoctors
+        +List<String> institutions
+        +String description
+        +Criteria criteria
+        +Dates dates
+        +List<String> phases
+        +int currentPhase
+        +String location
+        +List<Attachment> attachments
+    }
+
+    class Criteria {
+        +String inclusion
+        +String exclusion
+    }
+
+    class Dates {
+        +String start
+        +String end
+    }
+
+    class Notification {
+        +Long id
+        +String sender
+        +Long senderCode
+        +List<Long> recipientsCode
+        +String title
+        +String message
+        +int researchCode
+        +List<String> attachments
+    }
+
+    class Attachment {
+        +Long id
+        +String name
+        +String link
+    }
+
+    class Patient {
+        +int id
+        +String name
+        +String email
+        +String gender
+        +LocalDate birth
+        +String phone
+        +String password
+        +Doctor doctor
+        +boolean digitalSignatureConsent
+        +boolean responsibleDoctor
+        +String digitalSignature
+        +List<String> authorizations
+        +List<Research> researches
+        +List<Notification> notifications
+        +MedicalHistory medicalHistory
+    }
+
+    class MedicalHistory {
+        +int id
+        +String text
+    }
+
+    class Application {
+        +int patientCode
+        +int doctorCode
+        +String message
+        +String type  %% Type: rejection, expulsion, or approval
+    }
+
+    class Doctor {
+        +String name
+        +String email
+        +String clinic
+        +String contactNumber
+        +String specialty
+        +String crm
+        +Enum experience
+        +List<Research> researches
+        +List<Notification> notifications
+    }
+
+    %% Relations
+    ClinicalStudyRepresentative --> Research : "manages"
+    ClinicalStudyRepresentative --> Notification : "receives updates"
+    Research --> Criteria : "defines"
+    Research --> Dates : "happens in"
+    Research --> Doctor : "has many"
+    Research --> Attachment : "includes"
+    Doctor --> Notification : "receives"
+    Patient --> Research : "participates in"
+    Patient --> Notification : "receives"
+    Patient --> MedicalHistory : "has"
+    Patient --> Doctor : "assigned to"
+    Application --> Doctor : "notifies"
+    Application --> Patient : "notifies"
+
+```
+```mermaid
+classDiagram
     class Doctor {
         +Long id
         +String name
