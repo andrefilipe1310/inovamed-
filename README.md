@@ -354,3 +354,10 @@ erDiagram
   - **Função:** Desenvolvedor Backend e Gestor do projeto
   - **Email:** andrefilipef1310@gmail.com
   - **LinkedIn:** [André Filipe](linkedin.com/in/andre-filipe-/)
+
+
+ -**Amanda Lima**
+  -**Função:** Desenvolvedora Front-end 
+  -**Email:** amandakaawanny@gmail.com
+  -**LinkedIn:** (linkedin.com/in/amanda-lima-5bb61a1b0)
+  -**Github:** (github.com/amandaklima)
