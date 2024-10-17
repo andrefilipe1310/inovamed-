@@ -152,7 +152,7 @@ classDiagram
         String contactNumber
         String specialty
         String crm
-        String experience
+        Enum experience
         List<Research> researches
         List<Notification> notifications
     }
