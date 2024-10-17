@@ -366,7 +366,7 @@ erDiagram
    - **Github:** [amandaklima](github.com/amandaklima)
 
 
-   - **Ayrton Fernandes**
+ - **Ayrton Fernandes**
   - **Função:** Desenvolvedor Backend e Co-Gestor do projeto
   - **Email:** ayrtonleonardo14@gmail.com
   - **LinkedIn:** [Ayrton Leonardo](https://www.linkedin.com/in/ayrton-leonardo-956a4026b/)
