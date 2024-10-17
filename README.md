@@ -358,7 +358,7 @@ erDiagram
 
 
  - **Amanda Lima**
-  - **Função:** Desenvolvedora Front-end 
-  - **Email:** amandakaawanny@gmail.com
-  - **LinkedIn:** [Amanda Kaawanny](https://linkedin.com/in/amanda-lima-5bb61a1b0/)
-  - **Github:** [amandaklima](github.com/amandaklima)
+   - **Função:** Desenvolvedora Front-end 
+   - **Email:** amandakaawanny@gmail.com
+   - **LinkedIn:** [Amanda Kaawanny](https://linkedin.com/in/amanda-lima-5bb61a1b0/)
+   - **Github:** [amandaklima](github.com/amandaklima)
