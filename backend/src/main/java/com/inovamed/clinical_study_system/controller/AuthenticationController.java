@@ -5,7 +5,6 @@ import com.inovamed.clinical_study_system.model.user.LoginResponseDTO;
 import com.inovamed.clinical_study_system.model.user.RegisterDTO;
 import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.repository.UserRepository;
-import com.inovamed.clinical_study_system.service.UserService;
 import com.inovamed.clinical_study_system.service.token.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

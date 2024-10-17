@@ -10,13 +10,15 @@ import org.springframework.stereotype.Service;
 public class FindByIdPatientService {
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private PatientDTOMapperService patientDTOMapperService;
 
 
     public PatientResponseDTO execute(Long id){
-        return this.patientRepository.findById(id).orElseThrow(
+        return patientDTOMapperService.toDTO(this.patientRepository.findById(id).orElseThrow(
                 () -> {
                     return new RuntimeException("Patient not found.");
                 }
-        ).toDTO();
+        ));
     }
 }
