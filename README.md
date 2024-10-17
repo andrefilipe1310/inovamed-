@@ -7,17 +7,49 @@ InovaMed é uma plataforma digital inovadora desenvolvida para conectar paciente
 - **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as informações da aplicação.
 - **React**: Biblioteca JavaScript utilizada para construir a interface do usuário (front-end), proporcionando uma experiência interativa e dinâmica.
 
-## como instalar
-
+## como Instalar
+### Pré-requisitos
+- [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [Maven](https://maven.apache.org/download.cgi)
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [Node.js](https://nodejs.org/) 
+### Passo a Passo
 1. **Clone o repositório**
 
-   Abra seu terminal e execute o seguinte comando para clonar o repositório:
-
+Abra seu terminal e execute o seguinte comando para clonar o repositório:
 
  ```bash
 git clone https://github.com/seu-usuario/inovamed.git
 ```
+ ```bash
+cd inovamed
+```
+2. **Configure o banco de dados**
+- Crie um banco de dados no PostgreSQL chamado inovamed.
+- Atualize as credenciais do banco de dados no arquivo application.properties (ou application.yml) localizado em src/main/resources:
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/inovamed
+spring.datasource.username=seu_usuario
+spring.datasource.password=sua_senha
+```
+3. **Executar o Backend**
+- Navegue até a pasta do backend e execute o seguinte comando:
+```bash
+mvn spring-boot:run
+```
+4. **Executar o Frontend**
+- Navegue até a pasta do front-end e execute os seguintes comandos:
+```bash
+cd frontend
+npm install
+npm start
+```
+5. **Acessar a Aplicação**
+- Abra seu navegador e acesse http://localhost:3000 para ver a aplicação em funcionamento.
 
+### Observações
+- Certifique-se de que o servidor do PostgreSQL esteja em execução antes de iniciar a aplicação.
+- Verifique as dependências e versões para evitar conflitos.
 ## Fluxograma
 
 ### Fluxo 1
