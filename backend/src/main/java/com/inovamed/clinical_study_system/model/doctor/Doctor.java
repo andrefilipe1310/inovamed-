@@ -1,8 +1,5 @@
 package com.inovamed.clinical_study_system.model.doctor;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +22,8 @@ public class Doctor {
     private String password;
     private String specialty;
     private String Crm;
+    @Column(unique = true)
+    private String key;
 
     public Doctor(DoctorRequestDTO doctorRequestDTO) {
         this.update(doctorRequestDTO);

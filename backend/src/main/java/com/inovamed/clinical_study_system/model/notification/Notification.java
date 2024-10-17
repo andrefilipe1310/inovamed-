@@ -1,9 +1,7 @@
 package com.inovamed.clinical_study_system.model.notification;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.inovamed.clinical_study_system.model.attachment.Attachment;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +16,11 @@ public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
     private String sender;
+    private Long senderCode;
+    private List<Long> recipientsCode;
+    private String title;
     private String message;
-    private String link;
-    private String attachment;
+    @OneToMany
+    private List<Attachment> attachment;
 }

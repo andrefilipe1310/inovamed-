@@ -12,11 +12,13 @@ import java.util.stream.Collectors;
 public class FindAllPatientsService {
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private PatientDTOMapperService patientDTOMapperService;
 
     public List<PatientResponseDTO> execute(){
         return patientRepository.findAll().stream()
                 .map(patient -> {
-                   return patient.toDTO();
+                   return patientDTOMapperService.toDTO(patient);
                 })
                 .collect(Collectors.toList());
     }
