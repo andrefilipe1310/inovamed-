@@ -1,12 +1,10 @@
 package com.inovamed.clinical_study_system.controller;
 
-import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
 import com.inovamed.clinical_study_system.service.clinical_study_representative.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +23,7 @@ public class ClinicalRepresentativeController {
     private DeleteByIdClinicalRepresentativeService deleteByIdClinicalRepresentativeService;
     @Autowired
     private UpdateClinicalRepresentativeService updateClinicalRepresentativeService;
+
 
 
     @PostMapping
@@ -52,5 +51,6 @@ public class ClinicalRepresentativeController {
         deleteByIdClinicalRepresentativeService.execute(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
 }
 

@@ -4,10 +4,8 @@ package com.inovamed.clinical_study_system.model.clinical_study_representative;
 import com.inovamed.clinical_study_system.model.doctor.DoctorRequestDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
 import com.inovamed.clinical_study_system.model.patient.PatientResponseDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.inovamed.clinical_study_system.model.research.Research;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +26,7 @@ public class ClinicalStudyRepresentative {
     private String clinicalRole;
     private String experiences;
     private String password;
+
 
 
 

@@ -1,6 +1,7 @@
 package com.inovamed.clinical_study_system.model.research;
 
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
+import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.patient.Patient;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public class Research {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "research_id")
     private Long id;
-    private int code;
+    private int code = (int) Math.random();
     private String title;
     private String area;
     private int numberOfPatients;
@@ -42,4 +43,6 @@ public class Research {
     private List<Attachment> attachments;
     @ManyToMany(mappedBy = "researches")
     private List<Patient> patients;
+    @ManyToOne
+    private ClinicalStudyRepresentative clinicalRepresentative;
 }
