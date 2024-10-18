@@ -371,3 +371,10 @@ erDiagram
    - **Email:** ayrtonleonardo14@gmail.com
    - **LinkedIn:** [Ayrton Leonardo](https://www.linkedin.com/in/ayrton-leonardo-956a4026b/)
    - **Github:** [AyrtonF](https://github.com/AyrtonF)
+  
+
+- **Estephani Germana**
+   - **Função:** Desenvolvedor Backend e QA
+   - **Email:** estephani.germana@gmail.com
+   - **LinkedIn:** [Estephani Germana](https://www.linkedin.com/in/estephanigermana/)
+   - **Github:** [estephgermana](https://github.com/estephgermana)
