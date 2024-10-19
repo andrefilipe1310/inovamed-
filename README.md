@@ -42,10 +42,10 @@ mvn spring-boot:run
 ```bash
 cd frontend
 npm install
-npm start
+npm run dev
 ```
 5. **Acessar a Aplicação**
-- Abra seu navegador e acesse http://localhost:3000 para ver a aplicação em funcionamento.
+- Abra seu navegador e acesse http://localhost:5173 para ver a aplicação em funcionamento.
 
 6. **Acessar as rotas da aplicação (swagger)**
 - Abra seu navegador e acesse http://localhost:8080/swagger-ui/index.html
@@ -372,7 +372,12 @@ erDiagram
    - **LinkedIn:** [Ayrton Leonardo](https://www.linkedin.com/in/ayrton-leonardo-956a4026b/)
    - **Github:** [AyrtonF](https://github.com/AyrtonF)
   
-
+ - **Bruno Klisman**
+   - **Função:** Desenvolvedor Front-end 
+   - **Email:** brunoserafim.dev@gmail.com
+   - **LinkedIn:** [Bruno KLisman](www.linkedin.com/in/bruno-klisman-30aa14267)
+   - **Github:** [Bruno-Klisman](https://github.com/Bruno-Klisman)
+     
 - **Estephani Germana**
    - **Função:** Desenvolvedor Backend e QA
    - **Email:** estephani.germana@gmail.com
