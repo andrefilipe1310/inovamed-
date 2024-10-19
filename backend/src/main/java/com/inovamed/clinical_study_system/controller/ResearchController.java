@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.controller;
 
+import com.inovamed.clinical_study_system.model.research.ResearchAddRepresentativeDTO;
 import com.inovamed.clinical_study_system.model.research.ResearchRequestDTO;
 import com.inovamed.clinical_study_system.model.research.ResearchResponseDTO;
 import com.inovamed.clinical_study_system.model.research.ResearchUpdateDTO;
@@ -24,6 +25,8 @@ public class ResearchController {
     UpdateResearchService updateResearchService;
     @Autowired
     DeleteByIdResearshService deleteByIdResearshService;
+    @Autowired
+    AddRepresentativeInResearchService addRepresentativeInResearchService;
 
     @PostMapping(produces = "application/json")
     public ResponseEntity<ResearchResponseDTO> create(@RequestBody ResearchRequestDTO researchRequestDTO){
@@ -49,5 +52,9 @@ public class ResearchController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @PutMapping("/add-clinical-representative")
+    public ResponseEntity<ResearchResponseDTO> addClinicalRepresentative(@RequestBody ResearchAddRepresentativeDTO researchAddRepresentativeDTO){
+        return ResponseEntity.status(HttpStatus.OK).body(this.addRepresentativeInResearchService.execute(researchAddRepresentativeDTO));
+    }
 
 }
