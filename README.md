@@ -375,7 +375,7 @@ erDiagram
  - **Bruno Klisman**
    - **Função:** Desenvolvedor Front-end 
    - **Email:** brunoserafim.dev@gmail.com
-   - **LinkedIn:** [Bruno KLisman](www.linkedin.com/in/bruno-klisman-30aa14267)
+   - **LinkedIn:** [Bruno KLisman](https://www.linkedin.com/in/bruno-klisman-30aa14267/)
    - **Github:** [Bruno-Klisman](https://github.com/Bruno-Klisman)
      
 - **Estephani Germana**
