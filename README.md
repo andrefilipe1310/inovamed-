@@ -146,7 +146,7 @@ classDiagram
     class Attachment {
         +Long id
         +String name
-        +String link
+        +String archive
     }
 
     class Patient {
