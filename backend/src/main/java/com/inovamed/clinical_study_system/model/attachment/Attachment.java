@@ -1,9 +1,8 @@
 package com.inovamed.clinical_study_system.model.attachment;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.inovamed.clinical_study_system.model.notification.Notification;
+import com.inovamed.clinical_study_system.model.research.Research;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +18,26 @@ public class Attachment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String link;
+    @Lob
+    private byte[] archive;
+
+    @ManyToOne
+    @JoinColumn(name = "notification_id")
+    private Notification notification;
+
+    @ManyToOne
+    @JoinColumn(name = "research_id")
+    private Research research;
+
+    public void update(AttachmentRequestDTO attachmentRequestDTO){
+        updateField(() -> this.name = attachmentRequestDTO.name(), attachmentRequestDTO.name());
+        updateField(() -> this.archive = attachmentRequestDTO.archive(), attachmentRequestDTO.archive());
+    }
+
+    private <T> void updateField(Runnable updateAction, T newValue) {
+        if (newValue != null) {
+            updateAction.run();
+        }
+    }
+
 }

@@ -23,7 +23,8 @@ public class Notification {
     private Long senderCode;
     private String title;
     private String message;
-    @OneToMany
+
+    @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL)
     private List<Attachment> attachment;
 
     @ManyToMany

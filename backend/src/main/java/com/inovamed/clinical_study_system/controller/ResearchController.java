@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.controller;
 
+
 import com.inovamed.clinical_study_system.model.research.ResearchAddRepresentativeDTO;
 import com.inovamed.clinical_study_system.model.research.ResearchRequestDTO;
 import com.inovamed.clinical_study_system.model.research.ResearchResponseDTO;

@@ -38,8 +38,7 @@ public class Research {
     private List<Phases> phases;
     private int currentPhase;
     private String location;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "research_id")
+    @OneToMany(mappedBy = "research", cascade = CascadeType.ALL)
     private List<Attachment> attachments;
     @ManyToMany(mappedBy = "researches")
     private List<Patient> patients;
