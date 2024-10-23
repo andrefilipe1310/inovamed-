@@ -24,6 +24,7 @@ public class DigitalSignature {
     private Long id;
     private String documentName;
     private byte[] documentContent;
+    private byte[] signature;
     @ManyToMany
     List<Consent> consents;
     private LocalDateTime timestamp;
@@ -32,4 +33,6 @@ public class DigitalSignature {
     private boolean isActive;
     @OneToOne
     private User user;
+
+
 }
