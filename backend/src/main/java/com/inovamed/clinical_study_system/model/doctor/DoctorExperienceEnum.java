@@ -6,8 +6,12 @@ public enum DoctorExperienceEnum {
     EXPERIENCE("experience");
 
     private String experience;
-    DoctorExperienceEnum(String experience){
+
+    DoctorExperienceEnum(String experience) {
         this.experience = experience;
     }
-    public String getExperience(){return  this.experience;}
+
+    public String getExperience() {
+        return this.experience;
+    }
 }
