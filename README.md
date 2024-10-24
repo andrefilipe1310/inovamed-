@@ -407,12 +407,6 @@ erDiagram
   - **LinkedIn:** [Ariano Souza](https://www.linkedin.com/in/ariano-souza-14777926b)
   - **Github:** [ArianoSouza](https://github.com/ArianoSouza)
 
- - **Amanda Lima**
-   - **Função:** Desenvolvedora Front-end 
-   - **Email:** amandakaawanny@gmail.com
-   - **LinkedIn:** [Amanda Kaawanny](https://linkedin.com/in/amanda-lima-5bb61a1b0/)
-   - **Github:** [amandaklima](github.com/amandaklima)
-
 
  - **Ayrton Fernandes**
    - **Função:** Desenvolvedor Backend e Co-Gestor do projeto
@@ -420,6 +414,13 @@ erDiagram
    - **LinkedIn:** [Ayrton Leonardo](https://www.linkedin.com/in/ayrton-leonardo-956a4026b/)
    - **Github:** [AyrtonF](https://github.com/AyrtonF)
   
+
+ - **Amanda Lima**
+   - **Função:** Desenvolvedora Front-end 
+   - **Email:** amandakaawanny@gmail.com
+   - **LinkedIn:** [Amanda Kaawanny](https://linkedin.com/in/amanda-lima-5bb61a1b0/)
+   - **Github:** [amandaklima](github.com/amandaklima)
+
  - **Bruno Klisman**
    - **Função:** Desenvolvedor Front-end 
    - **Email:** brunoserafim.dev@gmail.com
