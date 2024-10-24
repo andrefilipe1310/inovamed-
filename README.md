@@ -177,12 +177,36 @@ classDiagram
         +Doctor doctor
         +boolean digitalSignatureConsent
         +boolean responsibleDoctor
-        +String digitalSignature
+        +DigitalSignature digitalSignature
         +List<String> authorizations
         +List<Research> researches
         +List<Notification> notifications
         +MedicalHistory medicalHistory
     }
+    class DigitalSignature {
+        +int id
+        +String documentName
+        +String documentName
+        +byte[] documentContent
+        +byte[] signature
+        +LocalDateTime timestamp
+        +LocalDateTime validFrom
+        +LocalDateTime validUntil
+        +List<Consent> consents
+        +User user;
+        +boolean isActive;
+    }
+
+    class Consent {
+        +int id
+        +ConsentType consentType
+        +LocalDateTime validFrom
+        +LocalDateTime validUntil
+        +boolean isActive
+        +List<DigitalSignature> digitalSignature
+    }
+    
+    
 
     class MedicalHistory {
         +int id
@@ -226,7 +250,9 @@ classDiagram
     Patient --> Research : "participates in"
     Patient --> Notification : "receives"
     Patient --> MedicalHistory : "has"
+    Patient --> DigitalSignature : "has"
     Patient --> Doctor : "assigned to"
+    DigitalSignature --> Consent : "has many"
     Application --> Patient : "refers to"
     Application --> Research : "relates to"
     Application --> Doctor : "submitted by"
