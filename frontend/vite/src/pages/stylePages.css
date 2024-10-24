@@ -64,7 +64,13 @@ transition: 0.1s;
      background-color: #0b42ce;
      border-radius: 15px;
      margin: 0vw 0vw 2vw 0vw;
+     display: flex;
+     align-items: center;
+     justify-content: center;
  }
+ .logo-container img{
+  height: 90%;
+}
  .border-container-login{
      width: 35%;
      height: 30vw;
@@ -136,6 +142,7 @@ transition: 0.1s;
 
 /* Paginas dos usuários*/
 
+/* REPRESENTANTE*/
 .container-page{
     padding-left: 25%;
     display: flex;
@@ -163,12 +170,12 @@ transition: 0.1s;
     align-items: center;
   }
   .container-card h1{
-    width: 100%;
+    width: 80%;
     margin: 0vw;
     font-size: 1.5vw;
     text-align: center;
     font-family: Montserrat-Bold;
-    font-size: 3vw;
+    font-size: 2.4vw;
   }
   .card-pesquisas{
     width: 100%;

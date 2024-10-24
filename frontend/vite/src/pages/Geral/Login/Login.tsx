@@ -1,11 +1,12 @@
 
 import { Link } from "react-router-dom"
 import '../../stylePages.css'
+
 export default function Login(){
 
     return(
         <div className="container-all-login">
-            <div className="logo-container">logo aqui</div>
+            <div className="logo-container"><img src="../../../../public/logo_branca.svg" alt="logo" /></div>
             <div className="border-container-login">
                 <div className="container-login">
                     <div className="container-email-senha">

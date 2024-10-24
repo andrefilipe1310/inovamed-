@@ -2,6 +2,13 @@
 import Navbar from "../../components/Navbar";
 import pesquisasMedicas from '../../components/medicoinfo';
 export default function MedListPacientesPesquisas(){
+
+    //const [showPesqId, setShowpesqId] = useState<number>()
+    //const [showPesq,setShowPesq] = useState<Pesquisa>()
+ 
+    //useEffect(()=>{
+       //setShowPesq(pesquisas.find((info)=> info.id === showPesqId))
+    //},[showPesqId])
     return(
         <>
          <Navbar/>

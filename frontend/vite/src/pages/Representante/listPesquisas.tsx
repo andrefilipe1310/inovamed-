@@ -35,10 +35,24 @@ export default function RepListaPesquisas(){
             </div>
         <Link to='/representante/novapesquisa' ><button className="button-nova-pesquisa">NOVA PESQUISA +</button></Link>
         {showPesqId ? 
-            <div className='card-border'>
+            <div className='card-border' style={{marginBottom:'3vw'}}>
               <div className="container-card">
                   <h1>{showPesq?.titulo}</h1>
-                  <p>{showPesq?.desc}</p>
+                  <div className="full-detail-pesq">
+                    <div className="sector-1">
+                        <p>{showPesq?.dataini}</p>
+                        <p>{showPesq?.datafim}</p>
+                    </div>
+                    <div className="sector-2">
+                        <p><strong>Descrição:</strong> {showPesq?.desc}</p>
+                    </div>
+                  </div>
+                  <a href="#">ver mais</a>
+                  <div className="buttons-pesq">
+                        <button><img src="../../../public/config-icon.png" alt="" /></button>
+                        <button><img src="../../../public/users-icon.png" alt="" /></button>
+                        <button><img src="../../../public/pencil-icon.png" alt="" /></button>
+                </div>
               </div>
             </div> 
           : <></>}

@@ -1,6 +1,16 @@
 import Navbar from "../../components/Navbar";
 import notificacaomedico from "../../components/notificacoes-med";
+import { useEffect, useState } from "react";
+import { Pesquisa } from "../../components/userInfo";
 export default function MedCriarNotificacao(){
+
+    const [showPesqId, setShowpesqId] = useState<number>()
+    const [showPesq,setShowPesq] = useState<Pesquisa>()
+    
+ 
+    useEffect(()=>{
+      // setShowPesq(pesquisas.find((info)=> info.id === showPesqId))
+    },[showPesqId])
     return(
         <>
         <Navbar/>
