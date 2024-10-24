@@ -12,10 +12,12 @@ import java.util.stream.Collectors;
 public class FindAllDoctorService {
     @Autowired
     private DoctorRepository doctorRepository;
+    @Autowired
+    private DoctorDTOMapperService doctorDTOMapperService;
 
     public List<DoctorResponseDTO> execute(){
         return doctorRepository.findAll().stream().map(doctor -> {
-           return doctor.toResponseDTO();
+           return doctorDTOMapperService.toDTO(doctor);
         }).collect(Collectors.toList());
     }
 

@@ -1,18 +1,13 @@
-export interface Pesquisamedico {
-    pacientenum: string;
-    dataini: string;
-    datafim: string;
-    desc: string;
-    fase: string;
+export interface PesquisaMedico {
+    id: number;
+    titulo: string;
   }
-  const pesquisamedico: Pesquisamedico[] =[
-    {
-      pacientenum: "Paciente: 1",
-      dataini: "Data de inicio: 27/09/2024",
-      datafim: "Data Conclusão: 30/11/2024",
-      desc: "Esta pesquisa clínica avalia a eficácia de um novo medicamento em pacientes com Alzheimer em estágios iniciais. Com 200 participantes, o estudo acompanhará mudanças na função cognitiva e na qualidade de vida ao longo de 12 meses. Os resultados visam identificar benefícios e efeitos colaterais, contribuindo para novas terapias. ",
-      fase: "Esta pesquisa clínica avalia a eficácia de um novo medicamento em pacientes com Alzheimer em estágios iniciais. Com 200 participantes, o estudo acompanhará mudanças na função cognitiva e na qualidade de vida ao longo de 12 meses. Os resultados visam identificar benefícios e efeitos colaterais, contribuindo para novas terapias. "
-    }
-]
-export default pesquisamedico
-   
+  const pesquisasMedicas: PesquisaMedico[] = [
+    { id: 1, titulo: "Mecanismos moleculares e genéticos no Alzheimer: Novas Terapias" },
+    { id: 2, titulo: "Estilo de Vida e Prevenção do Alzheimer: Dieta e Exercício" },
+    { id: 3, titulo: "Biomarcadores e Diagnóstico Precoce no Alzheimer" },
+    { id: 4, titulo: "Terapias Imunológicas para Alzheimer: Vacinas e Anticorpos" },
+    { id: 5, titulo: "Neuroinflamação e Sistema Imune no Alzheimer" },
+  ];
+  
+  export default pesquisasMedicas;

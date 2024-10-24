@@ -5,7 +5,6 @@ import com.inovamed.clinical_study_system.model.user.LoginResponseDTO;
 import com.inovamed.clinical_study_system.model.user.RegisterDTO;
 import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.repository.UserRepository;
-import com.inovamed.clinical_study_system.service.UserService;
 import com.inovamed.clinical_study_system.service.token.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +31,7 @@ public class AuthenticationController {
     public ResponseEntity login(@RequestBody @Validated AutenticateDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
+        System.out.println(auth);
         var token = tokenService.generateToken((User)auth.getPrincipal());
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
@@ -43,6 +43,7 @@ public class AuthenticationController {
         else{
             String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
             User user = new User(data.email(), encryptedPassword, data.roles());
+            //System.out.println(data.roles());
             this.userRepository.save(user);
         }
         return  ResponseEntity.ok().build();
