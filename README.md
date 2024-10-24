@@ -401,6 +401,11 @@ erDiagram
   - **LinkedIn:** [André Filipe](https://linkedin.com/in/andre-filipe-/)
   - **Github:** [andrefilipef1310](https://github.com/andrefilipe1310/)
 
+- **Ariano Souza**
+  - **Função:** Desenvolvedor Front-end e Designer
+  - **Email:** arianosouzapro@gmail.com
+  - **LinkedIn:** [Ariano Souza](www.linkedin.com/in/ariano-souza-14777926b)
+  - **Github:** [ArianoSouza](github.com/ArianoSouza)
 
  - **Amanda Lima**
    - **Função:** Desenvolvedora Front-end 
