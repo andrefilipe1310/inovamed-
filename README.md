@@ -84,7 +84,7 @@ flowchart TD
     H --> K
     I --> K
 ```
-###Fluxograma (Concordar com os termos de uso e assinar digitalmente)
+### Fluxograma (Concordar com os termos de uso e assinar digitalmente)
 ```mermaid
 flowchart TD
     A[Usuário acessa a plataforma InovaMed] --> B[Usuário seleciona a opção de assinatura digital]
