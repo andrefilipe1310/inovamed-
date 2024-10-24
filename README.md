@@ -402,7 +402,7 @@ erDiagram
   - **Github:** [andrefilipef1310](https://github.com/andrefilipe1310/)
 
 - **Ariano Souza**
-  - **Função:** Desenvolvedor Front-end e Designer
+  - **Função:** Desenvolvedor Front-end e Co-Gestor do projeto
   - **Email:** arianosouzapro@gmail.com
   - **LinkedIn:** [Ariano Souza](https://www.linkedin.com/in/ariano-souza-14777926b)
   - **Github:** [ArianoSouza](https://github.com/ArianoSouza)
