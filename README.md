@@ -26,7 +26,7 @@ cd inovamed
 ```
 2. **Configure o banco de dados**
 - Crie um banco de dados no PostgreSQL chamado inovamed.
-- Atualize as credenciais do banco de dados no arquivo application.properties (ou application.yml) localizado em src/main/resources:
+- Atualize as credenciais do banco de dados no arquivo application.properties localizado em src/main/resources:
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/inovamed
 spring.datasource.username=seu_usuario
