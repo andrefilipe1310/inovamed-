@@ -27,11 +27,11 @@ public class Consent {
     private LocalDateTime validUntil;
     private boolean isActive;
 
-    @ManyToMany
-    @JoinTable(
-            name = "tb_consent_digital_signature",
-            joinColumns = @JoinColumn(name = "consent_id"),
-            inverseJoinColumns = @JoinColumn(name = "digital_signature_id")
-    )
-    private List<DigitalSignature> digitalSignature;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "tb_consent_digital_signature",
+//            joinColumns = @JoinColumn(name = "consent_id"),
+//            inverseJoinColumns = @JoinColumn(name = "digital_signature_id")
+//    )
+//    private List<DigitalSignature> digitalSignature;
 }

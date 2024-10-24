@@ -23,10 +23,12 @@ public class DigitalSignature {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String documentName;
+    @Lob
     private byte[] documentContent;
+    @Lob
     private byte[] signature;
-    @ManyToMany
-    List<Consent> consents;
+    //@ManyToMany
+    //List<Consent> consents;
     private LocalDateTime timestamp;
     private LocalDateTime validFrom;
     private LocalDateTime validUntil;

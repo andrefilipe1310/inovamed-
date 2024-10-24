@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.digital_signature;
 
+import com.inovamed.clinical_study_system.model.attachment.AttachmentRequestDTO;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignature;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignatureRequestDTO;
 import com.inovamed.clinical_study_system.model.user.User;
@@ -21,7 +22,7 @@ public class CreateDigitalSignatureService {
     @Autowired
     UserRepository userRepository;
 
-    public DigitalSignature execute(DigitalSignatureRequestDTO digitalSignatureRequestDTO){
+    public DigitalSignature execute(DigitalSignatureRequestDTO digitalSignatureRequestDTO, AttachmentRequestDTO attachmentRequestDTO){
         try {
 
             User user = userRepository.findById(digitalSignatureRequestDTO.userId()).orElseThrow(
@@ -34,11 +35,11 @@ public class CreateDigitalSignatureService {
             PrivateKey privateKey = keyPair.getPrivate();
 
             //Assinar o documento
-            byte[] signature = signDocument(digitalSignatureRequestDTO.documentContent(),privateKey);
+            byte[] signature = signDocument(attachmentRequestDTO.archive(),privateKey);
 
             DigitalSignature digitalSignature = new DigitalSignature();
-            digitalSignature.setDocumentName(digitalSignatureRequestDTO.documentName());
-            digitalSignature.setDocumentContent(digitalSignatureRequestDTO.documentContent());
+            digitalSignature.setDocumentName(attachmentRequestDTO.name());
+            digitalSignature.setDocumentContent(attachmentRequestDTO.archive());
             digitalSignature.setTimestamp(LocalDateTime.now());
             digitalSignature.setValidFrom(digitalSignatureRequestDTO.validFrom());
             digitalSignature.setValidUntil(digitalSignatureRequestDTO.validUntil());
@@ -55,6 +56,7 @@ public class CreateDigitalSignatureService {
     }
 
     private byte[] signDocument(byte[] documentContent, PrivateKey privateKey) throws Exception{
+        // Classe do javaSecurity
         Signature signature = Signature.getInstance("SHA256withRSA");
         signature.initSign(privateKey);
         signature.update(documentContent);
