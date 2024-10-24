@@ -383,4 +383,71 @@ transition: 0.1s;
   .corpo-notificacaomed{
     margin: 0vw 1vw 0vw;
   }
+/* Paginas listPesquisas paciente*/
+
+    .pesq-detailpac {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      padding: 0vw 1vw;
+      box-sizing: border-box;
+      transition: 0.2s;
+      cursor: pointer;
+      font-family: Montserrat-regular;
+  }
+
+  /* Paginas preferencias paciente*/
+
+  .pesq-detail {
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: start;
+    padding: 0vw 1vw;
+    box-sizing: border-box;
+    transition: 0.2s;
+    cursor: pointer;
+    font-family: Montserrat-regular;
+    border-top: solid 1px transparent;
+}
+
+.title-pesqpac {
+    font-weight: bold;
+    font-size: 1vw;
+    margin: 0; 
+}
+
+.desc-pesqpac {
+    font-size: 1vw;
+    margin: 5px 0; 
+}
+  
+/* Paginas de Notificações paciente*/
+    .h1notificacaopac{
+      font-family: Montserrat-Bold;
+      margin-top: 5vw;
+      background-image: linear-gradient(to top, #028275, #126b56);
+      background-clip: text;
+      color: transparent;
+      font-size: 3vw;
+      margin-bottom: 0;
+    }
+
+  .container-card-notificacoespac, .notificacaopac{
+    max-width: 60vw;
+    padding:0.1vw;
+    border: 1.5px solid;
+    border-radius: 15px;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+
+  .notificacaopac{
+    margin-bottom: 2vw;
+    width: 80%;
+  }
+
+
   
