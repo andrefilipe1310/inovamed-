@@ -13,7 +13,7 @@ public class VerifyDigitalSignatureService {
     @Autowired
     private DigitalSignatureRepository digitalSignatureRepository;
 
-    public boolean execute(Long signatureId, byte[] documentContent){
+    public boolean execute(Long signatureId){
         try{
             DigitalSignature digitalSignature = digitalSignatureRepository.findById(signatureId)
                     .orElseThrow(()->{
@@ -22,7 +22,7 @@ public class VerifyDigitalSignatureService {
 
             PublicKey publicKey = digitalSignature.getUser().getPublicKey();
 
-            return verifyDocumentSignature(documentContent, digitalSignature.getSignature(), publicKey);
+            return verifyDocumentSignature(digitalSignature.getDocumentContent(),digitalSignature.getSignature(), publicKey);
         } catch (Exception e) {
             throw new RuntimeException("Error verifying signature.", e);
         }
