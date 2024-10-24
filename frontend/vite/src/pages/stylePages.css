@@ -253,4 +253,134 @@ transition: 0.1s;
     transition: 0.3s;
   }
 
+  /* Paginas do Medico*/
+.container-page-medico{
+  padding-left: 25%;
+  display: flex;
+  flex-direction: column;
+}
+.funcoes-medico{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  .h1notificacao{
+    font-family: Montserrat-Bold;
+    margin-top: 5vw;
+    background-image: linear-gradient(to top, #0B42CE, #062168);
+    background-clip: text;
+    color: transparent;
+    font-size: 3vw;
+  }
+  .container-card-medico{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 60vw;
+  }
+  .oioi{
+    display: flex;
+    flex-direction: row;
+    max-width: 60vw;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .div-dados-pesquisa-medico{
+    width: 15vw;
+    margin: 1.5vw 2vw 0vw;
+    background-color: white;
+    padding:0.1vw;
+    border: 1.5px solid;
+    border-radius: 15px;
+    box-sizing: border-box;
+    background: linear-gradient(to top, #0b42ce,#062168);
+    box-shadow: 0px 4px rgb(119, 119, 119);
+    position: relative;
+  }
+  .div-background{
+    background-color: white;
+    border-radius: 10px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    min-height: 12vw;
+    max-height: 12vw;
+    color: #08564E;
+  }
+  .h2-card-medico{
+    font-family: Montserrat-Bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1vw 1vw 0.3vw;
+    min-height: 6vw;
+    max-height: 8vw;
+  }
+  .linha-card{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: solid 1px #0B42CE;
+  }
+  /* Paginas do Medico Notificações*/
+  .container-page-medico{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .h1notificacao{
+    font-family: Montserrat-Bold;
+    margin-top: 5vw;
+    background-image: linear-gradient(to top, #0B42CE, #062168);
+    background-clip: text;
+    color: transparent;
+    font-size: 3vw;
+  }
+  .notificacaomed{
+    margin-bottom: 2vw;
+  }
+  .container-card-notificacoes, .notificacaomed{
+    max-width: 60vw;
+    padding:0.1vw;
+    border: 1.5px solid;
+    border-radius: 15px;
+    box-sizing: border-box;
+    background: linear-gradient(to top, #0b42ce,#062168);
+    box-shadow: 0px 4px rgb(119, 119, 119);
+    position: relative;
+  }
+  .dados-notificacaomed{
+    font-family: Montserrat-regular;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+  }
+  .div-dados-notificacaomed{
+    font-family: Montserrat-regular;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .titulo-notificacaomed{
+    min-width: 15vw;
+    margin-left: 1vw;
+    display: flex;
+    align-items: center;
+    
+  }
+  h2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .corpo-notificacaomed{
+    margin: 0vw 1vw 0vw;
+  }
   
