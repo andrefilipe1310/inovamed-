@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.doctor;
 
+import com.inovamed.clinical_study_system.exception.DoctorNotFoundException;
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorUpdateDTO;
@@ -16,7 +17,7 @@ public class UpdateDoctorService {
 
     public DoctorResponseDTO execute(Long id, DoctorUpdateDTO doctorUpdateDTO) {
         Doctor updateDoctor = doctorRepository.findById(id).orElseThrow(() -> {
-            return new RuntimeException("Doctor not found");
+            return new DoctorNotFoundException();
         });
         updateDoctor.update(doctorUpdateDTO);
         return doctorDTOMapperService.toDTO(doctorRepository.save(updateDoctor));

@@ -13,7 +13,7 @@ public class DeleteByIdPatientService {
         patientRepository.deleteById(id);
 
         if (patientRepository.existsById(id)){
-            throw  new RuntimeException("Falid deleted.");
+            throw  new RuntimeException("Filed deleted.");
         }
     }
 }
