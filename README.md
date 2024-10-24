@@ -41,6 +41,7 @@ mvn spring-boot:run
 - Navegue até a pasta do front-end e execute os seguintes comandos:
 ```bash
 cd frontend
+cd vite
 npm install
 npm run dev
 ```
