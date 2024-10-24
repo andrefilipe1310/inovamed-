@@ -13,6 +13,8 @@
 .container-perfil{
     width: 100%;
     display: flex;
+    border-bottom: 1px solid black;
+    margin-bottom: 1vw;
 }
 .user-icon{ 
     width: 2vw;
