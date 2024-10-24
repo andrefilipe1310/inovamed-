@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.model.patient;
 
+import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignature;
 import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 
@@ -13,5 +14,5 @@ public record PatientResponseDTO(String name, String code,
                                  List<String> authorizations,
                                  List<Research> researches,
                                  List<Notification> notifications,
-                                 String signature, String doctorName, String doctorCRM) {
+                                 DigitalSignature signature, String doctorName, String doctorCRM) {
 }

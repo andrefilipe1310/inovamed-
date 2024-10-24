@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.model.patient;
 
+import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignature;
 import com.inovamed.clinical_study_system.model.medical_history.MedicalHistory;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.research.Research;
@@ -20,6 +21,6 @@ public record PatientUpdateDTO(
             List<Research> researches,
             List<Notification> notifications,
             MedicalHistory medicalHistory,
-            String signature
+            DigitalSignature signature
     ) {
 }

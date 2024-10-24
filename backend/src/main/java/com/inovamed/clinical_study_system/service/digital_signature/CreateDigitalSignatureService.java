@@ -9,10 +9,7 @@ import com.inovamed.clinical_study_system.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.Signature;
+import java.security.*;
 import java.time.LocalDateTime;
 
 @Service
@@ -33,6 +30,9 @@ public class CreateDigitalSignatureService {
             // Gerar o par de chaves
             KeyPair keyPair = KeyPairGenerator.getInstance("RSA").generateKeyPair();
             PrivateKey privateKey = keyPair.getPrivate();
+            PublicKey publicKey = keyPair.getPublic();
+
+
 
             //Assinar o documento
             byte[] signature = signDocument(attachmentRequestDTO.archive(),privateKey);
@@ -46,6 +46,9 @@ public class CreateDigitalSignatureService {
             digitalSignature.setActive(true);
             digitalSignature.setUser(user);
             digitalSignature.setSignature(signature);
+
+            user.setPublicKey(publicKey);
+            userRepository.save(user);
 
             return digitalSignatureRepository.save(digitalSignature);
         } catch (Exception exception) {

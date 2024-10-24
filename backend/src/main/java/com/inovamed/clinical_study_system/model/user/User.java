@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.security.PublicKey;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private UserRoles roles;
+    @Lob
+    private PublicKey publicKey;
 
     public User(String email, String password, UserRoles roles) {
         this.email = email;

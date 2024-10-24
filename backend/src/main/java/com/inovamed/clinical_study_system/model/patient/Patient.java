@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.model.patient;
 
+import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignature;
 import com.inovamed.clinical_study_system.model.medical_history.MedicalHistory;
 import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
@@ -30,7 +31,8 @@ public class Patient {
     private String password;
     private Boolean digitalSignatureConsent;
     private Boolean responsibleDoctor;
-    private String signature;
+    @OneToOne
+    private DigitalSignature signature;
 
     @ElementCollection
     private List<String> authorizations;
