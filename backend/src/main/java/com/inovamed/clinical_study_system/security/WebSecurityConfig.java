@@ -33,7 +33,9 @@ public class WebSecurityConfig {
                     //protected
                     authorize.requestMatchers(HttpMethod.GET, "/patient").hasRole("DOCTOR");
                     authorize.requestMatchers(HttpMethod.POST, "/patient").hasRole("DOCTOR");
-
+                    authorize.requestMatchers(HttpMethod.GET, "/patient/**").hasAnyRole("DOCTOR", "PATIENT");
+                    authorize.requestMatchers(HttpMethod.PUT, "/patient/**").hasRole("DOCTOR");
+                    authorize.requestMatchers(HttpMethod.DELETE, "/patient/**").hasRole("DOCTOR");
 
                     authorize.anyRequest().permitAll();
 
