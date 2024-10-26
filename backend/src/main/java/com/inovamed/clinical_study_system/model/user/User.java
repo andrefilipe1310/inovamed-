@@ -42,7 +42,7 @@ public class User implements UserDetails {
         } else if (this.roles == UserRoles.DOCTOR) {
             return List.of(new SimpleGrantedAuthority("ROLE_DOCTOR"));
         } else {
-            return List.of(new SimpleGrantedAuthority("ROLE_STUDYREPRESENTATIVE"));
+            return List.of(new SimpleGrantedAuthority("ROLE_STUDY_REPRESENTATIVE"));
         }
     }
 

@@ -31,7 +31,6 @@ public class AuthenticationController {
     public ResponseEntity login(@RequestBody @Validated AutenticateDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
-        System.out.println(auth);
         var token = tokenService.generateToken((User)auth.getPrincipal());
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
@@ -43,7 +42,6 @@ public class AuthenticationController {
         else{
             String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
             User user = new User(data.email(), encryptedPassword, data.roles());
-            //System.out.println(data.roles());
             this.userRepository.save(user);
         }
         return  ResponseEntity.ok().build();
