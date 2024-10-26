@@ -30,14 +30,31 @@ public class WebSecurityConfig {
                     authorize.requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register", "/doctor", "/study-representative").permitAll();
                     authorize.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll();
 
-                    //protected
+
+                    // Protected
+                    // Patient Endpoints
                     authorize.requestMatchers(HttpMethod.GET, "/patient").hasRole("DOCTOR");
-                    authorize.requestMatchers(HttpMethod.POST, "/patient").hasRole("DOCTOR");
+                    authorize.requestMatchers(HttpMethod.POST, "/patient").hasRole("PATIENT");
                     authorize.requestMatchers(HttpMethod.GET, "/patient/**").hasAnyRole("DOCTOR", "PATIENT");
                     authorize.requestMatchers(HttpMethod.PUT, "/patient/**").hasRole("DOCTOR");
                     authorize.requestMatchers(HttpMethod.DELETE, "/patient/**").hasRole("DOCTOR");
 
-                    authorize.anyRequest().permitAll();
+                    // Attachment Endpoints
+                    authorize.requestMatchers(HttpMethod.POST, "/attachment").hasRole("STUDY-REPRESENTATIVE");
+                    authorize.requestMatchers(HttpMethod.GET, "/attachment/**").hasAnyRole("STUDY-REPRESENTATIVE", "DOCTOR", "PATIENT");
+
+                    // Research Endpoints
+                    authorize.requestMatchers(HttpMethod.POST, "/research").hasRole("STUDY-REPRESENTATIVE");
+                    authorize.requestMatchers(HttpMethod.GET, "/research/**").hasAnyRole("STUDY-REPRESENTATIVE", "DOCTOR", "PATIENT");
+
+                    // Notification Endpoint
+                    authorize.requestMatchers(HttpMethod.POST, "/notification").hasRole("STUDY-REPRESENTATIVE");
+
+                    // Digital Signature Endpoints
+                    authorize.requestMatchers(HttpMethod.POST, "/digital-signature").hasRole("PATIENT");
+                    authorize.requestMatchers(HttpMethod.GET, "/digital-signature/verify/**").hasRole("PATIENT");
+                    authorize.requestMatchers(HttpMethod.DELETE, "/digital-signature/**").hasRole("PATIENT");
+                    //authorize.anyRequest().permitAll();
 
                 }).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
