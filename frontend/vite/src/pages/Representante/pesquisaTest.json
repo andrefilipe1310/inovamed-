@@ -1,0 +1,116 @@
+[
+    {
+    "id": 1,
+    "code": 123456,
+    "title": "Study on Alzheimer's Disease",
+    "area": "Neurology",
+    "numberOfPatients": 100,
+    "availableVacancies": 10,
+    "responsibleDoctors": [
+      "Dr. Emma Thompson",
+      "Dr. John Smith"
+    ],
+    "institutions": [
+      "Harvard Medical School",
+      "Mayo Clinic"
+    ],
+    "description": "A comprehensive study focusing on the impact of experimental drugs on Alzheimer's progression.",
+    "criteria": {
+      "ageRange": "65-80",
+      "requiredCondition": "Diagnosed with Alzheimer's",
+      "exclusionCriteria": "Severe comorbidities"
+    },
+    "studyDuration": {
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
+    },
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "description": "Initial safety and dosage tests"
+      },
+      {
+        "phaseNumber": 2,
+        "description": "Efficacy and side effects assessment"
+      }
+    ],
+    "currentPhase": 1,
+    "location": "Boston, MA",
+    "attachments": [
+      {
+        "id": 1,
+        "fileName": "protocol.pdf",
+        "fileType": "PDF"
+      }
+    ],
+    "patients": [
+      {
+        "id": 101,
+        "name": "John Doe",
+        "email": "johndoe@example.com"
+      }
+    ],
+    "clinicalRepresentative": {
+      "id": 1,
+      "name": "Sarah Johnson",
+      "email": "sarah.johnson@example.com"
+    }
+  },
+  {
+    "id": 2,
+    "code": 77891012,
+    "title": "Alzheimer's Disease efects on teenagers",
+    "area": "Neurology",
+    "numberOfPatients": 100,
+    "availableVacancies": 10,
+    "responsibleDoctors": [
+      "Dr. Emma Thompson",
+      "Dr. John Smith"
+    ],
+    "institutions": [
+      "Harvard Medical School",
+      "Mayo Clinic"
+    ],
+    "description": "A comprehensive study focusing on the impact of experimental drugs on Alzheimer's progression.",
+    "criteria": {
+      "ageRange": "65-80",
+      "requiredCondition": "Diagnosed with Alzheimer's",
+      "exclusionCriteria": "Severe comorbidities"
+    },
+    "studyDuration": {
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
+    },
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "description": "Initial safety and dosage tests"
+      },
+      {
+        "phaseNumber": 2,
+        "description": "Efficacy and side effects assessment"
+      }
+    ],
+    "currentPhase": 1,
+    "location": "Boston, MA",
+    "attachments": [
+      {
+        "id": 1,
+        "fileName": "protocol.pdf",
+        "fileType": "PDF"
+      }
+    ],
+    "patients": [
+      {
+        "id": 101,
+        "name": "John Doe",
+        "email": "johndoe@example.com"
+      }
+    ],
+    "clinicalRepresentative": {
+      "id": 1,
+      "name": "Sarah Johnson",
+      "email": "sarah.johnson@example.com"
+    }
+  }
+]

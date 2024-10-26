@@ -142,41 +142,103 @@ transition: 0.1s;
 
 /* Paginas dos usuários*/
 
+
 /* REPRESENTANTE*/
+
 .container-page{
     padding-left: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+.container-page p, li, strong{
+  font-family: Montserrat-regular;
+  font-size: 1.4vw;
+}
 .card-border{
-    width: 60vw;
+    width: fit-content;
+    height: fit-content;
     background: linear-gradient(to top, #0b42ce,#062168);
     padding: 1px;
     box-sizing: border-box;
-    border-radius: 15px;
+    border-radius: 35px;
     box-shadow: 0px 4px rgb(119, 119, 119);
-    margin-top: 4vw;
+    align-self: center;
+    justify-self: center;
   }
-
-  .container-card{
-    width: 100%;
+/* lista de pesquisas*/
+  .title-suas-pesquisas{
+    font-size: 3vw;
+    font-family: Montserrat-Bold;
+    background: linear-gradient(180deg, #0b42ce,#062168); /* Defina as cores do gradiente */
+    -webkit-background-clip: text; /* Recorta o background no texto */
+    -webkit-text-fill-color: transparent; /* Torna o texto transparente para mostrar o gradiente */
+    background-clip: text; 
+  }
+  .container-card-pesqlist{
+    width: 18vw ;
+    height: 18vw;
     background-color: white;
-    padding: 1vw 0vw;
+    padding: 0vw 0vw;
     box-sizing: border-box;
-    border-radius: 15px;
+    border-radius: 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .container-card h1{
+  .container-card-pesqlist .link-to-pesq{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1vw 0vw;
+    text-decoration: none;
+  }
+  .container-card-pesqlist h2{
+    width: 100%;
+    height: 80%;
+    margin: 0vw;
+    padding: 0px;
+    font-size: 1.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Montserrat-Bold;
+    font-size: 2.4vw;
+    border-bottom: 1px solid black;
+    background: linear-gradient(180deg, #0b42ce,#062168); /* Defina as cores do gradiente */
+    -webkit-background-clip: text; /* Recorta o background no texto */
+    -webkit-text-fill-color: transparent; /* Torna o texto transparente para mostrar o gradiente */
+    background-clip: text; /* Compatibilidade para navegadores que suportam sem prefixo */
+  }
+  .container-card-pesqlist p{
     width: 80%;
+    height: 20%;
     margin: 0vw;
     font-size: 1.5vw;
     text-align: center;
     font-family: Montserrat-Bold;
-    font-size: 2.4vw;
+    font-size: 1.8vw;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
+
+  .container-pesq{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-auto-rows: 20vw;
+    justify-content: center;
+    align-content: center;
+  }
+  /*
   .card-pesquisas{
     width: 100%;
     background-color: white;
@@ -241,7 +303,7 @@ transition: 0.1s;
   .pesq-detail .desc-pesq{
     font-size:1vw;
     width: 80%;
-  }
+  } */
   .button-nova-pesquisa{
     background: linear-gradient(to right, #0b42ce,#062168 );
     width: 25vw;
@@ -259,6 +321,81 @@ transition: 0.1s;
     color: #0b42ce;
     transition: 0.3s;
   }
+
+
+  /* PESQUISAINFO*/
+  .title-pesquisa{
+    width: 90%;
+    padding: 2vw 5vw;
+    background: linear-gradient(180deg, #0b42ce,#062168); /* Defina as cores do gradiente */
+    -webkit-background-clip: text; /* Recorta o background no texto */
+    -webkit-text-fill-color: transparent; /* Torna o texto transparente para mostrar o gradiente */
+    background-clip: text; /* Compatibilidade para navegadores que suportam sem prefixo */
+    text-align: center;
+    font-family: Montserrat-Bold;
+    font-size: 3vw;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    margin: 0px;
+  }
+  .subtitle-pesquisa{
+    width: 100%;
+    padding: 0vw 5vw;
+    color: black;
+    text-align: center;
+    font-family: Montserrat-Bold;
+    font-size: 1.5vw;
+    box-sizing: border-box;
+    margin: 2vw 0vw;
+  }
+  .container-button{
+    width: 6vw;
+    height: 6vw;
+    background-color: white;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .button-to-edit{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-1{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2vw;
+  }
+  .section-2{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+  .section-2 div{
+   margin: 1vw 2vw;
+  }
+  .section-3{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
+  }
+  .section-3 li{
+    margin: 0.5vw 2vw;
+   }
+   .section-4{
+    width: 80%;
+    display: flex;
+
+  }
+
 
   /* Paginas do Medico*/
 .container-page-medico{
