@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity(name = "tb_clinical_study_representative")
 @Getter
 @Setter
@@ -26,6 +28,9 @@ public class ClinicalStudyRepresentative {
     private String clinicalRole;
     private String experiences;
     private String password;
+
+//    @OneToMany(mappedBy = "clinical_study_representative",cascade = CascadeType.ALL)
+//    List<Research> research;
 
 
 
