@@ -21,6 +21,7 @@ import java.util.List;
 public class ClinicalStudyRepresentative {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "clinical_study_representative_id")
     private Long id;
     private String name;
     private String email;
@@ -28,9 +29,9 @@ public class ClinicalStudyRepresentative {
     private String clinicalRole;
     private String experiences;
     private String password;
-
-//    @OneToMany(mappedBy = "clinical_study_representative",cascade = CascadeType.ALL)
-//    List<Research> research;
+    //@OneToMany(mappedBy = "clinical_study_representative",cascade = CascadeType.ALL)
+    @OneToMany
+    List<Research> research;
 
 
 
