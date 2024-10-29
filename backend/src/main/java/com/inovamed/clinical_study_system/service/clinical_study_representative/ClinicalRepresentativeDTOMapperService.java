@@ -4,6 +4,7 @@ package com.inovamed.clinical_study_system.service.clinical_study_representative
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
+import com.inovamed.clinical_study_system.model.user.RegisterDTO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +16,7 @@ public class ClinicalRepresentativeDTOMapperService {
                 clinicalRepresentative.getId(),
                 clinicalRepresentative.getName(),
                 clinicalRepresentative.getEmail(),
+                clinicalRepresentative.getPassword(),
                 clinicalRepresentative.getPhone(),
                 clinicalRepresentative.getClinicalRole(),
                 clinicalRepresentative.getExperiences()
