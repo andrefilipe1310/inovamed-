@@ -1,11 +1,12 @@
 package com.inovamed.clinical_study_system.service.clinical_study_representative;
 
-import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
+import com.inovamed.clinical_study_system.exception.UserAlreadyExistsException;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.research.Research;
+import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.model.user.UserRoles;
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
 import org.junit.jupiter.api.Assertions;
@@ -17,16 +18,16 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.userdetails.UserDetails;
+
 
 import java.util.List;
-import java.util.Optional;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class FindByIdClinicalRepresentativeServiceTest {
+class CreateClinicalRepresentativeServiceTest {
     public static final long ID = 1L;
     public static final String NAME = "John";
     public static final String PHONE = "(81) 99999-9999";
@@ -37,8 +38,9 @@ class FindByIdClinicalRepresentativeServiceTest {
     public static final String EMAIL = "jonn@gmail.com";
     public static final String PASSWORD = "1234";
     public static final UserRoles ROLES = UserRoles.DOCTOR;
+
     @InjectMocks
-    private FindByIdClinicalRepresentativeService findByIdClinicalRepresentativeService;
+    private CreateClinicalRepresentativeService createClinicalRepresentativeService;
     @Mock
     private ClinicalStudyRepresentiveRepository clinicalRepository;
     @Mock
@@ -47,25 +49,25 @@ class FindByIdClinicalRepresentativeServiceTest {
     private ClinicalStudyRepresentative clinicalRepresentative;
     private ClinicalStudyRepresentativeRequestDTO requestDTO;
     private ClinicalStudyRepresentativeResponseDTO responseDTO;
-    private Optional<ClinicalStudyRepresentative> optionalClinicalRepresentative;
+    private UserDetails userDetails;
+
     @BeforeEach
-    void setUp() {
+    void setUp(){
         MockitoAnnotations.openMocks(this);
         this.startClinicalRepresentative();
     }
-
     @Test
-    void WhenFindByIdThenReturnAnClinicalRepresentativeInstance() {
+    void whenCreateThenReturnSuccess(){
         //mockanto resultado do repository
-        Mockito.when(clinicalRepository.findById(Mockito.anyLong())).thenReturn(optionalClinicalRepresentative);
+        Mockito.when(clinicalRepository.save(clinicalRepresentative)).thenReturn(clinicalRepresentative);
         //mockanto resultado do dtoMapperService
-        Mockito.when(clinicalRepresentativeDTOMapperService.toDTO(optionalClinicalRepresentative.get())).thenReturn(responseDTO);
+        Mockito.when(clinicalRepresentativeDTOMapperService.toEntity(requestDTO)).thenReturn(clinicalRepresentative);
+        Mockito.when(clinicalRepresentativeDTOMapperService.toDTO(clinicalRepresentative)).thenReturn(responseDTO);
 
-        ClinicalStudyRepresentativeResponseDTO response = findByIdClinicalRepresentativeService.execute(ID);
+        ClinicalStudyRepresentativeResponseDTO response = createClinicalRepresentativeService.execute(requestDTO);
 
         assertNotNull(response);
         Assertions.assertEquals(ClinicalStudyRepresentativeResponseDTO.class,response.getClass());
-        assertEquals(ClinicalStudyRepresentativeResponseDTO.class, response.getClass());
         assertEquals(ID, response.id());
         assertEquals(NAME, response.name());
         assertEquals(PHONE, response.phone());
@@ -77,22 +79,37 @@ class FindByIdClinicalRepresentativeServiceTest {
     }
 
     @Test
-    void WhenFindByIdReturnAnClinicalRepresentativeNotFoundException(){
-        Mockito.when(clinicalRepository.findById(Mockito.anyLong())).thenThrow( new ClinicalRepresentativeNotFoundException());
-        try {
-            clinicalRepository.findById(ID);
-        } catch (Exception exception){
-          assertEquals(ClinicalRepresentativeNotFoundException.class, exception.getClass());
-          assertEquals("ClinicalRepresentative not found.",exception.getMessage());
+    void whenCreateThenReturnAnDataIntegrityViolationException(){
+        Mockito.when(clinicalRepository.findByEmail(Mockito.anyString())).thenThrow( new UserAlreadyExistsException());
+
+        try{
+
+            clinicalRepository.findByEmail(EMAIL);
+
+        } catch (Exception exception) {
+            assertEquals(UserAlreadyExistsException.class, exception.getClass());
+            assertEquals("User already exists.",exception.getMessage());
         }
+    }
+
+    @Test
+    void whenCreateWithExistingEmailThenThrowUserAlreadyExistsException() {
+        Mockito.when(clinicalRepository.findByEmail(EMAIL)).thenReturn(userDetails);
+
+        UserAlreadyExistsException exception = assertThrows(UserAlreadyExistsException.class, () -> {
+            createClinicalRepresentativeService.execute(requestDTO);
+        });
+
+        assertEquals("User already exists.", exception.getMessage());
     }
 
     // instanciando as classes necessarias
     private void startClinicalRepresentative(){
         clinicalRepresentative = new ClinicalStudyRepresentative(ID, NAME, PHONE,CLINICAL_ROLES, EXPERIENCES, RESEARCH, NOTIFICATIONS);
-        optionalClinicalRepresentative = Optional.of(new ClinicalStudyRepresentative(ID, NAME, PHONE,CLINICAL_ROLES, EXPERIENCES, RESEARCH, NOTIFICATIONS));
+
         requestDTO = new ClinicalStudyRepresentativeRequestDTO(ID,NAME, EMAIL, PASSWORD, ROLES,PHONE,CLINICAL_ROLES,EXPERIENCES);
         responseDTO = new ClinicalStudyRepresentativeResponseDTO(ID,NAME,EMAIL,PASSWORD,ROLES,PHONE,CLINICAL_ROLES,EXPERIENCES);
+        userDetails =  new User(EMAIL, PASSWORD, ROLES);
 
-    }
+        }
 }

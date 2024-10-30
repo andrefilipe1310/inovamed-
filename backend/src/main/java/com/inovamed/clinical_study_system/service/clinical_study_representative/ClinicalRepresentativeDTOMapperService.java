@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClinicalRepresentativeDTOMapperService {
     @Autowired
-    private ClinicalStudyRepresentiveRepository ClinicalRepresentativeRepository;
+    private ClinicalStudyRepresentiveRepository clinicalRepresentativeRepository;
 
     public ClinicalStudyRepresentativeResponseDTO toDTO(ClinicalStudyRepresentative clinicalRepresentative){
 
@@ -31,7 +31,7 @@ public class ClinicalRepresentativeDTOMapperService {
         );
     }
     public ClinicalStudyRepresentative toEntity(ClinicalStudyRepresentativeRequestDTO requestDTO){
-        if(ClinicalRepresentativeRepository.findByEmail(requestDTO.email()) != null){
+        if(clinicalRepresentativeRepository.findByEmail(requestDTO.email()) != null){
             throw new UserAlreadyExistsException();
         }
         String encryptedPassword = new BCryptPasswordEncoder().encode(requestDTO.password());
