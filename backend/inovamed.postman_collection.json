@@ -38,7 +38,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"email\":\"andre2@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
+							"raw": "{\r\n   \"email\":\"andre3@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -65,7 +65,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"andre2@gmail.com\",\r\n    \"password\":\"12345\",\r\n    \"roles\":\"DOCTOR\"\r\n}",
+							"raw": "{\r\n    \"email\":\"andre3@gmail.com\",\r\n    \"password\":\"12345\",\r\n    \"roles\":\"STUDY_REPRESENTATIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -93,21 +93,11 @@
 				{
 					"name": "createDoctor",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Dr. Geraldo Silva\",\r\n  \"email\": \"geraldo.silva@example.com\",\r\n  \"doctorExperienceEnum\": \"NEVER\",\r\n  \"clinic\": \"Clínica Saúde e Vida\",\r\n  \"phone\": \"+55 11 91234-5678\",\r\n  \"password\": \"senhaSegura123\",\r\n  \"specialty\": \"Cardiologia\",\r\n  \"Crm\": \"123456\"\r\n\r\n}",
+							"raw": "{\r\n  \"name\": \"Dr. Geraldo Silva\",\r\n  \"email\": \"geraldo.silva@example.com\",\r\n  \"doctorExperienceEnum\": \"NEVER\",\r\n  \"clinic\": \"Clínica Saúde e Vida\",\r\n  \"phone\": \"+55 11 91234-5678\",\r\n  \"password\": \"senhaSegura123\",\r\n    \"roles\":\"DOCTOR\",\r\n  \"specialty\": \"Cardiologia\",\r\n  \"Crm\": \"123456\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -299,21 +289,11 @@
 				{
 					"name": "createPatient",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"gender\": \"Male\",\r\n  \"birth\": \"1990-05-15\",\r\n  \"phone\": \"+1234567890\",\r\n  \"password\": \"securePassword123\",\r\n  \"medicalHistory\": {\r\n   \r\n  },\r\n  \"signature\": \"Base64EncodedSignatureString\",\r\n  \"doctorKey\": \"ebf6cc56-c79b-4e6d-8ed2-8947b588563e\"\r\n}",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"gender\": \"Male\",\r\n  \"birth\": \"1990-05-15\",\r\n  \"phone\": \"+1234567890\",\r\n  \"password\": \"securePassword123\",\r\n  \"roles\":\"PATIENT\",\r\n  \"medicalHistory\": {\r\n   \r\n  },\r\n  \"doctorKey\": \"91eddeb7-ef7f-46fa-b77b-a5aa15050103\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -424,7 +404,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"John Smith\",\r\n  \"email\": \"johnsmith@example.com\",\r\n  \"phone\": \"+1234567890\",\r\n  \"clinicalRole\": \"Principal Investigator\",\r\n  \"experience\": \"10 years in clinical research\",\r\n  \"password\": \"securePassword123\"\r\n}",
+							"raw": "{\r\n  \"name\": \"John Smith\",\r\n  \"email\":\"john@gmail.com\",\r\n  \"password\":\"1234\",\r\n  \"roles\":\"STUDY_REPRESENTATIVE\",\r\n  \"phone\": \"+1234567890\",\r\n  \"clinicalRole\": \"Principal Investigator\",\r\n  \"experience\": \"10 years in clinical research\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -669,7 +649,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/deco_/OneDrive/Área de Trabalho/andre-profissional/curriculos/currículo backend André Figueiredo.pdf"
+									"src": "/C:/Users/deco_/OneDrive/Área de Trabalho/andre-profissional/certificados/bootcamp claro - spring boot.pdf"
 								}
 							]
 						},

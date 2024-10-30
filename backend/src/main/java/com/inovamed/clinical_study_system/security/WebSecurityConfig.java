@@ -27,14 +27,14 @@ public class WebSecurityConfig {
                 })
                 .authorizeHttpRequests(authorize -> {
                     //public
-                    authorize.requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register", "/doctor").permitAll();
+                    authorize.requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register", "/doctor","/clinical-representative","patient").permitAll();
                     authorize.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll();
 
 
                     // Protected
                     // Patient Endpoints
                     authorize.requestMatchers(HttpMethod.GET, "/patient").hasRole("DOCTOR");
-                    authorize.requestMatchers(HttpMethod.POST, "/patient").hasRole("PATIENT");
+
                     authorize.requestMatchers(HttpMethod.GET, "/patient/**").hasAnyRole("DOCTOR", "PATIENT");
                     authorize.requestMatchers(HttpMethod.PUT, "/patient/**").hasRole("DOCTOR");
                     authorize.requestMatchers(HttpMethod.DELETE, "/patient/**").hasRole("DOCTOR");
@@ -55,7 +55,6 @@ public class WebSecurityConfig {
                     authorize.requestMatchers(HttpMethod.GET, "/digital-signature/verify/**").hasRole("PATIENT");
                     authorize.requestMatchers(HttpMethod.DELETE, "/digital-signature/**").hasRole("PATIENT");
 
-                    authorize.requestMatchers(HttpMethod.POST,"/clinical-representative").hasRole("STUDY_REPRESENTATIVE");
 
                     //authorize.anyRequest().permitAll();
 
