@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.clinical_study_representative;
 
+import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
@@ -73,6 +74,17 @@ class FindByIdClinicalRepresentativeServiceTest {
         assertEquals(ROLES, response.roles());
     }
 
+    @Test
+    void WhenFindByIdReturnAnClinicalRepresentativeNotFoundException(){
+        Mockito.when(clinicalRepository.findById(Mockito.anyLong())).thenThrow( new ClinicalRepresentativeNotFoundException());
+        try {
+            clinicalRepository.findById(ID);
+        } catch (Exception e){
+          assertEquals(ClinicalRepresentativeNotFoundException.class, e.getClass());
+        }
+    }
+
+    // instanciando as classes necessarias
     private void startClinicalRepresentative(){
         clinicalRepresentative = new ClinicalStudyRepresentative(ID, NAME, PHONE,CLINICAL_ROLES, EXPERIENCES, RESEARCH, NOTIFICATIONS);
         optionalClinicalRepresentative = Optional.of(new ClinicalStudyRepresentative(ID, NAME, PHONE,CLINICAL_ROLES, EXPERIENCES, RESEARCH, NOTIFICATIONS));

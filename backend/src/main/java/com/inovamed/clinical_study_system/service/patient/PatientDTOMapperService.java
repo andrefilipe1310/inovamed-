@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.patient;
 
+import com.inovamed.clinical_study_system.exception.UserAlreadyExistsException;
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.patient.Patient;
 import com.inovamed.clinical_study_system.model.patient.PatientRequestDTO;
@@ -43,7 +44,7 @@ public class PatientDTOMapperService {
 
     public Patient toEntity(PatientRequestDTO patientRequestDTO, Doctor doctor) {
         if(patientRepository.findByEmail(patientRequestDTO.email()) != null){
-            throw new RuntimeException("User já existe");
+            throw new UserAlreadyExistsException();
         }
         String encryptedPassword = new BCryptPasswordEncoder().encode(patientRequestDTO.password());
         Patient patient = new Patient();

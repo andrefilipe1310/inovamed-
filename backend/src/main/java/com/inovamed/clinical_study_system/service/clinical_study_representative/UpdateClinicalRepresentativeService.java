@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.clinical_study_representative;
 
+import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
@@ -17,7 +18,7 @@ public class UpdateClinicalRepresentativeService {
 
     public ClinicalStudyRepresentativeResponseDTO execute(Long id, ClinicalStudyRepresentativeRequestDTO clinicalStudyRepresentativeRequestDTO) {
         ClinicalStudyRepresentative updatedClinical = clinicalRepository.findById(id).orElseThrow(()->{
-            return new RuntimeException("Clinical not found!");
+            return new ClinicalRepresentativeNotFoundException();
         });
         updatedClinical.update(clinicalStudyRepresentativeRequestDTO);
         return clinicalRepresentativeDTOMapperService.toDTO(this.clinicalRepository.save(updatedClinical));

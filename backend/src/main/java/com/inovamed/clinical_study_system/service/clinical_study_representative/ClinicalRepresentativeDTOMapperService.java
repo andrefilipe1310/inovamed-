@@ -1,6 +1,7 @@
 package com.inovamed.clinical_study_system.service.clinical_study_representative;
 
 
+import com.inovamed.clinical_study_system.exception.UserAlreadyExistsException;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
@@ -31,7 +32,7 @@ public class ClinicalRepresentativeDTOMapperService {
     }
     public ClinicalStudyRepresentative toEntity(ClinicalStudyRepresentativeRequestDTO requestDTO){
         if(ClinicalRepresentativeRepository.findByEmail(requestDTO.email()) != null){
-            throw new RuntimeException("User já existe");
+            throw new UserAlreadyExistsException();
         }
         String encryptedPassword = new BCryptPasswordEncoder().encode(requestDTO.password());
         ClinicalStudyRepresentative clinicalRepresentative = new ClinicalStudyRepresentative();
