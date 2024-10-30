@@ -2,6 +2,7 @@ package com.inovamed.clinical_study_system;
 
 import com.inovamed.clinical_study_system.exception.DoctorNotFoundException;
 import com.inovamed.clinical_study_system.model.doctor.*;
+import com.inovamed.clinical_study_system.model.user.UserRoles;
 import com.inovamed.clinical_study_system.repository.DoctorRepository;
 import com.inovamed.clinical_study_system.service.doctor.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,6 +59,7 @@ class DoctorServicesTest {
         requestDTOMock = new DoctorRequestDTO(
                 "Dr. Test",
                 "test@example.com",
+                UserRoles.DOCTOR,
                 DoctorExperienceEnum.EXPERIENCE,
                 "Test Clinic",
                 "1234567890",
@@ -71,6 +73,8 @@ class DoctorServicesTest {
                 doctorMock.getKey(),
                 "Dr. Test",
                 "test@example.com",
+                "dasdasdasdasdasd",
+                UserRoles.DOCTOR,
                 DoctorExperienceEnum.EXPERIENCE,
                 "Test Clinic",
                 "1234567890",

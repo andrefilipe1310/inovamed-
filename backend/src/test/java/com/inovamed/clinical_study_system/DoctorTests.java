@@ -37,17 +37,16 @@ public class DoctorTests {
                 1L,
                 "uuid-key",
                 "Dr. João Silva",
-                "joao.silva@example.com",
                 "Clínica São Lucas",
                 "Cardiologia",
                 DoctorExperienceEnum.EXPERIENCE,
                 "123456",
                 "11999999999",
-                "senha123",
                 new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>()
         );
+        fullDoctor.setEmail("joao.silva@example.com");
 
         assertNotNull(fullDoctor);
         assertEquals(1L, fullDoctor.getId());
@@ -58,7 +57,6 @@ public class DoctorTests {
         assertEquals(DoctorExperienceEnum.EXPERIENCE, fullDoctor.getDoctorExperienceEnum());
         assertEquals("123456", fullDoctor.getCrm());
         assertEquals("11999999999", fullDoctor.getPhone());
-        assertEquals("senha123", fullDoctor.getPassword());
         assertNotNull(fullDoctor.getApplicationsSubmitted());
         assertNotNull(fullDoctor.getNotifications());
         assertNotNull(fullDoctor.getPatients());

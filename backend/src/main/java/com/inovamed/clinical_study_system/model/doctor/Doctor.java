@@ -46,13 +46,14 @@ public class Doctor extends User {
 
     public void update(DoctorUpdateDTO doctorUpdateDTO) {
         updateField(() -> this.name = doctorUpdateDTO.name(), doctorUpdateDTO.name());
-        setEmail(doctorUpdateDTO.email());
+        if (doctorUpdateDTO.email() != null) setEmail(doctorUpdateDTO.email());
+
         updateField(() -> this.clinic = doctorUpdateDTO.clinic(), doctorUpdateDTO.clinic());
         updateField(() -> this.specialty = doctorUpdateDTO.specialty(), doctorUpdateDTO.specialty());
         updateField(() -> this.doctorExperienceEnum = doctorUpdateDTO.doctorExperienceEnum(), doctorUpdateDTO.doctorExperienceEnum());
         updateField(() -> this.crm = doctorUpdateDTO.crm(), doctorUpdateDTO.crm());
         updateField(() -> this.phone = doctorUpdateDTO.phone(), doctorUpdateDTO.phone());
-        setPassword(doctorUpdateDTO.password());
+        if (doctorUpdateDTO.password() != null) setPassword(doctorUpdateDTO.password());
     }
     private <T> void updateField(Runnable updateAction, T newValue) {
         if (newValue != null) {
