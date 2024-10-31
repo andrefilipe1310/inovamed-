@@ -28,13 +28,12 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Validated AutenticateDTO data){
-            var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
-            var auth = authenticationManager.authenticate(usernamePassword);
-            User user = (User)auth.getPrincipal();
-            var token = tokenService.generateToken(user);
-            return ResponseEntity.ok(new LoginResponseDTO(token,user.getRoles().getRole()));
-
+    public ResponseEntity<?> login(@RequestBody @Validated AutenticateDTO data) {
+        var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
+        var auth = authenticationManager.authenticate(usernamePassword);
+        User user = (User) auth.getPrincipal();
+        var token = tokenService.generateToken(user);
+        return ResponseEntity.ok(new LoginResponseDTO(token, user.getRoles().getRole()));
     }
     @PostMapping("/register")
     public ResponseEntity<?> resgister(@RequestBody @Validated RegisterDTO data){

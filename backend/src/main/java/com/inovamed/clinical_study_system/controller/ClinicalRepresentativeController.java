@@ -15,11 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-<<<<<<< HEAD
-@RequestMapping("/clinical")
-=======
 @RequestMapping("/clinical-representative")
->>>>>>> 05c6c4cba764055c7ef615ad39b2852fc7ab552d
 public class ClinicalRepresentativeController {
     @Autowired
     private CreateClinicalRepresentativeService createClinicalRepresentativeService;
