@@ -57,7 +57,7 @@ export default function Login() {
                     </div>
                     <button onClick={handleLogin}>Entrar</button>
                     <p>Esqueceu a senha? <a href="">Recuperar senha</a></p>
-                    <p>Não é cadastrado? <a href="">Cadastrar</a></p>
+                    <p>Não é cadastrado? <Link to="/cadastro">Cadastrar</Link></p>
                     <div style={{ display: 'flex', flexDirection: 'row', width: '80%', justifyContent: 'space-evenly' }}>
                         <Link to='/paciente/listapesquisas'> Paciente</Link>
                         <Link to='/medico/listapesquisas'> Médico </Link>
