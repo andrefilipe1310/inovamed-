@@ -27,6 +27,7 @@ public class WebSecurityConfig {
                 })
                 .authorizeHttpRequests(authorize -> {
                     //public
+                    authorize.requestMatchers(HttpMethod.OPTIONS).permitAll();
                     authorize.requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register", "/doctor","/clinical-representative","patient").permitAll();
                     authorize.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll();
 
