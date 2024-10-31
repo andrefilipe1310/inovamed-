@@ -43,6 +43,7 @@ public class Research {
     @ManyToMany(mappedBy = "researches")
     private List<Patient> patients;
     @ManyToOne
+    @JoinColumn(name = "clinical_study_representative_id")
     private ClinicalStudyRepresentative clinicalRepresentative;
 
     public void update(ResearchUpdateDTO researchUpdateDTO) {

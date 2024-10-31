@@ -1,102 +1,154 @@
 package com.inovamed.clinical_study_system;
 
-
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.doctor.DoctorExperienceEnum;
 import com.inovamed.clinical_study_system.model.doctor.DoctorUpdateDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 public class DoctorTests {
 
     private Doctor doctor;
-    private static final String DEFAULT_NAME = "Dr. John Doe";
-    private static final String DEFAULT_EMAIL = "john.doe@example.com";
-    private static final String DEFAULT_CLINIC = "Clinic A";
-    private static final String DEFAULT_SPECIALTY = "Cardiology";
-    private static final DoctorExperienceEnum DEFAULT_EXPERIENCE = DoctorExperienceEnum.EXPERIENCE;
-    private static final String DEFAULT_CRM = "123456";
-    private static final String DEFAULT_PHONE = "1234567890";
-    private static final String DEFAULT_PASSWORD = "password";
 
     @BeforeEach
     void setUp() {
         doctor = new Doctor();
-        doctor.setName(DEFAULT_NAME);
-        doctor.setEmail(DEFAULT_EMAIL);
-        doctor.setClinic(DEFAULT_CLINIC);
-        doctor.setSpecialty(DEFAULT_SPECIALTY);
-        doctor.setDoctorExperienceEnum(DEFAULT_EXPERIENCE);
-        doctor.setCrm(DEFAULT_CRM);
-        doctor.setPhone(DEFAULT_PHONE);
-        doctor.setPassword(DEFAULT_PASSWORD);
     }
 
     @Test
-    void testUpdateWithValidData() {
-        DoctorUpdateDTO updateDTO = new DoctorUpdateDTO(
-                "Dr. Jane Doe",
-                "jane.doe@example.com",
-                "Clinic B",
-                "Neurology",
+    @DisplayName("Deve criar um novo Doctor com valores padrão")
+    void testCreateNewDoctor() {
+        assertNotNull(doctor);
+        assertNotNull(doctor.getKey(), "A chave UUID não deve ser nula");
+        assertTrue(doctor.getKey().matches("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"));
+    }
+
+    @Test
+    @DisplayName("Deve criar um Doctor com todos os atributos")
+    void testCreateDoctorWithAllAttributes() {
+        Doctor fullDoctor = new Doctor(
+                1L,
+                "uuid-key",
+                "Dr. João Silva",
+                "Clínica São Lucas",
+                "Cardiologia",
                 DoctorExperienceEnum.EXPERIENCE,
-                "654321",
-                "0987654321",
-                "newpassword"
+                "123456",
+                "11999999999",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>()
+        );
+        fullDoctor.setEmail("joao.silva@example.com");
+
+        assertNotNull(fullDoctor);
+        assertEquals(1L, fullDoctor.getId());
+        assertEquals("Dr. João Silva", fullDoctor.getName());
+        assertEquals("joao.silva@example.com", fullDoctor.getEmail());
+        assertEquals("Clínica São Lucas", fullDoctor.getClinic());
+        assertEquals("Cardiologia", fullDoctor.getSpecialty());
+        assertEquals(DoctorExperienceEnum.EXPERIENCE, fullDoctor.getDoctorExperienceEnum());
+        assertEquals("123456", fullDoctor.getCrm());
+        assertEquals("11999999999", fullDoctor.getPhone());
+        assertNotNull(fullDoctor.getApplicationsSubmitted());
+        assertNotNull(fullDoctor.getNotifications());
+        assertNotNull(fullDoctor.getPatients());
+    }
+
+    @Test
+    @DisplayName("Deve atualizar apenas os campos não nulos do Doctor")
+    void testPartialUpdate() {
+        // Setup
+        doctor.setName("Dr. Original");
+        doctor.setEmail("original@example.com");
+        doctor.setClinic("Clínica Original");
+        doctor.setSpecialty("Especialidade Original");
+        doctor.setCrm("000000");
+
+        DoctorUpdateDTO updateDTO = new DoctorUpdateDTO(
+                null,                           // nome não será alterado
+                "novo@example.com",             // novo email
+                null,                           // clínica não será alterada
+                "Nova Especialidade",           // nova especialidade
+                null,                           // experiência não será alterada
+                null,                           // CRM não será alterado
+                "11988888888",                  // novo telefone
+                null                            // senha não será alterada
         );
 
         doctor.update(updateDTO);
 
-        assertEquals("Dr. Jane Doe", doctor.getName());
-        assertEquals("jane.doe@example.com", doctor.getEmail());
-        assertEquals("Clinic B", doctor.getClinic());
-        assertEquals("Neurology", doctor.getSpecialty());
-        assertEquals(DoctorExperienceEnum.EXPERIENCE, doctor.getDoctorExperienceEnum());
-        assertEquals("654321", doctor.getCrm());
-        assertEquals("0987654321", doctor.getPhone());
-        assertEquals("newpassword", doctor.getPassword());
+        assertEquals("Dr. Original", doctor.getName(), "Nome não deveria mudar");
+        assertEquals("novo@example.com", doctor.getEmail(), "Email deveria ser atualizado");
+        assertEquals("Clínica Original", doctor.getClinic(), "Clínica não deveria mudar");
+        assertEquals("Nova Especialidade", doctor.getSpecialty(), "Especialidade deveria ser atualizada");
+        assertEquals("000000", doctor.getCrm(), "CRM não deveria mudar");
+        assertEquals("11988888888", doctor.getPhone(), "Telefone deveria ser atualizado");
     }
 
     @Test
-    void testUpdateWithPartialData() {
-        DoctorUpdateDTO partialUpdateDTO = new DoctorUpdateDTO(
-                null,
-                "new.email@example.com",
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
+    @DisplayName("Deve atualizar todos os campos do Doctor")
+    void testFullUpdate() {
+        DoctorUpdateDTO updateDTO = new DoctorUpdateDTO(
+                "Dr. Novo Nome",
+                "novo@example.com",
+                "Nova Clínica",
+                "Nova Especialidade",
+                DoctorExperienceEnum.NEVER,
+                "654321",
+                "11977777777",
+                "novaSenha123"
         );
 
-        doctor.update(partialUpdateDTO);
+        doctor.update(updateDTO);
 
-        assertEquals(DEFAULT_NAME, doctor.getName()); // Não deve mudar
-        assertEquals("new.email@example.com", doctor.getEmail()); // Deve atualizar
-        assertEquals(DEFAULT_CLINIC, doctor.getClinic()); // Não deve mudar
-        assertEquals(DEFAULT_SPECIALTY, doctor.getSpecialty()); // Não deve mudar
-        assertEquals(DEFAULT_EXPERIENCE, doctor.getDoctorExperienceEnum()); // Não deve mudar
-        assertEquals(DEFAULT_CRM, doctor.getCrm()); // Não deve mudar
-        assertEquals(DEFAULT_PHONE, doctor.getPhone()); // Não deve mudar
-        assertEquals(DEFAULT_PASSWORD, doctor.getPassword()); // Não deve mudar
+        assertEquals("Dr. Novo Nome", doctor.getName());
+        assertEquals("novo@example.com", doctor.getEmail());
+        assertEquals("Nova Clínica", doctor.getClinic());
+        assertEquals("Nova Especialidade", doctor.getSpecialty());
+        assertEquals(DoctorExperienceEnum.NEVER, doctor.getDoctorExperienceEnum());
+        assertEquals("654321", doctor.getCrm());
+        assertEquals("11977777777", doctor.getPhone());
+        assertEquals("novaSenha123", doctor.getPassword());
     }
 
     @Test
-    void testUpdateWithAllNullValues() {
-        DoctorUpdateDTO allNullDTO = new DoctorUpdateDTO(null, null, null, null, null, null, null, null);
+    @DisplayName("Não deve modificar nenhum campo quando atualizar com DTO contendo apenas valores nulos")
+    void testUpdateWithNullValues() {
+        // Setup inicial
+        doctor.setName("Dr. Original");
+        doctor.setEmail("original@example.com");
 
-        doctor.update(allNullDTO);
+        DoctorUpdateDTO nullDTO = new DoctorUpdateDTO(
+                null, null, null, null, null, null, null, null
+        );
 
-        assertEquals(DEFAULT_NAME, doctor.getName());
-        assertEquals(DEFAULT_EMAIL, doctor.getEmail());
-        assertEquals(DEFAULT_CLINIC, doctor.getClinic());
-        assertEquals(DEFAULT_SPECIALTY, doctor.getSpecialty());
-        assertEquals(DEFAULT_EXPERIENCE, doctor.getDoctorExperienceEnum());
-        assertEquals(DEFAULT_CRM, doctor.getCrm());
-        assertEquals(DEFAULT_PHONE, doctor.getPhone());
-        assertEquals(DEFAULT_PASSWORD, doctor.getPassword());
+        doctor.update(nullDTO);
+
+        assertEquals("Dr. Original", doctor.getName());
+        assertEquals("original@example.com", doctor.getEmail());
+    }
+
+    @Test
+    @DisplayName("Deve manter a chave UUID original após atualizações")
+    void testKeyPersistenceAfterUpdate() {
+        String originalKey = doctor.getKey();
+
+        DoctorUpdateDTO updateDTO = new DoctorUpdateDTO(
+                "Novo Nome",
+                "novo@example.com",
+                null, null, null, null, null, null
+        );
+
+        doctor.update(updateDTO);
+
+        assertEquals(originalKey, doctor.getKey(), "A chave UUID não deve mudar após atualizações");
     }
 }

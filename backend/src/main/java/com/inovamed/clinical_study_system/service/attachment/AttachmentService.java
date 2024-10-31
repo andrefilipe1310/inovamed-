@@ -60,7 +60,7 @@ public class AttachmentService implements IAttachmentService{
         return new AttachmentCreateResponseDTO(attachment.getName());
     }
     private AttachmentFindResponseDTO toFindResponseDTO(Attachment attachment){
-        return new AttachmentFindResponseDTO(attachment.getName(),attachment.getArchive());
+        return new AttachmentFindResponseDTO(attachment.getName(),"file saved successfully");
     }
     private Attachment toEntity(AttachmentRequestDTO attachmentRequestDTO){
         Attachment attachment = new Attachment();

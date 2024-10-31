@@ -1,6 +1,7 @@
 package com.inovamed.clinical_study_system.model.user;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,10 +19,12 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Email
     private String email;
     private String password;
     private UserRoles roles;
@@ -42,7 +45,7 @@ public class User implements UserDetails {
         } else if (this.roles == UserRoles.DOCTOR) {
             return List.of(new SimpleGrantedAuthority("ROLE_DOCTOR"));
         } else {
-            return List.of(new SimpleGrantedAuthority("ROLE_STUDYREPRESENTATIVE"));
+            return List.of(new SimpleGrantedAuthority("ROLE_STUDY_REPRESENTATIVE"));
         }
     }
 

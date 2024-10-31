@@ -107,6 +107,12 @@ flowchart TD
 
 ```mermaid
 classDiagram
+    class User {
+        +Long id
+        +String email
+        +String password
+        +Enum roles
+    }
     class ClinicalStudyRepresentative {
         +Long id
         +String name
@@ -237,6 +243,7 @@ classDiagram
     }
 
     %% Relations
+    ClinicalStudyRepresentative --> User : "extends"
     ClinicalStudyRepresentative --> Research : "manages"
     ClinicalStudyRepresentative --> Notification : "receives updates"
     ClinicalStudyRepresentative --> Application : "views"
@@ -245,9 +252,11 @@ classDiagram
     Research --> Doctor : "has many"
     Research --> Attachment : "includes"
     Research --> Application : "receives"
+    Doctor --> User : "extends"
     Doctor --> Application : "submits"
     Doctor --> Research : "participates in"
     Doctor --> Notification : "receives"
+    Patient --> User : "extends"
     Patient --> Research : "participates in"
     Patient --> Notification : "receives"
     Patient --> MedicalHistory : "has"
@@ -257,7 +266,7 @@ classDiagram
     Application --> Patient : "refers to"
     Application --> Research : "relates to"
     Application --> Doctor : "submitted by"
-
+  
 ```
 
 
