@@ -13,9 +13,23 @@ export default function Login() {
         api.post("/auth/login", user)
             .then(response => {
                 console.log("Login bem-sucedido:", response.data);
-                if (response.data.token) {
+                if (response.data.token && response.data.role) {
                     localStorage.setItem("token",response.data.token)
-                    navigate("/paciente/listapesquisas")
+                    switch (response.data.role.toUpperCase()) {
+                        case "PATIENT":
+                            navigate("/paciente/listapesquisas")
+                            break;
+                        case "STUDY_REPRESENTATIVE":
+                            navigate("/representante/listapesquisas") 
+                            break;
+                        case "DOCTOR":
+                            navigate("/medico/listapesquisas") 
+                            break;
+                    
+                        default:
+                            break;
+                    }
+                    
                 }
                 
             })
