@@ -1,9 +1,0 @@
-.container-navbar{
-    width: 25%;
-    border: solid 1px black;
-    position:fixed;
-    top:0vw;
-    left:0vw;
-    height: 100%;
-    z-index: 1;
-}

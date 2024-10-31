@@ -3,7 +3,7 @@ package com.inovamed.clinical_study_system.model.user;
 public enum UserRoles {
     DOCTOR("doctor"),
     PATIENT("patient"),
-    STUDYREPRESENTATIVE("studyRepresentative");
+    STUDY_REPRESENTATIVE("study_representative");
 
     private String role;
 

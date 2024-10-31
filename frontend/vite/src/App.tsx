@@ -11,6 +11,7 @@ import RepListaPesquisas from "./pages/Representante/listPesquisas"
 import RepAlterarPesquisa from "./pages/Representante/alterarPesquisa"
 import RepNovaPesquisa from "./pages/Representante/novaPesquisa"
 import RepNotificacoes from "./pages/Representante/notificacoes"
+import RepPesquisaInfo from './pages/Representante/PesquisaInfo'
 
 
 
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/medico/notificacoes" element={<MedCriarNotificacao/>}></Route>
         <Route path="/medico/criarnotificacoes" element={<MedCriarNotificacao/>}></Route>
         <Route path="/representante/listapesquisas" element={<RepListaPesquisas/>}></Route>
+        <Route path="/representante/infoPesquisas" element={<RepPesquisaInfo/>}></Route>
         <Route path="/representante/alterarpesquisa" element={<RepAlterarPesquisa/>}></Route>
         <Route path="/representante/novapesquisa" element={<RepNovaPesquisa/>}></Route>
         <Route path="/representante/notificacoes" element={<RepNotificacoes/>}></Route>

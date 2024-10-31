@@ -1,6 +1,8 @@
 package com.inovamed.clinical_study_system.service.patient;
 
 
+import com.inovamed.clinical_study_system.exception.DoctorNotFoundException;
+import com.inovamed.clinical_study_system.exception.PatientNotFoundException;
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.patient.Patient;
 import com.inovamed.clinical_study_system.model.patient.PatientRequestDTO;
@@ -23,7 +25,7 @@ public class CreatePatientService {
     public PatientResponseDTO execute(PatientRequestDTO patientRequestDTO){
         Doctor doctor = doctorRepository.findByKey(patientRequestDTO.doctorKey())
                 .orElseThrow(()->{
-                    return new RuntimeException("Doctor not found.");
+                    return new DoctorNotFoundException();
                 });
        Patient patient = patientDTOMapperService.toEntity(patientRequestDTO,doctor);
         return patientDTOMapperService.toDTO(patientRepository.save(patient));

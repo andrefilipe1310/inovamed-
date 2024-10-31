@@ -1,9 +1,11 @@
 package com.inovamed.clinical_study_system.model.patient;
 
+import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignature;
 import com.inovamed.clinical_study_system.model.medical_history.MedicalHistory;
 import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.notification.Notification;
+import com.inovamed.clinical_study_system.model.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +17,7 @@ import java.util.UUID;
 @Entity(name = "tb_patient")
 @Getter
 @Setter
-public class Patient {
+public class Patient extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "patient_id")
@@ -23,14 +25,13 @@ public class Patient {
     @Column(unique = true, nullable = false)
     private String code = UUID.randomUUID().toString();
     private String name;
-    private String email;
     private String gender;
     private LocalDate birth;
     private String phone;
-    private String password;
     private Boolean digitalSignatureConsent;
     private Boolean responsibleDoctor;
-    private String signature;
+    @OneToOne
+    private DigitalSignature signature;
 
     @ElementCollection
     private List<String> authorizations;
@@ -52,11 +53,11 @@ public class Patient {
 
     public void update(PatientUpdateDTO patientUpdateDTO) {
         updateField(() -> this.name = patientUpdateDTO.name(), patientUpdateDTO.name());
-        updateField(() -> this.email = patientUpdateDTO.email(), patientUpdateDTO.email());
+        setEmail(patientUpdateDTO.email());
         updateField(() -> this.gender = patientUpdateDTO.gender(), patientUpdateDTO.gender());
         updateField(() -> this.birth = patientUpdateDTO.birth(), patientUpdateDTO.birth());
         updateField(() -> this.phone = patientUpdateDTO.phone(), patientUpdateDTO.phone());
-        updateField(() -> this.password = patientUpdateDTO.password(), patientUpdateDTO.password()); // Criptografar a senha
+        setPassword(patientUpdateDTO.password());
         updateField(() -> this.digitalSignatureConsent = patientUpdateDTO.digitalSignatureConsent(), patientUpdateDTO.digitalSignatureConsent());
         updateField(() -> this.responsibleDoctor = patientUpdateDTO.responsibleDoctor(), patientUpdateDTO.responsibleDoctor());
         updateField(() -> this.authorizations = patientUpdateDTO.authorizations(), patientUpdateDTO.authorizations());

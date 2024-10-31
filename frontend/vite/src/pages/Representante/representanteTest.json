@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "name": "Sarah Johnson",
+    "email": "sarah.johnson@example.com",
+    "phone": "+1234567890",
+    "clinicalRole": "Research Coordinator",
+    "experiences": "10 years managing clinical trials in oncology and neurology.",
+    "password": "encryptedpassword"
+  }

@@ -1,6 +1,7 @@
 package com.inovamed.clinical_study_system.model.notification;
 
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
+import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.patient.Patient;
 import jakarta.persistence.*;
@@ -23,7 +24,11 @@ public class Notification {
     private Long senderCode;
     private String title;
     private String message;
-    @OneToMany
+
+    @ManyToOne
+    @JoinColumn(name = "clinical_study_representative_id")
+    private ClinicalStudyRepresentative studyRepresentative;
+    @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL)
     private List<Attachment> attachment;
 
     @ManyToMany

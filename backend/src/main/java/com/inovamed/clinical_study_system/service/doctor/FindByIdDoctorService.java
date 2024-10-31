@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.doctor;
 
+import com.inovamed.clinical_study_system.exception.DoctorNotFoundException;
 import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
 import com.inovamed.clinical_study_system.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class FindByIdDoctorService {
     public DoctorResponseDTO execute(Long id){
 
         return doctorDTOMapperService.toDTO(doctorRepository.findById(id).orElseThrow(()->{
-            return new RuntimeException("Doctor not found");
+            return new DoctorNotFoundException();
         }));
     }
 

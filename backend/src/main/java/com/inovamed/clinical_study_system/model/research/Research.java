@@ -1,6 +1,7 @@
 package com.inovamed.clinical_study_system.model.research;
 
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
+import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.patient.Patient;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public class Research {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "research_id")
     private Long id;
-    private int code;
+    private int code = (int) Math.random();
     private String title;
     private String area;
     private int numberOfPatients;
@@ -37,9 +38,35 @@ public class Research {
     private List<Phases> phases;
     private int currentPhase;
     private String location;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "research_id")
+    @OneToMany(mappedBy = "research", cascade = CascadeType.ALL)
     private List<Attachment> attachments;
     @ManyToMany(mappedBy = "researches")
     private List<Patient> patients;
+    @ManyToOne
+    @JoinColumn(name = "clinical_study_representative_id")
+    private ClinicalStudyRepresentative clinicalRepresentative;
+
+    public void update(ResearchUpdateDTO researchUpdateDTO) {
+        updateField(() -> this.title = researchUpdateDTO.title(), researchUpdateDTO.title());
+        updateField(() -> this.area = researchUpdateDTO.area(), researchUpdateDTO.area());
+        updateField(() -> this.numberOfPatients = researchUpdateDTO.numberOfPatients(), researchUpdateDTO.numberOfPatients());
+        updateField(() -> this.availableVacancies = researchUpdateDTO.availableVacancies(), researchUpdateDTO.availableVacancies());
+        updateField(() -> this.responsibleDoctors = researchUpdateDTO.responsibleDoctors(), researchUpdateDTO.responsibleDoctors());
+        updateField(() -> this.institutions = researchUpdateDTO.institutions(), researchUpdateDTO.institutions());
+        updateField(() -> this.description = researchUpdateDTO.description(), researchUpdateDTO.description());
+        updateField(() -> this.criteria = researchUpdateDTO.criteria(), researchUpdateDTO.criteria());
+        updateField(() -> this.studyDuration = researchUpdateDTO.studyDuration(), researchUpdateDTO.studyDuration());
+        updateField(() -> this.phases = researchUpdateDTO.phases(), researchUpdateDTO.phases());
+        updateField(() -> this.currentPhase = researchUpdateDTO.currentPhase(), researchUpdateDTO.currentPhase());
+        updateField(() -> this.location = researchUpdateDTO.location(), researchUpdateDTO.location());
+        updateField(() -> this.attachments = researchUpdateDTO.attachments(), researchUpdateDTO.attachments());
+    }
+
+
+    private <T> void updateField(Runnable updateAction, T newValue) {
+        if (newValue != null) {
+            updateAction.run();
+        }
+    }
+
 }

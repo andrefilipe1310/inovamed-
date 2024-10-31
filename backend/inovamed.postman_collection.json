@@ -1,0 +1,720 @@
+{
+	"info": {
+		"_postman_id": "041e6af9-b7e0-412b-ab36-94dc40411fbb",
+		"name": "inovamed",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34420077"
+	},
+	"item": [
+		{
+			"name": "autenticação",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// Parse the JSON response\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"// Check if the token exists in the response\r",
+									"if (jsonData.token) {\r",
+									"    // Set the token in the environment variable\r",
+									"    pm.environment.set(\"token\", jsonData.token);\r",
+									"} else {\r",
+									"    console.log(\"Token not found in the response\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\":\"andre3@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resgister",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"andre3@gmail.com\",\r\n    \"password\":\"12345\",\r\n    \"roles\":\"STUDY_REPRESENTATIVE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "doctor",
+			"item": [
+				{
+					"name": "createDoctor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Dr. Geraldo Silva\",\r\n  \"email\": \"geraldo.silva@example.com\",\r\n  \"doctorExperienceEnum\": \"NEVER\",\r\n  \"clinic\": \"Clínica Saúde e Vida\",\r\n  \"phone\": \"+55 11 91234-5678\",\r\n  \"password\": \"senhaSegura123\",\r\n    \"roles\":\"DOCTOR\",\r\n  \"specialty\": \"Cardiologia\",\r\n  \"Crm\": \"123456\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/doctor",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllDoctors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/doctor",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIDDoctor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/doctor/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDoctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Dr. John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"clinic\": \"Health Clinic\",\r\n  \"specialty\": \"Cardiology\",\r\n  \"doctorExperienceEnum\": \"EXPERIENCE\",\r\n  \"crm\": \"123456\",\r\n  \"phone\": \"+1234567890\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/doctor/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteDoctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/doctor/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "patient",
+			"item": [
+				{
+					"name": "findAllPatient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/patient",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdPatient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/patient/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPatient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"gender\": \"Male\",\r\n  \"birth\": \"1990-05-15\",\r\n  \"phone\": \"+1234567890\",\r\n  \"password\": \"securePassword123\",\r\n  \"roles\":\"PATIENT\",\r\n  \"medicalHistory\": {\r\n   \r\n  },\r\n  \"doctorKey\": \"91eddeb7-ef7f-46fa-b77b-a5aa15050103\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/patient",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePatient",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"janedoe@example.com\",\r\n  \"gender\": \"Female\",\r\n  \"birth\": \"1985-10-20\",\r\n  \"phone\": \"+9876543210\",\r\n  \"password\": \"newSecurePassword456\",\r\n  \"digitalSignatureConsent\": true,\r\n  \"responsibleDoctor\": false,\r\n  \"authorizations\": [\r\n    \"authorization_for_study_1\",\r\n    \"authorization_for_data_sharing\"\r\n  ],\r\n  \"researches\": [\r\n   \r\n  ],\r\n  \"notifications\": [\r\n    {\r\n      \"message\": \"New research opportunity available in Neurology\",\r\n      \"date\": \"2024-04-01\",\r\n      \"read\": false\r\n    },\r\n    {\r\n      \"id\": null,\r\n            \"sender\": \"pessoa\",\r\n            \"senderCode\": 1234,\r\n            \"title\": \"notificacao\",\r\n            \"message\": \"mensagem\",\r\n            \"attachment\": [],\r\n            \"recipientsPatients\": [],\r\n            \"recipientsDoctors\": []\r\n    }\r\n  ],\r\n  \"medicalHistory\": {\r\n   \r\n  },\r\n  \"signature\": \"UpdatedBase64EncodedSignature\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/patient/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePatient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/patient/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "clinical representative",
+			"item": [
+				{
+					"name": "findAllClinicalRepresentative",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clinical-representative",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clinical-representative"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdClinicalRepresentative",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clinical-representative/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clinical-representative",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createClinicalRepresentative",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Smith\",\r\n  \"email\":\"john@gmail.com\",\r\n  \"password\":\"1234\",\r\n  \"roles\":\"STUDY_REPRESENTATIVE\",\r\n  \"phone\": \"+1234567890\",\r\n  \"clinicalRole\": \"Principal Investigator\",\r\n  \"experience\": \"10 years in clinical research\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clinical-representative",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clinical-representative"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateClinicalRepresentative",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 12345,\r\n  \"name\": \"John22 Smith\",\r\n  \"email\": \"johnsmith@example.com\",\r\n  \"phone\": \"+1234567890\",\r\n  \"clinicalRole\": \"Principal Investigator\",\r\n  \"experience\": \"10 years in clinical research\",\r\n  \"password\": \"securePassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clinical-representative/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clinical-representative",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteClinicalRepresentative",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clinical-representative/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clinical-representative",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "research",
+			"item": [
+				{
+					"name": "createResearch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Alzheimer Study Phase 1\",\r\n  \"area\": \"Neurology\",\r\n  \"numberOfPatients\": 100,\r\n  \"availableVacancies\": 10,\r\n  \"responsibleDoctors\": [\r\n    \"Dr. Smith\",\r\n    \"Dr. Johnson\"\r\n  ],\r\n  \"institutions\": [\r\n    \"Institute of Neurological Research\",\r\n    \"Alzheimer's Research Center\"\r\n  ],\r\n  \"description\": \"This is a clinical study focused on phase 1 of Alzheimer's treatment.\",\r\n  \"criteria\": {\r\n    \"inclusion\":\"Patients with mild cognitive impairment\",\r\n    \"exclusion\": \"Pregnancy\"\r\n  },\r\n  \"studyDuration\": {\r\n    \"start_date\": \"2024-01-01\",\r\n    \"end_date\": \"2025-12-31\"\r\n  },\r\n  \"phases\": [\r\n    {\r\n      \"number\": 1,\r\n      \"title\": \"Safety evaluation\",\r\n      \"description\": \"dnadfiojnfibvgdbbnnyy\"\r\n    \r\n    }\r\n  ],\r\n  \"currentPhase\": 1,\r\n  \"location\": \"New York, USA\",\r\n  \"attachments\": [\r\n    {\r\n      \"name\": \"study_protocol.pdf\",\r\n      \"archive\": \"arquivo em formado de byte[]\"\r\n    }\r\n  ],\r\n  \"StudyRepresentativeId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/research",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"research"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllReseaches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/research",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"research"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdReseach",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/research/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"research",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteByIdReseach",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/research/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"research",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateReseach",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Alzheimer Study Phase 1\",\r\n  \"area\": \"Neurology\",\r\n  \"numberOfPatients\": 100,\r\n  \"availableVacancies\": 10,\r\n  \"responsibleDoctors\": [\r\n    \"Dr. Smith\",\r\n    \"Dr. Johnson\"\r\n  ],\r\n  \"institutions\": [\r\n    \"Institute of Neurological Research\",\r\n    \"Alzheimer's Research Center\"\r\n  ],\r\n  \"description\": \"This is a clinical study focused on phase 1 of Alzheimer's treatment.\",\r\n  \"criteria\": {\r\n    \"inclusion\":\"Patients withfgdfgdfg mild cognitive impairment\",\r\n    \"exclusion\": \"Pregnancy\"\r\n  },\r\n  \"studyDuration\": {\r\n    \"start_date\": \"2024-01-01\",\r\n    \"end_date\": \"2025-12-31\"\r\n  },\r\n  \"phases\": [\r\n    {\r\n      \"number\": 1,\r\n      \"title\": \"Safety evaluation\",\r\n      \"description\": \"dnadfiojnfibvgdbbnnyy\"\r\n    \r\n    }\r\n  ],\r\n  \"currentPhase\": 1,\r\n  \"location\": \"New York, USA\",\r\n  \"attachments\": [\r\n    {\r\n      \"name\": \"study_protocol.pdf\",\r\n      \"link\": \"https://example.com/study_protocol.pdf\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/research/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"research",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "attachment",
+			"item": [
+				{
+					"name": "uploadAttachment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/deco_/OneDrive/Área de Trabalho/andre-profissional/curriculos/currículo backend java André Figueiredo .pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/attachment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"attachment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "digitalSignature",
+			"item": [
+				{
+					"name": "createSignature",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "validFrom",
+									"value": "2024-10-23T10:00:00",
+									"type": "text"
+								},
+								{
+									"key": "validUntil",
+									"value": "2024-12-31T10:00:00",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/deco_/OneDrive/Área de Trabalho/andre-profissional/certificados/bootcamp claro - spring boot.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/digital-signature",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"digital-signature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/digital-signature/verify/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"digital-signature",
+								"verify",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deactivate",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/digital-signature/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"digital-signature",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

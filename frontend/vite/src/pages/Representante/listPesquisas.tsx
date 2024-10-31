@@ -1,47 +1,30 @@
 
 import Navbar from "../../components/Navbar";
-import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import pesquisas from "../../components/userInfo";
-import { Pesquisa } from "../../components/userInfo";
+import pesquisaEntity from "./pesquisaTest.json"
+import representanteEntity from "./representanteTest.json"
 
 export default function RepListaPesquisas(){
-
-
-   const [showPesqId, setShowpesqId] = useState<number>()
-   const [showPesq,setShowPesq] = useState<Pesquisa>()
-
-   useEffect(()=>{
-      setShowPesq(pesquisas.find((info)=> info.id === showPesqId))
-   },[showPesqId])
- 
+    
+    const pesqInfo = pesquisaEntity //find all reseachs
 
     return(
         <>
         <Navbar/>
-        <div className='container-page'> 
-            <div className='card-border'>
-                <div className="container-card">
-                <h1>MINHAS PESQUISAS</h1>
-                    <div className='card-pesquisas' >
-                        {pesquisas.map((info)=>(
-                            <div className='pesq-detail' onClick={()=>setShowpesqId(info.id)}> 
-                                <p className='title-pesq'>{info.titulo}</p>
-                                <p className='desc-pesq'>{info.desc}</p>
-                            </div>
-                        ))}
+        <div className="container-page">
+            <h1 className="title-suas-pesquisas">MINHAS PESQUISAS</h1>
+            <div className="container-pesq">
+                {pesqInfo.map((pesq)=>(
+                    <div className="card-border">
+                        <div  className="container-card-pesqlist">
+                            <Link to={`/representante/infoPesquisas?id=${pesq.id}`} className="link-to-pesq">
+                                <h2>{pesq.title}</h2>
+                                <p>#{pesq.code}</p>
+                            </Link>
+                        </div>
                     </div>
-                </div>
+                ))}
             </div>
-        <Link to='/representante/novapesquisa' ><button className="button-nova-pesquisa">NOVA PESQUISA +</button></Link>
-        {showPesqId ? 
-            <div className='card-border'>
-              <div className="container-card">
-                  <h1>{showPesq?.titulo}</h1>
-                  <p>{showPesq?.desc}</p>
-              </div>
-            </div> 
-          : <></>}
         </div>
         </>
     )

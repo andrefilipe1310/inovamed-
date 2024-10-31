@@ -1,4 +1,4 @@
-# inovamed-
+# Inovamed
 ## Descrição
 InovaMed é uma plataforma digital inovadora desenvolvida para conectar pacientes a estudos clínicos, com foco na área de pesquisa clínica em saúde. O sistema permite que médicos candidatem seus pacientes a estudos relevantes, garantindo a privacidade e a segurança dos dados. Com uma interface simples e eficiente, InovaMed facilita a comunicação entre médicos, pacientes e representantes de estudos clínicos, promovendo um processo ágil e transparente. O projeto visa acelerar a pesquisa e o desenvolvimento de novos tratamentos, contribuindo para o avanço da medicina.
 ## Tecnologias utilizadas
@@ -7,7 +7,7 @@ InovaMed é uma plataforma digital inovadora desenvolvida para conectar paciente
 - **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as informações da aplicação.
 - **React**: Biblioteca JavaScript utilizada para construir a interface do usuário (front-end), proporcionando uma experiência interativa e dinâmica.
 
-## como Instalar
+## Como Instalar
 ### Pré-requisitos
 - [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 - [Maven](https://maven.apache.org/download.cgi)
@@ -26,7 +26,7 @@ cd inovamed
 ```
 2. **Configure o banco de dados**
 - Crie um banco de dados no PostgreSQL chamado inovamed.
-- Atualize as credenciais do banco de dados no arquivo application.properties (ou application.yml) localizado em src/main/resources:
+- Atualize as credenciais do banco de dados no arquivo application.properties localizado em src/main/resources:
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/inovamed
 spring.datasource.username=seu_usuario
@@ -41,12 +41,15 @@ mvn spring-boot:run
 - Navegue até a pasta do front-end e execute os seguintes comandos:
 ```bash
 cd frontend
+cd vite
 npm install
-npm start
+npm run dev
 ```
 5. **Acessar a Aplicação**
-- Abra seu navegador e acesse http://localhost:3000 para ver a aplicação em funcionamento.
+- Abra seu navegador e acesse http://localhost:5173 para ver a aplicação em funcionamento.
 
+6. **Acessar as rotas da aplicação (swagger)**
+- Abra seu navegador e acesse http://localhost:8080/swagger-ui/index.html
 ### Observações
 - Certifique-se de que o servidor do PostgreSQL esteja em execução antes de iniciar a aplicação.
 - Verifique as dependências e versões para evitar conflitos.
@@ -81,12 +84,35 @@ flowchart TD
     J --> K[Fim do Processo]
     H --> K
     I --> K
-
+```
+### Fluxograma (Concordar com os termos de uso e assinar digitalmente)
+```mermaid
+flowchart TD
+    A[Usuário acessa a plataforma InovaMed] --> B[Usuário seleciona a opção de assinatura digital]
+    B --> C[Usuário visualiza o documento a ser assinado]
+    C --> D[Usuário clica em Assinar Documento]
+    D --> E[Sistema solicita autenticação forte ex: senha + código OTP]
+    E --> F{Usuário autentica com sucesso?}
+    F -->|Sim| G[Sistema carrega o certificado digital do usuário]
+    F -->|Não| H[Usuário é notificado sobre falha na autenticação]
+    H --> E
+    G --> I[Usuário revisa informações da assinatura]
+    I --> J[Usuário confirma a assinatura]
+    J --> K[Sistema gera a assinatura digital no documento]
+    K --> L[Assinatura digital é armazenada no sistema]
+    L --> M[Usuário recebe confirmação da assinatura realizada]
+    M --> N[Usuário pode visualizar ou baixar o documento assinado]
 ```
 ### Diagrama UML 
 
 ```mermaid
 classDiagram
+    class User {
+        +Long id
+        +String email
+        +String password
+        +Enum roles
+    }
     class ClinicalStudyRepresentative {
         +Long id
         +String name
@@ -144,7 +170,7 @@ classDiagram
     class Attachment {
         +Long id
         +String name
-        +String link
+        +String archive
     }
 
     class Patient {
@@ -158,12 +184,36 @@ classDiagram
         +Doctor doctor
         +boolean digitalSignatureConsent
         +boolean responsibleDoctor
-        +String digitalSignature
+        +DigitalSignature digitalSignature
         +List<String> authorizations
         +List<Research> researches
         +List<Notification> notifications
         +MedicalHistory medicalHistory
     }
+    class DigitalSignature {
+        +int id
+        +String documentName
+        +String documentName
+        +byte[] documentContent
+        +byte[] signature
+        +LocalDateTime timestamp
+        +LocalDateTime validFrom
+        +LocalDateTime validUntil
+        +List<Consent> consents
+        +User user;
+        +boolean isActive;
+    }
+
+    class Consent {
+        +int id
+        +ConsentType consentType
+        +LocalDateTime validFrom
+        +LocalDateTime validUntil
+        +boolean isActive
+        +List<DigitalSignature> digitalSignature
+    }
+    
+    
 
     class MedicalHistory {
         +int id
@@ -193,6 +243,7 @@ classDiagram
     }
 
     %% Relations
+    ClinicalStudyRepresentative --> User : "extends"
     ClinicalStudyRepresentative --> Research : "manages"
     ClinicalStudyRepresentative --> Notification : "receives updates"
     ClinicalStudyRepresentative --> Application : "views"
@@ -201,17 +252,21 @@ classDiagram
     Research --> Doctor : "has many"
     Research --> Attachment : "includes"
     Research --> Application : "receives"
+    Doctor --> User : "extends"
     Doctor --> Application : "submits"
     Doctor --> Research : "participates in"
     Doctor --> Notification : "receives"
+    Patient --> User : "extends"
     Patient --> Research : "participates in"
     Patient --> Notification : "receives"
     Patient --> MedicalHistory : "has"
+    Patient --> DigitalSignature : "has"
     Patient --> Doctor : "assigned to"
+    DigitalSignature --> Consent : "has many"
     Application --> Patient : "refers to"
     Application --> Research : "relates to"
     Application --> Doctor : "submitted by"
-
+  
 ```
 
 
@@ -351,11 +406,24 @@ erDiagram
 ### Equipe do Projeto
 
 - **André Filipe**
-  - **Função:** Desenvolvedor Backend e Gestor do projeto
+  - **Função:** Desenvolvedor Backend e Co-Gestor do projeto
   - **Email:** andrefilipef1310@gmail.com
   - **LinkedIn:** [André Filipe](https://linkedin.com/in/andre-filipe-/)
   - **Github:** [andrefilipef1310](https://github.com/andrefilipe1310/)
 
+- **Ariano Souza**
+  - **Função:** Desenvolvedor Front-end e Co-Gestor do projeto
+  - **Email:** arianosouzapro@gmail.com
+  - **LinkedIn:** [Ariano Souza](https://www.linkedin.com/in/ariano-souza-14777926b)
+  - **Github:** [ArianoSouza](https://github.com/ArianoSouza)
+
+
+ - **Ayrton Fernandes**
+   - **Função:** Desenvolvedor Backend e Co-Gestor do projeto
+   - **Email:** ayrtonleonardo14@gmail.com
+   - **LinkedIn:** [Ayrton Leonardo](https://www.linkedin.com/in/ayrton-leonardo-956a4026b/)
+   - **Github:** [AyrtonF](https://github.com/AyrtonF)
+  
 
  - **Amanda Lima**
    - **Função:** Desenvolvedora Front-end 
@@ -363,8 +431,22 @@ erDiagram
    - **LinkedIn:** [Amanda Kaawanny](https://linkedin.com/in/amanda-lima-5bb61a1b0/)
    - **Github:** [amandaklima](github.com/amandaklima)
 
+<<<<<<< HEAD
 - **Alberth Luiz**
   - **Função:** Desenvolvedor Backend 
   - **Email:** aluizprofi@gmail.com
   - **LinkedIn:** [André Filipe](https://www.linkedin.com/in/alberth-luiz-736527229/)
   - **Github:** [PaidoNunu](https://github.com/PaidoNunu)
+=======
+ - **Bruno Klisman**
+   - **Função:** Desenvolvedor Front-end 
+   - **Email:** brunoserafim.dev@gmail.com
+   - **LinkedIn:** [Bruno KLisman](https://www.linkedin.com/in/bruno-klisman-30aa14267/)
+   - **Github:** [Bruno-Klisman](https://github.com/Bruno-Klisman)
+     
+- **Estephani Germana**
+   - **Função:** Desenvolvedor Backend e QA
+   - **Email:** estephani.germana@gmail.com
+   - **LinkedIn:** [Estephani Germana](https://www.linkedin.com/in/estephanigermana/)
+   - **Github:** [estephgermana](https://github.com/estephgermana)
+>>>>>>> 05c6c4cba764055c7ef615ad39b2852fc7ab552d
