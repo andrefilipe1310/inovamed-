@@ -1,5 +1,7 @@
 package com.inovamed.clinical_study_system.service.attachment;
 
+import com.inovamed.clinical_study_system.exception.AttachmentNotDeletedException;
+import com.inovamed.clinical_study_system.exception.AttachmentNotFoundException;
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentCreateResponseDTO;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentRequestDTO;
@@ -33,14 +35,14 @@ public class AttachmentService implements IAttachmentService{
     @Override
     public AttachmentFindResponseDTO findById(Long id) {
         return this.toFindResponseDTO(attachmentRepository.findById(id).orElseThrow(
-                ()->{return new RuntimeException("Attachment not found.");}
+                ()->{return new AttachmentNotFoundException();}
         ));
     }
 
     @Override
     public AttachmentFindResponseDTO update(Long id, AttachmentRequestDTO attachmentRequestDTO) {
         Attachment attachment = attachmentRepository.findById(id).orElseThrow(
-                ()->{return new RuntimeException("Attachment not found.");}
+                ()->{return new AttachmentNotFoundException();}
         );
 
         attachment.update(attachmentRequestDTO);
@@ -51,7 +53,7 @@ public class AttachmentService implements IAttachmentService{
     public String delete(Long id) {
         this.attachmentRepository.deleteById(id);
         if(attachmentRepository.existsById(id)){
-            throw new RuntimeException("attachment not deleted.");
+            throw new AttachmentNotDeletedException();
         }
         return "attachment "+id+" deleted success.";
     }

@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.doctor;
 
+import com.inovamed.clinical_study_system.exception.DoctorDeletionFailedException;
 import com.inovamed.clinical_study_system.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class DeleteDoctorService {
         doctorRepository.deleteById(id);
 
         if(doctorRepository.existsById(id)){
-            throw new RuntimeException("Error deleted.");
+            throw new DoctorDeletionFailedException(id);
         }
 
         return "Doctor "+id+" success deleted.";

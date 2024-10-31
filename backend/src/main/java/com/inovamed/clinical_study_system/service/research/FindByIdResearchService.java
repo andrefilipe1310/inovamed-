@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.research;
 
+import com.inovamed.clinical_study_system.exception.ResearchNotFoundException;
 import com.inovamed.clinical_study_system.model.research.ResearchResponseDTO;
 import com.inovamed.clinical_study_system.repository.ResearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class FindByIdResearchService {
     public ResearchResponseDTO execute(Long id){
         return researchDTOMapperService.toDTO(this.researchRepository.findById(id)
                 .orElseThrow(()->{
-                    return new RuntimeException("Research not found.");
+                    throw new ResearchNotFoundException();
                 }));
     }
 }

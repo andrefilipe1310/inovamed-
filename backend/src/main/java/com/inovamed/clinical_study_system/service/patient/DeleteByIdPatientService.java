@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.patient;
 
+import com.inovamed.clinical_study_system.exception.PatientDeletionFailedException;
 import com.inovamed.clinical_study_system.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class DeleteByIdPatientService {
         patientRepository.deleteById(id);
 
         if (patientRepository.existsById(id)){
-            throw  new RuntimeException("Filed deleted.");
+            throw  new PatientDeletionFailedException(id);
         }
     }
 }

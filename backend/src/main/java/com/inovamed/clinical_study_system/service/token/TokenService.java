@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.inovamed.clinical_study_system.exception.TokenGenerationException;
 import com.inovamed.clinical_study_system.model.user.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class TokenService implements ITokenService {
                     .withSubject(user.getEmail()).withExpiresAt(genExpirationDate()).sign(algorithm);
             return token;
         } catch (JWTCreationException exception) {
-            throw new RuntimeException("Error while generated token " + exception);
+            throw new TokenGenerationException(exception);
         }
     }
 
@@ -36,7 +37,7 @@ public class TokenService implements ITokenService {
             Algorithm algorithm = Algorithm.HMAC256((secret));
             return JWT.require(algorithm).withIssuer("INOVAMED").build().verify(token).getSubject();
         } catch (JWTVerificationException exception) {
-            throw new RuntimeException("Error while validated token " + exception);
+            throw new TokenGenerationException(exception);
         }
     }
 
