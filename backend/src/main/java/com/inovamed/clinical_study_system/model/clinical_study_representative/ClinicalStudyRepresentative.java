@@ -39,13 +39,14 @@ public class ClinicalStudyRepresentative extends User {
 
 
 
-    public void update(ClinicalStudyRepresentativeRequestDTO requestDTO) {
-        this.name = requestDTO.name();
-        this.setPassword(requestDTO.email());
-        this.clinicalRole = requestDTO.clinicalRole();
-        this.phone = requestDTO.phone();
-        this.experiences = requestDTO.experience();
-        setPassword(requestDTO.password());
+    public void update(ClinicalStudyRepresentativeUpdateDTO updateDTO) {
+        this.name = updateDTO.name();
+        this.setEmail(updateDTO.email());
+        this.setPassword(updateDTO.password());
+        this.phone = updateDTO.phone();
+        this.clinicalRole = updateDTO.clinicalRole();
+        this.experiences = updateDTO.experiences();
+
     }
 
 }
