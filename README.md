@@ -362,3 +362,9 @@ erDiagram
    - **Email:** amandakaawanny@gmail.com
    - **LinkedIn:** [Amanda Kaawanny](https://linkedin.com/in/amanda-lima-5bb61a1b0/)
    - **Github:** [amandaklima](github.com/amandaklima)
+
+- **Alberth Luiz**
+  - **Função:** Desenvolvedor Backend 
+  - **Email:** aluizprofi@gmail.com
+  - **LinkedIn:** [André Filipe](https://www.linkedin.com/in/alberth-luiz-736527229/)
+  - **Github:** [PaidoNunu](https://github.com/PaidoNunu)
