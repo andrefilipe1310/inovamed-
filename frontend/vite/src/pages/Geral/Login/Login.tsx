@@ -6,13 +6,16 @@ import api from "../../../config/axiosConfig"
 
 export default function Login() {
     const [user, setUser] = useState({ email: "", password: "" })
+    const [errorMessage, setErrorMessage] = useState<string | null>(null)
     const navigate = useNavigate()
 
     const handleLogin = async (event: React.FormEvent) => {
         event.preventDefault()
+        setErrorMessage(null) // Limpa a mensagem de erro ao tentar fazer login
+
         api.post("/auth/login", user)
             .then(response => {
-                console.log("Login bem-sucedido:", response.data);
+                
                 if (response.data.token && response.data.role) {
                     localStorage.setItem("token",response.data.token)
                     switch (response.data.role.toUpperCase()) {
@@ -34,7 +37,12 @@ export default function Login() {
                 
             })
             .catch(error => {
-                console.error("Erro no login:", error);
+                 console.error("Erro no login:", error);
+                if (!error.response) {
+                    setErrorMessage("O servidor está offline. Tente novamente mais tarde.");
+                } else {
+                    setErrorMessage("Erro ao fazer login. Verifique suas credenciais.");
+                }
             });
 
     }
@@ -56,6 +64,7 @@ export default function Login() {
                         <input type="text" name="password" value={user.password} onChange={handleChange} />
                     </div>
                     <button onClick={handleLogin}>Entrar</button>
+                    {errorMessage && <p style={{color:"red"}} className="error-message">{errorMessage}</p>}
                     <p>Esqueceu a senha? <a href="">Recuperar senha</a></p>
                     <p>Não é cadastrado? <a href="">Cadastrar</a></p>
                     <div style={{ display: 'flex', flexDirection: 'row', width: '80%', justifyContent: 'space-evenly' }}>
