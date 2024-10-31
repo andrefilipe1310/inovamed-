@@ -1,0 +1,57 @@
+[
+{
+    "id": 1,
+    "code": "123e4567-e89b-12d3-a456-426614174000",
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "gender": "Male",
+    "birth": "1985-05-15",
+    "phone": "+1234567890",
+    "password": "encryptedpassword",
+    "digitalSignatureConsent": true,
+    "responsibleDoctor": true,
+    "signature": {
+      "id": 1,
+      "documentName": "ConsentForm.pdf",
+      "documentContent": "VGhpcyBpcyBhIGNvbnNlbnQgZG9jdW1lbnQu",
+      "signature":"nvikdfjghiduhbifgbhiufgndfsdfgv",
+      "timestamp": "2024-10-23T12:00:00",
+      "validFrom": "2024-10-23T12:00:00",
+      "validUntil": "2025-10-23T12:00:00",
+      "isActive": true,
+      "user": {
+        "id": 1,
+        "name": "User Example"
+      }
+    },
+    "authorizations": [
+      "CONSENT_FOR_STUDY_A",
+      "CONSENT_FOR_STUDY_B"
+    ],
+    "researches": [
+      {
+        "id": 101,
+        "title": "Alzheimer Study"
+      },
+      {
+        "id": 102,
+        "title": "Parkinson's Research"
+      }
+    ],
+    "notifications": [
+      {
+        "id": 1,
+        "message": "New study available"
+      }
+    ],
+    "medicalHistory": {
+      "id": 1,
+      "conditions": ["Diabetes", "Hypertension"],
+      "medications": ["Metformin", "Lisinopril"]
+    },
+    "doctor": {
+      "id": 1,
+      "name": "Dr. Jane Smith"
+    }
+  }
+]

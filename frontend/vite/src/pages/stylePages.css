@@ -9,6 +9,14 @@
 
 
 /* Pagina inicial*/
+
+.logo-start{
+  width: 12vw;
+  height: auto;
+}
+.front-page-image{
+  width: 100%;
+}
 .container-all-start{
   display: flex;
   flex-direction: column;
@@ -26,6 +34,8 @@
   justify-content: space-between;
   padding: 0vw 2vw;
   box-sizing: border-box;
+  box-shadow: 0px 1px 20px rgb(0, 0, 0);
+  z-index: 1;
 }
 .link-login{
   width: 6vw;
@@ -47,7 +57,45 @@ color: #0b42ce;
 transition: 0.1s;
 }
 
+/*CADASTRO */
+.container-user-type-select{
+  width: 45vw;
+  height: fit-content;
+  padding: 2vw 2vw;
+background-color: white;
+border-radius: 35px;
+box-sizing: border-box;
+font-family: Montserrat-regular;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.container-user-type-select h3{
+  font-family: Montserrat-Bold;
+  margin: 0px;
+}
+.container-user-type-select select{
+  border-radius: 15px;
+  font-family: Montserrat-Bold;
+  text-align: center;
+}
+.link-to-register{
+  width: 15vw;
+  height: 2.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  text-decoration: none;
+  background: linear-gradient( to bottom, #0b42ce,#062168);
+  color: white;
+  font-family: Montserrat-Bold;
+  margin-top: 1vw;
 
+}
+
+  /*CADASTRO REPRESENTANTE*/
+  
 /* Login*/
 
 .container-all-login{
@@ -80,9 +128,9 @@ transition: 0.1s;
      border-radius: 20px;
  }
  .container-login{
-     width: 100%;
-     height: 100%;
-     border-radius: 20px;
+     width: 35vw;
+     height: 28vw;
+     border-radius: 35px;
      background-color: white;
      display: flex;
      flex-direction: column;
@@ -150,6 +198,14 @@ transition: 0.1s;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.title-page{
+  font-family: Montserrat-Bold;
+  font-size: 3vw;
+  background: linear-gradient(180deg, #0b42ce,#062168); /* Defina as cores do gradiente */
+  -webkit-background-clip: text; /* Recorta o background no texto */
+  -webkit-text-fill-color: transparent; /* Torna o texto transparente para mostrar o gradiente */
+  background-clip: text;
 }
 .container-page p, li, strong{
   font-family: Montserrat-regular;
@@ -381,6 +437,12 @@ transition: 0.1s;
   .section-2 div{
    margin: 1vw 2vw;
   }
+  .section-2 p{
+    margin: 0.5vw 2vw;
+   }
+  .section-2 li{
+    margin: 0vw 2vw;
+   }
   .section-3{
     width: 80%;
     display: flex;
@@ -396,6 +458,139 @@ transition: 0.1s;
 
   }
 
+  /* novapesquisa e alterarpesquisa*/
+  .form-new-research{
+    width: 60vw;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 34px;
+    font-family:  Montserrat-Bold;
+    font-size: 1vw;
+  }
+
+  .form-new-research input{
+    width: 100%;
+    height: 2.5vw;
+    border-radius: 10px;
+    border: solid 1px #062168;
+    outline: none;
+    font-family: Montserrat-regular;
+    padding: 0vw 0vw;
+   
+  }
+  .form-new-research label{
+   margin-left: 1vw;
+  }
+  .form-new-research .session{
+    height: fit-content;
+    width: 90%;
+    margin: 1.5vw 0vw;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  .form-new-research .session button{
+    align-self: center;
+    height: 3vw;
+    width: 3vw;
+    background-color: white;
+    border: none;
+    font-family: Montserrat-Bold;
+    font-size: 2vw;
+    cursor: pointer;
+  }
+  .form-new-research .session:nth-of-type(2){
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .form-new-research .session:nth-of-type(2) label:nth-child(1){
+    margin-left: 0px;
+  }
+  .form-new-research .session:nth-of-type(2) label:nth-child(2){
+    margin-left: 3vw;
+  }
+  .form-new-research .session:nth-of-type(2) div:nth-of-type(1){
+    width: 8%;
+  }
+  .form-new-research .session:nth-of-type(2) div:nth-of-type(2){
+    width: 80%;
+  }
+  .form-new-research .session:nth-of-type(3) input{
+    margin-top: 0vw;
+  }
+  .form-new-research .session:nth-of-type(4) input{
+    margin-top: 1vw;
+  }
+  .form-new-research .session:nth-of-type(5) input{
+    margin-top: 1vw;
+  }
+  .form-new-research .session:nth-of-type(6) textarea{
+    height: 20vw;
+    width: 100%;
+    resize: none;
+    border-radius: 25px;
+    border: solid 1px #062168;
+    outline: none;
+    padding: 1vw 1vw;
+    font-family: Montserrat-regular;
+  }
+  .form-new-research .session:nth-of-type(7){
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .form-new-research .session:nth-of-type(7) div{
+    width: 40%;
+  }
+  .form-new-research .session:nth-of-type(10){
+    height: fit-content;
+    width: 80%;
+    align-items: start;
+    display: flex;
+    flex-direction: row;
+    margin: 1.5vw 0vw;
+  }
+  .form-new-research .session:nth-of-type(10) div{
+    height: auto;
+    width: fit-content;
+    align-items: start;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-auto-rows: auto;
+    margin: 0vw 1vw
+  }
+  .form-new-research .session:nth-of-type(10) p{
+    width: 8vw;
+    align-self: start;
+    margin: 0px;
+  }
+  .form-new-research .session:nth-of-type(10) button{
+    width: 3vw;
+    height: 1.9vw;
+    background: linear-gradient(180deg, #0b42ce,#062168) ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    color: white;
+  }
+  .send-data{
+    background: linear-gradient(180deg, #0b42ce,#062168) ;
+    width: 25vw;
+    height: 3vw;
+    border: none;
+    color: white;
+    font-family: Montserrat-Bold;
+    border-radius: 25px;
+    margin: 1vw 0vw;
+    font-size: 1.5vw;
+  }
+  
 
   /* Paginas do Medico*/
 .container-page-medico{

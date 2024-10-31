@@ -17,8 +17,8 @@
     "description": "A comprehensive study focusing on the impact of experimental drugs on Alzheimer's progression.",
     "criteria": {
       "ageRange": "65-80",
-      "requiredCondition": "Diagnosed with Alzheimer's",
-      "exclusionCriteria": "Severe comorbidities"
+      "requiredCondition": ["Diagnosed with Alzheimer's"],
+      "exclusionCriteria": ["Severe comorbidities"]
     },
     "studyDuration": {
       "startDate": "2024-01-01",
@@ -74,8 +74,8 @@
     "description": "A comprehensive study focusing on the impact of experimental drugs on Alzheimer's progression.",
     "criteria": {
       "ageRange": "65-80",
-      "requiredCondition": "Diagnosed with Alzheimer's",
-      "exclusionCriteria": "Severe comorbidities"
+      "requiredCondition": ["Diagnosed with Alzheimer's"],
+      "exclusionCriteria": ["Severe comorbidities"]
     },
     "studyDuration": {
       "startDate": "2024-01-01",

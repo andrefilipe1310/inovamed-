@@ -12,6 +12,9 @@ import RepAlterarPesquisa from "./pages/Representante/alterarPesquisa"
 import RepNovaPesquisa from "./pages/Representante/novaPesquisa"
 import RepNotificacoes from "./pages/Representante/notificacoes"
 import RepPesquisaInfo from './pages/Representante/PesquisaInfo'
+import ListaPac from "./pages/Representante/listpac"
+import RedirectUserType from "./pages/Geral/Cadastro/pageRedirectUserType"
+import RegisterUser from "./pages/Geral/Cadastro/RegisterUser"
 
 
 
@@ -21,6 +24,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Start/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="/cadastro" element={<RedirectUserType/>}></Route>
+        <Route path="/cadastro/form" element={<RegisterUser/>}></Route>
         <Route path="/paciente/notificacoes" element={<PacVerNotificacoes/>}></Route>
         <Route path="/paciente/listapesquisas" element={<PacListPesquisas/>}></Route>
         <Route path="/paciente/preferencias" element={<PacPreferencias/>}></Route>
@@ -30,6 +35,7 @@ export default function App() {
         <Route path="/representante/listapesquisas" element={<RepListaPesquisas/>}></Route>
         <Route path="/representante/infoPesquisas" element={<RepPesquisaInfo/>}></Route>
         <Route path="/representante/alterarpesquisa" element={<RepAlterarPesquisa/>}></Route>
+        <Route path="/representante/infopaciente" element={<ListaPac/>}></Route>
         <Route path="/representante/novapesquisa" element={<RepNovaPesquisa/>}></Route>
         <Route path="/representante/notificacoes" element={<RepNotificacoes/>}></Route>
       </Routes>

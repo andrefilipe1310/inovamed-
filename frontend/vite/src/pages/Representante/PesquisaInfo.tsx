@@ -25,7 +25,7 @@ export default function RepPesquisaInfo(){
                 </div>
                 <div className="card-border">
                     <div className="container-button">
-                        <Link to={`/representante/alterarpesquisa?id=${pesqInfo?.id}`} className="button-to-edit">a</Link>
+                        <Link to={`/representante/infopaciente?id=${pesqInfo?.id}`} className="button-to-edit">a</Link>
                     </div>
                 </div>
             </div>
@@ -36,11 +36,17 @@ export default function RepPesquisaInfo(){
             <p style={{width:"80%"}}><strong>Instituição responsável:</strong> {pesqInfo?.institutions.map((inst,index)=>(<p style={{display:"inline"}}>{inst}{index === pesqInfo?.institutions.length - 1 ? '' : ', '}</p>))}</p>
             <p style={{width:"80%"}}><strong>Descrição:</strong> {pesqInfo?.description}</p>
             <div className="section-2">
-                <strong>Critério de elegibilidade:</strong>
+                <strong>Critérios de elegibilidade:</strong>
                 <div>
-                    <li>Idade: {pesqInfo?.criteria.ageRange}</li>
-                    <li>Critério de inclusão: {pesqInfo?.criteria.requiredCondition}</li>
-                    <li>Critério de exclusão: {pesqInfo?.criteria.exclusionCriteria}</li>
+                   <p> <strong>Idade: </strong>{pesqInfo?.criteria.ageRange}</p>
+                    <p><strong>Critério de inclusão:</strong> {pesqInfo?.criteria.requiredCondition.map((rc)=>(
+                        <li>{rc}</li>
+                    ))}
+                    </p>
+                    <p><strong>Critério de exclusão:</strong> {pesqInfo?.criteria.exclusionCriteria.map((ec)=>(
+                        <li>{ec}</li>
+                    ))}
+                    </p>
                 </div>
             </div>
             <p style={{width:"80%"}}><strong>Data de inicio e fim:</strong> {pesqInfo?.studyDuration.startDate} à {pesqInfo?.studyDuration.endDate}</p>

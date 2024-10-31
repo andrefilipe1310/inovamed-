@@ -1,0 +1,15 @@
+[
+    {
+        "code": 123456,
+        "name": "John Doe",
+        "gender": "Male",
+        "birth": "1985-05-15",
+        "digitalSignatureConsent": true,
+        "responsibleDoctor": true,
+        "medicalHistory": {
+            "id": 1,
+            "conditions": ["Diabetes", "Hypertension"],
+            "medications": ["Metformin", "Lisinopril"]
+        }
+    }
+]
