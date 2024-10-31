@@ -1,6 +1,8 @@
 package com.inovamed.clinical_study_system.service.clinical_study_representative;
 
 import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
+import com.inovamed.clinical_study_system.exception.EmailAlreadyRegisteredException;
+import com.inovamed.clinical_study_system.exception.UserAlreadyExistsException;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
@@ -83,6 +85,22 @@ class UpdateClinicalRepresentativeServiceTest {
         });
 
         assertEquals("Clinical Representative not found.", exception.getMessage());
+    }
+
+    @Test
+    void whenCreateWithExistingEmailThenThrowUserAlreadyExistsException() {
+        Mockito.when(clinicalRepository.findByEmail(EMAIL)).thenThrow( new EmailAlreadyRegisteredException());
+        Mockito.when(clinicalRepository.findById(Mockito.anyLong())).thenReturn(optionalClinicalRepresentative);
+
+
+        try {
+            ClinicalStudyRepresentativeResponseDTO response = updateClinicalRepresentativeService.execute(ID,updateDTO);
+        }catch (Exception exception){
+            assertEquals("Email Already Registered Exception.", exception.getMessage());
+            assertThrows(EmailAlreadyRegisteredException.class,()->exception.getClass());
+        }
+
+
     }
 
 

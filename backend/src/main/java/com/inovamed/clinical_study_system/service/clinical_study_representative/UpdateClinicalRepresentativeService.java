@@ -1,6 +1,8 @@
 package com.inovamed.clinical_study_system.service.clinical_study_representative;
 
 import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
+import com.inovamed.clinical_study_system.exception.EmailAlreadyRegisteredException;
+import com.inovamed.clinical_study_system.exception.UserAlreadyExistsException;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
@@ -21,6 +23,9 @@ public class UpdateClinicalRepresentativeService {
         ClinicalStudyRepresentative updatedClinical = clinicalRepository.findById(id).orElseThrow(()->{
             return new ClinicalRepresentativeNotFoundException();
         });
+        if (this.clinicalRepository.findByEmail(updatedClinical.getEmail()) != null){
+            throw new EmailAlreadyRegisteredException();
+        }
         updatedClinical.update(clinicalStudyRepresentativeUpdateDTO);
         return clinicalRepresentativeDTOMapperService.toDTO(this.clinicalRepository.save(updatedClinical));
 

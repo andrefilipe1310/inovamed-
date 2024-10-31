@@ -1,9 +1,6 @@
 package com.inovamed.clinical_study_system.infra;
 
-import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
-import com.inovamed.clinical_study_system.exception.DoctorNotFoundException;
-import com.inovamed.clinical_study_system.exception.PatientNotFoundException;
-import com.inovamed.clinical_study_system.exception.UserAlreadyExistsException;
+import com.inovamed.clinical_study_system.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,6 +30,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<RestExceptionError> handleUserAlreadyExistsException(UserAlreadyExistsException exception){
         RestExceptionError threatError = new RestExceptionError(HttpStatus.CONFLICT,"User already exists");
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(threatError);
+    }
+
+    @ExceptionHandler(EmailAlreadyRegisteredException.class)
+    public  ResponseEntity<RestExceptionError> hadleEmailAlreadyRegisteredException(EmailAlreadyRegisteredException exception){
+        RestExceptionError threatError = new RestExceptionError(HttpStatus.CONFLICT,"Email Already Registered Exception");
         return ResponseEntity.status(HttpStatus.CONFLICT).body(threatError);
     }
 
