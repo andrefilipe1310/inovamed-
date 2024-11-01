@@ -1,6 +1,7 @@
 package com.inovamed.clinical_study_system.service.research;
 
 
+import com.inovamed.clinical_study_system.exception.ResearchNotFoundException;
 import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.research.ResearchResponseDTO;
 import com.inovamed.clinical_study_system.model.research.ResearchUpdateDTO;
@@ -17,7 +18,7 @@ public class UpdateResearchService {
 
     public ResearchResponseDTO execute(Long id,ResearchUpdateDTO researchUpdateDTO){
         Research updatedResearch = this.researchRepository.findById(id).orElseThrow(()->{
-            return new RuntimeException("Research not found.");
+            throw new ResearchNotFoundException();
         });
         updatedResearch.update(researchUpdateDTO);
         return researchDTOMapperService.toDTO(this.researchRepository.save(updatedResearch));

@@ -1,5 +1,7 @@
 package com.inovamed.clinical_study_system.service.research;
 
+import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
+import com.inovamed.clinical_study_system.exception.ResearchNotFoundException;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.research.ResearchAddRepresentativeDTO;
@@ -22,19 +24,19 @@ public class AddRepresentativeInResearchService {
         ClinicalStudyRepresentative clinicalRepresentative = clinicalRepresentiveRepository
                 .findById(researchAddRepresentativeDTO
                         .clinicalRepresentativeId()).orElseThrow(() -> {
-                    return new RuntimeException("Clinical Representative Not Found");
+                    throw new ClinicalRepresentativeNotFoundException();
                 });
 
         ClinicalStudyRepresentative clinicalRepresentativeCurrent = clinicalRepresentiveRepository
                 .findById(researchAddRepresentativeDTO
                         .clinicalRepresentativeIdCurrent()).orElseThrow(() -> {
-                    return new RuntimeException("Clinical Representative Not Found");
+                    throw new ClinicalRepresentativeNotFoundException();
                 });
 
         Research research = researchRepository.findById(researchAddRepresentativeDTO
                         .researchId())
                 .orElseThrow(() -> {
-                    return new RuntimeException("Research Not Found");
+                    throw new ResearchNotFoundException();
                 });
 
         research.setClinicalRepresentative(clinicalRepresentative);

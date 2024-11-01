@@ -8,7 +8,7 @@ import com.inovamed.clinical_study_system.repository.AttachmentRepository;
 import java.util.List;
 
 public interface IAttachmentService {
-    AttachmentCreateResponseDTO upload(AttachmentRequestDTO attachmentRequestDTO);
+    AttachmentCreateResponseDTO upload(AttachmentRequestDTO attachmentRequestDTO,Long userId);
     List<AttachmentFindResponseDTO> findAll();
     AttachmentFindResponseDTO findById(Long id);
     AttachmentFindResponseDTO update(Long id, AttachmentRequestDTO attachmentRequestDTO);

@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.notification;
 
+import com.inovamed.clinical_study_system.exception.NotificationNotFoundException;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.notification.NotificationResponseDTO;
 import com.inovamed.clinical_study_system.repository.NotificationRepository;
@@ -15,7 +16,7 @@ public class FindByIdNotificationService {
 
     public NotificationResponseDTO execute(Long id){
         Notification notification = notificationRepository.findById(id).orElseThrow(()->{
-            return new RuntimeException("Notification Not Found");
+            throw new NotificationNotFoundException();
         });
 
         return notificationDTOMapperService.toDTO(notification);

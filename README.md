@@ -431,6 +431,13 @@ erDiagram
    - **LinkedIn:** [Amanda Kaawanny](https://linkedin.com/in/amanda-lima-5bb61a1b0/)
    - **Github:** [amandaklima](github.com/amandaklima)
 
+<<<<<<< HEAD
+- **Alberth Luiz**
+  - **Função:** Desenvolvedor Backend 
+  - **Email:** aluizprofi@gmail.com
+  - **LinkedIn:** [André Filipe](https://www.linkedin.com/in/alberth-luiz-736527229/)
+  - **Github:** [PaidoNunu](https://github.com/PaidoNunu)
+=======
  - **Bruno Klisman**
    - **Função:** Desenvolvedor Front-end 
    - **Email:** brunoserafim.dev@gmail.com
@@ -442,3 +449,4 @@ erDiagram
    - **Email:** estephani.germana@gmail.com
    - **LinkedIn:** [Estephani Germana](https://www.linkedin.com/in/estephanigermana/)
    - **Github:** [estephgermana](https://github.com/estephgermana)
+>>>>>>> 05c6c4cba764055c7ef615ad39b2852fc7ab552d

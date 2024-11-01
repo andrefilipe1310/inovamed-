@@ -22,10 +22,10 @@ public class AttachmentController {
 
 
     @PostMapping
-    public ResponseEntity<AttachmentCreateResponseDTO> upload(@RequestParam("file") MultipartFile file){
+    public ResponseEntity<AttachmentCreateResponseDTO> upload(@ModelAttribute("userId") Long userId, @RequestParam("file") MultipartFile file){
         try {
             AttachmentRequestDTO attachmentRequestDTO = new AttachmentRequestDTO(file.getName(),file.getBytes());
-            return ResponseEntity.status(HttpStatus.CREATED).body(attachmentService.upload(attachmentRequestDTO));
+            return ResponseEntity.status(HttpStatus.CREATED).body(attachmentService.upload(attachmentRequestDTO, userId));
 
         }catch (IOException exception){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

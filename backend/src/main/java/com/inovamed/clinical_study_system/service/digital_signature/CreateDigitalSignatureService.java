@@ -35,11 +35,11 @@ public class CreateDigitalSignatureService {
 
 
             //Assinar o documento
-            byte[] signature = signDocument(attachmentRequestDTO.archive(),privateKey);
+            byte[] signature = signDocument(attachmentRequestDTO.getArchive(),privateKey);
 
             DigitalSignature digitalSignature = new DigitalSignature();
-            digitalSignature.setDocumentName(attachmentRequestDTO.name());
-            digitalSignature.setDocumentContent(attachmentRequestDTO.archive());
+            digitalSignature.setDocumentName(attachmentRequestDTO.getName());
+            digitalSignature.setDocumentContent(attachmentRequestDTO.getArchive());
             digitalSignature.setTimestamp(LocalDateTime.now());
             digitalSignature.setValidFrom(digitalSignatureRequestDTO.validFrom());
             digitalSignature.setValidUntil(digitalSignatureRequestDTO.validUntil());
