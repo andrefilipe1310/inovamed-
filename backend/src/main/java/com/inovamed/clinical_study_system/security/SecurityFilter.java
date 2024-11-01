@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.security;
 
+import com.inovamed.clinical_study_system.exception.TokenNotFoundException;
 import com.inovamed.clinical_study_system.exception.UserNotFoundException;
 import com.inovamed.clinical_study_system.repository.UserRepository;
 import com.inovamed.clinical_study_system.service.token.TokenService;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
@@ -34,14 +34,14 @@ public class SecurityFilter extends OncePerRequestFilter {
         }
 
         var token = this.recoverToken(request);
-
-
-        if(token != null){
-            var login = tokenService.validateToken(token);
-            UserDetails user = userRepository.findByEmail(login);
-            var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        var login = tokenService.validateToken(token);
+        UserDetails user = userRepository.findByEmail(login);
+        if (user == null){
+            throw new UserNotFoundException();
         }
+
+        var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }
 

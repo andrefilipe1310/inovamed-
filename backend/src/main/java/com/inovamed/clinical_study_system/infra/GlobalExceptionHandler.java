@@ -162,6 +162,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(threatError);
     }
 
+    @ExceptionHandler(MissingSecretKeyException.class)
+    public ResponseEntity<RestExceptionError> handleMissingSecretKeyException(MissingSecretKeyException exception){
+        RestExceptionError threatError = new RestExceptionError(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(threatError);
+    }
+
+    @ExceptionHandler(TokenNotFoundException.class)
+    public ResponseEntity<RestExceptionError> handleTokenNotFound(TokenNotFoundException exception){
+        RestExceptionError threatError = new RestExceptionError(HttpStatus.NOT_FOUND, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(threatError);
+    }
+
 
 
 }

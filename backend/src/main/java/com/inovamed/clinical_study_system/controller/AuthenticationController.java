@@ -1,5 +1,7 @@
 package com.inovamed.clinical_study_system.controller;
 
+import com.inovamed.clinical_study_system.exception.AuthenticationException;
+import com.inovamed.clinical_study_system.exception.UserNotFoundException;
 import com.inovamed.clinical_study_system.model.user.AutenticateDTO;
 import com.inovamed.clinical_study_system.model.user.LoginResponseDTO;
 import com.inovamed.clinical_study_system.model.user.RegisterDTO;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.security.auth.login.CredentialException;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
@@ -30,7 +34,10 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Validated AutenticateDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
+
+        // autenticar se nome e senha estão corretas
         var auth = authenticationManager.authenticate(usernamePassword);
+
         User user = (User) auth.getPrincipal();
         var token = tokenService.generateToken(user);
         return ResponseEntity.ok(new LoginResponseDTO(token, user.getRoles().getRole()));
