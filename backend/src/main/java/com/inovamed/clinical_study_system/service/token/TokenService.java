@@ -29,7 +29,8 @@ public class TokenService implements ITokenService {
 
             Algorithm algorithm = Algorithm.HMAC256(secret);
             String token = JWT.create().withIssuer("INOVAMED")
-                    .withSubject(user.getEmail()).withExpiresAt(genExpirationDate()).sign(algorithm);
+                    .withSubject(user.getEmail()).withClaim("userId", user.getId())
+                    .withExpiresAt(genExpirationDate()).sign(algorithm);
             return token;
         } catch (JWTCreationException exception) {
             throw new TokenGenerationException(exception);
@@ -40,6 +41,32 @@ public class TokenService implements ITokenService {
         try{
             Algorithm algorithm = Algorithm.HMAC256((secret));
             return JWT.require(algorithm).withIssuer("INOVAMED").build().verify(token).getSubject();
+        } catch (JWTVerificationException exception) {
+            throw new TokenGenerationException(exception);
+        }
+    }
+
+    public String getEmailFromToken(String token) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
+                    .withIssuer("INOVAMED")
+                    .build()
+                    .verify(token)
+                    .getSubject();
+        } catch (JWTVerificationException exception) {
+            throw new TokenGenerationException(exception);
+        }
+    }
+
+    public Long getUserIdFromToken(String token) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
+                    .withIssuer("INOVAMED")
+                    .build()
+                    .verify(token)
+                    .getClaim("userId").asLong();
         } catch (JWTVerificationException exception) {
             throw new TokenGenerationException(exception);
         }

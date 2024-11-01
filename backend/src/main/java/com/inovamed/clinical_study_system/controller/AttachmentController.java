@@ -5,6 +5,8 @@ import com.inovamed.clinical_study_system.model.attachment.AttachmentCreateRespo
 import com.inovamed.clinical_study_system.model.attachment.AttachmentRequestDTO;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentFindResponseDTO;
 import com.inovamed.clinical_study_system.service.attachment.AttachmentService;
+import com.inovamed.clinical_study_system.service.token.TokenService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +21,15 @@ import java.util.List;
 public class AttachmentController {
     @Autowired
     private AttachmentService attachmentService;
+    @Autowired
+    TokenService tokenService;
 
 
     @PostMapping
-    public ResponseEntity<AttachmentCreateResponseDTO> upload(@ModelAttribute("userId") Long userId, @RequestParam("file") MultipartFile file){
+    public ResponseEntity<AttachmentCreateResponseDTO> upload(HttpServletRequest request, @RequestParam("file") MultipartFile file){
         try {
+            String token = request.getHeader("Authorization").substring(7);
+            Long userId = tokenService.getUserIdFromToken(token);
             AttachmentRequestDTO attachmentRequestDTO = new AttachmentRequestDTO(file.getName(),file.getBytes());
             return ResponseEntity.status(HttpStatus.CREATED).body(attachmentService.upload(attachmentRequestDTO, userId));
 
