@@ -61,6 +61,7 @@ export default function RepNovaPesquisa(){
       const [qtRespInst,setQtRespInst] = useState([<input type='text' name='respInst' /> ])
       const [qtIncludeCriteria,setQtIncludeCriteria] = useState([<input type='text' name='includeCriteria' /> ])
       const [qtExcludeCriteria,setQtExcludeCriteria] = useState([<input type='text' name='excludeCriteria' /> ])
+      const [fases,setFases] = useState([<><label htmlFor="fases">Fase 1</label><input type='text' name='fases' /></> ])
 
 
     return(
@@ -68,7 +69,7 @@ export default function RepNovaPesquisa(){
        <Navbar/>
             <div className='container-page'> 
                 <h1 className="title-page">NOVA PESQUISA</h1>
-                <div className="card-border">
+                <div className="card-border" style={{marginBottom:"2vw"}}>
                     <div className='form-new-research'>
                         <div className='session'>
                             <label htmlFor="title">Título</label>
@@ -124,15 +125,14 @@ export default function RepNovaPesquisa(){
                         </div>
                         
                         <div className='session'>
-                            <label htmlFor="fases">Fase 1</label>
-                            <input type='text' name='fases' /> 
-                            <button>+</button>
+                            <p><strong>Fases</strong></p>
+                            {fases}
+                            <button onClick={()=>setFases([...fases,<><label>Fase {fases.length+1}</label><input type='text' name='fases' /><button onClick={()=>setFases(fases.slice(0,fases.length))}>-</button></>])}>+</button>
                         </div>
 
                         <div className='session'>
                             <label htmlFor="local"> Local da pesquisa (Apenas estado e município)</label>
                             <input type='text' name='local' /> 
-                            <button>+</button>
                         </div>
 
                         <div className='session'>

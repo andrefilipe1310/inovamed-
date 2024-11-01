@@ -194,6 +194,7 @@ align-items: center;
 /* REPRESENTANTE*/
 
 .container-page{
+
     padding-left: 25%;
     display: flex;
     flex-direction: column;
@@ -371,12 +372,17 @@ align-items: center;
     font-family: Montserrat-Bold;
     color: white;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
   }
   .button-nova-pesquisa:focus{
     background: white;
     color: #0b42ce;
     transition: 0.3s;
   }
+
 
 
   /* PESQUISAINFO*/
@@ -422,7 +428,9 @@ align-items: center;
     align-items: center;
     justify-content: center;
   }
-
+  .button-to-edit img{
+    width: 65%;
+  }
   .section-1{
     width: 80%;
     display: flex;
@@ -459,6 +467,14 @@ align-items: center;
   }
 
   /* novapesquisa e alterarpesquisa*/
+  .subtitle-page{
+    font-family:  Montserrat-Bold;
+    background: linear-gradient(180deg, #0b42ce,#062168); /* Defina as cores do gradiente */
+    -webkit-background-clip: text; /* Recorta o background no texto */
+    -webkit-text-fill-color: transparent; /* Torna o texto transparente para mostrar o gradiente */
+    background-clip: text; 
+    margin: 0px;
+  }
   .form-new-research{
     width: 60vw;
     background-color: white;
@@ -482,6 +498,7 @@ align-items: center;
   }
   .form-new-research label{
    margin-left: 1vw;
+   margin-top: 0.5vw;
   }
   .form-new-research .session{
     height: fit-content;

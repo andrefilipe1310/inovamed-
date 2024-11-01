@@ -20,12 +20,12 @@ export default function RepPesquisaInfo(){
             <div style={{display:"flex", width:"20vw", justifyContent:"space-evenly"}}>
                 <div className="card-border">
                     <div className="container-button">
-                        <Link to={`/representante/alterarpesquisa?id=${pesqInfo?.id}`} className="button-to-edit">a</Link>
+                        <Link to={`/representante/alterarpesquisa?id=${pesqInfo?.id}`} className="button-to-edit"><img src="../../../public/pencil-icon.png" alt="" /></Link>
                     </div>
                 </div>
                 <div className="card-border">
                     <div className="container-button">
-                        <Link to={`/representante/infopaciente?id=${pesqInfo?.id}`} className="button-to-edit">a</Link>
+                        <Link to={`/representante/infopaciente?id=${pesqInfo?.id}`} className="button-to-edit"><img src="../../../public/users-icon.png" alt="" /></Link>
                     </div>
                 </div>
             </div>

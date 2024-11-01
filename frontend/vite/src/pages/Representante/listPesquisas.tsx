@@ -25,6 +25,7 @@ export default function RepListaPesquisas(){
                     </div>
                 ))}
             </div>
+            <Link to="/representante/novapesquisa" className="button-nova-pesquisa"> NOVA PESQUISA</Link>
         </div>
         </>
     )
