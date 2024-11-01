@@ -30,8 +30,8 @@ public class Attachment {
     private Research research;
 
     public void update(AttachmentRequestDTO attachmentRequestDTO){
-        updateField(() -> this.name = attachmentRequestDTO.name(), attachmentRequestDTO.name());
-        updateField(() -> this.archive = attachmentRequestDTO.archive(), attachmentRequestDTO.archive());
+        updateField(() -> this.name = attachmentRequestDTO.getName(), attachmentRequestDTO.getName());
+        updateField(() -> this.archive = attachmentRequestDTO.getArchive(), attachmentRequestDTO.getArchive());
     }
 
     private <T> void updateField(Runnable updateAction, T newValue) {
