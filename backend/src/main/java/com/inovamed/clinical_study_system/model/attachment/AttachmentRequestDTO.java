@@ -13,4 +13,5 @@ public class AttachmentRequestDTO {
 
     String name;
     byte[] archive;
+    Long userId;
 }

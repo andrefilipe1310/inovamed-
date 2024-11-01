@@ -30,7 +30,7 @@ public class AttachmentController {
         try {
             String token = request.getHeader("Authorization").substring(7);
             Long userId = tokenService.getUserIdFromToken(token);
-            AttachmentRequestDTO attachmentRequestDTO = new AttachmentRequestDTO(file.getName(),file.getBytes());
+            AttachmentRequestDTO attachmentRequestDTO = new AttachmentRequestDTO(file.getName(),file.getBytes(),userId);
             return ResponseEntity.status(HttpStatus.CREATED).body(attachmentService.upload(attachmentRequestDTO, userId));
 
         }catch (IOException exception){
@@ -38,10 +38,19 @@ public class AttachmentController {
         }
 
     }
+
     @GetMapping
+    public ResponseEntity<List<AttachmentFindResponseDTO>> findAllById(HttpServletRequest request){
+        String token = request.getHeader("Authorization").substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        return ResponseEntity.status(HttpStatus.OK).body(attachmentService.findAllById(userId));
+    }
+
+    @GetMapping("/all")
     public ResponseEntity<List<AttachmentFindResponseDTO>> findAll(){
         return ResponseEntity.status(HttpStatus.OK).body(attachmentService.findAll());
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<AttachmentFindResponseDTO> findById(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(attachmentService.findById(id));

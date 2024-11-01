@@ -14,6 +14,7 @@ import com.inovamed.clinical_study_system.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,6 +52,13 @@ public class AttachmentService implements IAttachmentService{
     }
 
     @Override
+    public List<AttachmentFindResponseDTO> findAllById(Long id) {
+        return attachmentRepository.findAllByUserId(id).stream().map(attachment -> {
+            return this.toFindResponseDTO(attachment,false);
+        }).collect(Collectors.toList());
+    }
+
+    @Override
     public AttachmentFindResponseDTO update(Long id, AttachmentRequestDTO attachmentRequestDTO) {
         Attachment attachment = attachmentRepository.findById(id).orElseThrow(
                 ()->{return new AttachmentNotFoundException();}
@@ -83,9 +91,16 @@ public class AttachmentService implements IAttachmentService{
 
     }
     private Attachment toEntity(AttachmentRequestDTO attachmentRequestDTO){
+
+        ClinicalStudyRepresentative clinicalRepresentative = clinicalRepository
+                .findById(attachmentRequestDTO.getUserId())
+                .orElseThrow(()->{
+                    return new ClinicalRepresentativeNotFoundException();
+                });
         Attachment attachment = new Attachment();
         attachment.setName(attachmentRequestDTO.getName());
         attachment.setArchive(attachmentRequestDTO.getArchive());
+        attachment.setUser(clinicalRepresentative);
         return attachment;
     }
 }

@@ -1,5 +1,7 @@
 package com.inovamed.clinical_study_system.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignature;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -29,7 +31,11 @@ public class User implements UserDetails {
     private String password;
     private UserRoles roles;
     @Lob
+    @JsonIgnore //// Ignora o campo ao serializar para JSON
     private PublicKey publicKey;
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<DigitalSignature> digitalSignatures;
 
     public User(String email, String password, UserRoles roles) {
         this.email = email;

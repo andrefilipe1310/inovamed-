@@ -3,6 +3,7 @@ package com.inovamed.clinical_study_system.controller;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentRequestDTO;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignature;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignatureRequestDTO;
+import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignatureResponseDTO;
 import com.inovamed.clinical_study_system.service.digital_signature.CreateDigitalSignatureService;
 import com.inovamed.clinical_study_system.service.digital_signature.DeactivateDigitalSignatureService;
 import com.inovamed.clinical_study_system.service.digital_signature.VerifyDigitalSignatureService;
@@ -26,10 +27,12 @@ public class DigitalSignatureController {
     private DeactivateDigitalSignatureService deactivateDigitalSignatureService;
 
     @PostMapping
-    public ResponseEntity<DigitalSignature> create(@ModelAttribute  DigitalSignatureRequestDTO digitalSignatureRequestDTO, @RequestParam("file") MultipartFile file){
+    public ResponseEntity<DigitalSignatureResponseDTO> create(@ModelAttribute  DigitalSignatureRequestDTO digitalSignatureRequestDTO, @RequestParam("file") MultipartFile file){
         try{
-            AttachmentRequestDTO attachmentRequestDTO = new AttachmentRequestDTO(file.getName(), file.getBytes());
+            AttachmentRequestDTO attachmentRequestDTO = new AttachmentRequestDTO(file.getName(), file.getBytes(), digitalSignatureRequestDTO.userId());
+            System.out.println("executei");
             return ResponseEntity.status(HttpStatus.CREATED).body(createDigitalSignatureService.execute(digitalSignatureRequestDTO, attachmentRequestDTO));
+
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

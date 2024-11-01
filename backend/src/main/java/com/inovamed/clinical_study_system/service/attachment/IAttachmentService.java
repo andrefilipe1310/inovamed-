@@ -11,6 +11,7 @@ public interface IAttachmentService {
     AttachmentCreateResponseDTO upload(AttachmentRequestDTO attachmentRequestDTO,Long userId);
     List<AttachmentFindResponseDTO> findAll();
     AttachmentFindResponseDTO findById(Long id);
+    List<AttachmentFindResponseDTO> findAllById(Long id);
     AttachmentFindResponseDTO update(Long id, AttachmentRequestDTO attachmentRequestDTO);
     String delete(Long id);
 }

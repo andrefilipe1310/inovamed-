@@ -2,6 +2,7 @@ package com.inovamed.clinical_study_system.model.attachment;
 
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.research.Research;
+import com.inovamed.clinical_study_system.model.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +18,7 @@ public class Attachment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     @Lob
     private byte[] archive;
@@ -24,6 +26,10 @@ public class Attachment {
     @ManyToOne
     @JoinColumn(name = "notification_id")
     private Notification notification;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "research_id")
