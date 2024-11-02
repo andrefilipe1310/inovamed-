@@ -10,11 +10,10 @@ import com.inovamed.clinical_study_system.model.attachment.AttachmentFindRespons
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.repository.AttachmentRepository;
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
-import com.inovamed.clinical_study_system.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,17 +64,18 @@ public class AttachmentService implements IAttachmentService{
         );
 
         attachment.update(attachmentRequestDTO);
-        AttachmentFindResponseDTO updatedAttachment = this.toFindResponseDTO(attachmentRepository.save(attachment),false);
+        AttachmentFindResponseDTO updatedAttachment = this.toFindResponseDTO(attachmentRepository.save(attachment),true);
 
         return updatedAttachment;
     }
 
     @Override
     public String delete(Long id) {
-        this.attachmentRepository.deleteById(id);
-        if(attachmentRepository.existsById(id)){
-            throw new AttachmentNotDeletedException();
+        if (!attachmentRepository.existsById(id)){
+            throw new AttachmentNotFoundException();
         }
+        this.attachmentRepository.deleteById(id);
+
         return "attachment "+id+" deleted success.";
     }
 
