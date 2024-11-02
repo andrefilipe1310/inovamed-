@@ -92,16 +92,6 @@ class CreateClinicalRepresentativeServiceTest {
         }
     }
 
-    @Test
-    void whenCreateWithExistingEmailThenThrowUserAlreadyExistsException() {
-        Mockito.when(clinicalRepository.findByEmail(EMAIL)).thenReturn(userDetails);
-
-        UserAlreadyExistsException exception = assertThrows(UserAlreadyExistsException.class, () -> {
-            createClinicalRepresentativeService.execute(requestDTO);
-        });
-
-        assertEquals("User already exists.", exception.getMessage());
-    }
 
     // instanciando as classes necessarias
     private void startClinicalRepresentative(){

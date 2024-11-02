@@ -31,9 +31,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AttachmentServiceTest {
-    public static final long ID_ATTACHMENT = 1L;
-    public static final String NAME_ATTACHMENT = "arquivo 1";
-    public static final String MESSAGE = "file saved successfully";
+   ;
     @InjectMocks
     private AttachmentService attachmentService;
     @Mock
@@ -48,6 +46,10 @@ class AttachmentServiceTest {
     private AttachmentCreateResponseDTO attachmentCreateResponseDTO;
     private AttachmentRequestDTO attachmentUpdatetDTO;
 
+
+    public static final long ID_ATTACHMENT = 1L;
+    public static final String NAME_ATTACHMENT = "arquivo 1";
+    public static final String MESSAGE = "file saved successfully";
     public static final long ID = 1L;
     public static final String NAME = "John";
     public static final String PHONE = "(81) 99999-9999";

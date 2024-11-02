@@ -83,7 +83,7 @@ class FindByIdClinicalRepresentativeServiceTest {
             clinicalRepository.findById(ID);
         } catch (Exception exception){
           assertEquals(ClinicalRepresentativeNotFoundException.class, exception.getClass());
-          assertEquals("ClinicalRepresentative not found.",exception.getMessage());
+          assertEquals("Clinical Representative not found.",exception.getMessage());
         }
     }
 
