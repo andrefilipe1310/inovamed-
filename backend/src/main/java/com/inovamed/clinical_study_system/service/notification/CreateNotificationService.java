@@ -5,6 +5,9 @@ import com.inovamed.clinical_study_system.model.notification.NotificationResques
 import com.inovamed.clinical_study_system.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 public class CreateNotificationService {
@@ -13,7 +16,7 @@ public class CreateNotificationService {
     @Autowired
     private NotificationDTOMapperService notificationDTOMapperService;
 
-    public NotificationResponseDTO execute(NotificationResquestDTO notificationResquestDTO){
-        return notificationDTOMapperService.toDTO(notificationRepository.save(notificationDTOMapperService.toEntity(notificationResquestDTO)));
+    public NotificationResponseDTO execute(NotificationResquestDTO notificationResquestDTO, MultipartFile file) throws IOException {
+        return notificationDTOMapperService.toDTO(notificationRepository.save(notificationDTOMapperService.toEntity(notificationResquestDTO,file)));
     }
 }
