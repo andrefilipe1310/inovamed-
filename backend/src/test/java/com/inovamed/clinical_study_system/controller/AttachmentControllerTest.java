@@ -6,6 +6,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.inovamed.clinical_study_system.exception.MissingSecretKeyException;
 import com.inovamed.clinical_study_system.exception.TokenGenerationException;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentCreateResponseDTO;
+import com.inovamed.clinical_study_system.model.attachment.AttachmentFindResponseDTO;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.notification.Notification;
@@ -13,8 +14,7 @@ import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.service.attachment.AttachmentService;
 import com.inovamed.clinical_study_system.service.token.TokenService;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -28,49 +28,49 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.multipart.MultipartFile;
 
-
-import javax.swing.text.html.parser.Entity;
-import java.io.*;
-import java.security.Principal;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.*;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+
 @SpringBootTest
 @TestPropertySource(properties = "api.security.token.secret=0DpI4MpDup0HbR0Sd4LeRF@")
 class AttachmentControllerTest {
 
     @InjectMocks
-    AttachmentController attachmentController;
+    private AttachmentController attachmentController;
 
     @Mock
-    AttachmentService attachmentService;
+    private AttachmentService attachmentService;
 
     @Mock
-    TokenService tokenService;
+    private TokenService tokenService;
 
     @Mock
-    HttpServletRequest request;
+    private HttpServletRequest request;
 
     @Value("${api.security.token.secret:valorPadrao}")
     private String secret;
 
-    AttachmentCreateResponseDTO attachmentCreateResponseDTO;
-    AttachmentRequestDTO attachmentRequestDTO;
-    String token;
-    ClinicalStudyRepresentative clinicalRepresentative;
+    private AttachmentCreateResponseDTO attachmentCreateResponseDTO;
+    private AttachmentFindResponseDTO attachmentFindResponseDTO;
+    private AttachmentRequestDTO attachmentUpdateDTO;
+    private String token;
 
-    public static final long ID = 1L;
-    public static final String NAME = "John";
-    public static final String PHONE = "(81) 99999-9999";
-    public static final String CLINICAL_ROLES = "EXPERT";
-    public static final String EXPERIENCES = "neurologist";
-    public static final List<Research> RESEARCH = List.of();
-    public static final List<Notification> NOTIFICATIONS = List.of();
-    public static final String MESSAGE = "file saved successfully";
-    public static  final MultipartFile FILE = new MultipartFile() {
+    // Test Constants
+    private static final long ID = 1L;
+    private static final long USER_ID = 1L;
+    private static final String NAME = "John";
+    private static final String MESSAGE = "file saved successfully";
+
+    private static final MultipartFile FILE = new MultipartFile() {
         @Override
         public String getName() {
             return "";
@@ -110,72 +110,155 @@ class AttachmentControllerTest {
         public void transferTo(File dest) throws IOException, IllegalStateException {
 
         }
+        // Methods omitted for brevity
     };
+    private static final MultipartFile NEW_FILE = new MultipartFile() {
+        @Override
+        public String getName() {
+            return "";
+        }
+
+        @Override
+        public String getOriginalFilename() {
+            return "";
+        }
+
+        @Override
+        public String getContentType() {
+            return "";
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override
+        public long getSize() {
+            return 0;
+        }
+
+        @Override
+        public byte[] getBytes() throws IOException {
+            return new byte[2];
+        }
+
+        @Override
+        public InputStream getInputStream() throws IOException {
+            return null;
+        }
+
+        @Override
+        public void transferTo(File dest) throws IOException, IllegalStateException {
+
+        }
+        // Methods omitted for brevity
+    };
+    private static final String NEW_NAME = "John 2";
 
     @BeforeEach
-    void setUp(){
+    void setUp() throws IOException {
         MockitoAnnotations.openMocks(this);
-        startAttachment();
-
+        setupTestEntities();
     }
+
+    // Test methods
 
     @Test
     void uploadReturnsCreatedResponse() {
-        Mockito.when(attachmentService.upload(Mockito.any(AttachmentRequestDTO.class),Mockito.anyLong())).thenReturn(attachmentCreateResponseDTO);
-        Mockito.when(tokenService.getUserIdFromToken(Mockito.anyString())).thenReturn(ID);
+        Mockito.when(attachmentService.upload(any(AttachmentRequestDTO.class), anyLong())).thenReturn(attachmentCreateResponseDTO);
+        Mockito.when(tokenService.getUserIdFromToken(any(String.class))).thenReturn(ID);
         Mockito.when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
 
-       ResponseEntity<AttachmentCreateResponseDTO> response = attachmentController.upload(request,FILE);
+        ResponseEntity<AttachmentCreateResponseDTO> response = attachmentController.upload(request, FILE);
 
-       assertNotNull(response);
+        assertNotNull(response);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-
+        assertEquals(attachmentCreateResponseDTO, response.getBody());
     }
 
     @Test
-    void findAllById() {
+    void findAllByIdReturnListOfAttachments() throws IOException {
+        Mockito.when(attachmentService.findAllById(anyLong())).thenReturn(List.of(attachmentFindResponseDTO));
+        Mockito.when(tokenService.getUserIdFromToken(any(String.class))).thenReturn(ID);
+        Mockito.when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
+
+        ResponseEntity<List<AttachmentFindResponseDTO>> response = attachmentController.findAllById(request);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(1, response.getBody().size());
+        assertEquals(attachmentFindResponseDTO, response.getBody().get(0));
     }
 
     @Test
-    void findAll() {
+    void findAllReturnsListOfAttachments() throws IOException {
+        Mockito.when(attachmentService.findAll()).thenReturn(List.of(attachmentFindResponseDTO));
+
+        ResponseEntity<List<AttachmentFindResponseDTO>> response = attachmentController.findAll();
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(1, response.getBody().size());
+        assertEquals(attachmentFindResponseDTO, response.getBody().get(0));
     }
 
     @Test
-    void findById() {
+    void findByIdReturnsAttachmentSuccessfully() throws IOException {
+        Mockito.when(attachmentService.findById(anyLong())).thenReturn(attachmentFindResponseDTO);
+
+        ResponseEntity<AttachmentFindResponseDTO> response = attachmentController.findById(ID);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(attachmentFindResponseDTO, response.getBody());
     }
 
     @Test
-    void update() {
+    void updateReturnsSuccess() throws IOException {
+        AttachmentFindResponseDTO updatedResponseDTO = new AttachmentFindResponseDTO(NEW_NAME, NEW_FILE.getBytes());
+        Mockito.when(attachmentService.update(anyLong(), any(AttachmentRequestDTO.class))).thenReturn(updatedResponseDTO);
+
+        ResponseEntity<AttachmentFindResponseDTO> response = attachmentController.update(ID, attachmentUpdateDTO);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(updatedResponseDTO, response.getBody());
     }
 
     @Test
-    void delete() {
+    void deleteReturnsNoContent() {
+        ResponseEntity<Void> response = attachmentController.delete(ID);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
-    private String generateToken(User user){
+    // Helper methods
 
-        if (this.secret == null || this.secret.isEmpty()) {
+    private void setupTestEntities() throws IOException {
+        ClinicalStudyRepresentative clinicalRepresentative = new ClinicalStudyRepresentative(ID, NAME, "123456", "Role", "Experience", List.of(), List.of());
+        token = generateToken(clinicalRepresentative);
+
+        attachmentCreateResponseDTO = new AttachmentCreateResponseDTO(NAME, MESSAGE);
+        attachmentFindResponseDTO = new AttachmentFindResponseDTO(NAME + " " + ID, FILE.getBytes());
+        attachmentUpdateDTO = new AttachmentRequestDTO(NEW_NAME, NEW_FILE.getBytes(), USER_ID);
+    }
+
+    private String generateToken(User user) {
+        if (secret == null || secret.isEmpty()) {
             throw new MissingSecretKeyException();
         }
         try {
-
-            Algorithm algorithm = Algorithm.HMAC256(this.secret);
-            String token = JWT.create().withIssuer("INOVAMED")
-                    .withSubject(user.getEmail()).withClaim("userId", user.getId())
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            return JWT.create().withIssuer("INOVAMED").withSubject(user.getEmail()).withClaim("userId", user.getId())
                     .withExpiresAt(genExpirationDate()).sign(algorithm);
-            return token;
         } catch (JWTCreationException exception) {
             throw new TokenGenerationException(exception);
         }
     }
+
     private Instant genExpirationDate() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
-    }
-
-    void startAttachment(){
-        clinicalRepresentative = new ClinicalStudyRepresentative(ID, NAME, PHONE,CLINICAL_ROLES, EXPERIENCES, RESEARCH, NOTIFICATIONS);
-        token = this.generateToken(clinicalRepresentative);
-
-        attachmentCreateResponseDTO = new AttachmentCreateResponseDTO(NAME,MESSAGE);
     }
 }
