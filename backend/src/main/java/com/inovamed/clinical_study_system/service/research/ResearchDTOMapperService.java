@@ -1,21 +1,31 @@
 package com.inovamed.clinical_study_system.service.research;
 
+import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
+import com.inovamed.clinical_study_system.model.attachment.Attachment;
+import com.inovamed.clinical_study_system.model.attachment.AttachmentFindResponseDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
+import com.inovamed.clinical_study_system.model.research.Phases;
 import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.research.ResearchRequestDTO;
 import com.inovamed.clinical_study_system.model.research.ResearchResponseDTO;
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ResearchDTOMapperService {
 
+
+
     @Autowired
     private ClinicalStudyRepresentiveRepository clinicalRepresentiveRepository;
-    public ResearchResponseDTO toDTO(Research research){
+    //show attachment volta os arquivos normais ou apenas um null
+    public ResearchResponseDTO toDTO(Research research, boolean showAttachments){
         return new ResearchResponseDTO(
                 research.getCode(),
                 research.getTitle(),
@@ -30,19 +40,34 @@ public class ResearchDTOMapperService {
                 research.getPhases(),
                 research.getCurrentPhase(),
                 research.getLocation(),
-                research.getAttachments(),
-                research.getPatients(),
-                research.getClinicalRepresentative()
-
+                showAttachments ? research.getAttachments().stream().map(attachment -> {
+                    return new AttachmentFindResponseDTO(attachment.getName(),attachment.getArchive());
+                }).collect(Collectors.toList()):null,
+                research.getPatients().stream().map(patient -> {
+                    return patient.getName()+ " "+" "+patient.getCode();
+                }).collect(Collectors.toList()),
+                research.getClinicalRepresentative().getName()+" "+research.getClinicalRepresentative().getId()
                 );
+
+
     }
 
-    public Research toEntity(ResearchRequestDTO researchRequestDTO){
+    public Research toEntity(ResearchRequestDTO researchRequestDTO, MultipartFile file, Long userId, List<Phases> phases) throws IOException {
+
+
 
         ClinicalStudyRepresentative clinicalRepresentative = clinicalRepresentiveRepository
-                .findById(researchRequestDTO.StudyRepresentativeId())
-                .orElseThrow(()->{ return  new RuntimeException("Clinical Representative not found.");});
+                .findById(userId)
+                .orElseThrow(()->{ return  new ClinicalRepresentativeNotFoundException();});
         Research research = new Research();
+
+        //criando o anexo que vem na pesquisa
+        Attachment attachment = new Attachment();
+        attachment.setUser(clinicalRepresentative);
+        attachment.setName("Research "+file.getName()+" "+clinicalRepresentative.getPublicKey());
+        attachment.setResearch(research);
+        attachment.setArchive(file.getBytes());
+
 
         research.setTitle(researchRequestDTO.title());
         research.setArea(researchRequestDTO.area());
@@ -53,10 +78,10 @@ public class ResearchDTOMapperService {
         research.setDescription(researchRequestDTO.description());
         research.setCriteria(researchRequestDTO.criteria());
         research.setStudyDuration(researchRequestDTO.studyDuration());
-        research.setPhases(researchRequestDTO.phases());
+        research.setPhases(phases);
         research.setCurrentPhase(researchRequestDTO.currentPhase());
         research.setLocation(researchRequestDTO.location());
-        research.setAttachments(researchRequestDTO.attachments());
+        research.setAttachments(List.of(attachment));
         research.setPatients(List.of());
         research.setClinicalRepresentative(clinicalRepresentative);
 

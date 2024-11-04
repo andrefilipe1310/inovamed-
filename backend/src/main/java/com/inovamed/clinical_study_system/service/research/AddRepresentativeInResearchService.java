@@ -40,6 +40,6 @@ public class AddRepresentativeInResearchService {
                 });
 
         research.setClinicalRepresentative(clinicalRepresentative);
-        return researchDTOMapperService.toDTO(this.researchRepository.save(research));
+        return researchDTOMapperService.toDTO(this.researchRepository.save(research),false);
     }
 }

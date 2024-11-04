@@ -45,7 +45,7 @@ public class WebSecurityConfig {
                     authorize.requestMatchers(HttpMethod.GET, "/attachment/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
 
                     // Research Endpoints
-                    authorize.requestMatchers(HttpMethod.POST, "/research").hasRole("STUDY-REPRESENTATIVE");
+                    authorize.requestMatchers(HttpMethod.POST, "/research").hasRole("STUDY_REPRESENTATIVE");
                     authorize.requestMatchers(HttpMethod.GET, "/research/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
 
                     // Notification Endpoint

@@ -1,12 +1,17 @@
 package com.inovamed.clinical_study_system.service.research;
 
 
+import com.inovamed.clinical_study_system.model.research.Phases;
 import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.research.ResearchRequestDTO;
 import com.inovamed.clinical_study_system.model.research.ResearchResponseDTO;
 import com.inovamed.clinical_study_system.repository.ResearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 @Service
 public class CreateResearchService {
@@ -15,8 +20,8 @@ public class CreateResearchService {
     @Autowired
     private ResearchDTOMapperService researchDTOMapperService;
 
-    public ResearchResponseDTO execute(ResearchRequestDTO researchRequestDTO){
-        Research research = researchDTOMapperService.toEntity(researchRequestDTO);
-        return researchDTOMapperService.toDTO(this.researchRepository.save(research));
+    public ResearchResponseDTO execute(ResearchRequestDTO researchRequestDTO, MultipartFile file, Long userId, List<Phases> phases) throws IOException {
+        Research research = researchDTOMapperService.toEntity(researchRequestDTO, file, userId, phases);
+        return researchDTOMapperService.toDTO(this.researchRepository.save(research),false);
     }
 }

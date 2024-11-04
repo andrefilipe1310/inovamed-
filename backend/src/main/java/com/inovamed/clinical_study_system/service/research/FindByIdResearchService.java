@@ -17,6 +17,6 @@ public class FindByIdResearchService {
         return researchDTOMapperService.toDTO(this.researchRepository.findById(id)
                 .orElseThrow(()->{
                     throw new ResearchNotFoundException();
-                }));
+                }),false);
     }
 }

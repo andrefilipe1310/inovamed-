@@ -19,7 +19,7 @@ public class FindAllResearchService {
 
     public List<ResearchResponseDTO> execute(){
         return this.researchRepository.findAll().stream().map(research -> {
-            return researchDTOMapperService.toDTO(research);
+            return researchDTOMapperService.toDTO(research,false);
         }).collect(Collectors.toList());
     }
 }

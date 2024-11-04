@@ -8,7 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Entity(name = "tb_research")
 @Getter
@@ -19,7 +21,7 @@ public class Research {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "research_id")
     private Long id;
-    private int code = (int) Math.random();
+    private int code = new Random().nextInt(10000);
     private String title;
     private String area;
     private int numberOfPatients;
@@ -35,7 +37,7 @@ public class Research {
     private StudyDuration studyDuration;
     @ElementCollection
     @CollectionTable(name = "research_phases", joinColumns = @JoinColumn(name = "research_id"))
-    private List<Phases> phases;
+    private List<Phases> phases = new ArrayList<>();
     private int currentPhase;
     private String location;
     @OneToMany(mappedBy = "research", cascade = CascadeType.ALL)

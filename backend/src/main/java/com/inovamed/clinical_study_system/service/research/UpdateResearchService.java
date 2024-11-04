@@ -21,6 +21,6 @@ public class UpdateResearchService {
             throw new ResearchNotFoundException();
         });
         updatedResearch.update(researchUpdateDTO);
-        return researchDTOMapperService.toDTO(this.researchRepository.save(updatedResearch));
+        return researchDTOMapperService.toDTO(this.researchRepository.save(updatedResearch),true);
     }
 }
