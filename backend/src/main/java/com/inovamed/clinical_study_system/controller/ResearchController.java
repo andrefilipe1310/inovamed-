@@ -30,6 +30,8 @@ public class ResearchController {
     @Autowired
     DeleteByIdResearshService deleteByIdResearshService;
     @Autowired
+    FindAllByUserIdResearchService findAllByUserIdResearchService;
+    @Autowired
     AddRepresentativeInResearchService addRepresentativeInResearchService;
     @Autowired
     TokenService tokenService;
@@ -48,13 +50,21 @@ public class ResearchController {
         ObjectMapper objectMapper = new ObjectMapper();
         List<Phases> phases = objectMapper.readValue(researchRequestDTO.phases(), new TypeReference<List<Phases>>() {});
 
-        // Agora passe phases convertida para o serviço de criação, por exemplo
+        // Agora passe phases convertida para o serviço de criação
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(createResearchService.execute(researchRequestDTO, file, userId, phases));
     }
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<ResearchResponseDTO>> findAll(){
         return ResponseEntity.status(HttpStatus.OK).body(this.findAllResearchService.execute());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ResearchResponseDTO>> findAllByUserId(HttpServletRequest request){
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        return ResponseEntity.status(HttpStatus.OK).body(this.findAllByUserIdResearchService.execute(userId));
     }
     @GetMapping("/{id}")
     public ResponseEntity<ResearchResponseDTO> findById(@PathVariable("id") Long id){

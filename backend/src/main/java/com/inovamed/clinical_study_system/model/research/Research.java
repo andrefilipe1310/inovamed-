@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.model.research;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.patient.Patient;
@@ -45,6 +46,7 @@ public class Research {
     @ManyToMany(mappedBy = "researches")
     private List<Patient> patients;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "clinical_study_representative_id")
     private ClinicalStudyRepresentative clinicalRepresentative;
 

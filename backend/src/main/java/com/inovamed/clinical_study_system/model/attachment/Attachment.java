@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.model.attachment;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.user.User;
@@ -28,6 +29,7 @@ public class Attachment {
     private Notification notification;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "user_id")
     private User user;
 
