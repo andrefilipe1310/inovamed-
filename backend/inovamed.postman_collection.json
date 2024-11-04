@@ -38,7 +38,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"email\":\"andre3@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
+							"raw": "{\r\n   \"email\":\"john@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -65,7 +65,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"andre3@gmail.com\",\r\n    \"password\":\"12345\",\r\n    \"roles\":\"STUDY_REPRESENTATIVE\"\r\n}",
+							"raw": "{\r\n    \"email\":\"andre3@gmail.com\",\r\n    \"password\":\"12345\",\r\n    \"roles\":\"DOCTOR\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -293,7 +293,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"gender\": \"Male\",\r\n  \"birth\": \"1990-05-15\",\r\n  \"phone\": \"+1234567890\",\r\n  \"password\": \"securePassword123\",\r\n  \"roles\":\"PATIENT\",\r\n  \"medicalHistory\": {\r\n   \r\n  },\r\n  \"doctorKey\": \"91eddeb7-ef7f-46fa-b77b-a5aa15050103\"\r\n}",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"gender\": \"Male\",\r\n  \"birth\": \"1990-05-15\",\r\n  \"phone\": \"+1234567890\",\r\n  \"password\": \"securePassword123\",\r\n  \"roles\":\"PATIENT\",\r\n  \"medicalHistory\": {\r\n   \r\n  },\r\n  \"doctorKey\": \"3d955050-eec8-4767-80e7-4e8deea48cd3\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -476,16 +476,125 @@
 				{
 					"name": "createResearch",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"title\": \"Alzheimer Study Phase 1\",\r\n  \"area\": \"Neurology\",\r\n  \"numberOfPatients\": 100,\r\n  \"availableVacancies\": 10,\r\n  \"responsibleDoctors\": [\r\n    \"Dr. Smith\",\r\n    \"Dr. Johnson\"\r\n  ],\r\n  \"institutions\": [\r\n    \"Institute of Neurological Research\",\r\n    \"Alzheimer's Research Center\"\r\n  ],\r\n  \"description\": \"This is a clinical study focused on phase 1 of Alzheimer's treatment.\",\r\n  \"criteria\": {\r\n    \"inclusion\":\"Patients with mild cognitive impairment\",\r\n    \"exclusion\": \"Pregnancy\"\r\n  },\r\n  \"studyDuration\": {\r\n    \"start_date\": \"2024-01-01\",\r\n    \"end_date\": \"2025-12-31\"\r\n  },\r\n  \"phases\": [\r\n    {\r\n      \"number\": 1,\r\n      \"title\": \"Safety evaluation\",\r\n      \"description\": \"dnadfiojnfibvgdbbnnyy\"\r\n    \r\n    }\r\n  ],\r\n  \"currentPhase\": 1,\r\n  \"location\": \"New York, USA\",\r\n  \"attachments\": [\r\n    {\r\n      \"name\": \"study_protocol.pdf\",\r\n      \"archive\": \"arquivo em formado de byte[]\"\r\n    }\r\n  ],\r\n  \"StudyRepresentativeId\": 1\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "\"Alzheimer Study Phase 1\"",
+									"type": "text"
+								},
+								{
+									"key": "area",
+									"value": "\"Neurology\"",
+									"type": "text"
+								},
+								{
+									"key": "numberOfPatients",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "availableVacancies",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "responsibleDoctors",
+									"value": "\"Dr. Smith\"",
+									"type": "text"
+								},
+								{
+									"key": "responsibleDoctors",
+									"value": "\"Dr. Johnson\"",
+									"type": "text"
+								},
+								{
+									"key": "institutions",
+									"value": "\"Institute of Neurological Research\"",
+									"type": "text"
+								},
+								{
+									"key": "institutions",
+									"value": "Alzheimer's Research Center",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "\"This is a clinical study focused on phase 1 of Alzheimer's treatment.\"",
+									"type": "text"
+								},
+								{
+									"key": "criteria.inclusion",
+									"value": "\"Patients with mild cognitive impairment\"",
+									"type": "text"
+								},
+								{
+									"key": "criteria.exclusion",
+									"value": "\"Pregnancy\"",
+									"type": "text"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-01-01",
+									"type": "text"
+								},
+								{
+									"key": "end_date",
+									"value": "2025-12-31",
+									"type": "text"
+								},
+								{
+									"key": "phases[0].number",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phases[0].title",
+									"value": "\"Safety evaluation\"",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phases[0].description",
+									"value": "\"dnadfiojnfibvgdbbnnyy\"",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "currentPhase",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "\"New York, USA\"",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/deco_/OneDrive/Área de Trabalho/andre-profissional/certificados/bootcamp claro - spring boot.pdf"
+								},
+								{
+									"key": "phases",
+									"value": "[{\"number\": 1, \"title\": \"Safety evaluation\", \"description\": \"Description 1\"}, {\"number\": 2, \"title\": \"Effectiveness evaluation\", \"description\": \"Description 2\"}]",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{url}}/research",
@@ -502,6 +611,16 @@
 				{
 					"name": "findAllReseaches",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -519,6 +638,16 @@
 				{
 					"name": "findByIdReseach",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -587,6 +716,16 @@
 				{
 					"name": "uploadAttachment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -602,7 +741,13 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/deco_/OneDrive/Área de Trabalho/andre-profissional/curriculos/currículo backend java André Figueiredo .pdf"
+									"src": "/C:/Users/deco_/OneDrive/Documentos/ajustes mvm.txt"
+								},
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -613,6 +758,51 @@
 							],
 							"path": [
 								"attachment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllAttachments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/attachment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"attachment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdAttachment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/attachment/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"attachment",
+								"1"
 							]
 						}
 					},
@@ -709,6 +899,91 @@
 							"path": [
 								"digital-signature",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"item": [
+				{
+					"name": "getNotificationById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Notification/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Notification",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createNotification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "sender",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "\"teste\"",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "\"Mensagem de teste\"",
+									"type": "text"
+								},
+								{
+									"key": "doctorsId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "patientsId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/deco_/OneDrive/Área de Trabalho/andre-profissional/certificados/bootcamp claro - spring boot.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/notification",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"notification"
 							]
 						}
 					},
