@@ -31,19 +31,13 @@ public class DigitalSignatureController {
     TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<DigitalSignatureResponseDTO> create(HttpServletRequest request, @ModelAttribute  DigitalSignatureRequestDTO digitalSignatureRequestDTO, @RequestParam("file") MultipartFile file){
-        try{
+    public ResponseEntity<DigitalSignatureResponseDTO> create(HttpServletRequest request, @ModelAttribute  DigitalSignatureRequestDTO digitalSignatureRequestDTO, @RequestParam("file") MultipartFile file) throws IOException{
             String authorizationHeader = request.getHeader("Authorization");
             String token = authorizationHeader.substring(7);
             Long userId = tokenService.getUserIdFromToken(token);
 
-
             AttachmentRequestDTO attachmentRequestDTO = new AttachmentRequestDTO(file.getName(), file.getBytes(),userId);
             return ResponseEntity.status(HttpStatus.CREATED).body(createDigitalSignatureService.execute(digitalSignatureRequestDTO, attachmentRequestDTO));
-
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
     }
 
     @GetMapping("/verify/{id}")

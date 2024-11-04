@@ -1,16 +1,18 @@
 package com.inovamed.clinical_study_system.service.digital_signature;
 
+import com.inovamed.clinical_study_system.exception.FailedToGenerateKeyPairException;
+import com.inovamed.clinical_study_system.exception.FailedToSignDocumentException;
+import com.inovamed.clinical_study_system.exception.InvalidSignatureValidityException;
 import com.inovamed.clinical_study_system.exception.PatientNotFoundException;
-import com.inovamed.clinical_study_system.exception.UserNotFoundException;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentRequestDTO;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignature;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignatureRequestDTO;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignatureResponseDTO;
 import com.inovamed.clinical_study_system.model.patient.Patient;
-import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.repository.DigitalSignatureRepository;
 import com.inovamed.clinical_study_system.repository.PatientRepository;
-import com.inovamed.clinical_study_system.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,50 +29,54 @@ public class CreateDigitalSignatureService {
     @Autowired
     private PatientRepository patientRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    public DigitalSignatureResponseDTO execute(DigitalSignatureRequestDTO digitalSignatureRequestDTO, AttachmentRequestDTO attachmentRequestDTO) {
+    private static final Logger logger = LoggerFactory.getLogger(CreateDigitalSignatureService.class);
 
 
-        Patient user = patientRepository.findById(attachmentRequestDTO.getUserId())
+    public DigitalSignatureResponseDTO execute(DigitalSignatureRequestDTO digitalSignatureRequestDTO, AttachmentRequestDTO attachmentRequestDTO) throws NoSuchAlgorithmException {
+        if (digitalSignatureRequestDTO.validFrom().isAfter(digitalSignatureRequestDTO.validUntil())) {
+            throw new InvalidSignatureValidityException();
+        }
+
+        Patient patient = patientRepository.findById(attachmentRequestDTO.getUserId())
                 .orElseThrow(() -> new PatientNotFoundException("Patient not found"));
 
+        logger.info("Criando assinatura digital para o usuário: {}", patient.getId());
         KeyPair keyPair = generateKeyPair();
         byte[] signature = signDocument(attachmentRequestDTO.getArchive(), keyPair.getPrivate());
         DigitalSignature digitalSignature = new DigitalSignature();
         digitalSignature.setDocumentName(attachmentRequestDTO.getName());
         digitalSignature.setDocumentContent(attachmentRequestDTO.getArchive());
         digitalSignature.setTimestamp(LocalDateTime.now());
-        digitalSignature.setValidFrom(digitalSignatureRequestDTO.validFrom());
         digitalSignature.setValidUntil(digitalSignatureRequestDTO.validUntil());
+        digitalSignature.setValidFrom(digitalSignatureRequestDTO.validFrom());
         digitalSignature.setActive(true);
-        digitalSignature.setUser(user);
+        digitalSignature.setUser(patient);
         digitalSignature.setSignature(signature);
 
-        user.setPublicKey(keyPair.getPublic());
-        patientRepository.save(user);
+        patient.setPublicKey(keyPair.getPublic());
+        patientRepository.save(patient);
+        logger.info("Assinatura digital criada com sucesso para o usuário: {}", patient.getId());
 
         return digitalSignatureMapperDTOService.toDTO(digitalSignatureRepository.save(digitalSignature));
     }
 
-    private KeyPair generateKeyPair() {
-        try {
+    // Gerar assinatura
+
+
+
+    private KeyPair generateKeyPair() throws NoSuchAlgorithmException {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             return keyPairGenerator.generateKeyPair();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Failed to generate key pair", e);
-        }
     }
 
-    private byte[] signDocument(byte[] documentContent, PrivateKey privateKey) {
+    private byte[] signDocument(byte[] documentContent, PrivateKey privateKey)  {
         try {
             Signature signature = Signature.getInstance("SHA256withRSA");
             signature.initSign(privateKey);
             signature.update(documentContent);
             return signature.sign();
         } catch (GeneralSecurityException e) {
-            throw new RuntimeException("Failed to sign document", e);
+            throw new FailedToSignDocumentException();
         }
     }
 }

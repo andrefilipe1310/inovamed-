@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.security.NoSuchAlgorithmException;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -108,6 +110,24 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(threatError);
     }
 
+    @ExceptionHandler(NoSuchAlgorithmException.class)
+    public ResponseEntity<RestExceptionError> handleFailedToGenerateKeyPairException(FailedToGenerateKeyPairException exception){
+        RestExceptionError threatError = new RestExceptionError(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(threatError);
+    }
+
+    @ExceptionHandler(FailedToSignDocumentException.class)
+    public ResponseEntity<RestExceptionError> handleFailedToSignDocumentException(FailedToSignDocumentException exception){
+        RestExceptionError threatError = new RestExceptionError(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(threatError);
+    }
+
+    @ExceptionHandler(InvalidSignatureValidityException.class)
+    public ResponseEntity<RestExceptionError> handlerInvalidSignatureValidityException(InvalidSignatureValidityException exception){
+        RestExceptionError threatError = new RestExceptionError(HttpStatus.CONFLICT, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(threatError);
+    }
+
     // NOTIFICATION EXCEPTIONS
 
     @ExceptionHandler(NotificationDeletionFailedException.class)
@@ -121,6 +141,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         RestExceptionError threatError = new RestExceptionError(HttpStatus.NOT_FOUND, exception.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(threatError);
     }
+
+
 
     // RESEARCH EXCEPTION
 

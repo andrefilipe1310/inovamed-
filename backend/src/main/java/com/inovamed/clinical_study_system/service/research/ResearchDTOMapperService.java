@@ -4,10 +4,7 @@ import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFou
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentFindResponseDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
-import com.inovamed.clinical_study_system.model.research.Phases;
-import com.inovamed.clinical_study_system.model.research.Research;
-import com.inovamed.clinical_study_system.model.research.ResearchRequestDTO;
-import com.inovamed.clinical_study_system.model.research.ResearchResponseDTO;
+import com.inovamed.clinical_study_system.model.research.*;
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,7 +84,7 @@ public class ResearchDTOMapperService {
         research.setInstitutions(researchRequestDTO.institutions());
         research.setDescription(researchRequestDTO.description());
         research.setCriteria(researchRequestDTO.criteria());
-        research.setStudyDuration(researchRequestDTO.studyDuration());
+        research.setStudyDuration(new StudyDuration(researchRequestDTO.start_date(),researchRequestDTO.end_date()));
         research.setPhases(phases);
         research.setCurrentPhase(researchRequestDTO.currentPhase());
         research.setLocation(researchRequestDTO.location());
