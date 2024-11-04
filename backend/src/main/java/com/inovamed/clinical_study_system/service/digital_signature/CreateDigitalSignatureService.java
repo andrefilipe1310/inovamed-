@@ -52,18 +52,15 @@ public class CreateDigitalSignatureService {
         digitalSignature.setActive(true);
         digitalSignature.setUser(patient);
         digitalSignature.setSignature(signature);
-
         patient.setPublicKey(keyPair.getPublic());
         patientRepository.save(patient);
+
         logger.info("Assinatura digital criada com sucesso para o usuário: {}", patient.getId());
 
         return digitalSignatureMapperDTOService.toDTO(digitalSignatureRepository.save(digitalSignature));
     }
 
     // Gerar assinatura
-
-
-
     private KeyPair generateKeyPair() throws NoSuchAlgorithmException {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             return keyPairGenerator.generateKeyPair();

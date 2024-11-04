@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 @RestController
 @RequestMapping("/digital-signature")
@@ -31,7 +32,7 @@ public class DigitalSignatureController {
     TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<DigitalSignatureResponseDTO> create(HttpServletRequest request, @ModelAttribute  DigitalSignatureRequestDTO digitalSignatureRequestDTO, @RequestParam("file") MultipartFile file) throws IOException{
+    public ResponseEntity<DigitalSignatureResponseDTO> create(HttpServletRequest request, @ModelAttribute  DigitalSignatureRequestDTO digitalSignatureRequestDTO, @RequestParam("file") MultipartFile file) throws IOException, NoSuchAlgorithmException {
             String authorizationHeader = request.getHeader("Authorization");
             String token = authorizationHeader.substring(7);
             Long userId = tokenService.getUserIdFromToken(token);
