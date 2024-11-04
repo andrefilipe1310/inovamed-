@@ -40,7 +40,7 @@ public class ResearchController {
     public ResponseEntity<ResearchResponseDTO> create(
             HttpServletRequest request,
             @ModelAttribute ResearchRequestDTO researchRequestDTO,
-            @RequestParam("file") MultipartFile file) throws IOException {
+            @RequestParam("file") List<MultipartFile> file) throws IOException {
 
         String authorizationHeader = request.getHeader("Authorization");
         String token = authorizationHeader.substring(7);

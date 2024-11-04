@@ -52,7 +52,7 @@ public class ResearchDTOMapperService {
 
     }
 
-    public Research toEntity(ResearchRequestDTO researchRequestDTO, MultipartFile file, Long userId, List<Phases> phases) throws IOException {
+    public Research toEntity(ResearchRequestDTO researchRequestDTO, List<MultipartFile> files, Long userId, List<Phases> phases) throws IOException {
 
 
 
@@ -62,11 +62,21 @@ public class ResearchDTOMapperService {
         Research research = new Research();
 
         //criando o anexo que vem na pesquisa
+
+        List<Attachment> attachments = files.stream().map(file -> {
+            Attachment attachment = new Attachment();
+            attachment.setUser(clinicalRepresentative);
+            attachment.setName("Research "+file.getName()+" "+clinicalRepresentative.getPublicKey());
+            attachment.setResearch(research);
+            try {
+                attachment.setArchive(file.getBytes());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return  attachment;
+        }).collect(Collectors.toList());
         Attachment attachment = new Attachment();
-        attachment.setUser(clinicalRepresentative);
-        attachment.setName("Research "+file.getName()+" "+clinicalRepresentative.getPublicKey());
-        attachment.setResearch(research);
-        attachment.setArchive(file.getBytes());
+
 
 
         research.setTitle(researchRequestDTO.title());
@@ -81,7 +91,7 @@ public class ResearchDTOMapperService {
         research.setPhases(phases);
         research.setCurrentPhase(researchRequestDTO.currentPhase());
         research.setLocation(researchRequestDTO.location());
-        research.setAttachments(List.of(attachment));
+        research.setAttachments(attachments);
         research.setPatients(List.of());
         research.setClinicalRepresentative(clinicalRepresentative);
 
