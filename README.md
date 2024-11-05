@@ -53,18 +53,19 @@ npm run dev
 ### Observações
 - Certifique-se de que o servidor do PostgreSQL esteja em execução antes de iniciar a aplicação.
 - Verifique as dependências e versões para evitar conflitos.
-## Diagrama UML, Diagramas de Caso de Uso, Fluxogramas e Diagrama ER
+## Documentação Visual do Projeto
 
-[![Botão Simples](https://img.shields.io/badge/Fluxogramas-blue?style=for-the-badge)](https://github.com/andrefilipe1310/inovamed-/tree/main/docs/diagrams/FLOWCHARTS.md)
- 
-[![Botão Simples](https://img.shields.io/badge/Diagrama%20UML-blue?style=for-the-badge)](https://github.com/andrefilipe1310/inovamed-/blob/main/docs/diagrams/CLASS_DIAGRAM.md)
+### Diagramas
 
-[![Botão Simples](https://img.shields.io/badge/Deployment%20Diagram-blue?style=for-the-badge)](https://github.com/andrefilipe1310/inovamed-/tree/main/docs/diagrams/DEPLOYMENT_DIAGRAM.md)
+- [![Fluxogramas](https://img.shields.io/badge/Fluxogramas-blue?style=for-the-badge)](https://github.com/andrefilipe1310/inovamed-/tree/main/docs/diagrams/FLOWCHARTS.md)
+- [![Diagrama UML](https://img.shields.io/badge/Diagrama%20UML-blue?style=for-the-badge)](https://github.com/andrefilipe1310/inovamed-/blob/main/docs/diagrams/CLASS_DIAGRAM.md)
+- [![Diagrama de Deployment](https://img.shields.io/badge/Diagrama%20de%20Deployment-blue?style=for-the-badge)](https://github.com/andrefilipe1310/inovamed-/tree/main/docs/diagrams/DEPLOYMENT_DIAGRAM.md)
+- [![Diagrama ER](https://img.shields.io/badge/Diagrama%20ER-blue?style=for-the-badge)](https://github.com/andrefilipe1310/inovamed-/tree/main/docs/diagrams/ER_DIAGRAM.md)
 
-[![Botão Simples](https://img.shields.io/badge/Deployment%20Diagram-blue?style=for-the-badge)](https://github.com/andrefilipe1310/inovamed-/tree/main/docs/diagrams/ER_DIAGRAM.md)
+### Protótipo de Alta Fidelidade (Figma)
 
-## Prototipo de alta fidelidade (figma)
-[![Botão Simples](https://img.shields.io/link-blue?style=for-the-badge)](https://www.figma.com/design/MAYIorwVh0L0GMI3fWkQ8p/inovamed?node-id=0-1&t=oOfMIo0CWC2Q0o69-1)
+[![Visualizar no Figma](https://img.shields.io/badge/Visualizar%20no%20Figma-303133?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/MAYIorwVh0L0GMI3fWkQ8p/inovamed?node-id=0-1&t=oOfMIo0CWC2Q0o69-1)
+
 
 ## Responsáveis e Contato
 
