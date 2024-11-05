@@ -27,14 +27,23 @@ public class DigitalSignature {
     private byte[] documentContent;
     @Lob
     private byte[] signature;
-    //@ManyToMany
-    //List<Consent> consents;
+    @ManyToMany
+    @JoinTable(
+            name = "signature_consents",
+            joinColumns = @JoinColumn(name = "signature_id"),
+            inverseJoinColumns = @JoinColumn(name = "consent_id")
+    )
+    private List<Consent> consents;
     private LocalDateTime timestamp;
     private LocalDateTime validFrom;
     private LocalDateTime validUntil;
     private boolean isActive;
     @OneToOne
     private User user;
-
+    public void deactivateIfExpired() {
+        if (LocalDateTime.now().isAfter(validUntil)) {
+            this.isActive = false;
+        }
+    }
 
 }

@@ -16,12 +16,12 @@ public class VerifyDigitalSignatureService {
     private DigitalSignatureRepository digitalSignatureRepository;
 
     public boolean execute(Long signatureId){
-        try{
+
             DigitalSignature digitalSignature = digitalSignatureRepository.findById(signatureId)
                     .orElseThrow(()->{
                         return new SignatureNotFoundException();
                     });
-
+        try{
             PublicKey publicKey = digitalSignature.getUser().getPublicKey();
 
             return verifyDocumentSignature(digitalSignature.getDocumentContent(),digitalSignature.getSignature(), publicKey);
@@ -29,7 +29,7 @@ public class VerifyDigitalSignatureService {
             throw new SignatureErrorVerifyException(e);
         }
     }
-    private boolean verifyDocumentSignature(byte[] documentContent, byte[] signature, PublicKey publicKey) throws Exception{
+    protected boolean verifyDocumentSignature(byte[] documentContent, byte[] signature, PublicKey publicKey) throws Exception{
         Signature sig = Signature.getInstance("SHA256withRSA");
         sig.initVerify(publicKey);
         sig.update(documentContent);
