@@ -8,10 +8,19 @@ export default function PacCriarNotificacao() {
             <div className='container-page-medico'>
                 <h1 className="h1notificacaopac" style={{ color: '#028275' }}>NOTIFICAÇÕES</h1>
 
-                <div className="notificacaopac" style={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>
-                    <h3 style={{ marginRight: '10px' }}>Pesquisa Clínica:</h3>
-                    <p>Essa pesquisa visa mostrar o resultado do tratamento X para pacientes com Alzheimer.</p>
-                </div>
+                         <div
+                      className="notificacaopac"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginTop: '20px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      <h3 style={{ marginRight: '10px' }}>Pesquisa Clínica:</h3>
+                      <p>Essa pesquisa visa mostrar o resultado do tratamento X para pacientes com Alzheimer.</p>
+                    </div>
 
                 <div className="container-card-notificacoespac">
                     {notificacaopaciente.map((notificacaopac) => (
