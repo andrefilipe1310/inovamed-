@@ -18,6 +18,7 @@ export default function Login() {
                 
                 if (response.data.token && response.data.role) {
                     localStorage.setItem("token",response.data.token)
+                    
                     switch (response.data.role.toUpperCase()) {
                         case "PATIENT":
                             navigate("/paciente/listapesquisas")

@@ -34,6 +34,8 @@ public class ResearchController {
     @Autowired
     AddRepresentativeInResearchService addRepresentativeInResearchService;
     @Autowired
+    FindAllFeaturesByUserIdResearchService findAllFeaturesByUserId;
+    @Autowired
     TokenService tokenService;
 
     @PostMapping(produces = "application/json")
@@ -65,6 +67,13 @@ public class ResearchController {
         String token = authorizationHeader.substring(7);
         Long userId = tokenService.getUserIdFromToken(token);
         return ResponseEntity.status(HttpStatus.OK).body(this.findAllByUserIdResearchService.execute(userId));
+    }
+    @GetMapping("/feature")
+    public ResponseEntity<List<ResearchFeaturesResponseDTO>> findAllFeaturesByUserId(HttpServletRequest request){
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        return ResponseEntity.status(HttpStatus.OK).body(this.findAllFeaturesByUserId.execute(userId));
     }
     @GetMapping("/{id}")
     public ResponseEntity<ResearchResponseDTO> findById(@PathVariable("id") Long id){
