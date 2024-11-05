@@ -1,113 +1,94 @@
 import { useState } from "react"
-import { useSearchParams } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
+import InputMask from 'react-input-mask';
 
 export default function RegisterUser(){
 
     const [seachParams] = useSearchParams()
     const userType = seachParams.get('userType')
 
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
     if (userType === "representative"){
-        const [formData, setFormData] = useState({
-            nome: '',
-            email: '',
-            instituicao: '',
-            contato: '',
-            cargo: '',
-            experiencias: '',
-            senha: ''
-          });
         
-          const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            const { name, value } = e.target;
-            setFormData(prevState => ({
-              ...prevState,
-              [name]: value
-            }));
-          };
-        
-          const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-            e.preventDefault();
-            console.log(formData);
-            // Aqui você pode adicionar a lógica de envio do formulário
-          };
+      
     return(
         <div className="form-container">
-      <div className="form-header">
-        <button>Representante Institucional</button>
-        <button>Trocar</button>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="nome">Nome completo *</label>
-        <input
-          type="text"
-          id="nome"
-          name="nome"
-          value={formData.nome}
-          onChange={handleChange}
-          required
-        />
+          <div className="logo-container"><img src="../../../../public/logo_branca.svg" alt="logo" /></div>
+          <h1 className="title-page" style={{marginTop:"0px"}}>CADASTRO</h1>
+          <div className="form-header">
+            <p>Representante Institucional</p>
+            <button className="change-user"><Link to={"/cadastro"} className="ajust-link">Trocar</Link></button>
+          </div>
+          <div className="form" >
+            <label htmlFor="nome">Nome completo <i>Obrigatório</i></label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+            />
 
-        <label htmlFor="email">Email corporativo *</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+            <label htmlFor="email">Email corporativo <i>Obrigatório</i></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
 
-        <label htmlFor="instituicao">Instituição *</label>
-        <input
-          type="text"
-          id="instituicao"
-          name="instituicao"
-          value={formData.instituicao}
-          onChange={handleChange}
-          required
-        />
+                <label htmlFor="instituicao">Instituição <i>Obrigatório</i></label>
+                <input
+                  type="text"
+                  id="institution"
+                  name="institution"
+                  required
+                />
 
-        <label htmlFor="contato">N° para contato *</label>
-        <input
-          type="text"
-          id="contato"
-          name="contato"
-          value={formData.contato}
-          onChange={handleChange}
-          required
-        />
+              <div className="phone-number">
+              <label htmlFor="contato">N° para contato <i>Obrigatório</i></label>
+                <InputMask
+                  mask="(99)99999-9999"
+                  required
+                  >
+                  {(inputProps) => <input {...inputProps} type="tel" />}
+                </InputMask>
+              </div>
+            
 
-        <label htmlFor="cargo">Cargo/função *</label>
-        <input
-          type="text"
-          id="cargo"
-          name="cargo"
-          value={formData.cargo}
-          onChange={handleChange}
-          required
-        />
+            <label htmlFor="cargo">Cargo/função <i>Obrigatório</i></label>
+            <input
+              type="text"
+              id="function"
+              name="function"
+              required
+            />
 
-        <label htmlFor="experiencias">Experiências/qualificações</label>
-        <textarea
-          id="experiencias"
-          name="experiencias"
-          value={formData.experiencias}
-          onChange={handleChange}
-          rows={4}
-        />
+            <label htmlFor="experiencias">Experiências/qualificações <i>Obrigatório</i></label>
+            <textarea
+              id="exp"
+              name="exp"
+              rows={4}
+            />
+            <div className="ajust-section" >
+              <div>
+                <label htmlFor="senha">Criar senha <i>Obrigatório</i></label>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  required
+                />
+              </div>
+              <button onClick={togglePasswordVisibility}>see</button>
+            </div>
 
-        <label htmlFor="senha">Criar senha *</label>
-        <input
-          type="password"
-          id="senha"
-          name="senha"
-          value={formData.senha}
-          onChange={handleChange}
-          required
-        />
-
-        <button type="submit">Fazer cadastro</button>
-      </form>
+            <button type="submit" className="submit">FAZER CADASTRO</button>
+          </div>
     </div>
     )
 }

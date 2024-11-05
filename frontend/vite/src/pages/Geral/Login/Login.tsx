@@ -52,6 +52,12 @@ export default function Login() {
 
     }
 
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
     return (
         <div className="container-all-login">
             <div className="logo-container"><img src="../../../../public/logo_branca.svg" alt="logo" /></div>
@@ -61,9 +67,10 @@ export default function Login() {
                         <label htmlFor="email">EMAIL</label>
                         <input type="text" name="email" value={user.email} onChange={handleChange} />
                         <label htmlFor="senha">SENHA</label>
-                        <input type="text" name="password" value={user.password} onChange={handleChange} />
+                        <input type={showPassword ? 'text' : 'password'} name="password" value={user.password} onChange={handleChange} />
+                        <button onClick={togglePasswordVisibility} className="toggle-password">see</button>
                     </div>
-                    <button onClick={handleLogin}>Entrar</button>
+                    <button onClick={handleLogin} className="submit">Entrar</button>
                     {errorMessage && <p style={{color:"red"}} className="error-message">{errorMessage}</p>}
                     <p>Esqueceu a senha? <a href="">Recuperar senha</a></p>
                     <p>Não é cadastrado? <Link to="/cadastro">Cadastrar</Link></p>
