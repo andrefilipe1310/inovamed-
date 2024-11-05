@@ -62,7 +62,7 @@ npm run dev
 - [![Diagrama de Deployment](https://img.shields.io/badge/Diagrama%20de%20Deployment-blue?style=for-the-badge)](https://github.com/andrefilipe1310/inovamed-/tree/main/docs/diagrams/DEPLOYMENT_DIAGRAM.md)
 - [![Diagrama ER](https://img.shields.io/badge/Diagrama%20ER-blue?style=for-the-badge)](https://github.com/andrefilipe1310/inovamed-/tree/main/docs/diagrams/ER_DIAGRAM.md)
 
-### Protótipo de Alta Fidelidade (Figma)
+### Protótipo de Alta Fidelidade 
 
 [![Visualizar no Figma](https://img.shields.io/badge/Visualizar%20no%20Figma-303133?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/MAYIorwVh0L0GMI3fWkQ8p/inovamed?node-id=0-1&t=oOfMIo0CWC2Q0o69-1)
 
