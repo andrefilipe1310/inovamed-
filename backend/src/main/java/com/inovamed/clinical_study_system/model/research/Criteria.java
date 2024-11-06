@@ -6,12 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Embeddable
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Criteria {
-    private String inclusion;
-    private String exclusion;
+    private List<String> inclusion;
+    private List<String> exclusion;
 }
