@@ -1,4 +1,4 @@
-package com.inovamed.clinical_study_system;
+package com.inovamed.clinical_study_system.Doctor;
 
 import com.inovamed.clinical_study_system.exception.DoctorNotFoundException;
 import com.inovamed.clinical_study_system.model.doctor.*;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;

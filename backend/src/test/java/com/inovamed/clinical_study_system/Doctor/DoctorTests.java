@@ -1,4 +1,4 @@
-package com.inovamed.clinical_study_system;
+package com.inovamed.clinical_study_system.Doctor;
 
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.doctor.DoctorExperienceEnum;
