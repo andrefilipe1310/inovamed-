@@ -6,12 +6,14 @@ import com.inovamed.clinical_study_system.model.attachment.AttachmentFindRespons
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.research.*;
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
+import com.inovamed.clinical_study_system.repository.ResearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +23,8 @@ public class ResearchDTOMapperService {
 
     @Autowired
     private ClinicalStudyRepresentiveRepository clinicalRepresentiveRepository;
+    @Autowired
+    private ResearchRepository researchRepository;
     //show attachment volta os arquivos normais ou apenas um null
     public ResearchResponseDTO toDTO(Research research, boolean showAttachments){
         return new ResearchResponseDTO(
@@ -75,7 +79,7 @@ public class ResearchDTOMapperService {
         Attachment attachment = new Attachment();
 
 
-
+        research.setCode(generateUniqueCode());
         research.setTitle(researchRequestDTO.title());
         research.setArea(researchRequestDTO.area());
         research.setNumberOfPatients(researchRequestDTO.numberOfPatients());
@@ -93,5 +97,14 @@ public class ResearchDTOMapperService {
         research.setClinicalRepresentative(clinicalRepresentative);
 
         return research;
+    }
+
+    private int generateUniqueCode() {
+        Random random = new Random();
+        int generatedCode;
+        do {
+            generatedCode = 1000 + random.nextInt(9000); // Gera um número de 1000 a 9999
+        } while (researchRepository.findByCode(generatedCode).isPresent());
+        return generatedCode;
     }
 }

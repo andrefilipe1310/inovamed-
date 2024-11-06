@@ -22,7 +22,8 @@ public class Research {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "research_id")
     private Long id;
-    private int code = new Random().nextInt(10000);
+    @Column(unique = true, nullable = false)
+    private int code;
     private String title;
     private String area;
     private int numberOfPatients;

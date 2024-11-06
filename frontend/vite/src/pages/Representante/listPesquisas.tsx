@@ -16,24 +16,25 @@ export default function RepListaPesquisas(){
         api.get("/research/feature")
         .then(response => {
             if(!response.data[0]){
-                console.error("Falha ao carregar array de informações")
+                return null
             }
             
-           
             if (!response.data[0].code) {
+                
               return null  
             }
             console.log(response.data)
             if (!response.data[0].title){
+            
                 return null
             }
             
-          
             setPesqInfo(response.data)
                 
             
         })
         .catch(error => {
+            setErrorMessage("Servidor com problema para renderizar suas pesquisas")
             console.error("Erro na busca por pesquisas:", error);
         })
 
@@ -46,8 +47,9 @@ export default function RepListaPesquisas(){
         <Navbar/>
         <div className="container-page">
             <h1 className="title-suas-pesquisas">MINHAS PESQUISAS</h1>
-            <div className="container-pesq">
-                {pesqInfo.length == 0 && <p>Nenhuma pesquisa a mostrar</p>}
+            {errorMessage != null && <p style={{color:'red'}}>{errorMessage}</p>}
+            {(pesqInfo.length == 0 && errorMessage == null )&&<p>Nenhuma pesquisa a mostrar</p>}
+            <div className="container-pesq">      
                {pesqInfo.length>0 && pesqInfo.map((pesq)=>(
                     <div className="card-border">
                         <div  className="container-card-pesqlist">
