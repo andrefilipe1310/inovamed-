@@ -92,9 +92,89 @@ export default function RegisterUser(){
     </div>
     )
 }
-    else{
+    else if (userType === "medic"){
         return(
-            <div>AINDA EM PRODUÇÃO!!</div>
+          <div className="form-container">
+          <div className="logo-container"><img src="../../../../public/logo_branca.svg" alt="logo" /></div>
+          <h1 className="title-page" style={{marginTop:"0px"}}>CADASTRO</h1>
+          <div className="form-header">
+            <p>Representante Institucional</p>
+            <button className="change-user"><Link to={"/cadastro"} className="ajust-link">Trocar</Link></button>
+          </div>
+          <div className="form" >
+            <label htmlFor="nome">Nome completo <i>Obrigatório</i></label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+            />
+
+            <label htmlFor="email">Email corporativo <i>Obrigatório</i></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
+
+                <label htmlFor="instituicao">Instituição/ Clinica / Hospital<i>Obrigatório</i></label>
+                <input
+                  type="text"
+                  id="institution"
+                  name="institution"
+                  required
+                />
+
+              <div className="phone-number">
+              <label htmlFor="contato">N° para contato <i>Obrigatório</i></label>
+                <InputMask
+                  mask="(99)99999-9999"
+                  required
+                  >
+                  {(inputProps) => <input {...inputProps} type="tel" />}
+                </InputMask>
+              </div>
+            
+
+            <label htmlFor="cargo">Especialidade médica <i>Obrigatório</i></label>
+            <input
+              type="text"
+              id="especialidade"
+              name="especialidade"
+              required
+            />
+
+            <label htmlFor="cargo">CRM ou registro equivalente <i>Obrigatório</i></label>
+            <input
+              type="number"
+              id="CRM"
+              name="CRM"
+              required
+            />
+
+            <label htmlFor="experiencias">Experiência em pesquisa clinica <i>Obrigatório</i></label>
+            <textarea
+              id="exp"
+              name="exp"
+              rows={4}
+            />
+            <div className="ajust-section" >
+              <div>
+                <label htmlFor="senha">Criar senha <i>Obrigatório</i></label>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  required
+                />
+              </div>
+              <button onClick={togglePasswordVisibility}>Mostrar senha</button>
+            </div>
+
+            <button type="submit" className="submit">FAZER CADASTRO</button>
+          </div>
+    </div>
         )
     }
 
