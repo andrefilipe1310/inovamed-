@@ -98,7 +98,7 @@ export default function RegisterUser(){
           <div className="logo-container"><img src="../../../../public/logo_branca.svg" alt="logo" /></div>
           <h1 className="title-page" style={{marginTop:"0px"}}>CADASTRO</h1>
           <div className="form-header">
-            <p>Representante Institucional</p>
+            <p>Médico Responsável</p>
             <button className="change-user"><Link to={"/cadastro"} className="ajust-link">Trocar</Link></button>
           </div>
           <div className="form" >
