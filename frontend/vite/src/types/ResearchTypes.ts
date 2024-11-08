@@ -16,7 +16,7 @@ export type Phase = {
 
 type AttachmentFindResponseDTO = {
     name: string;
-    archive: Uint8Array;
+    archive: Base64URLString;
 };
 
 export type ResearchResponseDTO = {
@@ -54,15 +54,3 @@ export type ResearchUpdateDTO = {
     attachments:AttachmentFindResponseDTO[]
 }
 
-/* 
-public record ResearchUpdateDTO(String title, String area,
-                                int numberOfPatients, int availableVacancies,
-                                List<String> responsibleDoctors,List<String> institutions,
-                                String description,Criteria criteria,
-                                StudyDuration studyDuration,
-                                List<Phases> phases,
-                                int currentPhase,String location,List<Attachment> attachments) {
-}
-
-
-*/
