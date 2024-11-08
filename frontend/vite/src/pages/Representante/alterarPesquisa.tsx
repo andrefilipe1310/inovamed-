@@ -1,174 +1,131 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
-import ResearchData from './sigleStudieTest.json'
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import api from '../../config/axiosConfig';
-import { ResearchResponseDTO } from '../../types/ResearchTypes';
+import { ResearchResponseDTO, Phase } from '../../types/ResearchTypes';
+
 
 export default function RepAlterarPesquisa() {
-  interface Study {
-    id: number;
-    code: number;
-    title: string;
-    area: string;
-    numberOfPatients: number;
-    availableVacancies: number;
-    responsibleDoctors: string[];
-    institutions: string[];
-    description: string;
-    criteria: Criteria;
-    studyDuration: StudyDuration;
-    phases: Phase[];
-    currentPhase: number;
-    location: string;
-    attachments: Attachment[];
-    patients: Patient[];
-    clinicalRepresentative: ClinicalRepresentative;
-  }
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('id');
 
-  interface Criteria {
-    ageRange: string;
-    requiredCondition: string[];
-    exclusionCriteria: string[];
-  }
+  const [research, setResearch] = useState<ResearchResponseDTO>();
+  const [qtMed, setqtMed] = useState<string[]>([]);
+  const [qtRespInst, setQtRespInst] = useState<string[]>([]);
+  const [qtIncludeCriteria, setQtIncludeCriteria] = useState<string[]>([]);
+  const [qtExcludeCriteria, setQtExcludeCriteria] = useState<string[]>([]);
+  const [fases, setFases] = useState<Phase[]>([]);
 
-  interface StudyDuration {
-    startDate: string; // consider using Date if necessary
-    endDate: string;   // consider using Date if necessary
-  }
-
-  interface Phase {
-    phaseNumber: number;
-    description: string;
-  }
-
-  interface Attachment {
-    id: number;
-    fileName: string;
-    fileType: string;
-  }
-
-  interface Patient {
-    id: number;
-    name: string;
-    email: string;
-  }
-
-  interface ClinicalRepresentative {
-    id: number;
-    name: string;
-    email: string;
-  }
-  const [seachParams] = useSearchParams()
-  const id = seachParams.get('id')
-  const ResData: Study = ResearchData
-
-  const [qtMed, setqtMed] = useState(ResData.responsibleDoctors.map((med) => (<input type='text' name='respMed' value={med} />)))
-  const [qtRespInst, setQtRespInst] = useState(ResData.institutions.map((res) => (<input type='text' name='respInst' value={res} />)))
-  const [qtIncludeCriteria, setQtIncludeCriteria] = useState(ResData.criteria.requiredCondition.map((crit) => <input type='text' name='includeCriteria' value={crit} />))
-  const [qtExcludeCriteria, setQtExcludeCriteria] = useState(ResData.criteria.exclusionCriteria.map((crit) => <input type='text' name='excludeCriteria' value={crit} />))
-  const [fases, setFases] = useState(ResData.phases.map((fase) => <><label htmlFor="fases">Fase {fase.phaseNumber}</label><input type='text' name='fases' value={fase.description} /></>))
-
-  const [researsh, setResearch] = useState<ResearchResponseDTO>()
-
-  const handleFindByCodeResearch = () => {
-    api.get(`/research/code/${id}`)
-    .then(response => {
-      if(!response.data){
-        return null
+  const handleFindByCodeResearch = async () => {
+    try {
+      const response = await api.get(`/research/code/${code}`);
+      if (response.data) {
+        setResearch(response.data);
+        if (research == null && research == undefined) {
+          return null;
+        }
+        setqtMed(response.data.responsibleDoctors || []);
+        setQtRespInst(response.data.institutions || []);
+        setQtIncludeCriteria(response.data.criteria?.inclusion || []);
+        setQtExcludeCriteria(response.data.criteria?.exclusion || []);
+        setFases(response.data.phases || []);
       }
-      setResearch(researsh)
+    } catch (error) {
+      console.error(`Erro ao buscar pesquisa: ${error}`);
+    }
+  };
 
-    })
 
-  }
-
-  useEffect(handleFindByCodeResearch,[])
+  useEffect(() => {
+    if (code) {
+      handleFindByCodeResearch();
+    }
+  }, [code]);
 
   return (
     <>
       <Navbar />
       <div className='container-page'>
         <h1 className="title-page">ALTERAR PESQUISA</h1>
-        <h2 className='subtitle-page'>{researsh?.title + " - #" + researsh?.code}</h2>
-        <div className="card-border" style={{ margin: "2vw 0vw" }}>
-          <div className='form-new-research'>
-            <div className='session'>
-              <label htmlFor="title">Título</label>
-              <input type="text" name='title' value={researsh?.title} />
-            </div>
+        {research && (
+          <div className='principal'>
+            <h2 className='subtitle-page'>{research.title} - #{research.code}</h2>
+            <div className="card-border" style={{ margin: "2vw 0vw" }}>
+              <div className='form-new-research'>
+                <div className='session'>
+                  <label htmlFor="title">Título</label>
+                  <input type="text" name='title' defaultValue={research.title || ''} />
+                </div>
 
-            <div className='session'>
-              <div>
-                <label htmlFor="pacients">Pacientes</label>
-                <input type='number' name='pacients' value={ResData.numberOfPatients} />
+                <div className='session'>
+                  <label htmlFor="pacients">Pacientes</label>
+                  <input type='number' name='pacients' defaultValue={research.numberOfPatients || 0} />
+                </div>
+                <div className='session'>
+                  <label htmlFor="area">Área do estudo</label>
+                  <input type="text" name='area' defaultValue={research.area || ''} />
+                </div>
+
+                <div className='session'>
+                  <label htmlFor="respMed">Médico responsável</label>
+                  {qtMed.map((med, index) => (
+                    <input key={index} type='text' name='respMed' defaultValue={med} />
+                  ))}
+                  <button onClick={() => setqtMed([...qtMed, ''])}>+</button>
+                </div>
+
+                <div className='session'>
+                  <label htmlFor="respInst">Instituição responsável</label>
+                  {qtRespInst.map((inst, index) => (
+                    <input key={index} type='text' name='respInst' defaultValue={inst} />
+                  ))}
+                  <button onClick={() => setQtRespInst([...qtRespInst, ''])}>+</button>
+                </div>
+
+                <div className='session'>
+                  <label htmlFor="includeCriteria">Critérios de Inclusão: </label>
+                  {qtIncludeCriteria.map((crit, index) => (
+                    <input key={index} type='text' name='includeCriteria' defaultValue={crit} />
+                  ))}
+                  <button onClick={() => setQtIncludeCriteria([...qtIncludeCriteria, ''])}>+</button>
+                  
+                  <label htmlFor="excludeCriteria">Critérios de Exclusão: </label>
+                  {qtExcludeCriteria.map((crit, index) => (
+                    <input key={index} type='text' name='excludeCriteria' defaultValue={crit} />
+                  ))}
+                  <button onClick={() => setQtExcludeCriteria([...qtExcludeCriteria, ''])}>+</button>
+                </div>
+
+                <div className='session'>
+                  <label htmlFor="desc">Descrição da pesquisa</label>
+                  <textarea name='desc' defaultValue={research.description || ''} />
+                </div>
+
+                <div className='session'>
+                  <label htmlFor="begginDate">Data de início</label>
+                  <input type='date' name='begginDate' defaultValue={research.studyDuration?.start || ''} />
+                  
+                  <label htmlFor="endDate">Data de encerramento</label>
+                  <input type='date' name='endDate' defaultValue={research.studyDuration?.end || ''} />
+                </div>
+
+                <div className='session'>
+                  <p><strong>Fases</strong></p>
+                  {fases.map((fase, index) => (
+                    <div key={index}>
+                      <label>Fase {fase.number}</label>
+                      <input type='text' name='fases' defaultValue={fase.description} />
+                    </div>
+                  ))}
+                  <button onClick={() => setFases([...fases, { number: fases.length + 1, title: '', description: '' }])}>+</button>
+                </div>
+
+                <button type="submit" className="send-data">CONFIRMAR ALTERAÇÕES</button>
               </div>
-              <div>
-                <label htmlFor="area">Área do estudo</label>
-                <input type="text" name='area' value={researsh?.area} />
-              </div>
             </div>
-
-            <div className='session'>
-              <label htmlFor="respMed">Médico responsável</label>
-              {qtMed}
-              <button onClick={() => setqtMed([...qtMed, <><input type='text' name='respMed' /><button onClick={() => setqtMed(qtMed.slice(0, qtMed.length))}>-</button></>])}>+</button>
-            </div>
-
-            <div className='session'>
-              <label htmlFor="respInst">Instituição responsável</label>
-              {qtRespInst}
-              <button onClick={() => setQtRespInst([...qtRespInst, <><input type='text' name='respInst' /><button onClick={() => setQtRespInst(qtRespInst.slice(0, qtRespInst.length))}>-</button></>])}>+</button>
-            </div>
-
-
-            <div className='session'>
-              <label htmlFor="includeCriteria">Critérios de Inclusão: </label>
-              {qtIncludeCriteria}
-              <button onClick={() => setQtIncludeCriteria([...qtIncludeCriteria, <><input type='text' name='respInst' /><button onClick={() => setQtIncludeCriteria(qtIncludeCriteria.slice(0, qtIncludeCriteria.length))}>-</button></>])}>+</button>
-              <label htmlFor="excludeCriteria">Critérios de Exclusão: </label>
-              {qtExcludeCriteria}
-              <button onClick={() => setQtExcludeCriteria([...qtExcludeCriteria, <><input type='text' name='respInst' /><button onClick={() => setQtExcludeCriteria(qtExcludeCriteria.slice(0, qtExcludeCriteria.length))}>-</button></>])}>+</button>
-            </div>
-
-            <div className='session'>
-              <label htmlFor="desc">Descrição da pesquisa</label>
-              <textarea name='desc' value={researsh?.description} />
-            </div>
-
-            <div className='session'>
-              <div>
-                <label htmlFor="begginDate">Data de inicio</label>
-                <input type='date' name='begginDate' value={researsh?.studyDuration.start} />
-              </div>
-              <div>
-                <label htmlFor="endDate">Data de encerramento</label>
-                <input type='date' name='endDate' value={researsh?.studyDuration.end} />
-              </div>
-            </div>
-
-            <div className='session'>
-              <p><strong>Fases</strong></p>
-              {fases}
-              <button onClick={() => setFases([...fases, <><label>Fase {fases.length + 1}</label><input type='text' name='fases' /><button onClick={() => setFases(fases.slice(0, fases.length))}>-</button></>])}>+</button>
-            </div>
-
-            <div className='session'>
-              <label htmlFor="local"> Local da pesquisa (Apenas estado e município)</label>
-              <input type='text' name='local' value={researsh?.location} />
-            </div>
-
-            <div className='session'>
-              <label htmlFor="documents"> Documentos (PDF): </label>
-              <div></div>
-              <button>+</button>
-            </div>
-
-            <button type="submit" className="send-data">CONFIRMAR ALTERAÇÕES</button>
-
           </div>
-        </div>
+        )}
       </div>
     </>
-  )
+  );
 }

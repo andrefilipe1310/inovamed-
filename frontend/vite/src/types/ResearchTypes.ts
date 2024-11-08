@@ -8,7 +8,7 @@ type StudyDuration = {
     end: string;   // formatado como "yyyy-MM-dd"
 };
 
-type Phase = {
+export type Phase = {
     number: number;
     title: string;
     description: string;
