@@ -38,6 +38,8 @@ public class ResearchController {
     @Autowired
     FindByCodeResearchService findByCodeResearchService;
     @Autowired
+    UpdateResearchByIdService updateResearchByIdService;
+    @Autowired
     TokenService tokenService;
 
     @PostMapping(produces = "application/json")
@@ -86,10 +88,18 @@ public class ResearchController {
     public ResponseEntity<ResearchResponseDTO> findById(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(this.findByIdResearchService.execute(id));
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<ResearchResponseDTO> update(@PathVariable("id") Long id,
-                                                      @RequestBody ResearchUpdateDTO researchUpdateDTO){
-        return ResponseEntity.status(HttpStatus.OK).body(this.updateResearchService.execute(id,researchUpdateDTO));
+    @PutMapping("{id}")
+    public ResponseEntity<ResearchResponseDTO> updateById(@PathVariable("id") Long id, @RequestBody ResearchUpdateDTO researchUpdateDTO){
+
+        return ResponseEntity.status(HttpStatus.OK).body(this.updateResearchByIdService.execute(id,researchUpdateDTO));
+    }
+    @PutMapping("code/{code}")
+    public ResponseEntity<ResearchResponseDTO> update(HttpServletRequest request,
+                                                      @RequestBody ResearchUpdateDTO researchUpdateDTO,@PathVariable("code") int code){
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        return ResponseEntity.status(HttpStatus.OK).body(this.updateResearchService.execute(userId,researchUpdateDTO,code));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id){

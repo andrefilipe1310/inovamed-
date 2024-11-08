@@ -37,3 +37,32 @@ export type ResearchResponseDTO = {
     patientsNamesAnyCode: string[];
     clinicalRepresentativeNameAndKey: string;
 };
+
+export type ResearchUpdateDTO = {
+    title:string
+    area:string
+    numberOfPatients:number
+    availableVacancies:number
+    responsibleDoctors:string[]
+    institutions:string[]
+    description:string
+    criteria:Criteria
+    studyDuration:StudyDuration
+    phases:Phase[]
+    currentPhase:number
+    location:string
+    attachments:AttachmentFindResponseDTO[]
+}
+
+/* 
+public record ResearchUpdateDTO(String title, String area,
+                                int numberOfPatients, int availableVacancies,
+                                List<String> responsibleDoctors,List<String> institutions,
+                                String description,Criteria criteria,
+                                StudyDuration studyDuration,
+                                List<Phases> phases,
+                                int currentPhase,String location,List<Attachment> attachments) {
+}
+
+
+*/
