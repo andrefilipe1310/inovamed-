@@ -6,6 +6,8 @@ import com.inovamed.clinical_study_system.model.clinical_study_representative.Cl
 import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.repository.UserRepository;
 import com.inovamed.clinical_study_system.service.clinical_study_representative.*;
+import com.inovamed.clinical_study_system.service.token.TokenService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,8 @@ public class ClinicalRepresentativeController {
     @Autowired
     private UpdateClinicalRepresentativeService updateClinicalRepresentativeService;
     @Autowired
+    private TokenService tokenService;
+    @Autowired
     private UserRepository userRepository;
 
 
@@ -37,14 +41,16 @@ public class ClinicalRepresentativeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createClinicalRepresentativeService.execute(clinicalRequestDTO));
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<ClinicalStudyRepresentativeResponseDTO>> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(findAllClinicalRepresentativeService.execute());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ClinicalStudyRepresentativeResponseDTO> findById(@PathVariable("id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(findByIdClinicalRepresentativeService.execute(id));
+    @GetMapping
+    public ResponseEntity<ClinicalStudyRepresentativeResponseDTO> findById(HttpServletRequest request) {
+        String token = request.getHeader("Authorization").substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        return ResponseEntity.status(HttpStatus.OK).body(findByIdClinicalRepresentativeService.execute(userId));
     }
 
     @PutMapping("/{id}")

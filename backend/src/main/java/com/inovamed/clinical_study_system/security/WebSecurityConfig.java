@@ -56,6 +56,9 @@ public class WebSecurityConfig {
                     authorize.requestMatchers(HttpMethod.GET, "/digital-signature/verify/**").hasRole("PATIENT");
                     authorize.requestMatchers(HttpMethod.DELETE, "/digital-signature/**").hasRole("PATIENT");
 
+                    // Clinical representative Endpoints
+
+                    authorize.requestMatchers(HttpMethod.GET,"/clinical-representative/**").hasRole("STUDY_REPRESENTATIVE");
 
                     //authorize.anyRequest().permitAll();
 

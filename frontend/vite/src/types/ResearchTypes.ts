@@ -38,6 +38,23 @@ export type ResearchResponseDTO = {
     clinicalRepresentativeNameAndKey: string;
 };
 
+export type ResearchRequestDTO = {
+    title:string
+    area:string
+    numberOfPatients:number
+    availableVacancies:number
+    responsibleDoctors:string[]
+    institutions:string[]
+    description:string
+    criteria:Criteria
+    studyDuration:StudyDuration
+    phases:string
+    currentPhase:number
+    location:string
+}
+
+
+
 export type ResearchUpdateDTO = {
     title:string
     area:string
