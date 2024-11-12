@@ -54,6 +54,8 @@ public class ResearchController {
 
         // Converter phases de JSON para List<Phases>
         ObjectMapper objectMapper = new ObjectMapper();
+        System.out.println("aaaaaaaaaaa");
+        System.out.println(researchRequestDTO.numberOfPatients()+"  "+researchRequestDTO.title());
         List<Phases> phases = objectMapper.readValue(researchRequestDTO.phases(), new TypeReference<List<Phases>>() {});
 
         // Agora passe phases convertida para o serviço de criação

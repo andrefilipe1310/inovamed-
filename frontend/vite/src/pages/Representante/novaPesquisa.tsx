@@ -13,8 +13,9 @@ export default function RepNovaPesquisa() {
         institutions: [],
         description: "",
         criteria: { inclusion: [], exclusion: [] },
-        studyDuration: { start: "", end: "" },
-        phases: "",
+        start_date:"2024-01-01",
+        end_date:"2025-12-31",
+        phases: '[{"number": 1, "title": "Safety evaluation", "description": "Description 1"}, {"number": 2, "title": "Effectiveness evaluation", "description": "Description 2"}]',
         currentPhase: 0,
         location: ""
     });
@@ -26,7 +27,7 @@ export default function RepNovaPesquisa() {
             })
             .catch(error => {
                 console.error(error);
-                console.log(typeof researchRequestDTO.numberOfPatients)
+                console.log(researchRequestDTO)
             });
     };
 
@@ -162,7 +163,7 @@ export default function RepNovaPesquisa() {
                                 <input
                                     type='date'
                                     name='start'
-                                    onChange={(e) => handleChange("studyDuration", { ...researchRequestDTO.studyDuration, start: e.target.value })}
+                                    onChange={(e) => handleChange("studyDuration", { ...researchRequestDTO, start_date: e.target.value })}
                                 />
                             </div>
                             <div>
@@ -170,7 +171,7 @@ export default function RepNovaPesquisa() {
                                 <input
                                     type='date'
                                     name='end'
-                                    onChange={(e) => handleChange("studyDuration", { ...researchRequestDTO.studyDuration, end: e.target.value })}
+                                    onChange={(e) => handleChange("studyDuration", { ...researchRequestDTO, end_date: e.target.value })}
                                 />
                             </div>
                         </div>

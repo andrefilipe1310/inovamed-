@@ -47,7 +47,8 @@ export type ResearchRequestDTO = {
     institutions:string[]
     description:string
     criteria:Criteria
-    studyDuration:StudyDuration
+    start_date:string
+    end_date:string
     phases:string
     currentPhase:number
     location:string
