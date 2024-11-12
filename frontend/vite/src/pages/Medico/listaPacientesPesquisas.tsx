@@ -1,6 +1,7 @@
 
 import Navbar from "../../components/Navbar";
 import pesquisasMedicas from '../../components/medicoinfo';
+import { Link } from "react-router-dom";
 export default function MedListPacientesPesquisas(){
 
     //const [showPesqId, setShowpesqId] = useState<number>()
@@ -25,7 +26,7 @@ export default function MedListPacientesPesquisas(){
                     <p className="p2-card-medico">#00{pesquisa.id}</p>
                     </div>
                     </div>
-                </div>
+                    </div>
                 ))}
                 </div>
                 </div>

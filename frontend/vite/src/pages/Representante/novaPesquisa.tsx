@@ -1,151 +1,193 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Navbar from "../../components/Navbar";
+import api from "../../config/axiosConfig";
+import { ResearchRequestDTO } from "../../types/ResearchTypes";
 
-export default function RepNovaPesquisa(){
+export default function RepNovaPesquisa() {
+    const [researchRequestDTO, setResearchRequestDTO] = useState<ResearchRequestDTO>({
+        title: "",
+        area: "",
+        numberOfPatients: 0,
+        availableVacancies: 0,
+        responsibleDoctors: [],
+        institutions: [],
+        description: "",
+        criteria: { inclusion: [], exclusion: [] },
+        studyDuration: { start: "", end: "" },
+        phases: "",
+        currentPhase: 0,
+        location: ""
+    });
 
-    interface Study {
-        id: number;
-        code: number;
-        title: string;
-        area: string;
-        numberOfPatients: number;
-        availableVacancies: number;
-        responsibleDoctors: string[];
-        institutions: string[];
-        description: string;
-        criteria: Criteria;
-        studyDuration: StudyDuration;
-        phases: Phase[];
-        currentPhase: number;
-        location: string;
-        attachments: Attachment[];
-        patients: Patient[];
-        clinicalRepresentative: ClinicalRepresentative;
-      }
-      
-      interface Criteria {
-        ageRange: string;
-        requiredCondition: string;
-        exclusionCriteria: string;
-      }
-      
-      interface StudyDuration {
-        startDate: string; // consider using Date if necessary
-        endDate: string;   // consider using Date if necessary
-      }
-      
-      interface Phase {
-        phaseNumber: number;
-        description: string;
-      }
-      
-      interface Attachment {
-        id: number;
-        fileName: string;
-        fileType: string;
-      }
-      
-      interface Patient {
-        id: number;
-        name: string;
-        email: string;
-      }
-      
-      interface ClinicalRepresentative {
-        id: number;
-        name: string;
-        email: string;
-      }
+    const handleCreateResearch = async () => {
+        api.post("/research", researchRequestDTO)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.error(error);
+                console.log(typeof researchRequestDTO.numberOfPatients)
+            });
+    };
 
-      const [qtMed,setqtMed] = useState([<input type='text' name='respMed' /> ])
-      const [qtRespInst,setQtRespInst] = useState([<input type='text' name='respInst' /> ])
-      const [qtIncludeCriteria,setQtIncludeCriteria] = useState([<input type='text' name='includeCriteria' /> ])
-      const [qtExcludeCriteria,setQtExcludeCriteria] = useState([<input type='text' name='excludeCriteria' /> ])
-      const [fases,setFases] = useState([<><label htmlFor="fases">Fase 1</label><input type='text' name='fases' /></> ])
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        handleCreateResearch();
+    };
 
+    const handleChange = (field: string, value: any) => {
+        setResearchRequestDTO(prev => ({ ...prev, [field]: value }));
+    };
 
-    return(
+    const handleArrayChange = (field: string, index: number, value: string, isSubfield = false) => {
+        setResearchRequestDTO(prev => {
+            const updatedArray = [...(isSubfield ? prev.criteria[field] : prev[field])];
+            updatedArray[index] = value;
+            return isSubfield
+                ? { ...prev, criteria: { ...prev.criteria, [field]: updatedArray } }
+                : { ...prev, [field]: updatedArray };
+        });
+    };
+
+    const handleAddField = (field: string, isSubfield = false) => {
+        setResearchRequestDTO(prev => {
+            const updatedArray = [...(isSubfield ? prev.criteria[field] : prev[field]), ""];
+            return isSubfield
+                ? { ...prev, criteria: { ...prev.criteria, [field]: updatedArray } }
+                : { ...prev, [field]: updatedArray };
+        });
+    };
+
+    return (
         <>
-       <Navbar/>
-            <div className='container-page'> 
+            <Navbar />
+            <div className='container-page'>
                 <h1 className="title-page">NOVA PESQUISA</h1>
-                <div className="card-border" style={{marginBottom:"2vw"}}>
-                    <div className='form-new-research'>
+                <div className="card-border" style={{ marginBottom: "2vw" }}>
+                    <form onSubmit={handleSubmit} className='form-new-research'>
                         <div className='session'>
                             <label htmlFor="title">Título</label>
-                            <input type="text" name='title' /> 
+                            <input
+                                type="text"
+                                name='title'
+                                onChange={(e) => handleChange("title", e.target.value)}
+                            />
                         </div>
 
                         <div className='session'>
                             <div>
-                                <label htmlFor="pacients">Pacientes</label>
-                                <input type='number' name='pacients' /> 
+                                <label htmlFor="numberOfPatients">Pacientes</label>
+                                <input
+                                    type='number'
+                                    name='numberOfPatients'
+                                    onChange={(e) => handleChange("numberOfPatients", +e.target.value)}
+                                />
                             </div>
                             <div>
                                 <label htmlFor="area">Área do estudo</label>
-                                <input type="text" name='area' /> 
+                                <input
+                                    type="text"
+                                    name='area'
+                                    onChange={(e) => handleChange("area", e.target.value)}
+                                />
                             </div>
                         </div>
 
                         <div className='session'>
-                            <label htmlFor="respMed">Médico responsável</label>
-                            {qtMed}
-                            <button onClick={()=>setqtMed([...qtMed,<><input type='text' name='respMed' /><button onClick={()=>setqtMed(qtMed.slice(0, qtMed.length))}>-</button></>])}>+</button>
+                            <label htmlFor="responsibleDoctors">Médico responsável</label>
+                            {researchRequestDTO.responsibleDoctors.map((doctor, index) => (
+                                <input
+                                    key={index}
+                                    type='text'
+                                    name='responsibleDoctors'
+                                    value={doctor}
+                                    onChange={(e) => handleArrayChange("responsibleDoctors", index, e.target.value)}
+                                />
+                            ))}
+                            <button type="button" onClick={() => handleAddField("responsibleDoctors")}>+</button>
                         </div>
 
                         <div className='session'>
-                            <label htmlFor="respInst">Instituição responsável</label>
-                            {qtRespInst}
-                            <button onClick={()=>setQtRespInst([...qtRespInst,<><input type='text' name='respInst' /><button onClick={()=>setQtRespInst(qtRespInst.slice(0, qtRespInst.length))}>-</button></>])}>+</button>
+                            <label htmlFor="institutions">Instituição responsável</label>
+                            {researchRequestDTO.institutions.map((institution, index) => (
+                                <input
+                                    key={index}
+                                    type='text'
+                                    name='institutions'
+                                    value={institution}
+                                    onChange={(e) => handleArrayChange("institutions", index, e.target.value)}
+                                />
+                            ))}
+                            <button type="button" onClick={() => handleAddField("institutions")}>+</button>
                         </div>
 
                         <div className='session'>
-                            <label htmlFor="includeCriteria">Critérios de Inclusão: </label>
-                            {qtIncludeCriteria}
-                            <button onClick={()=>setQtIncludeCriteria([...qtIncludeCriteria,<><input type='text' name='respInst' /><button onClick={()=>setQtIncludeCriteria(qtIncludeCriteria.slice(0, qtIncludeCriteria.length))}>-</button></>])}>+</button>
-                            <label htmlFor="excludeCriteria">Critérios de Exclusão: </label>
-                            {qtExcludeCriteria}
-                            <button onClick={()=>setQtExcludeCriteria([...qtExcludeCriteria,<><input type='text' name='respInst' /><button onClick={()=>setQtExcludeCriteria(qtExcludeCriteria.slice(0, qtExcludeCriteria.length))}>-</button></>])}>+</button>
+                            <label htmlFor="criteria">Critérios de Inclusão e Exclusão</label>
+                            <p>Inclusão:</p>
+                            {researchRequestDTO.criteria.inclusion.map((criteria, index) => (
+                                <input
+                                    key={`inclusion-${index}`}
+                                    type='text'
+                                    name='includeCriteria'
+                                    value={criteria}
+                                    onChange={(e) => handleArrayChange("inclusion", index, e.target.value, true)}
+                                />
+                            ))}
+                            <button type="button" onClick={() => handleAddField("inclusion", true)}>+</button>
+                            <p>Exclusão:</p>
+                            {researchRequestDTO.criteria.exclusion.map((criteria, index) => (
+                                <input
+                                    key={`exclusion-${index}`}
+                                    type='text'
+                                    name='excludeCriteria'
+                                    value={criteria}
+                                    onChange={(e) => handleArrayChange("exclusion", index, e.target.value, true)}
+                                />
+                            ))}
+                            <button type="button" onClick={() => handleAddField("exclusion", true)}>+</button>
                         </div>
 
                         <div className='session'>
-                            <label htmlFor="desc">Descrição da pesquisa</label>
-                            <textarea name='desc' /> 
+                            <label htmlFor="description">Descrição da pesquisa</label>
+                            <textarea
+                                name='description'
+                                onChange={(e) => handleChange("description", e.target.value)}
+                            />
                         </div>
 
                         <div className='session'>
+                            <label htmlFor="studyDuration">Duração da pesquisa</label>
                             <div>
-                                <label htmlFor="begginDate">Data de inicio</label>
-                                <input type='date' name='begginDate' />
+                                <label htmlFor="start">Data de início</label>
+                                <input
+                                    type='date'
+                                    name='start'
+                                    onChange={(e) => handleChange("studyDuration", { ...researchRequestDTO.studyDuration, start: e.target.value })}
+                                />
                             </div>
                             <div>
-                                <label htmlFor="endDate">Data de encerramento</label>
-                                <input type='date' name='endDate' />
+                                <label htmlFor="end">Data de encerramento</label>
+                                <input
+                                    type='date'
+                                    name='end'
+                                    onChange={(e) => handleChange("studyDuration", { ...researchRequestDTO.studyDuration, end: e.target.value })}
+                                />
                             </div>
                         </div>
-                        
-                        <div className='session'>
-                            <p><strong>Fases</strong></p>
-                            {fases}
-                            <button onClick={()=>setFases([...fases,<><label>Fase {fases.length+1}</label><input type='text' name='fases' /><button onClick={()=>setFases(fases.slice(0,fases.length))}>-</button></>])}>+</button>
-                        </div>
 
                         <div className='session'>
-                            <label htmlFor="local"> Local da pesquisa (Apenas estado e município)</label>
-                            <input type='text' name='local' /> 
+                            <label htmlFor="location"> Local da pesquisa</label>
+                            <input
+                                type='text'
+                                name='location'
+                                onChange={(e) => handleChange("location", e.target.value)}
+                            />
                         </div>
 
-                        <div className='session'>
-                            <label htmlFor="documents"> Documentos (PDF): </label>
-                            <div></div>
-                            <button>+</button>
-                        </div>
-                    
                         <button type="submit" className="send-data">CRIAR PESQUISA</button>
-
-                    </div>
-            </div>
+                    </form>
+                </div>
             </div>
         </>
-    )
+    );
 }

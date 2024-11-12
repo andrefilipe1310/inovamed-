@@ -33,21 +33,21 @@ export default function RepPesquisaInfo() {
     }
 
     // Função para baixar o PDF
-const downloadPDF = (archive:Uint8Array) => {
-    // Crie um Blob com o conteúdo binário do PDF
-    const blob = new Blob([archive], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-
-    // Crie um link temporário para download e clique nele
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = "document.pdf"; // Nome do arquivo
-    link.click();
-
-    // Libere o URL temporário
-    URL.revokeObjectURL(url);
-};
-
+    const downloadAttachment = (name:string, archiveBase64:Base64URLString) => {
+        // Converte a string Base64 para um Blob
+        const byteCharacters = atob(archiveBase64);
+        const byteNumbers = Array.from(byteCharacters, char => char.charCodeAt(0));
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: 'application/pdf' });
+    
+        // Cria um link temporário para baixar o arquivo
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = name;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      };
 
     useEffect(() => {
         if (id) {
@@ -107,10 +107,14 @@ const downloadPDF = (archive:Uint8Array) => {
                     <div className="section-4">
                         <strong>Documentos:</strong>
                         <div>
-                            {research?.attachments.map((doc) => (
-                                <button key={doc.name} onClick={() => downloadPDF(doc.archive)}>
-                                    {doc.name}
-                                </button>
+                            {(research == null || research == undefined) && <div>Nenhum arquivo para baixar</div> } 
+                            {research?.attachments.map((attachment, index) => (
+                                 <div key={index}>
+                                 <p>{attachment.name}</p>
+                                 <button onClick={() => downloadAttachment(attachment.name, attachment.archive)}>
+                                   Baixar
+                                 </button>
+                                 </div>
                             ))}
                         </div>
                         {error && <p style={{ color: 'red' }}>{error}</p>}

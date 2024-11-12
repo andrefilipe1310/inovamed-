@@ -258,6 +258,29 @@ align-items: center;
 }
 
 
+/*CADASTRO PACIENTE*/
+
+h1.title-page-pac {
+  font-family: Montserrat-Bold;
+  font-size: 3vw;
+  background: linear-gradient(180deg, #028275, #156b56);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.logo-container-pac {
+  width: 12vw;
+  height: 5vw;
+  background-color: #028275;
+  border-radius: 15px;
+  margin: 0vw 0vw 2vw 0vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-container-pac img {
+  height: 90%;
+}
 
 
   

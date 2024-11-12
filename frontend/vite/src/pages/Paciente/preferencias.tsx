@@ -4,14 +4,14 @@ interface Preferencias {
     titulo: string | JSX.Element;
     desc: string;
 }
-
+let preferenciasJson = {
+    titulo: "Permitir que os dados sejam visualizados pelo site para",
+    desc: "Eu, autorizo a disponibilização dos resultados da minha participação neste estudo clínico para fins de pesquisa e desenvolvimento. " +
+          "Compreendo que os dados coletados poderão ser utilizados em publicações científicas, apresentações e relatórios, garantindo que minha identidade " +
+          "e informações pessoais permanecerão confidenciais e não serão divulgadas.",
+}
 const preferencias: Preferencias[] = [
-    {
-        titulo: "Permitir que os dados sejam visualizados pelo site para",
-        desc: "Eu, autorizo a disponibilização dos resultados da minha participação neste estudo clínico para fins de pesquisa e desenvolvimento. " +
-              "Compreendo que os dados coletados poderão ser utilizados em publicações científicas, apresentações e relatórios, garantindo que minha identidade " +
-              "e informações pessoais permanecerão confidenciais e não serão divulgadas.",
-    },
+    preferenciasJson,
     {
         titulo: "Receber notificações sobre novos estudos",
         desc: "Eu, autorizo o envio de notificações sobre novos estudos e pesquisas que possam ser do meu interesse, por meio do meu e-mail ou telefone.",

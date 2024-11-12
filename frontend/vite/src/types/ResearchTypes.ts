@@ -8,7 +8,7 @@ type StudyDuration = {
     end: string;   // formatado como "yyyy-MM-dd"
 };
 
-type Phase = {
+export type Phase = {
     number: number;
     title: string;
     description: string;
@@ -16,7 +16,7 @@ type Phase = {
 
 type AttachmentFindResponseDTO = {
     name: string;
-    archive: Uint8Array;
+    archive: Base64URLString;
 };
 
 export type ResearchResponseDTO = {
@@ -37,3 +37,37 @@ export type ResearchResponseDTO = {
     patientsNamesAnyCode: string[];
     clinicalRepresentativeNameAndKey: string;
 };
+
+export type ResearchRequestDTO = {
+    title:string
+    area:string
+    numberOfPatients:number
+    availableVacancies:number
+    responsibleDoctors:string[]
+    institutions:string[]
+    description:string
+    criteria:Criteria
+    studyDuration:StudyDuration
+    phases:string
+    currentPhase:number
+    location:string
+}
+
+
+
+export type ResearchUpdateDTO = {
+    title:string
+    area:string
+    numberOfPatients:number
+    availableVacancies:number
+    responsibleDoctors:string[]
+    institutions:string[]
+    description:string
+    criteria:Criteria
+    studyDuration:StudyDuration
+    phases:Phase[]
+    currentPhase:number
+    location:string
+    attachments:AttachmentFindResponseDTO[]
+}
+

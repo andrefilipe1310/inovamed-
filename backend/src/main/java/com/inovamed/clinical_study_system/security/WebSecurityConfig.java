@@ -47,15 +47,18 @@ public class WebSecurityConfig {
                     // Research Endpoints
                     authorize.requestMatchers(HttpMethod.POST, "/research").hasRole("STUDY_REPRESENTATIVE");
                     authorize.requestMatchers(HttpMethod.GET, "/research/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
-
+                    authorize.requestMatchers(HttpMethod.PUT,"/research/**").hasRole("STUDY_REPRESENTATIVE");
                     // Notification Endpoint
                     authorize.requestMatchers(HttpMethod.POST, "/notification").hasRole("STUDY_REPRESENTATIVE");
-
+                    authorize.requestMatchers(HttpMethod.GET,"/notification/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
                     // Digital Signature Endpoints
                     authorize.requestMatchers(HttpMethod.POST, "/digital-signature").hasRole("PATIENT");
                     authorize.requestMatchers(HttpMethod.GET, "/digital-signature/verify/**").hasRole("PATIENT");
                     authorize.requestMatchers(HttpMethod.DELETE, "/digital-signature/**").hasRole("PATIENT");
 
+                    // Clinical representative Endpoints
+
+                    authorize.requestMatchers(HttpMethod.GET,"/clinical-representative/**").hasRole("STUDY_REPRESENTATIVE");
 
                     //authorize.anyRequest().permitAll();
 
