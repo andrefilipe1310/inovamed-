@@ -66,8 +66,7 @@ public class WebSecurityConfig {
 
                     //authorize.anyRequest().permitAll();
 
-                }).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()));;
+                }).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -82,23 +81,6 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.addAllowedOrigin("http://localhost:5173");
-        corsConfig.addAllowedMethod(HttpMethod.GET);
-        corsConfig.addAllowedMethod(HttpMethod.POST);
-        corsConfig.addAllowedMethod(HttpMethod.PUT);
-        corsConfig.addAllowedMethod(HttpMethod.DELETE);
-        corsConfig.addAllowedHeader("*");
-        corsConfig.setAllowCredentials(true);
-
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfig);
-
-        return source;
-    }
 
 }
 
