@@ -1,27 +1,22 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import InputMask from "react-input-mask";
-import api from "../../../config/axiosConfig";
+
+import apiUnauthorized from "../../../config/axiosUnauthorizedConfig";
 
 export default function RegisterUser() {
   const [searchParams] = useSearchParams();
   const userType = searchParams.get("userType");
-
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    id: null,
     name: "",
     email: "",
     password: "",
-    roles: "REPRESENTATIVE",
     phone: "",
     clinicalRole: "",
     experience: "",
-    institution: "",
-    CRM: "",
-    gender: "",
-    birthDate: "",
-    specialty: "",
+
   });
 
   const togglePasswordVisibility = () => {
@@ -33,17 +28,27 @@ export default function RegisterUser() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:FormEvent) => {
     e.preventDefault();
-    console.log("Dados do formulário enviados:", formData);
     if (userType === "representative") {
-      try {
-        const response = await api.post("/clinical-representative", formData);
-        console.log("Usuário registrado:", response.data);
-      } catch (error) {
-        console.error("Erro ao registrar o usuário:", error.response?.data || error);
-      }
+        apiUnauthorized.post("/clinical-representative", formData)
+        .then(response=>{
+          console.log(response.data)
+        }).catch(error => {
+          console.error("Erro ao registrar usuario:", error);
+         if (!error.response) {
+             setErrorMessage("O servidor está offline. Tente novamente mais tarde.");
+         }else if(error.response.data.statusCode == 'CONFLICT'){
+            setErrorMessage("Este usuario ja esta registrado.");
+         }
+          else {
+             setErrorMessage("Erro ao fazer registro. Preencha todos os campos obrigatorios.");
+         }
+     });
+        
+      
     }
+    
   };
 
   return (
@@ -94,8 +99,8 @@ export default function RegisterUser() {
               id="institution"
               name="institution"
               required
-              value={formData.institution}
-              onChange={handleChange}
+              // value={formData.institution}
+              // onChange={handleChange}
             />
           </>
         ) : null}
@@ -151,7 +156,7 @@ export default function RegisterUser() {
               id="specialty"
               name="specialty"
               required
-              value={formData.specialty}
+              // value={formData.specialty}
               onChange={handleChange}
             />
 
@@ -163,7 +168,7 @@ export default function RegisterUser() {
               id="CRM"
               name="CRM"
               required
-              value={formData.CRM}
+              // value={formData.CRM}
               onChange={handleChange}
             />
 
@@ -189,7 +194,7 @@ export default function RegisterUser() {
               id="gender"
               name="gender"
               required
-              value={formData.gender}
+              // value={formData.gender}
               onChange={handleChange}
             >
               <option value="">Selecione</option>
@@ -206,7 +211,7 @@ export default function RegisterUser() {
               id="birthDate"
               name="birthDate"
               required
-              value={formData.birthDate}
+              // value={formData.birthDate}
               onChange={handleChange}
             />
 
@@ -218,7 +223,7 @@ export default function RegisterUser() {
               id="CRM"
               name="CRM"
               required
-              value={formData.CRM}
+              // value={formData.CRM}
               onChange={handleChange}
             />
           </>
@@ -242,7 +247,7 @@ export default function RegisterUser() {
             {showPassword ? "Ocultar" : "Ver"}
           </button>
         </div>
-
+        {errorMessage && <p style={{color:"red"}} className="error-message">{errorMessage}</p>}
         <button type="submit" className="submit">
           FAZER CADASTRO
         </button>
