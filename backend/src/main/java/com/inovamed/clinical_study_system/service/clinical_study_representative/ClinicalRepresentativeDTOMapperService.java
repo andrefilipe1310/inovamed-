@@ -5,10 +5,10 @@ import com.inovamed.clinical_study_system.exception.UserAlreadyExistsException;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
-import com.inovamed.clinical_study_system.model.user.RegisterDTO;
+
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

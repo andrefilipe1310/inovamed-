@@ -2,12 +2,9 @@ package com.inovamed.clinical_study_system.service.clinical_study_representative
 
 import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
 import com.inovamed.clinical_study_system.exception.EmailAlreadyRegisteredException;
-import com.inovamed.clinical_study_system.exception.UserAlreadyExistsException;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
-import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeUpdateDTO;
-import com.inovamed.clinical_study_system.model.patient.Patient;
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

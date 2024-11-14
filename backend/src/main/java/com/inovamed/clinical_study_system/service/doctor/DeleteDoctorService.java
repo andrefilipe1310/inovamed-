@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 public class DeleteDoctorService {
     @Autowired
     private DoctorRepository doctorRepository;
-    @Autowired
-    private DoctorDTOMapperService doctorDTOMapperService;
+   
 
     public String execute(Long id){
         doctorRepository.deleteById(id);

@@ -1,6 +1,5 @@
 package com.inovamed.clinical_study_system.service.attachment;
 
-import com.inovamed.clinical_study_system.exception.AttachmentNotDeletedException;
 import com.inovamed.clinical_study_system.exception.AttachmentNotFoundException;
 import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
 import com.inovamed.clinical_study_system.model.attachment.Attachment;

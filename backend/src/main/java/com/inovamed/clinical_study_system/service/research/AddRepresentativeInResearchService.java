@@ -27,7 +27,7 @@ public class AddRepresentativeInResearchService {
                     throw new ClinicalRepresentativeNotFoundException();
                 });
 
-        ClinicalStudyRepresentative clinicalRepresentativeCurrent = clinicalRepresentiveRepository
+         clinicalRepresentiveRepository
                 .findById(researchAddRepresentativeDTO
                         .clinicalRepresentativeIdCurrent()).orElseThrow(() -> {
                     throw new ClinicalRepresentativeNotFoundException();

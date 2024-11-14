@@ -76,7 +76,7 @@ public class ResearchDTOMapperService {
             }
             return  attachment;
         }).collect(Collectors.toList());
-        Attachment attachment = new Attachment();
+        
 
 
         research.setCode(generateUniqueCode());

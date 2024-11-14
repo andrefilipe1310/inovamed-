@@ -2,7 +2,6 @@ package com.inovamed.clinical_study_system.service.patient;
 
 
 import com.inovamed.clinical_study_system.exception.DoctorNotFoundException;
-import com.inovamed.clinical_study_system.exception.PatientNotFoundException;
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.patient.Patient;
 import com.inovamed.clinical_study_system.model.patient.PatientRequestDTO;

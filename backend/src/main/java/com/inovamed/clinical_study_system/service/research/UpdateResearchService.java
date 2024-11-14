@@ -3,7 +3,6 @@ package com.inovamed.clinical_study_system.service.research;
 
 import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
 import com.inovamed.clinical_study_system.exception.ResearchNotFoundException;
-import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.research.ResearchResponseDTO;
 import com.inovamed.clinical_study_system.model.research.ResearchUpdateDTO;
@@ -22,7 +21,7 @@ public class UpdateResearchService {
     private ResearchDTOMapperService researchDTOMapperService;
 
     public ResearchResponseDTO execute(Long userId,ResearchUpdateDTO researchUpdateDTO,int code){
-        ClinicalStudyRepresentative clinicalRepresentative = this.clinicalRepository.findById(userId).orElseThrow(()->{
+         this.clinicalRepository.findById(userId).orElseThrow(()->{
             throw new ClinicalRepresentativeNotFoundException();
         });
         Research updatedResearch = this.researchRepository.findByCode(code).orElseThrow(()->{
