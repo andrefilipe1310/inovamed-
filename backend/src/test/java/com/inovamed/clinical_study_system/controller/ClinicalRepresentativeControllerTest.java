@@ -1,23 +1,40 @@
 package com.inovamed.clinical_study_system.controller;
 
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTCreationException;
+import com.inovamed.clinical_study_system.exception.MissingSecretKeyException;
+import com.inovamed.clinical_study_system.exception.TokenGenerationException;
+import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeUpdateDTO;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.research.Research;
+import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.model.user.UserRoles;
 import com.inovamed.clinical_study_system.service.clinical_study_representative.*;
+import com.inovamed.clinical_study_system.service.token.TokenService;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,6 +43,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
+@SpringBootTest
+@TestPropertySource(properties = "api.security.token.secret=0DpI4MpDup0HbR0Sd4LeRF@")
 class ClinicalRepresentativeControllerTest {
 
     @InjectMocks
@@ -46,6 +65,14 @@ class ClinicalRepresentativeControllerTest {
     @Mock
     private UpdateClinicalRepresentativeService updateClinicalRepresentativeService;
 
+    @Mock
+    private TokenService tokenService;
+
+    @Mock
+    private HttpServletRequest request;
+    @Value("${api.security.token.secret:valorPadrao}")
+    private String secret;
+
     private MockMvc mockMvc;
 
     public static final long ID = 1L;
@@ -64,7 +91,7 @@ class ClinicalRepresentativeControllerTest {
     private ClinicalStudyRepresentativeRequestDTO requestDTO;
     private ClinicalStudyRepresentativeResponseDTO responseDTO;
     private ClinicalStudyRepresentativeUpdateDTO updateDTO;
-
+    private String token;
 
     @BeforeEach
     void setUp() {
@@ -104,8 +131,10 @@ class ClinicalRepresentativeControllerTest {
     void findById_ReturnsRepresentative_WhenIdExists() throws Exception {
 
         when(findByIdClinicalRepresentativeService.execute(anyLong())).thenReturn(responseDTO);
+        Mockito.when(tokenService.getUserIdFromToken(any(String.class))).thenReturn(ID);
+        Mockito.when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
 
-        ResponseEntity<ClinicalStudyRepresentativeResponseDTO> response = clinicalRepresentativeController.findById(1L);
+        ResponseEntity<ClinicalStudyRepresentativeResponseDTO> response = clinicalRepresentativeController.findById(request);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(responseDTO, response.getBody());
@@ -135,11 +164,27 @@ class ClinicalRepresentativeControllerTest {
         verify(deleteByIdClinicalRepresentativeService, times(1)).execute(1L);
     }
 
-    private void startClinicalRepresentative(){
+    private String generateToken(User user) {
+        if (secret == null || secret.isEmpty()) {
+            throw new MissingSecretKeyException();
+        }
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            return JWT.create().withIssuer("INOVAMED").withSubject(user.getEmail()).withClaim("userId", user.getId())
+                    .withExpiresAt(genExpirationDate()).sign(algorithm);
+        } catch (JWTCreationException exception) {
+            throw new TokenGenerationException(exception);
+        }
+    }
+    private Instant genExpirationDate() {
+        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+    }
 
+    private void startClinicalRepresentative(){
+        ClinicalStudyRepresentative clinicalRepresentative = new ClinicalStudyRepresentative(ID, NAME, "123456", "Role", "Experience", List.of(), List.of());
         requestDTO = new ClinicalStudyRepresentativeRequestDTO(ID,NAME, EMAIL, PASSWORD, ROLES,PHONE,CLINICAL_ROLES,EXPERIENCES);
         responseDTO = new ClinicalStudyRepresentativeResponseDTO(ID,NAME,EMAIL,PASSWORD,ROLES,PHONE,CLINICAL_ROLES,EXPERIENCES);
         updateDTO = new ClinicalStudyRepresentativeUpdateDTO("Jonathan","jonathan@gmail.com","1234568","(82)98999-4231","Plenor","neurologista");
-
+        token = generateToken(clinicalRepresentative);
     }
 }
