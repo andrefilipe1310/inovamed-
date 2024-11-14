@@ -1,10 +1,11 @@
 import { FormEvent, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 
 import apiUnauthorized from "../../../config/axiosUnauthorizedConfig";
 
 export default function RegisterUser() {
+  const navigate = useNavigate()
   const [searchParams] = useSearchParams();
   const userType = searchParams.get("userType");
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -15,6 +16,7 @@ export default function RegisterUser() {
     password: "",
     phone: "",
     clinicalRole: "",
+    roles:"STUDY_REPRESENTATIVE",
     experience: "",
 
   });
@@ -34,6 +36,8 @@ export default function RegisterUser() {
         apiUnauthorized.post("/clinical-representative", formData)
         .then(response=>{
           console.log(response.data)
+          navigate("/login")
+
         }).catch(error => {
           console.error("Erro ao registrar usuario:", error);
          if (!error.response) {
