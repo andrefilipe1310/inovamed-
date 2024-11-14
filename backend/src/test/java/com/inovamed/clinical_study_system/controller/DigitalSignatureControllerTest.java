@@ -108,7 +108,7 @@ class DigitalSignatureControllerTest {
         doNothing().when(deactivateDigitalSignatureService).execute(anyLong());
 
         // Execução do teste
-        ResponseEntity<Void> response = digitalSignatureController.deactivate(1L);
+        ResponseEntity<?> response = digitalSignatureController.deactivate(1L);
 
         // Verificações
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());

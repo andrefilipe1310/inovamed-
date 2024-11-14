@@ -228,7 +228,7 @@ class AttachmentControllerTest {
 
     @Test
     void deleteReturnsNoContent() {
-        ResponseEntity<Void> response = attachmentController.delete(ID);
+        ResponseEntity<?> response = attachmentController.delete(ID);
 
         assertNotNull(response);
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
