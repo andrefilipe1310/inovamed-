@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.inovamed.clinical_study_system.service.digital_signature.CreateDigitalSignatureServiceTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.842 s -- in com.inovamed.clinical_study_system.service.digital_signature.CreateDigitalSignatureServiceTest
