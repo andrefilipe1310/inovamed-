@@ -1,7 +1,6 @@
 package com.inovamed.clinical_study_system.controller;
 
-import com.inovamed.clinical_study_system.exception.AuthenticationException;
-import com.inovamed.clinical_study_system.exception.UserNotFoundException;
+
 import com.inovamed.clinical_study_system.model.user.AutenticateDTO;
 import com.inovamed.clinical_study_system.model.user.LoginResponseDTO;
 import com.inovamed.clinical_study_system.model.user.RegisterDTO;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.security.auth.login.CredentialException;
+
 
 @RestController
 @RequestMapping("/auth")

@@ -1,9 +1,8 @@
 package com.inovamed.clinical_study_system.model.research;
 
-import com.inovamed.clinical_study_system.model.attachment.Attachment;
+
 import com.inovamed.clinical_study_system.model.attachment.AttachmentFindResponseDTO;
-import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
-import com.inovamed.clinical_study_system.model.patient.Patient;
+
 
 import java.util.List;
 

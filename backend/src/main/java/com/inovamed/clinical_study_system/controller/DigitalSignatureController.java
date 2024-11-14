@@ -1,6 +1,6 @@
 package com.inovamed.clinical_study_system.controller;
 
-import com.inovamed.clinical_study_system.exception.TokenNotFoundException;
+
 import com.inovamed.clinical_study_system.model.attachment.AttachmentRequestDTO;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignatureRequestDTO;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignatureResponseDTO;
@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.security.auth.login.CredentialException;
+
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -46,7 +46,7 @@ public class DigitalSignatureController {
         return ResponseEntity.status(HttpStatus.OK).body(verifyDigitalSignatureService.execute(id));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity deactivate(@PathVariable("id") Long id){
+    public ResponseEntity<?> deactivate(@PathVariable("id") Long id){
         this.deactivateDigitalSignatureService.execute(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

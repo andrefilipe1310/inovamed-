@@ -10,7 +10,6 @@ import com.inovamed.clinical_study_system.service.notification.FindByIdNotificat
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,7 +44,7 @@ public class NotificationController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") Long id){
+    public ResponseEntity<?> delete(@PathVariable("id") Long id){
         deleteNotificationService.execute(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

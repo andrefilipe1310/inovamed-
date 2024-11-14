@@ -1,6 +1,6 @@
 package com.inovamed.clinical_study_system.model.research;
 
-import com.inovamed.clinical_study_system.model.attachment.Attachment;
+
 
 import java.time.LocalDate;
 import java.util.List;

@@ -4,7 +4,6 @@ import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.patient.Patient;
 import com.inovamed.clinical_study_system.model.user.User;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

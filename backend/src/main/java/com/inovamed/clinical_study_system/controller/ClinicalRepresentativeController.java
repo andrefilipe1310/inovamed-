@@ -3,15 +3,14 @@ package com.inovamed.clinical_study_system.controller;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeUpdateDTO;
-import com.inovamed.clinical_study_system.model.user.User;
-import com.inovamed.clinical_study_system.repository.UserRepository;
+
+
 import com.inovamed.clinical_study_system.service.clinical_study_representative.*;
 import com.inovamed.clinical_study_system.service.token.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,8 +30,7 @@ public class ClinicalRepresentativeController {
     private UpdateClinicalRepresentativeService updateClinicalRepresentativeService;
     @Autowired
     private TokenService tokenService;
-    @Autowired
-    private UserRepository userRepository;
+ 
 
 
 

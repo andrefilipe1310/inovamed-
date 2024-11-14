@@ -60,7 +60,7 @@ public class AttachmentController {
         return ResponseEntity.status(HttpStatus.OK).body(attachmentService.update(id,attachmentRequestDTO));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") Long id){
+    public ResponseEntity<?> delete(@PathVariable("id") Long id){
         this.attachmentService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

@@ -104,7 +104,7 @@ public class ResearchController {
         return ResponseEntity.status(HttpStatus.OK).body(this.updateResearchService.execute(userId,researchUpdateDTO,code));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") Long id){
+    public ResponseEntity<?> delete(@PathVariable("id") Long id){
         this.deleteByIdResearshService.execute(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

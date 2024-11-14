@@ -1,6 +1,6 @@
 package com.inovamed.clinical_study_system.security;
 
-import com.inovamed.clinical_study_system.exception.TokenNotFoundException;
+
 import com.inovamed.clinical_study_system.exception.UserNotFoundException;
 import com.inovamed.clinical_study_system.repository.UserRepository;
 import com.inovamed.clinical_study_system.service.token.TokenService;
