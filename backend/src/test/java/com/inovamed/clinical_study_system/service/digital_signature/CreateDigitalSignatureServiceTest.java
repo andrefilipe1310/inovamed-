@@ -1,6 +1,6 @@
 package com.inovamed.clinical_study_system.service.digital_signature;
 
-import com.inovamed.clinical_study_system.exception.FailedToSignDocumentException;
+
 import com.inovamed.clinical_study_system.exception.InvalidSignatureValidityException;
 import com.inovamed.clinical_study_system.exception.PatientNotFoundException;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentRequestDTO;

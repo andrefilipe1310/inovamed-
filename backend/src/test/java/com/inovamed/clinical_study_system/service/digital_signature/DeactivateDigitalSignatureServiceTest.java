@@ -4,7 +4,6 @@ import com.inovamed.clinical_study_system.exception.SignatureIsInactiveException
 import com.inovamed.clinical_study_system.exception.SignatureNotFoundException;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignature;
 import com.inovamed.clinical_study_system.repository.DigitalSignatureRepository;
-import com.inovamed.clinical_study_system.service.digital_signature.DeactivateDigitalSignatureService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

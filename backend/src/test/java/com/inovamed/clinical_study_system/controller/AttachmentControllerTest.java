@@ -9,8 +9,6 @@ import com.inovamed.clinical_study_system.model.attachment.AttachmentCreateRespo
 import com.inovamed.clinical_study_system.model.attachment.AttachmentFindResponseDTO;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
-import com.inovamed.clinical_study_system.model.notification.Notification;
-import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.service.attachment.AttachmentService;
 import com.inovamed.clinical_study_system.service.token.TokenService;
@@ -71,6 +69,7 @@ class AttachmentControllerTest {
     private static final String MESSAGE = "file saved successfully";
 
     private static final MultipartFile FILE = new MultipartFile() {
+        @SuppressWarnings("null")
         @Override
         public String getName() {
             return "";
@@ -96,23 +95,26 @@ class AttachmentControllerTest {
             return 0;
         }
 
+        @SuppressWarnings("null")
         @Override
         public byte[] getBytes() throws IOException {
             return new byte[0];
         }
 
+        @SuppressWarnings("null")
         @Override
         public InputStream getInputStream() throws IOException {
             return null;
         }
 
         @Override
-        public void transferTo(File dest) throws IOException, IllegalStateException {
+        public void transferTo(@SuppressWarnings("null") File dest) throws IOException, IllegalStateException {
 
         }
         // Methods omitted for brevity
     };
     private static final MultipartFile NEW_FILE = new MultipartFile() {
+        @SuppressWarnings("null")
         @Override
         public String getName() {
             return "";
@@ -138,18 +140,20 @@ class AttachmentControllerTest {
             return 0;
         }
 
+        @SuppressWarnings("null")
         @Override
         public byte[] getBytes() throws IOException {
             return new byte[2];
         }
 
+        @SuppressWarnings("null")
         @Override
         public InputStream getInputStream() throws IOException {
             return null;
         }
 
         @Override
-        public void transferTo(File dest) throws IOException, IllegalStateException {
+        public void transferTo(@SuppressWarnings("null") File dest) throws IOException, IllegalStateException {
 
         }
         // Methods omitted for brevity
@@ -177,6 +181,7 @@ class AttachmentControllerTest {
         assertEquals(attachmentCreateResponseDTO, response.getBody());
     }
 
+    @SuppressWarnings("null")
     @Test
     void findAllByIdReturnListOfAttachments() throws IOException {
         Mockito.when(attachmentService.findAllById(anyLong())).thenReturn(List.of(attachmentFindResponseDTO));
@@ -191,6 +196,7 @@ class AttachmentControllerTest {
         assertEquals(attachmentFindResponseDTO, response.getBody().get(0));
     }
 
+    @SuppressWarnings("null")
     @Test
     void findAllReturnsListOfAttachments() throws IOException {
         Mockito.when(attachmentService.findAll()).thenReturn(List.of(attachmentFindResponseDTO));

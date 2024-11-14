@@ -1,6 +1,6 @@
 package com.inovamed.clinical_study_system.service.digital_signature;
 
-import com.inovamed.clinical_study_system.exception.FailedToSignDocumentException;
+
 import com.inovamed.clinical_study_system.exception.SignatureErrorVerifyException;
 import com.inovamed.clinical_study_system.exception.SignatureNotFoundException;
 import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignature;

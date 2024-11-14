@@ -1,7 +1,6 @@
 package com.inovamed.clinical_study_system.service.clinical_study_representative;
 
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
-import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.research.Research;
@@ -15,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
@@ -30,7 +28,6 @@ class FindAllClinicalRepresentativeServiceTest {
     @Mock
     private ClinicalRepresentativeDTOMapperService clinicalRepresentativeDTOMapperService;
     private ClinicalStudyRepresentative clinicalRepresentative;
-    private ClinicalStudyRepresentativeRequestDTO requestDTO;
     private ClinicalStudyRepresentativeResponseDTO responseDTO;
 
 
@@ -86,7 +83,6 @@ class FindAllClinicalRepresentativeServiceTest {
     // instanciando as classes necessarias
     private void startClinicalRepresentative(){
         clinicalRepresentative = new ClinicalStudyRepresentative(ID, NAME, PHONE,CLINICAL_ROLES, EXPERIENCES, RESEARCH, NOTIFICATIONS);
-        requestDTO = new ClinicalStudyRepresentativeRequestDTO(ID,NAME, EMAIL, PASSWORD, ROLES,PHONE,CLINICAL_ROLES,EXPERIENCES);
         responseDTO = new ClinicalStudyRepresentativeResponseDTO(ID,NAME,EMAIL,PASSWORD,ROLES,PHONE,CLINICAL_ROLES,EXPERIENCES);
 
     }

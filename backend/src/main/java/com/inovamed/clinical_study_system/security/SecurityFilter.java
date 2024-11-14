@@ -26,7 +26,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, UserNotFoundException {
+    protected void doFilterInternal(@SuppressWarnings("null") HttpServletRequest request, @SuppressWarnings("null") HttpServletResponse response, @SuppressWarnings("null") FilterChain filterChain) throws ServletException, IOException, UserNotFoundException {
         // Permitir acesso ao endpoint de login sem autenticação
         if (request.getRequestURI().equals("/auth/login")) {
             filterChain.doFilter(request, response);

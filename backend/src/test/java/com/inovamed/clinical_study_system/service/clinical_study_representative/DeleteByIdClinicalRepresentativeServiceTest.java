@@ -1,12 +1,9 @@
 package com.inovamed.clinical_study_system.service.clinical_study_representative;
 
 import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
-import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
-import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeRequestDTO;
-import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.research.Research;
-import com.inovamed.clinical_study_system.model.user.User;
+
 import com.inovamed.clinical_study_system.model.user.UserRoles;
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.security.core.userdetails.UserDetails;
+
 
 import java.util.List;
 
@@ -42,10 +39,7 @@ class DeleteByIdClinicalRepresentativeServiceTest {
     @Mock
     private ClinicalRepresentativeDTOMapperService clinicalRepresentativeDTOMapperService;
 
-    private ClinicalStudyRepresentative clinicalRepresentative;
-    private ClinicalStudyRepresentativeRequestDTO requestDTO;
-    private ClinicalStudyRepresentativeResponseDTO responseDTO;
-    private UserDetails userDetails;
+   
 
     @BeforeEach
     void setUp() {
@@ -75,9 +69,6 @@ class DeleteByIdClinicalRepresentativeServiceTest {
     }
 
     private void startClinicalRepresentative() {
-        clinicalRepresentative = new ClinicalStudyRepresentative(ID, NAME, PHONE, CLINICAL_ROLES, EXPERIENCES, RESEARCH, NOTIFICATIONS);
-        requestDTO = new ClinicalStudyRepresentativeRequestDTO(ID, NAME, EMAIL, PASSWORD, ROLES, PHONE, CLINICAL_ROLES, EXPERIENCES);
-        responseDTO = new ClinicalStudyRepresentativeResponseDTO(ID, NAME, EMAIL, PASSWORD, ROLES, PHONE, CLINICAL_ROLES, EXPERIENCES);
-        userDetails = new User(EMAIL, PASSWORD, ROLES);
+     
     }
 }

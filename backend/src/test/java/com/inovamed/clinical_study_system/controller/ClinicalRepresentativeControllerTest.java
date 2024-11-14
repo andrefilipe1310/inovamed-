@@ -16,7 +16,6 @@ import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.model.user.UserRoles;
 import com.inovamed.clinical_study_system.service.clinical_study_representative.*;
 import com.inovamed.clinical_study_system.service.token.TokenService;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,8 +28,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -73,7 +71,6 @@ class ClinicalRepresentativeControllerTest {
     @Value("${api.security.token.secret:valorPadrao}")
     private String secret;
 
-    private MockMvc mockMvc;
 
     public static final long ID = 1L;
     public static final String NAME = "John";
@@ -97,7 +94,7 @@ class ClinicalRepresentativeControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
         startClinicalRepresentative();
-        mockMvc = MockMvcBuilders.standaloneSetup(clinicalRepresentativeController).build();
+       
     }
 
     @Test

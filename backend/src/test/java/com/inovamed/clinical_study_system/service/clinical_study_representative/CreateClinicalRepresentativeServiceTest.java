@@ -6,7 +6,6 @@ import com.inovamed.clinical_study_system.model.clinical_study_representative.Cl
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentativeResponseDTO;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.research.Research;
-import com.inovamed.clinical_study_system.model.user.User;
 import com.inovamed.clinical_study_system.model.user.UserRoles;
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
 import org.junit.jupiter.api.Assertions;
@@ -18,7 +17,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.core.userdetails.UserDetails;
+
 
 
 import java.util.List;
@@ -49,7 +48,7 @@ class CreateClinicalRepresentativeServiceTest {
     private ClinicalStudyRepresentative clinicalRepresentative;
     private ClinicalStudyRepresentativeRequestDTO requestDTO;
     private ClinicalStudyRepresentativeResponseDTO responseDTO;
-    private UserDetails userDetails;
+
 
     @BeforeEach
     void setUp(){
@@ -99,7 +98,7 @@ class CreateClinicalRepresentativeServiceTest {
 
         requestDTO = new ClinicalStudyRepresentativeRequestDTO(ID,NAME, EMAIL, PASSWORD, ROLES,PHONE,CLINICAL_ROLES,EXPERIENCES);
         responseDTO = new ClinicalStudyRepresentativeResponseDTO(ID,NAME,EMAIL,PASSWORD,ROLES,PHONE,CLINICAL_ROLES,EXPERIENCES);
-        userDetails =  new User(EMAIL, PASSWORD, ROLES);
+        
 
         }
 }

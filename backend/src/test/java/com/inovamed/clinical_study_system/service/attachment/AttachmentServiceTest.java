@@ -18,7 +18,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -42,8 +41,6 @@ class AttachmentServiceTest {
     private ClinicalStudyRepresentative clinicalRepresentative;
     private Attachment attachment;
     private AttachmentRequestDTO attachmentRequestDTO;
-    private AttachmentFindResponseDTO attachmentFindResponseDTO;
-    private AttachmentCreateResponseDTO attachmentCreateResponseDTO;
     private AttachmentRequestDTO attachmentUpdatetDTO;
 
 
@@ -189,7 +186,6 @@ class AttachmentServiceTest {
         attachment = new Attachment(ID_ATTACHMENT, NAME_ATTACHMENT,ARCHIVE ,null,clinicalRepresentative,null);
         attachmentRequestDTO = new AttachmentRequestDTO(NAME,ARCHIVE,ID);
         attachmentUpdatetDTO = new AttachmentRequestDTO("Novo nome",newArchive,ID);
-        attachmentFindResponseDTO = new AttachmentFindResponseDTO(NAME,ARCHIVE);
-        attachmentCreateResponseDTO = new AttachmentCreateResponseDTO(NAME, MESSAGE);
+      
     }
 }

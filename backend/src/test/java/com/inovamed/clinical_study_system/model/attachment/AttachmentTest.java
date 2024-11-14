@@ -2,7 +2,6 @@ package com.inovamed.clinical_study_system.model.attachment;
 
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.notification.Notification;
-import com.inovamed.clinical_study_system.model.research.Research;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -26,9 +25,10 @@ class AttachmentTest {
     private static final long ID = 1L;
     private static final long USER_ID = 1L;
     private static final String NAME = "John";
-    private static final String MESSAGE = "file saved successfully";
+ 
 
     private static final MultipartFile FILE = new MultipartFile() {
+        @SuppressWarnings("null")
         @Override
         public String getName() {
             return "";
@@ -54,23 +54,26 @@ class AttachmentTest {
             return 0;
         }
 
+        @SuppressWarnings("null")
         @Override
         public byte[] getBytes() throws IOException {
             return new byte[0];
         }
 
+        @SuppressWarnings("null")
         @Override
         public InputStream getInputStream() throws IOException {
             return null;
         }
 
         @Override
-        public void transferTo(File dest) throws IOException, IllegalStateException {
+        public void transferTo(@SuppressWarnings("null") File dest) throws IOException, IllegalStateException {
 
         }
         // Methods omitted for brevity
     };
     private static final MultipartFile NEW_FILE = new MultipartFile() {
+        @SuppressWarnings("null")
         @Override
         public String getName() {
             return "";
@@ -96,18 +99,20 @@ class AttachmentTest {
             return 0;
         }
 
+        @SuppressWarnings("null")
         @Override
         public byte[] getBytes() throws IOException {
             return new byte[2];
         }
 
+        @SuppressWarnings("null")
         @Override
         public InputStream getInputStream() throws IOException {
             return null;
         }
 
         @Override
-        public void transferTo(File dest) throws IOException, IllegalStateException {
+        public void transferTo(@SuppressWarnings("null") File dest) throws IOException, IllegalStateException {
 
         }
         // Methods omitted for brevity
