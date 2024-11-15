@@ -16,15 +16,14 @@ export default function RedirectUserType(){
                     <p>Para iniciar o cadastro, primeiramente precisamos que você selecione se você deseja participar como Representante, Médico responsável ou Paciente:</p>
                     <select name="userType" id="" onChange={(e)=>setIdUser(e.target.value)}>
                         <option value="" disabled selected>INFORME O TIPO DE USUÁRIO</option>
-                        <option value="pacient">Paciente</option>
-                        <option value="medic">Médico responsável</option>
-                        <option value="representative"> Representante de estudo</option>
+                        <option value="paciente">Paciente</option>
+                        <option value="medico">Médico responsável</option>
+                        <option value="representante"> Representante de estudo</option>
                     </select>
                 </div>
             </div>
-            <Link to={`/cadastro/paciente`} className="link-to-register">CONFIRMAR paciente</Link>
-            <Link to={`/cadastro/representante`} className="link-to-register">CONFIRMAR representante</Link>
-            <Link to={idUser ? `/cadastro/form?userType=${idUser}` : ""} className="link-to-register">CONFIRMAR</Link>
+        
+            <Link to={idUser ? `/cadastro/${idUser}` : ""} className="link-to-register">CONFIRMAR</Link>
         </div>
     )
 }
