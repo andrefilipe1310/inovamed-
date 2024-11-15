@@ -15,6 +15,7 @@ import RepPesquisaInfo from './pages/Representante/PesquisaInfo'
 import ListaPac from "./pages/Representante/listpac"
 import RedirectUserType from "./pages/Geral/Cadastro/pageRedirectUserType"
 import RegisterUser from "./pages/Geral/Cadastro/RegisterUser"
+import RegisterRepresentative from "./pages/Geral/Cadastro/RegisterRepresentative"
 
 
 
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/" element={<Start/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/cadastro" element={<RedirectUserType/>}></Route>
+        <Route path="/cadastro/representante" element={<RegisterRepresentative/>}></Route>
         <Route path="/cadastro/form" element={<RegisterUser/>}></Route>
         <Route path="/paciente/notificacoes" element={<PacVerNotificacoes/>}></Route>
         <Route path="/paciente/listapesquisas" element={<PacListPesquisas/>}></Route>

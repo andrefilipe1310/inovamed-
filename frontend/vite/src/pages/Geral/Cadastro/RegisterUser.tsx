@@ -20,7 +20,11 @@ export default function RegisterUser() {
     experience: "",
 
   });
+ 
 
+
+  
+ 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };

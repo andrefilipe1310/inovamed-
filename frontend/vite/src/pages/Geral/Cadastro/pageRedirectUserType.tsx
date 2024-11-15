@@ -22,6 +22,7 @@ export default function RedirectUserType(){
                     </select>
                 </div>
             </div>
+            <Link to={`/cadastro/representante`} className="link-to-register">CONFIRMAR representante</Link>
             <Link to={idUser ? `/cadastro/form?userType=${idUser}` : ""} className="link-to-register">CONFIRMAR</Link>
         </div>
     )
