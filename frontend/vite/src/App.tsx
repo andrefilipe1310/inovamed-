@@ -14,7 +14,7 @@ import RepNotificacoes from "./pages/Representante/notificacoes"
 import RepPesquisaInfo from './pages/Representante/PesquisaInfo'
 import ListaPac from "./pages/Representante/listpac"
 import RedirectUserType from "./pages/Geral/Cadastro/pageRedirectUserType"
-import RegisterUser from "./pages/Geral/Cadastro/RegisterUser"
+
 import RegisterRepresentative from "./pages/Geral/Cadastro/RegisterRepresentative"
 import ResgisterPatient from "./pages/Geral/Cadastro/RegisterPatient"
 import RegisterDoctor from "./pages/Geral/Cadastro/RegisterDoctor"
@@ -31,7 +31,6 @@ export default function App() {
         <Route path="/cadastro/representante" element={<RegisterRepresentative/>}></Route>
         <Route path="/cadastro/medico" element={<RegisterDoctor/>}></Route>
         <Route path="/cadastro/paciente" element={<ResgisterPatient/>}></Route>
-        <Route path="/cadastro/form" element={<RegisterUser/>}></Route>
         <Route path="/paciente/notificacoes" element={<PacVerNotificacoes/>}></Route>
         <Route path="/paciente/listapesquisas" element={<PacListPesquisas/>}></Route>
         <Route path="/paciente/preferencias" element={<PacPreferencias/>}></Route>

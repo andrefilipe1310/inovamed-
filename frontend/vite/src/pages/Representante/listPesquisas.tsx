@@ -28,6 +28,7 @@ export default function RepListaPesquisas(){
             
                 return null
             }
+            console.log(response.data)
             
             setPesqInfo(response.data)
                 

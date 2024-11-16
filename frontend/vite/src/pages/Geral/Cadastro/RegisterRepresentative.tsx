@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import InputMask from "react-input-mask";
 import { Link, useNavigate } from "react-router-dom";
 import apiUnauthorized from "../../../config/axiosUnauthorizedConfig";
@@ -97,8 +97,7 @@ export default function RegisterRepresentative() {
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         as={((inputProps: any) => <input {...inputProps} type="tel" id="phone" name="phone" />) as any}
                     />
-                </div>
-                <div>
+                    <div className="">
                     <label htmlFor="clinicalRole">
                         Cargo/função <i>Obrigatório</i>
                     </label>
@@ -122,6 +121,8 @@ export default function RegisterRepresentative() {
                         onChange={handleChange}
                     />
                 </div>
+                </div>
+                
                 <div className="ajust-section">
                     <div>
                         <label htmlFor="password">
