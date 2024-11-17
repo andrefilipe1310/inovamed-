@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "titulo": "Pesquisa Clínica",
+        "remetente": "DE: Dr, Rafael",
+        "previlcorpo": "Essa pesquisa visa mostrar as consequências do uso do medicamento X no organismo humano...",
+        "corpo": "A doença de Alzheimer é um tipo de demência, ou seja, é uma doença que causa uma diminuição crescente no funcionamento do cérebro. Por exemplo, em uma pessoa com doença de Alzheimer, a memória, o raciocínio (resolução de problemas) e a comunicação podem ser afetados. A doença de Alzheimer é o tipo mais comum de demência e cerca de 1 em 20 pessoas com 65 anos ou mais têm a doença. Pessoas com doença de Alzheimer perdem células nervosas e conexões em seu cérebro, o que prejudica sua memória, linguagem e processos de pensamento, além de afetar a forma como elas se sentem e se comportam. Acredita-se que duas estruturas no cérebro chamadas “placas” e “emaranhados” são as principais razões pelas quais as células nervosas sofrem danos em pessoas com Alzheimer."
+    },
+    {
+        "id": 2,
+        "titulo": "Pesquisa Clínica",
+        "remetente": "DE: Dr, Rafael",
+        "previlcorpo": "Essa pesquisa visa mostrar as consequências do uso do medicamento X no organismo humano...",
+        "corpo": "A doença de Alzheimer é um tipo de demência, ou seja, é uma doença que causa uma diminuição crescente no funcionamento do cérebro. Por exemplo, em uma pessoa com doença de Alzheimer, a memória, o raciocínio (resolução de problemas) e a comunicação podem ser afetados. A doença de Alzheimer é o tipo mais comum de demência e cerca de 1 em 20 pessoas com 65 anos ou mais têm a doença. Pessoas com doença de Alzheimer perdem células nervosas e conexões em seu cérebro, o que prejudica sua memória, linguagem e processos de pensamento, além de afetar a forma como elas se sentem e se comportam. Acredita-se que duas estruturas no cérebro chamadas “placas” e “emaranhados” são as principais razões pelas quais as células nervosas sofrem danos em pessoas com Alzheimer."
+    },
+    {
+        "id": 3,
+        "titulo": "Pesquisa Clínica",
+        "remetente": "DE: Dr, Rafael",
+        "previlcorpo": "Essa pesquisa visa mostrar as consequências do uso do medicamento X no organismo humano...",
+        "corpo": "A doença de Alzheimer é um tipo de demência, ou seja, é uma doença que causa uma diminuição crescente no funcionamento do cérebro. Por exemplo, em uma pessoa com doença de Alzheimer, a memória, o raciocínio (resolução de problemas) e a comunicação podem ser afetados. A doença de Alzheimer é o tipo mais comum de demência e cerca de 1 em 20 pessoas com 65 anos ou mais têm a doença. Pessoas com doença de Alzheimer perdem células nervosas e conexões em seu cérebro, o que prejudica sua memória, linguagem e processos de pensamento, além de afetar a forma como elas se sentem e se comportam. Acredita-se que duas estruturas no cérebro chamadas “placas” e “emaranhados” são as principais razões pelas quais as células nervosas sofrem danos em pessoas com Alzheimer."
+    }
+]
