@@ -19,11 +19,12 @@ export default function MedListPacientesPesquisas(){
                             {listapesq.map((pesquisa) => (
                             <div className="div-dados-pesquisa-medico" key={pesquisa.id}>
                                 <div className="div-background">
+                                <Link to={`/medico/infoPesquisas?id=${pesquisa.id}`} className="link-to-pesq-med">
                                     <h2 className="h2-card-medico">{pesquisa.titulo}</h2>
                                         <div className='linha-card'>
                                             <p className="p2-card-medico">#00{pesquisa.id}</p>
                                         </div>
-                                <Link to={`/medico/listpesqinfo_med?id=${pesquisa.id}`} className="button-to-edit-med"><img className="imgbuttonmed" src="../../../public/seta-direita.png" alt="" /></Link>
+                                </Link>
                                 </div>
                             </div>
                             ))}

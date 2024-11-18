@@ -814,7 +814,13 @@ h1.title-page-pac {
   
 
   /* Paginas do Medico*/
-
+.link-to-pesq-med{
+  text-decoration: none;
+  background: linear-gradient(180deg, #0b42ce,#062168); /* Defina as cores do gradiente */
+    -webkit-background-clip: text; /* Recorta o background no texto */
+    -webkit-text-fill-color: transparent; /* Torna o texto transparente para mostrar o gradiente */
+    background-clip: text; 
+}
 .user-doutora{
   width: 70px;
   height: 70px;
@@ -1039,7 +1045,27 @@ h1.title-page-pac {
       font-size: 3vw;
       margin-bottom: 0;
     }
-
+  .container-card{
+    max-width: 70vw;
+  background-color: white;
+    border-radius: 1.8vw;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  .pesq-detailpac{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+  }
+  .dados-permicao-pasc {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
   .container-card-notificacoespac, .notificacaopac{
     max-width: 60vw;
     padding:0.1vw;
