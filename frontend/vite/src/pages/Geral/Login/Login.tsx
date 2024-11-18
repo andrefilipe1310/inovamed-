@@ -69,7 +69,7 @@ export default function Login() {
                         <input type="text" name="email" value={user.email} onChange={handleChange} />
                         <label htmlFor="senha">SENHA</label>
                         <input type={showPassword ? 'text' : 'password'} name="password" value={user.password} onChange={handleChange} />
-                        <button onClick={togglePasswordVisibility} className="toggle-password">see</button>
+                        <button onClick={togglePasswordVisibility} className="toggle-password"><img src="../../../../public/view.png" alt="" style={{width:"150%"}}/></button>
                     </div>
                     <button onClick={handleLogin} className="submit">Entrar</button>
                     {errorMessage && <p style={{color:"red"}} className="error-message">{errorMessage}</p>}

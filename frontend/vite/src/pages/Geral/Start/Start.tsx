@@ -9,8 +9,11 @@ export default function Start(){
                 <img src="../../../../public/logo_branca.svg" alt="logo" className="logo-start"/>
                 <Link to='/login' className="link-login">Login</Link>
             </div>
-            <div>
                 <img src="../../../../public/TRANSPAREÊNCIA E M PRIMEIRO LUGAR.jpg" alt="" className="front-page-image" />
+            <div className="rodape">
+                <img src="../../../../public/logo_branca.svg" alt="logo" className="logo-start"/>
+                <p>Inovamed - Rope Health</p>
+                <p>Todos os direitos reservados</p>
             </div>
             
         </div>
