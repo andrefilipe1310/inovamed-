@@ -427,6 +427,142 @@ h1.title-page-pac {
     align-self: center;
     justify-self: center;
   }
+
+  /* PARTICIPANTS*/
+  .section-pac{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .subtitle-pac{
+    font-family: Montserrat-Bold;
+    margin-bottom: 1vw;
+  }
+  .section-pac h3{
+    font-family: Montserrat-Bold;
+    font-size: 1.5vw;
+    width: 90%;
+    text-align: center;
+    border-bottom: #062168 1px solid;
+    padding-bottom: 1vw;
+  }
+  .section-pac .participant-list{
+    width: 90%;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    box-sizing: border-box;
+    padding: 0vw 1vw;
+  }
+  .section-pac button{
+    width: 80%;
+    margin: 1vw 0vw;
+    background-color: white;
+    border: #062168 1px solid;
+    border-radius: 15px;
+    font-family: Montserrat-Bold;
+    font-size: 1vw;
+    background: linear-gradient(180deg, #0b42ce,#062168); /* Defina as cores do gradiente */
+    -webkit-background-clip: text; /* Recorta o background no texto */
+    -webkit-text-fill-color: transparent; /* Torna o texto transparente para mostrar o gradiente */
+    background-clip: text;
+  }
+  .edit-patient{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: #0B42CE 1px solid;
+    border-radius: 15px;
+    padding: 0vw 0vw;
+    box-sizing: border-box;
+    margin-bottom: 1vw;
+  }
+  .edit-patient h2{
+    width: 100%;
+    border-bottom: solid 1px #0B42CE;
+    margin: 0px;
+    font-family: Montserrat-Bold;
+    background: linear-gradient(180deg, #0b42ce,#062168); /* Defina as cores do gradiente */
+    -webkit-background-clip: text; /* Recorta o background no texto */
+    -webkit-text-fill-color: transparent; /* Torna o texto transparente para mostrar o gradiente */
+    background-clip: text;
+    padding: 0.5vw 0vw;
+  }
+  .edit-patient p{
+    font-family: Montserrat-regular;
+    font-size: 1vw;
+    margin: 0.5vw 0vw;
+  }
+  .edit-patient strong{
+    font-family: Montserrat-regular;
+    font-size: 1vw;
+  }
+  .edit-patient div{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .edit-patient button{
+    width: 4vw;
+    height: 2vw;
+    margin-bottom: 1vw;
+    background-color: white;
+    border: black 1px solid;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+  .reproval-motive{
+    width: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: #062168 1px solid;
+    padding: 1vw 1vw;
+    border-radius: 15px;
+  }
+  .reproval-motive label{
+    align-self: center;
+    font-family: Montserrat-Bold;
+    font-size: 1vw;
+    margin-bottom: 0.5vw;
+  }
+  .reproval-motive textarea{
+    padding: 0.5vw 0.5vw;
+    height: 5vw;
+    font-family: Montserrat-regular;
+    resize: none;
+    border:#062168 1px solid;
+    border-radius: 15px;
+    margin-bottom: 1vw;
+  }
+  .reproval-motive button:nth-of-type(1){
+    width: 40%;
+    height: 2vw;
+    align-self: center;
+    background: linear-gradient(180deg, #0b42ce,#062168);
+    border: none;
+    color: white;
+    font-family: Montserrat-Bold;
+    font-size: 1vw;
+    border-radius: 15px;    
+    cursor: pointer;
+  }
+  .reproval-motive button:nth-of-type(2){
+    background: none;
+    border: none;
+    font-family: Montserrat-Bold;
+    position: absolute;
+    right: 1vw;
+    font-size: 1vw;
+    top: 0.7vw;
+    cursor: pointer;
+  }
+
+
 /* lista de pesquisas*/
   .title-suas-pesquisas{
     font-size: 3vw;
@@ -810,6 +946,101 @@ h1.title-page-pac {
     border-radius: 25px;
     margin: 1vw 0vw;
     font-size: 1.5vw;
+  }
+
+  /* NOTIFICAÇÕES REPRESENTANTE*/
+
+  .container-notfic-all{
+    width: 48vw;
+    height: fit-content;
+    padding: 2vw 1vw;
+    background-color: white;
+    border-radius: 35px;
+    display: flex;
+    flex-direction: column;
+  }
+  .container-notfic-all label{
+    font-family:  Montserrat-Bold;
+    font-size: 1vw;
+    margin-left: 1vw;
+  }
+  .container-notfic-all input:nth-of-type(1){
+    height: 2.5vw;
+    border: #062168 solid 1px;
+    border-radius: 15px;
+    margin-bottom: 1vw;
+    padding: 0vw 0.7vw;
+    box-sizing: border-box;
+    font-family: Montserrat-regular;
+  }
+  .container-notfic-all input[type=file]{
+    width: 100%;
+    height: 100%;
+    opacity: 0%;
+    position: absolute;
+    cursor: pointer;
+  }
+  
+  .files-arrange{
+    width: 2vw;
+    height: 2vw;
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #062168;
+    border-radius: 15px;
+    margin-left: 1vw;
+    color: #062168;
+  }
+  .container-notfic-all textarea{
+    height: 10vw;
+    border: #062168 solid 1px;
+    border-radius: 15px;
+    margin-bottom: 1vw;
+    padding: 0.7vw 0.7vw;
+    box-sizing: border-box;
+    font-family: Montserrat-regular;
+    resize: none;
+  }
+  .container-notfic-all .container-select{
+   display: flex;
+   width: 50%;
+   align-items: center;
+   justify-content: end;
+   align-self: end;
+  }
+  .container-notfic-all select{
+    width: 35%;
+    height: 1.5vw;
+    border: #062168 solid 1px;
+    font-family:  Montserrat-Bold;
+    border-radius: 15px;
+    margin-left: 1vw;
+  }
+  .files-custom{
+    height: 1vw;
+    font-family:Montserrat-regular;
+    border: #062168 1px solid;
+    border-radius: 15px;
+    padding: 0vw 1vw;
+    box-sizing: border-box;
+    margin-top: 1vw;
+    margin-left: 1vw;
+    margin-bottom: 1vw;
+    font-size: 0.6vw;
+  }
+  .button-send-notification{
+    background: linear-gradient(180deg, #0b42ce,#062168) ;
+    width: 25vw;
+    height: 3vw;
+    border: none;
+    color: white;
+    font-family: Montserrat-Bold;
+    border-radius: 25px;
+    margin: 1vw 0vw;
+    font-size: 1.5vw;
+    cursor: pointer;
   }
   
 

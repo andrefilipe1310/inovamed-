@@ -1,0 +1,27 @@
+[
+    {
+        "code": 15112,
+        "patients": [
+      {
+        "id": 101,
+        "name": "John Doe",
+        "email": "johndoe@example.com"
+      }
+    ]
+    },
+    {
+        "code": 65841,
+        "patients": [
+      {
+        "id": 103,
+        "name": "Paul cherry",
+        "email": "paulcherry@example.com"
+      },
+      {
+        "id": 101,
+        "name": "John Doe",
+        "email": "johndoe@example.com"
+      }
+    ]
+    }
+]
