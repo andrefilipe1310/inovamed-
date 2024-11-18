@@ -1150,6 +1150,10 @@ h1.title-page-pac {
     flex-direction: row;
     position: relative;
   }
+  .link-to-notificacao{
+    text-decoration: none;
+    color: black  ;
+  }
   .div-dados-notificacaomed{
     font-family: Montserrat-regular;
     background-color: white;

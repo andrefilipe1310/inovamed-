@@ -9,6 +9,8 @@ export default function MedCriarNotificacao(){
         previlcorpo: string;
     }
     const notificacaomed:notificacaomed[] = criarnotificacao
+
+
     return(
         <>
             <Navbar/>
@@ -17,13 +19,14 @@ export default function MedCriarNotificacao(){
                     {notificacaomed.map((notificacaomed) => (
                         <div className="notificacaomed">
                             <div className="conteiner-dados-notificacao">
+                            <Link to={`/medico/notificacao_med?id=${notificacaomed.id}`} className="link-to-notificacao">
                                 <div className="background-dados-notificacao">
                                     <div className="titulo-notificacaomed">
                                         <h3>{notificacaomed.titulo}</h3>
                                     </div>
                                     <p className="p-previl-notificacao">{notificacaomed.previlcorpo}</p>
-                                    <Link to={`/medico/notificacao_med?id=${notificacaomed.id}`} className="button-notificacao-med"><img className="imgbuttonmed" src="../../../public/seta-direita.png" alt="" /></Link>
                                 </div>
+                                </Link>
                             </div>
                         </div>
                     ))}
