@@ -24,7 +24,11 @@ export default function MedListPacientesPesquisas(){
                                         <div className='linha-card'>
                                             <p className="p2-card-medico">#00{pesquisa.id}</p>
                                         </div>
+<<<<<<< HEAD
                                 </Link>
+=======
+                                <Link to={`/medico/listapesquisainfo?id=${pesquisa.id}`} className="button-to-edit-med"><img className="imgbuttonmed" src="../../../public/seta-direita.png" alt="" /></Link>
+>>>>>>> c1677d97efca0575b3325c7c8b6a48e40f8e7ee0
                                 </div>
                             </div>
                             ))}
