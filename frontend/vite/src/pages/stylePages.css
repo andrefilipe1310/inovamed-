@@ -274,6 +274,7 @@ align-items: center;
 
 /*CADASTRO PACIENTE*/
 
+
 h1.title-page-pac {
   font-family: Montserrat-Bold;
   font-size: 3vw;
@@ -295,6 +296,51 @@ h1.title-page-pac {
 .logo-container-pac img {
   height: 90%;
 }
+
+
+.form-pac{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.form-pac p{
+  width: 18vw;
+  margin-right: 1vw ;
+  height: 1.5vw;
+  background: linear-gradient( to bottom, #028275,#156b56) ;
+  color: white;
+  font-family: Montserrat-Bold;
+  border-radius: 25px;
+  margin-bottom: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1vw;
+}
+
+.submit.pac { 
+  width: 15vw;
+  margin-right: 1vw;
+  height: 3vw;
+  background: linear-gradient(to bottom, #028275, #028275); /* Alterado para #028275 */
+  color: white;
+  font-family: Montserrat-Bold;
+  border-radius: 25px;
+  margin-top: 1vw;
+  font-size: 1.2vw;
+  cursor: pointer;
+  border: none;
+}
+
+.form-container.pac i {
+  color: #028275; /* Alterado para a nova cor */
+  opacity: 50%;
+  margin-left: 1vw;
+  text-transform: uppercase;
+  align-self: flex-end;
+}
+
 
 
   
