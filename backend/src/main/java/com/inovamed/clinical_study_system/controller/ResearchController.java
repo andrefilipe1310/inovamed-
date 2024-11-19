@@ -40,6 +40,8 @@ public class ResearchController {
     @Autowired
     UpdateResearchByIdService updateResearchByIdService;
     @Autowired
+    FindAllFeaturesResearchService findAllFeaturesResearchService;
+    @Autowired
     TokenService tokenService;
 
     @PostMapping(produces = "application/json")
@@ -54,7 +56,6 @@ public class ResearchController {
 
         // Converter phases de JSON para List<Phases>
         ObjectMapper objectMapper = new ObjectMapper();
-        System.out.println("aaaaaaaaaaa");
         System.out.println(researchRequestDTO.numberOfPatients()+"  "+researchRequestDTO.title());
         List<Phases> phases = objectMapper.readValue(researchRequestDTO.phases(), new TypeReference<List<Phases>>() {});
 
@@ -85,6 +86,10 @@ public class ResearchController {
         String token = authorizationHeader.substring(7);
         Long userId = tokenService.getUserIdFromToken(token);
         return ResponseEntity.status(HttpStatus.OK).body(this.findAllFeaturesByUserId.execute(userId));
+    }
+    @GetMapping("/feature-all")
+    public ResponseEntity<List<ResearchFeaturesResponseDTO>> findAllFeatures(){
+        return ResponseEntity.status(HttpStatus.OK).body(this.findAllFeaturesResearchService.execute());
     }
     @GetMapping("/{id}")
     public ResponseEntity<ResearchResponseDTO> findById(@PathVariable("id") Long id){

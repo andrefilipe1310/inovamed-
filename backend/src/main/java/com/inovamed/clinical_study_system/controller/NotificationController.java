@@ -7,6 +7,8 @@ import com.inovamed.clinical_study_system.service.notification.CreateNotificatio
 import com.inovamed.clinical_study_system.service.notification.DeleteNotificationService;
 import com.inovamed.clinical_study_system.service.notification.FindAllNotificationService;
 import com.inovamed.clinical_study_system.service.notification.FindByIdNotificationService;
+import com.inovamed.clinical_study_system.service.token.TokenService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,15 +29,21 @@ public class NotificationController {
     private FindByIdNotificationService findByIdNotificationService;
     @Autowired
     private DeleteNotificationService deleteNotificationService;
+    @Autowired
+    TokenService tokenService;
 
     @PostMapping
     public ResponseEntity<NotificationResponseDTO> create(@RequestParam("file") MultipartFile file, @ModelAttribute NotificationResquestDTO notificationResquestDTO) throws IOException {
         return ResponseEntity.status(HttpStatus.CREATED).body(createNotificationService.execute(notificationResquestDTO,file));
     }
 
-    @GetMapping
-    public ResponseEntity<List<NotificationResponseDTO>> findAll(){
-        return ResponseEntity.status(HttpStatus.OK).body(findAllNotificationService.execute());
+    @GetMapping("/patient")
+    public ResponseEntity<List<NotificationResponseDTO>> findAllByPatient(HttpServletRequest request){
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        System.out.println(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(findAllNotificationService.execute(userId));
     }
 
     @GetMapping("/{id}")

@@ -36,7 +36,6 @@ public class WebSecurityConfig {
                     // Protected
                     // Patient Endpoints
                     authorize.requestMatchers(HttpMethod.GET, "/patient").hasRole("DOCTOR");
-
                     authorize.requestMatchers(HttpMethod.GET, "/patient/**").hasAnyRole("DOCTOR", "PATIENT");
                     authorize.requestMatchers(HttpMethod.PUT, "/patient/**").hasRole("DOCTOR");
                     authorize.requestMatchers(HttpMethod.DELETE, "/patient/**").hasRole("DOCTOR");
@@ -46,12 +45,14 @@ public class WebSecurityConfig {
                     authorize.requestMatchers(HttpMethod.GET, "/attachment/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
 
                     // Research Endpoints
+                    authorize.requestMatchers(HttpMethod.GET, "/research/feature-all").hasAnyRole("STUDY_REPRESENTATIVE","PATIENT","DOCTOR");
                     authorize.requestMatchers(HttpMethod.POST, "/research").hasRole("STUDY_REPRESENTATIVE");
                     authorize.requestMatchers(HttpMethod.GET, "/research/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
                     authorize.requestMatchers(HttpMethod.PUT,"/research/**").hasRole("STUDY_REPRESENTATIVE");
                     // Notification Endpoint
                     authorize.requestMatchers(HttpMethod.POST, "/notification").hasRole("STUDY_REPRESENTATIVE");
                     authorize.requestMatchers(HttpMethod.GET,"/notification/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
+                    authorize.requestMatchers(HttpMethod.GET,"/notification/patient").hasRole("PATIENT");
                     // Digital Signature Endpoints
                     authorize.requestMatchers(HttpMethod.POST, "/digital-signature").hasRole("PATIENT");
                     authorize.requestMatchers(HttpMethod.GET, "/digital-signature/verify/**").hasRole("PATIENT");
