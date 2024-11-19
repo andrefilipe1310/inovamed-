@@ -1,3 +1,8 @@
+export type researchFeatures = {
+    title:string;
+    code:number;
+}
+
 type Criteria = {
     inclusion: string[];
     exclusion: string[];
@@ -14,7 +19,7 @@ export type Phase = {
     description: string;
 };
 
-type AttachmentFindResponseDTO = {
+export type AttachmentFindResponseDTO = {
     name: string;
     archive: Base64URLString;
 };

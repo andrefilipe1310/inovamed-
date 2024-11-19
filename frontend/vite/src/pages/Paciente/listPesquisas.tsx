@@ -1,19 +1,25 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from "../../components/Navbar";
 import PesquisaCard from './pesquisaCard';
+import { researchFeatures } from '../../types/ResearchTypes';
+import api from '../../config/axiosConfig';
 
 const ListaPesquisas: React.FC = () => {
-  const pesquisas = [
-    { titulo: 'Mecanismos Moleculares e Genéticos no Alzheimer', id: '0020' },
-    { titulo: 'Estilo de Vida e Prevenção do Alzheimer: Dieta e Exercício', id: '0021' },
-    { titulo: 'Biomarcadores e Diagnóstico Precoce no Alzheimer', id: '0022' },
-    { titulo: 'Novas terapias para prevenção do Alzheimer', id: '0023' },
-    { titulo: 'Impacto da Genética no Alzheimer', id: '0024' },
-    { titulo: 'Estudos sobre a Eficácia de Medicamentos', id: '0025' },
-    { titulo: 'Avanços em Terapias Não-Farmacológicas', id: '0026' },
-    { titulo: 'Relação entre Estresse e Alzheimer', id: '0027' },
-  ];
+  const [research, setResearch] = useState<researchFeatures[]>([]);
+  
+  const fetchResearchFeatures = async () => {
+    try {
+      const response = await api.get('/research/feature-all');
+      console.log(response.data)
+      setResearch(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar pesquisas:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchResearchFeatures();
+  }, []);
 
   const estiloCabecalho: React.CSSProperties = {
     fontFamily: 'Montserrat-Bold',
@@ -44,8 +50,8 @@ const ListaPesquisas: React.FC = () => {
       <div style={estiloContainer}>
         <h2 style={estiloCabecalho}>Pesquisas Inscritas</h2>
         <div style={estiloGrid}>
-          {pesquisas.map((pesquisa) => (
-            <PesquisaCard key={pesquisa.id} titulo={pesquisa.titulo} id={pesquisa.id} />
+          {research.map((pesquisa) => (
+            <PesquisaCard key={pesquisa.code} titulo={pesquisa.title} id={pesquisa.code} />
           ))}
         </div>
       </div>
