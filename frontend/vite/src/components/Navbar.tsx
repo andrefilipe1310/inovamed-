@@ -27,8 +27,49 @@ const handleFindNameRepresentante = () => {
     })
 }
 
+const handleFindNamePatient = () => {
+    api.get("/patient")
+    .then(response => {
+        if(!response.data){
+            return null
+        }
+        if (!response.data.name) {
+            return null
+        }
+
+        setName(response.data.name)
+    })
+    .catch(error => {
+        console.error(error)
+    })
+}
+
+const handleFindNameDoctor = () => {
+    api.get("/doctor")
+    .then(response => {
+        if(!response.data){
+            return null
+        }
+        if (!response.data.name) {
+            return null
+        }
+
+        setName(response.data.name)
+    })
+    .catch(error => {
+        console.error(error)
+    })
+}
+
     const Identifier = useLocation()
-    useEffect(handleFindNameRepresentante,[])
+    useEffect(()=>{
+        if (Identifier.pathname.startsWith('/representante')) {
+        handleFindNameRepresentante();
+      } else if (Identifier.pathname.startsWith('/paciente')) {
+        handleFindNamePatient();
+      } else if (Identifier.pathname.startsWith('/medico')) {
+        handleFindNameDoctor();
+      }},[Identifier]);
     if (Identifier.pathname.startsWith('/representante')){
     return(
         <div className="container-navbar">
@@ -48,7 +89,7 @@ const handleFindNameRepresentante = () => {
         <div className="container-navbar">
             <div className="container-perfil">
                 <img src="../../public/user-icon.svg" alt="user-icon" className="user-icon" />
-                <h1>Geraldo</h1>
+                <h1>{name}</h1>
             </div>
             <div className="container-links">
                 <Link to='/paciente/listapesquisas' className='nav-item'>Suas Pesquisas</Link>
@@ -62,8 +103,7 @@ const handleFindNameRepresentante = () => {
     return(
         <div className="container-navbar">
             <div className="container-perfil">
-                <img src="../../public/doutoraAna.png" alt="" className="user-doutora" />
-                <h1>Dr. Angela</h1>
+                <h1>{name}</h1>
             </div>
             <div className="container-links">
                 <Link to='/medico/listapesquisas' className='nav-item'>Pesquisas Disponíveis</Link>

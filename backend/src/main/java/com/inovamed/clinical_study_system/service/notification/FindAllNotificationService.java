@@ -18,7 +18,7 @@ public class FindAllNotificationService {
 
     public List<NotificationResponseDTO> execute(Long userId){
         List<Notification> notifications = notificationRepository.findAllByRecipientsPatients_Id(userId);
-        System.out.println(notifications.size());
+
         return notifications.stream().map(notification -> {
             return  notificationDTOMapperService.toDTO(notification);
         }).collect(Collectors.toList());

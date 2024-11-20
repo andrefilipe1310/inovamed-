@@ -2,12 +2,14 @@ package com.inovamed.clinical_study_system.service.notification;
 
 import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
+import com.inovamed.clinical_study_system.model.attachment.AttachmentFindResponseDTO;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.notification.NotificationResponseDTO;
 import com.inovamed.clinical_study_system.model.notification.NotificationResquestDTO;
 import com.inovamed.clinical_study_system.model.patient.Patient;
+import com.inovamed.clinical_study_system.repository.AttachmentRepository;
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
 import com.inovamed.clinical_study_system.repository.DoctorRepository;
 import com.inovamed.clinical_study_system.repository.PatientRepository;
@@ -28,13 +30,21 @@ public class NotificationDTOMapperService {
     private PatientRepository patientRepository;
     @Autowired
     private ClinicalStudyRepresentiveRepository clinicalRepository;
+    @Autowired
+    private AttachmentRepository attachmentRepository;
+
+
 
     public NotificationResponseDTO toDTO(Notification notification) {
+        System.out.println(notification.getAttachment().size());
+
         return new NotificationResponseDTO(
                 notification.getId(),
                 notification.getTitle(),
                 notification.getMessage(),
-                notification.getAttachment(),
+                notification.getAttachment().stream().map(attachment->{
+                    return toFindResponseDTO(attachment,false);
+                }).collect(Collectors.toList()),
                 notification.getStudyRepresentative().getName(),
                 notification.getRecipientsDoctors().stream()
                         .map(doctor -> "successfully confirmed receipt of " + doctor.getName() + " " + doctor.getPublicKey())
@@ -64,6 +74,7 @@ public class NotificationDTOMapperService {
         notification.setAttachment(files.stream().map((file)->{
             Attachment attachment = new Attachment();
             attachment.setUser(clinicalRepresentative);
+            attachment.setNotification(notification);
             try {
                 attachment.setArchive(file.getBytes());
             } catch (IOException e) {
@@ -74,9 +85,15 @@ public class NotificationDTOMapperService {
         notification.setRecipientsDoctors(doctors);
         notification.setRecipientsPatients(patients);
         notification.setStudyRepresentative(clinicalRepresentative);
-        System.out.println("aaaaaaaaaaa");
-        System.out.println(Arrays.toString(notification.getAttachment().get(0).getArchive()));
         return notification;
+    }
+
+    private AttachmentFindResponseDTO toFindResponseDTO(Attachment attachment, boolean showFile){
+        if (!showFile){
+            return new AttachmentFindResponseDTO(attachment.getName(),null);
+        }
+        return new AttachmentFindResponseDTO(attachment.getName(),attachment.getArchive());
+
     }
 
 }
