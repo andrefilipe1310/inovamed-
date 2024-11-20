@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,7 @@ public class NotificationDTOMapperService {
                 notification.getTitle(),
                 notification.getMessage(),
                 notification.getAttachment(),
+                notification.getStudyRepresentative().getName(),
                 notification.getRecipientsDoctors().stream()
                         .map(doctor -> "successfully confirmed receipt of " + doctor.getName() + " " + doctor.getPublicKey())
                         .collect(Collectors.toList()),
@@ -43,7 +45,7 @@ public class NotificationDTOMapperService {
         );
     }
 
-    public Notification toEntity(NotificationResquestDTO notificationResquestDTO, MultipartFile file) throws IOException {
+    public Notification toEntity(NotificationResquestDTO notificationResquestDTO, List<MultipartFile> files) throws IOException {
         ClinicalStudyRepresentative clinicalRepresentative = clinicalRepository.findById(notificationResquestDTO.sender()).orElseThrow(
                 ()->{
                     return new ClinicalRepresentativeNotFoundException();
@@ -51,9 +53,7 @@ public class NotificationDTOMapperService {
         );
         List<Doctor> doctors = this.doctorRepository.findAllById(notificationResquestDTO.doctorsId());
         List<Patient> patients = this.patientRepository.findAllById(notificationResquestDTO.patientsId());
-        Attachment attachment = new Attachment();
-        attachment.setUser(clinicalRepresentative);
-        attachment.setArchive(file.getBytes());
+
 
 
         Notification notification = new Notification();
@@ -61,10 +61,21 @@ public class NotificationDTOMapperService {
         notification.setSenderCode(notification.getId());
         notification.setTitle(notificationResquestDTO.title());
         notification.setMessage(notificationResquestDTO.message());
-        notification.setAttachment(List.of(attachment));
+        notification.setAttachment(files.stream().map((file)->{
+            Attachment attachment = new Attachment();
+            attachment.setUser(clinicalRepresentative);
+            try {
+                attachment.setArchive(file.getBytes());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return attachment;
+        }).collect(Collectors.toList()));
         notification.setRecipientsDoctors(doctors);
         notification.setRecipientsPatients(patients);
-
+        notification.setStudyRepresentative(clinicalRepresentative);
+        System.out.println("aaaaaaaaaaa");
+        System.out.println(Arrays.toString(notification.getAttachment().get(0).getArchive()));
         return notification;
     }
 

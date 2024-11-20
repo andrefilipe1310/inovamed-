@@ -10,6 +10,7 @@ public record NotificationResponseDTO(
         , String title
         , String message
         , List<Attachment> attachment
+        , String sender
         ,List<String> doctorsConfirmation
         ,List<String> patientsConfirmation) {
 }

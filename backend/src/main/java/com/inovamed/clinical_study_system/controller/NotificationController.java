@@ -33,8 +33,8 @@ public class NotificationController {
     TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<NotificationResponseDTO> create(@RequestParam("file") MultipartFile file, @ModelAttribute NotificationResquestDTO notificationResquestDTO) throws IOException {
-        return ResponseEntity.status(HttpStatus.CREATED).body(createNotificationService.execute(notificationResquestDTO,file));
+    public ResponseEntity<NotificationResponseDTO> create(@RequestParam("file") List<MultipartFile> files, @ModelAttribute NotificationResquestDTO notificationResquestDTO) throws IOException {
+        return ResponseEntity.status(HttpStatus.CREATED).body(createNotificationService.execute(notificationResquestDTO,files));
     }
 
     @GetMapping("/patient")
