@@ -3,6 +3,8 @@ import { useSearchParams, Link } from "react-router-dom";
 import { ResearchResponseDTO } from "../../types/ResearchTypes";
 import api from "../../config/axiosConfig";
 import { useState, useEffect } from "react";
+import apiUnauthorized from "../../config/axiosUnauthorizedConfig";
+
 
 export default function Medlistapesqinfo() {
 
