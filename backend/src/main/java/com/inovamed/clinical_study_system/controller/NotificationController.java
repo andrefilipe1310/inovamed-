@@ -42,7 +42,6 @@ public class NotificationController {
         String authorizationHeader = request.getHeader("Authorization");
         String token = authorizationHeader.substring(7);
         Long userId = tokenService.getUserIdFromToken(token);
-        System.out.println(userId);
         return ResponseEntity.status(HttpStatus.OK).body(findAllNotificationService.execute(userId));
     }
 
