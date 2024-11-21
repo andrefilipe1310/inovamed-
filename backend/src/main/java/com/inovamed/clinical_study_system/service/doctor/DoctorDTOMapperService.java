@@ -5,6 +5,8 @@ import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.doctor.DoctorRequestDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
 import com.inovamed.clinical_study_system.repository.DoctorRepository;
+import com.inovamed.clinical_study_system.service.application.ApplicationMapperDTOService;
+import com.inovamed.clinical_study_system.service.notification.NotificationDTOMapperService;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +20,10 @@ import java.util.stream.Collectors;
 public class DoctorDTOMapperService {
     @Autowired
     private DoctorRepository doctorRepository;
+    @Autowired
+    private ApplicationMapperDTOService applicationMapperDTOService;
+    @Autowired
+    private NotificationDTOMapperService notificationDTOMapperService;
     public DoctorResponseDTO toDTO(Doctor doctor){
         return new DoctorResponseDTO(
                 doctor.getId(),
@@ -31,8 +37,12 @@ public class DoctorDTOMapperService {
                 doctor.getPhone(),
                 doctor.getSpecialty(),
                 doctor.getCrm(),
-                doctor.getApplicationsSubmitted() == null ? List.of():doctor.getApplicationsSubmitted(),
-                doctor.getNotifications() == null ? List.of() : doctor.getNotifications(),
+                doctor.getApplicationsSubmitted() == null ? List.of():doctor.getApplicationsSubmitted().stream().map( application -> {
+                    return applicationMapperDTOService.toDTO(application);
+                }).collect(Collectors.toList()),
+                doctor.getNotifications() == null ? List.of() : doctor.getNotifications().stream().map(notification -> {
+                    return notificationDTOMapperService.toDTO(notification);
+                }).collect(Collectors.toList()),
                 doctor.getPatients() == null ? List.of() : doctor.getPatients().stream().map(patient -> {
                     return patient.getName();
                 }).collect(Collectors.toList())

@@ -4,6 +4,8 @@ import com.inovamed.clinical_study_system.model.doctor.DoctorRequestDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorUpdateDTO;
 import com.inovamed.clinical_study_system.service.doctor.*;
+import com.inovamed.clinical_study_system.service.token.TokenService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,9 @@ public class DoctorController {
     private UpdateDoctorService updateDoctorService;
     @Autowired
     private DeleteDoctorService deleteDoctorService;
+    @Autowired
+    TokenService tokenService;
+
 
     @PostMapping
     public ResponseEntity<DoctorResponseDTO> create(@RequestBody DoctorRequestDTO doctorRequestDTO) {
@@ -31,8 +36,11 @@ public class DoctorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DoctorResponseDTO>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(findAllDoctorService.execute());
+    public ResponseEntity<DoctorResponseDTO> findAll(HttpServletRequest request) {
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        return ResponseEntity.status(HttpStatus.OK).body(findAllDoctorService.execute(userId));
     }
 
     @GetMapping("/{id}")
