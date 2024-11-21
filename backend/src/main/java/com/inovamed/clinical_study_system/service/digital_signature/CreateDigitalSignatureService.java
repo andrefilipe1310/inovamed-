@@ -11,6 +11,7 @@ import com.inovamed.clinical_study_system.model.digital_signature.DigitalSignatu
 import com.inovamed.clinical_study_system.model.patient.Patient;
 import com.inovamed.clinical_study_system.repository.DigitalSignatureRepository;
 import com.inovamed.clinical_study_system.repository.PatientRepository;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,14 @@ public class CreateDigitalSignatureService {
 
     private static final Logger logger = LoggerFactory.getLogger(CreateDigitalSignatureService.class);
 
-
-    public DigitalSignatureResponseDTO execute(DigitalSignatureRequestDTO digitalSignatureRequestDTO, AttachmentRequestDTO attachmentRequestDTO) throws NoSuchAlgorithmException {
+    @Transactional
+    public DigitalSignatureResponseDTO execute(DigitalSignatureRequestDTO digitalSignatureRequestDTO, AttachmentRequestDTO attachmentRequestDTO,Long userId) throws NoSuchAlgorithmException {
         if (digitalSignatureRequestDTO.validFrom().isAfter(digitalSignatureRequestDTO.validUntil())) {
             throw new InvalidSignatureValidityException();
         }
+        logger.info("aquiiii");
 
-        Patient patient = patientRepository.findById(attachmentRequestDTO.getUserId())
+        Patient patient = patientRepository.findById(userId)
                 .orElseThrow(() -> new PatientNotFoundException("Patient not found"));
 
         logger.info("Criando assinatura digital para o usuário: {}", patient.getId());
@@ -65,7 +67,7 @@ public class CreateDigitalSignatureService {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             return keyPairGenerator.generateKeyPair();
     }
-
+    @Transactional
     private byte[] signDocument(byte[] documentContent, PrivateKey privateKey)  {
         try {
             Signature signature = Signature.getInstance("SHA256withRSA");

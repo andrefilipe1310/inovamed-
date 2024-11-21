@@ -42,7 +42,14 @@ public class NotificationController {
         String authorizationHeader = request.getHeader("Authorization");
         String token = authorizationHeader.substring(7);
         Long userId = tokenService.getUserIdFromToken(token);
-        return ResponseEntity.status(HttpStatus.OK).body(findAllNotificationService.execute(userId));
+        return ResponseEntity.status(HttpStatus.OK).body(findAllNotificationService.execute(userId,"PATIENT"));
+    }
+    @GetMapping("/doctor")
+    public ResponseEntity<List<NotificationResponseDTO>> findAllByDoctor(HttpServletRequest request){
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        return ResponseEntity.status(HttpStatus.OK).body(findAllNotificationService.execute(userId,"DOCTOR"));
     }
 
     @GetMapping("/{id}")

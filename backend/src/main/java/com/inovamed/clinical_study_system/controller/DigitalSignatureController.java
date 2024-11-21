@@ -9,6 +9,7 @@ import com.inovamed.clinical_study_system.service.digital_signature.DeactivateDi
 import com.inovamed.clinical_study_system.service.digital_signature.VerifyDigitalSignatureService;
 import com.inovamed.clinical_study_system.service.token.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,13 +33,25 @@ public class DigitalSignatureController {
     TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<DigitalSignatureResponseDTO> create(HttpServletRequest request, @ModelAttribute  DigitalSignatureRequestDTO digitalSignatureRequestDTO, @RequestParam("file") MultipartFile file) throws IOException, NoSuchAlgorithmException {
-            String authorizationHeader = request.getHeader("Authorization");
-            String token = authorizationHeader.substring(7);
-            Long userId = tokenService.getUserIdFromToken(token);
+    @Transactional
+    public ResponseEntity<DigitalSignatureResponseDTO> create(
+            HttpServletRequest request,
+            @ModelAttribute DigitalSignatureRequestDTO digitalSignatureRequestDTO,
+            @RequestParam("file") MultipartFile file) throws IOException, NoSuchAlgorithmException {
 
-            AttachmentRequestDTO attachmentRequestDTO = new AttachmentRequestDTO(file.getName(), file.getBytes(),userId);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createDigitalSignatureService.execute(digitalSignatureRequestDTO, attachmentRequestDTO));
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+
+        AttachmentRequestDTO attachmentRequestDTO = new AttachmentRequestDTO(file.getOriginalFilename(), file.getBytes(), userId);
+
+        DigitalSignatureResponseDTO response = createDigitalSignatureService.execute(
+                digitalSignatureRequestDTO,
+                attachmentRequestDTO,
+                userId
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/verify/{id}")
