@@ -51,78 +51,175 @@ export default function MedNotificacao(){
     const notificacaomed:notificacaomed[] = criarnotificacao
     return (
         <>
+            <Navbar/>
+            
             <div
-                className="container-card-notificacoes"
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    padding: "20px",
-                    maxWidth: "1200px",
-                    margin: "0 auto",
-                    width: "100%",
-                }}
+        className="container-page-medico"
+        style={{
+          width: "100%",
+          margin: "0 12%",
+          padding: "1rem",
+          textAlign: "center",
+        }}
+      >
+        <h1
+          className="h1notificacaopac"
+          style={{
+            color: "#028275",
+            marginBottom: "2rem",
+          }}
+        >
+          NOTIFICAÇÕES
+        </h1>
+  
+       
+  
+        <div
+          className="container-card-notificacoespac"
+          style={{
+            width: "70%",
+            display: "flex",
+            flexDirection: "column",
+            gap: "1.5rem",
+            alignItems: "center",
+          }}
+        >
+          {notifications.map((notification) => (
+            <div
+              className="div-dados-notifcacaopac"
+              key={notification.title}
+              style={{
+                backgroundColor: "#fffafa",
+                borderRadius: "8px",
+                margin: "1% 0",
+                padding: "1.5rem",
+                boxShadow: "0 6px 4px rgba(0, 0, 0, 0.1)",
+                border: "1px solid #0282751a",
+                width: "78%",
+                textAlign: "left",
+              }}
             >
-                {notificacaomed.map((notificacaomed, index) => (
-                    <div
+              <h2
+                style={{
+                  color: "#028275",
+                  fontSize: "1.5rem",
+                  fontWeight: "bold",
+                  fontFamily: "Georgia, serif",
+                  marginBottom: "1rem",
+                }}
+              >
+                {notification.title}
+              </h2>
+              <div className="corpo-notificacaomed">
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  <h4
+                    style={{
+                      fontSize: "1.2rem",
+                      margin: 0,
+                    }}
+                  >
+                    Remetente:
+                  </h4>
+                  <p
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "1.2rem",
+                      margin: 0,
+                    }}
+                  >
+                    {notification.sender}
+                  </p>
+                </div>
+                <div>
+                  <h4
+                    style={{
+                      fontSize: "1.2rem",
+                      marginBottom: "0.2rem",
+                    }}
+                  >
+                    Mensagem:
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: "1.2rem",
+                      color: "#000",
+                      lineHeight: "1.5",
+                      margin: 0
+                    }}
+                  >
+                    {notification.message}
+                  </p>
+                </div>
+  
+                <div className="section-4">
+                  <h3>Documentos:</h3>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "1rem",
+                      marginTop: "0.5rem",
+                      flexDirection: "column",
+                      
+                    }}
+                  >
+                    {(!notification || !notification.attachment?.length) && (
+                      <div style={{ color: "#999" }}>
+                        Nenhum arquivo para baixar
+                      </div>
+                    )}
+                    {notification?.attachment?.map((attachment, index) => (
+                      <div
                         key={index}
-                        className="div-dados-notificacaomed"
                         style={{
-                            backgroundColor: "#fff",
-                            borderRadius: "8px",
-                            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-                            marginBottom: "20px",
-                            padding: "20px",
-                            width: "100%",
-                            maxWidth: "500px",
-                            transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                          
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                          marginBottom: "1rem",
                         }}
-                    >
-                        <h2
-                            style={{
-                                fontSize: "1.5rem",
-                                color: "#028275",
-                                marginBottom: "10px",
-                              
-                            }}
+                      >
+                        <p
+                          style={{
+                            marginRight: "0.5rem",
+                            marginLeft: "0.5rem",
+                          }}
                         >
-                            {notificacaomed.titulo}
-                        </h2>
-                        <div
-                            className="corpo-notificacaomed"
-                            style={{
-                                color: "#555",
-                                lineHeight: "1.6",
-                               
-                            }}
+                          {attachment.name}
+                        </p>
+                        <button
+                          onClick={() =>
+                            downloadAttachment(attachment.name, attachment.archive)
+                          }
+                          style={{
+                            backgroundColor: "#028275",
+                            color: "#fff",
+                            border: "none",
+                            padding: "0.5rem 1rem",
+                            fontSize: "1rem",
+                            borderRadius: "0.5rem",
+                            cursor: "pointer",
+                            transition: "background-color 0.3s",
+                            marginTop: "0.5rem", 
+                          }}
                         >
-                            <p
-                                style={{
-                                    fontSize: "1rem",
-                                    color: "#333",
-                                    margin: "5px 0",
-                                    
-                                   
-                                }}
-                            >
-                                {notificacaomed.remetente}
-                            </p>
-                            <p
-                                style={{
-                                    fontSize: "1rem",
-                                    color: "#333",
-                                    margin: "5px 0",
-                                 
-                                }}
-                            >
-                                {notificacaomed.corpo}
-                            </p>
-                        </div>
-                       
-                    </div>
-                ))};
+                          Baixar
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
         </>
     );
 }
