@@ -36,14 +36,12 @@ public class NotificationDTOMapperService {
 
 
     public NotificationResponseDTO toDTO(Notification notification) {
-        System.out.println(notification.getAttachment().size());
-
         return new NotificationResponseDTO(
                 notification.getId(),
                 notification.getTitle(),
                 notification.getMessage(),
                 notification.getAttachment().stream().map(attachment->{
-                    return toFindResponseDTO(attachment,false);
+                    return toFindResponseDTO(attachment,true);
                 }).collect(Collectors.toList()),
                 notification.getStudyRepresentative().getName(),
                 notification.getRecipientsDoctors().stream()
@@ -75,6 +73,7 @@ public class NotificationDTOMapperService {
             Attachment attachment = new Attachment();
             attachment.setUser(clinicalRepresentative);
             attachment.setNotification(notification);
+            attachment.setName(file.getName()+" documento de "+clinicalRepresentative.getName());
             try {
                 attachment.setArchive(file.getBytes());
             } catch (IOException e) {
