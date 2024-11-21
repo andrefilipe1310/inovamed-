@@ -1,6 +1,5 @@
 import Navbar from "../../components/Navbar";
 import { useSearchParams, Link } from "react-router-dom";
-import { ResearchResponseDTO } from "../../types/ResearchTypes";
 import { useState } from "react";
 export default function MedParticipantesConfig(){
     const [seachParams] = useSearchParams()
@@ -26,14 +25,40 @@ export default function MedParticipantesConfig(){
                     <h1 className="title-page">NOTIFICAÇÕES</h1>
                     <div className="card-border">
                         <div className="container-notfic-all">
+                            <label className="nome-part-med">Nome</label>
+                            <input className="input-nome"/>
+                            <label className="email-part-med">Email</label>
+                            <div className="div-email-genero">
+                                <input className="input-email"/>
+                                <select>
+                                    <option selected>Gênero</option>
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Feminio</option>
+                                </select>
+                            </div>
+                            <label className="telefone-part-med">Telefone</label>
+                            <div className="div-telefone">
+                                <input className="input-telefone-dd"/>
+                                <input className="input-telefone-numero"/>
+                            </div>
                             <label htmlFor="titulo">Histórico Médico</label>
-                            <input type="text" name="titulo" />
+                            <textarea className="textarea-historico"></textarea>
                             <label htmlFor="content">Medicamentos em uso</label>
-                            <textarea name="content" id="content"></textarea>
-                            <label htmlFor="files" style={{alignSelf:"center"}}>ANEXOS</label>
-                            <div className="files-arrange" style={{alignSelf:"center"}}>
+                            <textarea className="textarea-medicamentos"></textarea>
+                            <div className="div-label-alergias-cirurgias">
+                                <label>Alergias</label>
+                                <label className="label-cirurgias">Cirurgias anteriores</label>
+                            </div>
+                            <div className="div-alergias-cirurgias">
+                                <textarea className="textarea-alergia"></textarea>
+                                <textarea className="textarea-cirurgias"></textarea>
+                            </div>
+                            <div className="div-adicionar-part">
+                            <label>Resutados de exames recentes</label>
+                            <div className="files-arrange-part">
                                 <input type="file" name="files" multiple onChange={haddleFiles}/>
                                 +
+                            </div>
                             </div>
                             <div style={{display:"flex"}}>
                                 {files?.map((f)=>(
@@ -42,7 +67,7 @@ export default function MedParticipantesConfig(){
                             </div> 
                         </div>
                     </div>
-                    <button className="button-send-notification">ENVIAR NOTIFICAÇÃO</button>
+                    <button className="button-send-notification">Salvar</button>
                 </div>
         </>
     )

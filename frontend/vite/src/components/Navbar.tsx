@@ -139,12 +139,11 @@ const handleFindNameDoctor = () => {
             <div className="container-links">
                 <Link to='/medico/listapesquisas' className='nav-item'>Pesquisas Disponíveis</Link>
                 <Link to='/medico/participantes' className='nav-item'>Participantes</Link>
-                <Link to='/medico/notificacoes' className='nav-item'>Notificações</Link>
+                <Link to='/medico/criarnotificacao' className='nav-item'>Notificações</Link>
                 <Link to='/' className='nav-item'>Sair</Link>
             </div>
         </div>
         </>
     )
 }
-
 }
