@@ -6,7 +6,7 @@ export default function MedCriarNotificacao(){
     interface notificacaomed {
         id: number,
         titulo: string;
-        previlcorpo: string;
+        corpo: string;
     }
     const notificacaomed:notificacaomed[] = criarnotificacao
 
@@ -17,16 +17,15 @@ export default function MedCriarNotificacao(){
             <div className='container-page-medico'>
                 <h1 className='h1notificacao'>NOTIFICAÇÕES</h1>
                     {notificacaomed.map((notificacaomed) => (
-                        <div className="notificacaomed">
-                            <div className="conteiner-dados-notificacao">
-                            <Link to={`/medico/notificacao_med?id=${notificacaomed.id}`} className="link-to-notificacao">
+                        <div className="card-border">
+                            <div className="container-dados-notificacao">
                                 <div className="background-dados-notificacao">
                                     <div className="titulo-notificacaomed">
                                         <h3>{notificacaomed.titulo}</h3>
                                     </div>
-                                    <p className="p-previl-notificacao">{notificacaomed.previlcorpo}</p>
+                                    <p className="p-previl-notificacao">{notificacaomed.corpo}</p>
                                 </div>
-                                </Link>
+                              
                             </div>
                         </div>
                     ))}

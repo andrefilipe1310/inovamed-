@@ -140,6 +140,7 @@ const handleFindNameDoctor = () => {
                 <Link to='/medico/listapesquisas' className='nav-item'>Pesquisas Disponíveis</Link>
                 <Link to='/medico/participantes' className='nav-item'>Participantes</Link>
                 <Link to='/medico/notificacoes' className='nav-item'>Notificações</Link>
+                <Link to='/medico/criarnotificacao' className='nav-item'>Notificações2</Link>
                 <Link to='/medico/participantesconfiguracao' className='nav-item'>oieee</Link>
                 <Link to='/' className='nav-item'>Sair</Link>
             </div>
