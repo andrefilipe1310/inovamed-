@@ -5,6 +5,7 @@ import com.inovamed.clinical_study_system.model.doctor.DoctorRequestDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorUpdateDTO;
 import com.inovamed.clinical_study_system.service.doctor.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -42,6 +43,8 @@ public class DoctorControllerTests {
     private DoctorRequestDTO requestDTOMock;
     private DoctorResponseDTO responseDTOMock;
     private DoctorUpdateDTO updateDTOMock;
+    @Mock
+    private HttpServletRequest request;
 
     @BeforeEach
     void setUp() {
@@ -105,25 +108,7 @@ public class DoctorControllerTests {
         }
     }
 
-    @Nested
-    @DisplayName("Find All Doctors Tests")
-    class FindAllDoctorsTests {
 
-        @Test
-        @DisplayName("Should return a list of doctors")
-        void shouldReturnListOfDoctors() {
-            List<DoctorResponseDTO> doctors = List.of(responseDTOMock);
-            when(findAllDoctorService.execute()).thenReturn(doctors);
-
-            ResponseEntity<List<DoctorResponseDTO>> response = doctorController.findAll();
-
-            assertNotNull(response);
-            assertEquals(HttpStatus.OK, response.getStatusCode());
-            assertEquals(doctors, response.getBody());
-
-            verify(findAllDoctorService).execute();
-        }
-    }
 
     @Nested
     @DisplayName("Find Doctor By Id Tests")

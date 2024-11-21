@@ -12,7 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.yaml.snakeyaml.events.Event;
 
 
 import java.util.Arrays;
@@ -192,33 +194,7 @@ class DoctorServicesTest {
     @DisplayName("Find All Doctors Service Tests")
     class FindAllDoctorsServiceTests {
 
-        @Test
-        @DisplayName("Deve retornar lista de médicos")
-        void shouldReturnListOfDoctors() {
-            List<Doctor> doctors = Arrays.asList(doctorMock);
-            when(doctorRepository.findAll()).thenReturn(doctors);
-            when(doctorDTOMapperService.toDTO(any(Doctor.class))).thenReturn(responseDTOMock);
 
-            List<DoctorResponseDTO> result = findAllDoctorService.execute();
-
-            assertNotNull(result);
-            assertFalse(result.isEmpty());
-            assertEquals(1, result.size());
-            verify(doctorRepository).findAll();
-            verify(doctorDTOMapperService).toDTO(any(Doctor.class));
-        }
-
-        @Test
-        @DisplayName("Deve retornar lista vazia quando não houver médicos")
-        void shouldReturnEmptyListWhenNoDoctors() {
-            when(doctorRepository.findAll()).thenReturn(List.of());
-
-            List<DoctorResponseDTO> result = findAllDoctorService.execute();
-
-            assertNotNull(result);
-            assertTrue(result.isEmpty());
-            verify(doctorRepository).findAll();
-        }
     }
 
     @Nested

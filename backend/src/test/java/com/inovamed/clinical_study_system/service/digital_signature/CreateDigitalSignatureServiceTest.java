@@ -53,7 +53,7 @@ class CreateDigitalSignatureServiceTest {
     @Test
     void execute_ShouldCreateDigitalSignature_WhenValidRequest() throws NoSuchAlgorithmException {
         // Given
-        DigitalSignatureRequestDTO requestDTO = new DigitalSignatureRequestDTO(ID, null, LocalDateTime.now().minusDays(1), LocalDateTime.now().plusDays(1));
+        DigitalSignatureRequestDTO requestDTO = new DigitalSignatureRequestDTO( null, LocalDateTime.now().minusDays(1), LocalDateTime.now().plusDays(1));
         AttachmentRequestDTO attachmentDTO = new AttachmentRequestDTO("file.pdf", new byte[]{1, 2, 3}, 1L);
         Patient patient = new Patient();
         patient.setId(1L);
@@ -66,7 +66,7 @@ class CreateDigitalSignatureServiceTest {
         when(digitalSignatureMapperDTOService.toDTO(any(DigitalSignature.class))).thenReturn(new DigitalSignatureResponseDTO("file.pdf", new byte[]{1}, LocalDateTime.now().minusDays(1), LocalDateTime.now().plusDays(1), true));
 
         // When
-        DigitalSignatureResponseDTO response = createDigitalSignatureService.execute(requestDTO, attachmentDTO);
+        DigitalSignatureResponseDTO response = createDigitalSignatureService.execute(requestDTO, attachmentDTO,ID);
 
         // Then
         assertNotNull(response);
@@ -77,26 +77,26 @@ class CreateDigitalSignatureServiceTest {
     @Test
     void execute_ShouldThrowInvalidSignatureValidityException_WhenValidFromAfterValidUntil() {
         // Given
-        DigitalSignatureRequestDTO requestDTO = new DigitalSignatureRequestDTO(ID, null, LocalDateTime.now().plusDays(1), LocalDateTime.now());
+        DigitalSignatureRequestDTO requestDTO = new DigitalSignatureRequestDTO( null, LocalDateTime.now().plusDays(1), LocalDateTime.now());
         AttachmentRequestDTO attachmentDTO = new AttachmentRequestDTO("file.pdf", new byte[]{1, 2, 3}, 1L);
 
         // When & Then
         assertThrows(InvalidSignatureValidityException.class, () -> {
-            createDigitalSignatureService.execute(requestDTO, attachmentDTO);
+            createDigitalSignatureService.execute(requestDTO, attachmentDTO,ID);
         });
     }
 
     @Test
     void execute_ShouldThrowPatientNotFoundException_WhenPatientDoesNotExist() {
         // Given
-        DigitalSignatureRequestDTO requestDTO = new DigitalSignatureRequestDTO(ID, null, LocalDateTime.now().minusDays(1), LocalDateTime.now().plusDays(1));
+        DigitalSignatureRequestDTO requestDTO = new DigitalSignatureRequestDTO( null, LocalDateTime.now().minusDays(1), LocalDateTime.now().plusDays(1));
         AttachmentRequestDTO attachmentDTO = new AttachmentRequestDTO("file.pdf", new byte[]{1, 2, 3}, 1L);
 
         when(patientRepository.findById(1L)).thenReturn(Optional.empty());
 
         // When & Then
         assertThrows(PatientNotFoundException.class, () -> {
-            createDigitalSignatureService.execute(requestDTO, attachmentDTO);
+            createDigitalSignatureService.execute(requestDTO, attachmentDTO,ID);
         });
     }
 
