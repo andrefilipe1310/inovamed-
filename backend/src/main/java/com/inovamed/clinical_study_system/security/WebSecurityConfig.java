@@ -65,6 +65,12 @@ public class WebSecurityConfig {
                     authorize.requestMatchers(HttpMethod.GET,"/clinical-representative/**").hasRole("STUDY_REPRESENTATIVE");
                     // Doctor EndPoints
                     authorize.requestMatchers(HttpMethod.GET,"/doctor/**").hasRole("DOCTOR");
+
+                    // Application Endpoints
+                    authorize.requestMatchers(HttpMethod.POST,"/application").hasRole( "DOCTOR");
+                    authorize.requestMatchers(HttpMethod.GET,"/application").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
+                    authorize.requestMatchers(HttpMethod.GET,"/application/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
+
                     //authorize.anyRequest().permitAll();
 
                 }).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);

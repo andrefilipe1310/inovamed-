@@ -1,6 +1,7 @@
 package com.inovamed.clinical_study_system.model.research;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.inovamed.clinical_study_system.model.application.Application;
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.model.patient.Patient;
@@ -50,6 +51,9 @@ public class Research {
     @JsonBackReference
     @JoinColumn(name = "clinical_study_representative_id")
     private ClinicalStudyRepresentative clinicalRepresentative;
+    @OneToMany(mappedBy = "research", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Application> applications = new ArrayList<>();
+
 
     public void update(ResearchUpdateDTO researchUpdateDTO) {
         updateField(() -> this.title = researchUpdateDTO.title(), researchUpdateDTO.title());
