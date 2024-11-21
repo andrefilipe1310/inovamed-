@@ -846,6 +846,41 @@ font-size: 3vw !important;
 
 
 /* lista de pesquisas*/
+
+@media (max-width:550px) {
+  .container-pesq{
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+    .container-card-pesqlist{
+      width: 80vw !important;
+      height: 55vw !important;
+      padding: 0vw 0vw !important;
+      overflow: visible !important;
+
+    }
+    .container-card-pesqlist h2{
+      font-size: 8vw !important;
+      margin: 0vw 0vw !important;
+      overflow: visible !important;
+
+    }
+    .container-card-pesqlist p{
+      font-size: 8vw !important;
+      padding: 3vw !important;
+    }
+    
+    .button-nova-pesquisa{
+      width: 70vw !important;
+      height: 10vw !important;
+      font-size: 5vw !important;
+    }
+
+  }
+
+
   .title-suas-pesquisas{
     font-size: 3vw;
     font-family: Montserrat-Bold;
@@ -943,6 +978,72 @@ font-size: 3vw !important;
 
 
   /* PESQUISAINFO*/
+
+  @media (max-width:550px) {
+    .title-pesquisa{
+      font-size: 8vw !important;
+    }
+    .subtitle-pesquisa{
+      font-size: 5vw !important;
+    }
+    .container-links-pesq{
+      width: 80vw;
+      display: flex;
+      flex-direction: row !important;
+      justify-content: space-evenly !important ;
+    }
+    .container-button{
+      width: 18vw !important;
+      height: 18vw !important;
+      align-self: center !important;
+    }
+    .section-1 {
+      width: 90% !important;
+      flex-direction: column !important;
+      text-align: center !important;
+    }
+    .section-1 p{
+      font-size: 5vw !important;
+    }
+    .section-2 {
+      width: 90% !important;
+      flex-direction: column !important;
+      text-align: center !important;
+    }
+    .section-2 p{
+      font-size: 5vw !important;
+    }
+    .container-pesq-all p,li{
+      font-size: 5vw !important;
+      text-align: center !important;
+    }
+    .section-4{
+      flex-direction: column !important;
+      align-items: center !important;
+  
+    }
+    .section-4 button{
+      align-self: center !important;
+      margin-bottom: 5vw !important;
+      background:linear-gradient(to right, #0b42ce,#062168 );
+      border: none;
+      border-radius: 15px;
+      width: 20vw !important;
+      height: 10vw !important;
+      color: white;
+      font-family: Montserrat-Bold;
+    }
+    .div-baixar{
+      justify-content: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+    .div-baixar p{
+      text-decoration: underline;
+    }
+  
+    }
   .title-pesquisa{
     width: 90%;
     padding: 2vw 5vw;
@@ -966,6 +1067,12 @@ font-size: 3vw !important;
     font-size: 1.5vw;
     box-sizing: border-box;
     margin: 2vw 0vw;
+  }
+  .container-links{
+    display: flex;
+    width: 20vw; 
+    justify-content: space-evenly;
+    flex-direction: row;
   }
   .container-button{
     width: 6vw;
@@ -1024,6 +1131,109 @@ font-size: 3vw !important;
   }
 
   /* novapesquisa e alterarpesquisa*/
+  @media (max-width:550px) {
+
+    .form-new-research{
+      width: 80vw !important;
+      align-self: center !important;
+    }
+    .principal{
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+    .form-new-research input{
+      width: 100%;
+      height: 10vw !important;
+     
+    }
+    .form-new-research label{
+      font-size: 5vw !important;
+     
+    }
+    .form-new-research .session:nth-of-type(2) input{
+      width: 15vw !important;
+      text-align: center !important;
+    }
+    .form-new-research .session button{
+      height: 10vw !important;
+      width: 10vw !important;
+      font-size: 5vw !important;
+    
+    }
+    .form-new-research .session textarea{
+      width: 80% !important;
+      border: 1px solid #062168;
+      border-radius: 15px;
+      height: 45vw !important;
+    }
+    .form-new-research .session:nth-of-type(7) label{
+      font-size: 4vw !important;
+    }
+    .form-new-research .session:nth-of-type(9) input{
+      width: 130% !important;
+    }
+    .send-data{
+      width: 45vw !important;
+      height: 10vw !important;
+      margin-bottom: 5vw !important;
+      font-size: 3vw !important;
+      border-radius: 15px !important;
+
+    }
+    .form-new-research .session:nth-of-type(2){
+
+      align-items: center !important;
+
+
+    }
+    .form-new-research .session:nth-of-type(2) div:nth-of-type(2){
+      width: 35vw !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      margin-left: 3vw !important;
+
+    }
+    .form-new-research .session:nth-of-type(2) div:nth-of-type(1){
+      width: 25vw !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+
+    }
+    .form-new-research .session:nth-of-type(2) div:nth-of-type(2) input{
+      width: 45vw !important;
+
+    }
+    .form-new-research .session:nth-of-type(2) div:nth-of-type(2) label{
+      font-size: 4vw !important;
+      margin-bottom: 1vw !important;
+
+    }
+    .form-new-research .session:nth-of-type(2) div:nth-of-type(1) label{
+      font-size: 4vw !important;
+      margin-bottom: 1vw !important;
+
+    }
+    .form-new-research .session:nth-of-type(5) p{
+      font-size: 4vw !important;
+
+    }
+    .form-new-research .session:nth-of-type(6) textarea{
+      margin-left: 1vw !important;
+      width: 95% !important;
+
+    }
+    .form-new-research .session:nth-of-type(7) label{
+      font-size: 3vw !important;
+    }
+    .form-new-research .session:nth-of-type(7) div:nth-of-type(1){
+      margin-left: 4vw !important;
+    }
+  }
   .subtitle-page{
     font-family:  Montserrat-Bold;
     background: linear-gradient(180deg, #0b42ce,#062168); /* Defina as cores do gradiente */

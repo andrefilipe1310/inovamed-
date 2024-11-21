@@ -47,7 +47,7 @@ export default function RepListaPesquisas(){
         <>
         <Navbar/>
         <div className="container-page">
-            <h1 className="title-suas-pesquisas">MINHAS PESQUISAS</h1>
+            <h1 className="title-page">MINHAS PESQUISAS</h1>
             {errorMessage != null && <p style={{color:'red'}}>{errorMessage}</p>}
             {(pesqInfo.length == 0 && errorMessage == null )&&<p>Nenhuma pesquisa a mostrar</p>}
             <div className="container-pesq">      

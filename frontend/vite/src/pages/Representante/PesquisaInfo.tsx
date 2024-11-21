@@ -61,9 +61,10 @@ export default function RepPesquisaInfo() {
             <div className="container-page" >
                 {(research == null) && <div><p style={{ color: 'red' }}>{error}</p></div>}
                 {(research != null) && <div className="principal">
-                    <h1 className="title-pesquisa">{research?.title} - {research?.code}</h1>
+                    <div className="container-pesq-all" style={{display:"flex", flexDirection:"column", width:"100%", alignItems:"center"}}>
+                    <h1 className="title-pesquisa" style={{textAlign:"center"}}>{research?.title} - {research?.code}</h1>
                     <h2 className="subtitle-pesquisa">Pesquisa da área de {research?.area}</h2>
-                    <div style={{ display: "flex", width: "20vw", justifyContent: "space-evenly" }}>
+                    <div className="container-links-pesq">
                         <div className="card-border">
                             <div className="container-button">
                                 <Link to={`/representante/alterarpesquisa?id=${research?.code}`} className="button-to-edit"><img src="../../../public/pencil-icon.png" alt="" /></Link>
@@ -109,7 +110,7 @@ export default function RepPesquisaInfo() {
                         <div>
                             {(research == null || research == undefined) && <div>Nenhum arquivo para baixar</div> } 
                             {research?.attachments.map((attachment, index) => (
-                                 <div key={index}>
+                                 <div key={index} className="div-baixar">
                                  <p>{attachment.name}</p>
                                  <button onClick={() => downloadAttachment(attachment.name, attachment.archive)}>
                                    Baixar
@@ -119,6 +120,7 @@ export default function RepPesquisaInfo() {
                         </div>
                         {error && <p style={{ color: 'red' }}>{error}</p>}
                     </div>
+                </div>
                 </div>}{/* principal */}
             </div>
 
