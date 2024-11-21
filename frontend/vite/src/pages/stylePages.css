@@ -9,6 +9,26 @@
 
 
 /* Pagina inicial*/
+@media (max-width:550px) {
+  .header-container{
+    width: 100%;
+   height: 20vw !important;
+  }
+  .logo-start{
+    width: 35vw !important;
+    height: auto;
+  }
+  .link-login{
+    width: 20vw !important;
+    height: 10vw !important;
+    font-size: 5vw !important;
+}
+.rodape{
+  height: 27vw !important;
+  position: absolute !important;
+  bottom: 0px !important;
+}
+}
 
 .logo-start{
   width: 12vw;
@@ -72,6 +92,18 @@ transition: 0.1s;
 }
 
 /*CADASTRO */
+@media (max-width:550px) {
+  .container-user-type-select{
+    width: 90vw !important;
+    text-align: center;
+  }
+  .link-to-register{
+    width: 65vw !important;
+    height: 10vw !important;
+    border-radius: 15px !important;
+  
+  }
+}
 .container-user-type-select{
   width: 45vw;
   height: fit-content;
@@ -109,6 +141,58 @@ align-items: center;
 }
 
   /*CADASTRO REPRESENTANTE*/
+  @media (max-width:550px) {
+    .form-container{
+      width: 100% !important;
+    }
+    .form-container form{
+      width: 90% !important;
+
+  }
+  .form-container input{
+    width: 90%;
+    height: 12vw !important;
+    font-size: 4vw !important;
+    padding: 0vw 3vw !important;
+    margin-bottom: 3vw !important;
+ 
+  }
+  .form-container label{
+     font-size: 4vw !important;
+     padding-left: 4vw !important;
+  } 
+  .form-container i{
+    font-size: 3vw !important;
+  }
+  .form-container textarea{
+    height: 45vw !important;
+    width: 100% !important;
+    font-size: 4vw !important;
+    padding: 2vw 2vw !important;
+  } 
+  .phone-number label{
+    margin-left: -1vw !important;
+   }
+   .change-user{
+    width: 18vw !important;
+    height: 6vw !important;
+
+}
+.form-header p{
+  font-size: 3vw !important;
+  width: 50vw !important;
+  height: 6vw !important;
+  margin-bottom: 3vw !important;
+}
+.submit{
+  width: 60vw !important;
+  margin-right: 1vw ;
+  height: 10vw !important;
+  border-radius: 15px !important;
+  font-size: 3vw !important;
+  margin-bottom: 5vw !important;
+}
+}
 
   .form-container{
     display: flex;
@@ -345,6 +429,61 @@ h1.title-page-pac {
 
   
 /* Login*/
+@media (max-width:550px) {
+  .logo-container{
+    width: 30vw !important;
+    height: 15vw !important;
+}
+.logo-container img{
+ width: 110% !important;
+ height: auto !important;
+}
+.container-login{
+  width: 80vw !important;
+  height: auto !important;
+  padding-bottom: 6vw !important;
+
+}
+.container-email-senha{
+
+  width: 55vw !important;
+
+}
+.toggle-password {
+  left: 62vw !important;
+  bottom: 4vw !important;
+}
+.toggle-password img{
+  width: 5vw !important;
+}
+.container-email-senha {
+  width: 90% !important;
+  margin: 4vw !important;
+
+
+}
+.container-email-senha input{
+  width: 100% !important;
+height: 10vw !important;
+padding: 0vw 2vw !important;
+font-size: 3vw !important;
+
+}
+.container-email-senha label{
+  font-size: 3vw !important;
+}
+.container-login .submit{
+  width: 55vw !important;
+  height: 10vw !important;
+  font-size: 4vw !important;
+
+}
+.container-login p, a{
+  font-size: 3vw !important;
+  margin-top: 3vw !important;
+}
+
+}
 
 .container-all-login{
   margin-top: 6vw;
@@ -461,7 +600,16 @@ h1.title-page-pac {
 
 
 /* REPRESENTANTE*/
+@media (max-width:550px) {
+  .container-page{
+    padding-left: 0px !important;
 
+}
+.title-page{
+  font-size: 8vw !important;
+}
+}
+ 
 .container-page{
 
     padding-left: 25%;
@@ -494,6 +642,74 @@ h1.title-page-pac {
   }
 
   /* PARTICIPANTS*/
+  @media (max-width:550px) {
+    .subtitle-pac{
+      text-align: center;
+    }
+    .section-pac h3{
+     font-size: 6vw !important;
+    }
+    .section-pac .participant-list{
+      grid-template-columns: 50% 50% !important; 
+    }
+    .section-pac button{
+      width: 80%;
+      height: 15vw !important;
+      font-size: 3vw !important;
+      align-self: center !important;
+      justify-self: center !important;
+    }
+    .edit-patient{
+      width: 70% !important;
+      margin-top: 4vw;
+     
+    }
+    .edit-patient h2{
+      margin-bottom: 4vw !important;
+     
+    }
+    .edit-patient p,strong{
+      font-size: 5vw !important;
+     
+    }
+    .edit-patient button{
+      width: 15vw !important;
+      height: 13vw !important;
+    }
+    .edit-patient div{
+      margin: 4vw 0vw !important;
+    }
+    .reproval-motive{
+      width: 70% !important;
+      margin: 4vw 0vw !important;
+      
+    }
+    .reproval-motive label{
+      font-size: 4vw !important;
+      text-align: center !important;
+      margin: 2vw  0vw !important;
+      margin-top: 6vw !important;
+    }
+    .reproval-motive textarea{
+      width: 80% !important;
+      padding: 2vw 2vw !important;
+      height: 30vw !important;
+      align-self: center !important;
+     
+    }
+    .reproval-motive button:nth-of-type(1){
+      width: 75% !important;
+      height: 10vw !important;
+      font-size: 5vw !important;
+      margin: 3vw 0vw !important;
+    }
+    .reproval-motive button:nth-of-type(2){
+     font-size: 5vw !important;
+    }
+    
+
+  }
+
   .section-pac{
     width: 100%;
     display: flex;
@@ -953,6 +1169,66 @@ h1.title-page-pac {
   }
 
   /* NOTIFICAÇÕES REPRESENTANTE*/
+
+  @media (max-width:550px) {
+    .container-notfic-all{
+      width: 80vw !important;
+      padding: 5vw 3vw !important;
+
+    }
+    .container-notfic-all label{
+      font-size: 5vw !important;
+
+    }
+    .container-notfic-all input:nth-of-type(1){
+      height: 10vw !important;
+      padding: 0vw 2vw !important;
+    }
+    .container-notfic-all input[type=file]{
+      
+    }
+    .container-notfic-all textarea{
+      height: 30vw !important;
+      padding: 2vw 2vw !important;
+    }
+    .files-custom{
+      width: 25vw !important;
+      height: 10vw !important;
+      font-size: 3vw !important;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      white-space: nowrap;
+    }
+    .container-notfic-all .container-select{
+      width: 100% !important;
+      justify-content: center !important;
+      margin-top: 3vw;
+    }
+    .container-notfic-all select{
+      width: 35%;
+      height: 7vw !important;
+      margin-top: 2vw;
+      
+    }
+    .files-arrange{
+      width: 10vw !important;
+      height: 10vw !important;
+      font-size: 8vw;
+      border-radius: 45px !important;
+      margin: 3vw 0vw;
+    }
+    .button-send-notification{
+      background: linear-gradient(180deg, #0b42ce,#062168) ;
+      width: 70vw !important;
+      height: 10vw !important;
+      margin-top: 5vw !important;
+      font-size: 4vw !important;
+      border-radius: 15px !important;
+
+    }
+  }
 
   .container-notfic-all{
     width: 48vw;

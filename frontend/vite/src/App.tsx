@@ -41,7 +41,6 @@ export default function App() {
         <Route path="/medico/listapesquisainfo" element={<Medlistapesqinfo/>}></Route>
         <Route path="/medico/participantes" element={<MedParticipantes/>}></Route>
         <Route path="/medico/notificacoes" element={<MedNotificacao/>}></Route>
-        <Route path="/medico/criarnotificacoes" element={<MedCriarNotificacao/>}></Route>
         <Route path="/representante/listapesquisas" element={<RepListaPesquisas/>}></Route>
         <Route path="/representante/infoPesquisas" element={<RepPesquisaInfo/>}></Route>
         <Route path="/representante/alterarpesquisa" element={<RepAlterarPesquisa/>}></Route>

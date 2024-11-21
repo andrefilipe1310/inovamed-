@@ -54,6 +54,7 @@ public class WebSecurityConfig {
                     authorize.requestMatchers(HttpMethod.POST, "/notification").hasRole("STUDY_REPRESENTATIVE");
                     authorize.requestMatchers(HttpMethod.GET,"/notification/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
                     authorize.requestMatchers(HttpMethod.GET,"/notification/patient").hasRole("PATIENT");
+                    authorize.requestMatchers(HttpMethod.GET,"/notification/doctor").hasRole("DOCTOR");
                     // Digital Signature Endpoints
                     authorize.requestMatchers(HttpMethod.POST, "/digital-signature").hasRole("PATIENT");
                     authorize.requestMatchers(HttpMethod.GET, "/digital-signature/verify/**").hasRole("PATIENT");
