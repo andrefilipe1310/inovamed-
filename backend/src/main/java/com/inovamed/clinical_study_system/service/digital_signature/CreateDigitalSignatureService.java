@@ -12,6 +12,7 @@ import com.inovamed.clinical_study_system.model.patient.Patient;
 import com.inovamed.clinical_study_system.repository.DigitalSignatureRepository;
 import com.inovamed.clinical_study_system.repository.PatientRepository;
 import jakarta.transaction.Transactional;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,14 @@ public class CreateDigitalSignatureService {
 
     @Transactional
     public DigitalSignatureResponseDTO execute(DigitalSignatureRequestDTO digitalSignatureRequestDTO, AttachmentRequestDTO attachmentRequestDTO,Long userId) throws NoSuchAlgorithmException {
+        if(digitalSignatureRepository.existsByUserId(userId)){
+            throw new RuntimeException("assinatura já feita");
+        }
+
         if (digitalSignatureRequestDTO.validFrom().isAfter(digitalSignatureRequestDTO.validUntil())) {
             throw new InvalidSignatureValidityException();
         }
-        logger.info("aquiiii");
+
 
         Patient patient = patientRepository.findById(userId)
                 .orElseThrow(() -> new PatientNotFoundException("Patient not found"));
@@ -72,7 +77,7 @@ public class CreateDigitalSignatureService {
         try {
             Signature signature = Signature.getInstance("SHA256withRSA");
             signature.initSign(privateKey);
-            signature.update(documentContent);
+            Hibernate.initialize(signature.update(documentContent));
             return signature.sign();
         } catch (GeneralSecurityException e) {
             throw new FailedToSignDocumentException();

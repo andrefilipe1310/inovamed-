@@ -33,7 +33,6 @@ public class DigitalSignatureController {
     TokenService tokenService;
 
     @PostMapping
-    @Transactional
     public ResponseEntity<DigitalSignatureResponseDTO> create(
             HttpServletRequest request,
             @ModelAttribute DigitalSignatureRequestDTO digitalSignatureRequestDTO,

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DigitalSignatureRepository extends JpaRepository<DigitalSignature,Long> {
+    boolean existsByUserId(Long userId);
 }

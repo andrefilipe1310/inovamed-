@@ -1,7 +1,6 @@
 package com.inovamed.clinical_study_system.model.attachment;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.user.User;
@@ -10,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 @Entity(name = "tb_attachment")
 @Getter

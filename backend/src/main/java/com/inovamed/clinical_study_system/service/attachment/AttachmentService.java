@@ -45,6 +45,7 @@ public class AttachmentService implements IAttachmentService{
     }
 
     @Override
+    @Transactional
     public AttachmentFindResponseDTO findById(Long id) {
         return this.toFindResponseDTO(attachmentRepository.findById(id).orElseThrow(
                 ()->{return new AttachmentNotFoundException();}
