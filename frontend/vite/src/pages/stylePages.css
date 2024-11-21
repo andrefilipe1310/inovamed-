@@ -1512,8 +1512,8 @@ font-size: 3vw !important;
   }
   /* Pagina participantes medico*/
   .div-dados-part-med{
-    width: 15vw;
-    margin: 1.5vw 2vw 0vw;
+    width: 250px;
+    margin: 15px 10px 0px;
     background-color: white;
     padding:0.1vw;
     border: 1.5px solid;
@@ -1535,7 +1535,11 @@ font-size: 3vw !important;
     font-family: Montserrat-Bold;
 }
 .dados-card-part-med{
-  margin-top: 3vw;
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
 }
 .p-participantes{
   display: flex;
@@ -1549,25 +1553,26 @@ font-size: 3vw !important;
   color: black;
   position: absolute;
   left: 0;
-  margin-left: 1vw;
+  margin-left: 5%;
 }
 .p-direito{
-  margin-left: 5vw;
+  margin-left: 70px;
 }
 .container-card-part-med{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  max-width: 60vw;
+  max-width: 1100px;
 }
 .container-card-part{
   display: flex;
     flex-direction: row;
+    margin-top: 20px;
     max-width: 60vw;
     display: flex;
     flex-wrap: wrap;
-    height: 50vw;
+    height: 100px;
 }
 .div-background-part{
   background-color: white;
@@ -1576,29 +1581,33 @@ font-size: 3vw !important;
   display: flex;
   align-items: center;
   text-align: center;
-  min-height: 12vw;
-  height: 15vw;
-  max-height: 15vw;
+  height: 100%;
   color: #08564E;
-  position: relative;
+  
 }
 .div-link-part{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 10vw;
+  width: 150px;
 }
 .button-link-part{
     border: 1.5px solid #0B42CE;
     border-radius: 15px;
-    width: 3vw;
-    height: 2.5vw;
+    width: 50px;
+    height: 45px;
     background-color: white;
 }
 .img-link-part{
-  width: 1.5vw;
-  height: 1.5vw;
+  width: 25px;
+  height: 25px;
+}
+.container-page-medico-part{
+  padding-left: 25%;
+  display: flex;
+  flex-direction: column;
+    align-items: center;
 }
 /* Paginas listPesquisas paciente*/
 

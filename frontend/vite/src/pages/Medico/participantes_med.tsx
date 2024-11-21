@@ -13,7 +13,7 @@ export default function MedParticipantes(){
     return(
         <>
          <Navbar/>
-         <div className='container-page-medico'>
+         <div className='container-page-medico-part'>
             <div className="funcoes-medico">
             <h1 className='h1notificacao'>PESQUISAS DISPONÍVEIS</h1>
                 <div className="container-card-part-med">

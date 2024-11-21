@@ -10,6 +10,7 @@ import Medlistapesqinfo from "./pages/Medico/listpesqinfo_med"
 import MedCriarNotificacao from "./pages/Medico/criarNotificacao_med"
 import MedNotificacao from "./pages/Medico/notificacao_med"
 import MedParticipantes from "./pages/Medico/participantes_med"
+import MedParticipantesConfig from "./pages/Medico/configuracaoPartarticipante_med"
 import RepListaPesquisas from "./pages/Representante/listPesquisas"
 import RepAlterarPesquisa from "./pages/Representante/alterarPesquisa"
 import RepNovaPesquisa from "./pages/Representante/novaPesquisa"
@@ -40,6 +41,7 @@ export default function App() {
         <Route path="/medico/listapesquisas" element={<MedListPacientesPesquisas/>}></Route>
         <Route path="/medico/listapesquisainfo" element={<Medlistapesqinfo/>}></Route>
         <Route path="/medico/participantes" element={<MedParticipantes/>}></Route>
+        <Route path="/medico/participantesconfiguracao" element={<MedParticipantesConfig/>}></Route>
         <Route path="/medico/notificacoes" element={<MedNotificacao/>}></Route>
         <Route path="/representante/listapesquisas" element={<RepListaPesquisas/>}></Route>
         <Route path="/representante/infoPesquisas" element={<RepPesquisaInfo/>}></Route>

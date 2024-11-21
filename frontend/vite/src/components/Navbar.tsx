@@ -131,6 +131,7 @@ const handleFindNameDoctor = () => {
         <>
         <button style={styleButton} onClick={handleNavVisibility} className="handle-nav"></button>
         <div className="container-navbar" style={styleNav}>
+        <img src="../../public/doutoraAna.png" alt="user-icon" className="user-doutora" />
         <button onClick={handleNavVisibility} className="button-close"> x</button>
             <div className="container-perfil">
                 <h1>{name}</h1>
@@ -139,6 +140,7 @@ const handleFindNameDoctor = () => {
                 <Link to='/medico/listapesquisas' className='nav-item'>Pesquisas Disponíveis</Link>
                 <Link to='/medico/participantes' className='nav-item'>Participantes</Link>
                 <Link to='/medico/notificacoes' className='nav-item'>Notificações</Link>
+                <Link to='/medico/participantesconfiguracao' className='nav-item'>oieee</Link>
                 <Link to='/' className='nav-item'>Sair</Link>
             </div>
         </div>

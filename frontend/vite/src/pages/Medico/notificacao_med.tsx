@@ -61,7 +61,6 @@ export default function MedNotificacao(){
                     maxWidth: "1200px",
                     margin: "0 auto",
                     width: "100%",
-                    
                 }}
             >
                 {notificacaomed.map((notificacaomed, index) => (
