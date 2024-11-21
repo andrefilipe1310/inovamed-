@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 
 
 
-
 export default function Navbar(){
     const [name, setName] = useState<string>("")
 
