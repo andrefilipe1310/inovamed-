@@ -1510,6 +1510,96 @@ font-size: 3vw !important;
     display: flex;
     flex-direction: column;
   }
+  /* Pagina participantes medico*/
+  .div-dados-part-med{
+    width: 15vw;
+    margin: 1.5vw 2vw 0vw;
+    background-color: white;
+    padding:0.1vw;
+    border: 1.5px solid;
+    border-radius: 15px;
+    box-sizing: border-box;
+    background: linear-gradient(to top, #0b42ce,#062168);
+    box-shadow: 0px 4px rgb(119, 119, 119);
+    position: relative;
+  }
+.linha-card-part-med{
+  position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: solid 1px #0B42CE;
+    color: #0B42CE;
+    font-family: Montserrat-Bold;
+}
+.dados-card-part-med{
+  margin-top: 3vw;
+}
+.p-participantes{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Montserrat-regular;
+}
+.p-esquerdo{
+  font-family: Montserrat-Bold;
+  color: black;
+  position: absolute;
+  left: 0;
+  margin-left: 1vw;
+}
+.p-direito{
+  margin-left: 5vw;
+}
+.container-card-part-med{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 60vw;
+}
+.container-card-part{
+  display: flex;
+    flex-direction: row;
+    max-width: 60vw;
+    display: flex;
+    flex-wrap: wrap;
+    height: 50vw;
+}
+.div-background-part{
+  background-color: white;
+  border-radius: 10px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  min-height: 12vw;
+  height: 15vw;
+  max-height: 15vw;
+  color: #08564E;
+  position: relative;
+}
+.div-link-part{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 10vw;
+}
+.button-link-part{
+    border: 1.5px solid #0B42CE;
+    border-radius: 15px;
+    width: 3vw;
+    height: 2.5vw;
+    background-color: white;
+}
+.img-link-part{
+  width: 1.5vw;
+  height: 1.5vw;
+}
 /* Paginas listPesquisas paciente*/
 
     .pesq-detailpac {

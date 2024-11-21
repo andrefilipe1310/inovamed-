@@ -122,8 +122,8 @@ export default function MedNotificacao(){
                         </div>
                        
                     </div>
+                ))};
               </div>
-            </div>
         </>
     );
 }
