@@ -12,8 +12,7 @@ export default function PacCriarNotificacao() {
     api
       .get("/notification/patient", {})
       .then((response) => {
-        
-        console.log(response.data);
+      
         setNotifications(response.data)
       })
       .catch((error) => {
@@ -57,6 +56,7 @@ export default function PacCriarNotificacao() {
             justifyContent: "center",
             marginTop: "20px",
             textAlign: "center",
+          
           }}
         >
           <h3 style={{ marginRight: "10px" }}>Pesquisa Clínica:</h3>
@@ -78,6 +78,7 @@ export default function PacCriarNotificacao() {
                 marginBottom: "16px",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                 border: "none",
+                minWidth:"55em"
               }}
             >
               <h2>{notification.title}</h2>
@@ -99,17 +100,6 @@ export default function PacCriarNotificacao() {
                         </div>
                        
                     </div>
-
-                <div style={{ marginTop: "10px" }}>
-                  <a
-                    href="https://link-para-documento-adicional.com"
-                    className="text-sm text-blue-500 underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Documento
-                  </a>
-                </div>
               </div>
             </div>
           ))}
