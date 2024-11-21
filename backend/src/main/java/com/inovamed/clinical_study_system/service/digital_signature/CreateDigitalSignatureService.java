@@ -77,7 +77,7 @@ public class CreateDigitalSignatureService {
         try {
             Signature signature = Signature.getInstance("SHA256withRSA");
             signature.initSign(privateKey);
-            Hibernate.initialize(signature.update(documentContent));
+            signature.update(documentContent);
             return signature.sign();
         } catch (GeneralSecurityException e) {
             throw new FailedToSignDocumentException();
