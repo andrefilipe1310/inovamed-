@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import Navbar from '../../components/Navbar';
+import { SignatureRequestDTO } from '../../types/SignatureTypes';
 
 interface Preferencias {
     titulo: string | JSX.Element;
@@ -23,7 +25,14 @@ const preferencias: Preferencias[] = [
 ];
 
 export default function PacPreferencias() {
-    const handleSave = () => {
+    const [signData,setSignData] = useState<SignatureRequestDTO>({
+        userId: 0,
+        consentsId: [],
+        validFrom: "",
+        validUntil: "",
+    }) 
+    const handleSave = async () => {
+
         console.log("Preferências salvas!");
     };
 
@@ -67,7 +76,7 @@ export default function PacPreferencias() {
                             width: '10vw',
                         }}
                     >
-                        Salvar
+                        Assinar
                     </button>
                 </div>
             </div>
