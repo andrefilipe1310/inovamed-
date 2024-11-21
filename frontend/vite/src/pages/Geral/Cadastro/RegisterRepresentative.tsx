@@ -51,6 +51,7 @@ export default function RegisterRepresentative() {
             });
     }
     return (
+        <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
         <div className="form-container">
             <div className="logo-container">
                 <img src="../../../../public/logo_branca.svg" alt="logo" />
@@ -146,6 +147,7 @@ export default function RegisterRepresentative() {
                     FAZER CADASTRO
                 </button>
             </form>
+        </div>
         </div>
     )
 }
