@@ -7,6 +7,7 @@ export default function MedCriarNotificacao(){
         id: number,
         titulo: string;
         corpo: string;
+        remetente: string;
     }
     const notificacaomed:notificacaomed[] = criarnotificacao
 
@@ -23,7 +24,10 @@ export default function MedCriarNotificacao(){
                                     <div className="titulo-notificacaomed">
                                         <h3>{notificacaomed.titulo}</h3>
                                     </div>
-                                    <p className="p-previl-notificacao">{notificacaomed.corpo}</p>
+                                    <div className="corpo-notificacao-med">
+                                    <p>{notificacaomed.remetente}</p>
+                                    <p>{notificacaomed.corpo}</p>
+                                    </div>
                                 </div>
                               
                             </div>

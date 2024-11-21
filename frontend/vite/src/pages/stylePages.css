@@ -1664,6 +1664,16 @@ font-size: 3vw !important;
     
   }
   .notificacaomed{
+    margin-bottom: 2vw;
+    display: flex;
+    flex-direction: column;
+  }
+  .corpo-noficacao-med, p{
+    font-size: 1vw;
+    line-height: 1.5;
+    max-width: 95%;
+  }
+  .notificacaomed{
     margin-top: 0.5vw;
   }
   .container-dados-notificacao, .notificacaomed{
@@ -1690,8 +1700,9 @@ font-size: 3vw !important;
     
     box-sizing: border-box;
   }
-  .background-dados-notificacao:hover, .dados-notificacaomed:focus{
+  .background-dados-notificacao:hover{
     height: fit-content;
+    align-items: center;
   }
   .link-to-notificacao{
     text-decoration: none;
@@ -1829,6 +1840,63 @@ font-size: 3vw !important;
   display: flex;
   flex-direction: column;
     align-items: center;
+}
+.input-email{
+  height: 2.5vw;
+  width: 30vw;
+  border: #062168 solid 1px;
+  border-radius: 15px;
+  margin-bottom: 1vw;
+  padding: 0vw 0.7vw;
+  box-sizing: border-box;
+  font-family: Montserrat-regular;
+}
+.div-email-genero{
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+.input-telefone-dd{
+width: 3vw;
+}
+.input-telefone-numero{
+width: 30vw;
+height: 2.5vw;
+margin-left: 1vw;
+border: #062168 solid 1px;
+  border-radius: 15px;
+}
+.textarea-medicamentos{
+height: 5vw !important;
+}
+.div-alergias-cirurgias{
+width: 100%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+.textarea-alergia, .textarea-cirurgias{
+width: 48%;
+}
+.label-cirurgias{
+margin-left: 21vw !important;
+}
+.files-arrange-part{
+width: 2vw;
+height: 2vw;
+position:relative;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 15px;
+margin-left: 5.8vw;
+color: white;
+background-color: #062168;
+}
+.div-adicionar-part{
+display: flex;
+flex-direction: row;
+align-items: center;
 }
 /* Paginas listPesquisas paciente*/
 
