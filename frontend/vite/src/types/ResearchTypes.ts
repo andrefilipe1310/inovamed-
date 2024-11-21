@@ -54,7 +54,7 @@ export type ResearchRequestDTO = {
     criteria:Criteria
     start_date:string
     end_date:string
-    phases:string
+    phases:Phase[]
     currentPhase:number
     location:string
 }

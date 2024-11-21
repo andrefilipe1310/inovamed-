@@ -53,7 +53,7 @@ public class ResearchDTOMapperService {
 
     }
 
-    public Research toEntity(ResearchRequestDTO researchRequestDTO, List<MultipartFile> files, Long userId, List<Phases> phases) throws IOException {
+    public Research toEntity(ResearchRequestDTO researchRequestDTO, List<MultipartFile> files, Long userId) throws IOException {
 
 
 
@@ -89,7 +89,7 @@ public class ResearchDTOMapperService {
         research.setDescription(researchRequestDTO.description());
         research.setCriteria(researchRequestDTO.criteria());
         research.setStudyDuration(new StudyDuration(researchRequestDTO.start_date(),researchRequestDTO.end_date()));
-        research.setPhases(phases);
+        research.setPhases(researchRequestDTO.phases());
         research.setCurrentPhase(researchRequestDTO.currentPhase());
         research.setLocation(researchRequestDTO.location());
         research.setAttachments(attachments);
