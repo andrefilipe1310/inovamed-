@@ -25,6 +25,7 @@ com\inovamed\clinical_study_system\infra\GlobalExceptionHandler.class
 com\inovamed\clinical_study_system\model\research\StudyDuration.class
 com\inovamed\clinical_study_system\service\patient\FindByIdPatientService.class
 com\inovamed\clinical_study_system\exception\AttachmentNotFoundException.class
+com\inovamed\clinical_study_system\service\research\FindAllFeaturesResearchService.class
 com\inovamed\clinical_study_system\service\research\FindByCodeResearchService.class
 com\inovamed\clinical_study_system\model\doctor\DoctorResponseDTO.class
 com\inovamed\clinical_study_system\service\clinical_study_representative\DeleteByIdClinicalRepresentativeService.class

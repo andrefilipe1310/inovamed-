@@ -33,8 +33,8 @@ public class NotificationController {
     TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<NotificationResponseDTO> create(@RequestParam("file") MultipartFile file, @ModelAttribute NotificationResquestDTO notificationResquestDTO) throws IOException {
-        return ResponseEntity.status(HttpStatus.CREATED).body(createNotificationService.execute(notificationResquestDTO,file));
+    public ResponseEntity<NotificationResponseDTO> create(@RequestParam("file") List<MultipartFile> files, @ModelAttribute NotificationResquestDTO notificationResquestDTO) throws IOException {
+        return ResponseEntity.status(HttpStatus.CREATED).body(createNotificationService.execute(notificationResquestDTO,files));
     }
 
     @GetMapping("/patient")
@@ -42,8 +42,14 @@ public class NotificationController {
         String authorizationHeader = request.getHeader("Authorization");
         String token = authorizationHeader.substring(7);
         Long userId = tokenService.getUserIdFromToken(token);
-        System.out.println(userId);
-        return ResponseEntity.status(HttpStatus.OK).body(findAllNotificationService.execute(userId));
+        return ResponseEntity.status(HttpStatus.OK).body(findAllNotificationService.execute(userId,"PATIENT"));
+    }
+    @GetMapping("/doctor")
+    public ResponseEntity<List<NotificationResponseDTO>> findAllByDoctor(HttpServletRequest request){
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        return ResponseEntity.status(HttpStatus.OK).body(findAllNotificationService.execute(userId,"DOCTOR"));
     }
 
     @GetMapping("/{id}")

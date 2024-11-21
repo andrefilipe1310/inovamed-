@@ -9,6 +9,7 @@ import com.inovamed.clinical_study_system.model.attachment.AttachmentFindRespons
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
 import com.inovamed.clinical_study_system.repository.AttachmentRepository;
 import com.inovamed.clinical_study_system.repository.ClinicalStudyRepresentiveRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,7 @@ public class AttachmentService implements IAttachmentService{
     }
 
     @Override
+
     public List<AttachmentFindResponseDTO> findAll() {
         return attachmentRepository.findAll().stream().map(attachment -> {
             return this.toFindResponseDTO(attachment,false);
@@ -50,9 +52,10 @@ public class AttachmentService implements IAttachmentService{
     }
 
     @Override
+    @Transactional
     public List<AttachmentFindResponseDTO> findAllById(Long id) {
         return attachmentRepository.findAllByUserId(id).stream().map(attachment -> {
-            return this.toFindResponseDTO(attachment,false);
+            return this.toFindResponseDTO(attachment,true);
         }).collect(Collectors.toList());
     }
 

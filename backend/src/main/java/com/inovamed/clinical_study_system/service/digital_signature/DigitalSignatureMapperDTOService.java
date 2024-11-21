@@ -14,7 +14,7 @@ public class DigitalSignatureMapperDTOService {
 
         return new DigitalSignatureResponseDTO(
                 digitalSignature.getDocumentName(),
-                digitalSignature.getSignature(),
+                //digitalSignature.getSignature(),
                 digitalSignature.getValidFrom(),
                 digitalSignature.getValidUntil(),
                 digitalSignature.isActive()
