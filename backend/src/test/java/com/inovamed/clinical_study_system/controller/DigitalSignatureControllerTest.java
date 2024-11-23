@@ -62,7 +62,6 @@ class DigitalSignatureControllerTest {
         when(tokenService.getUserIdFromToken("testToken")).thenReturn(userId);
 
         DigitalSignatureRequestDTO digitalSignatureRequestDTO = new DigitalSignatureRequestDTO(
-                userId,
                 List.of(1L, 2L),
                 LocalDateTime.now(),
                 LocalDateTime.now().plusDays(10)
@@ -78,7 +77,7 @@ class DigitalSignatureControllerTest {
                 true
         );
 
-        when(createDigitalSignatureService.execute(any(DigitalSignatureRequestDTO.class), any(AttachmentRequestDTO.class)))
+        when(createDigitalSignatureService.execute(any(DigitalSignatureRequestDTO.class), any(AttachmentRequestDTO.class), anyLong()))
                 .thenReturn(responseDTO);
 
         // Execução do teste

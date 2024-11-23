@@ -4,6 +4,8 @@ import api from "../../config/axiosConfig";
 import { ResearchRequestDTO } from "../../types/ResearchTypes";
 
 export default function RepNovaPesquisa() {
+    const [file, setFile] = useState<File | null>(null); // Estado para o arquivo
+
     const [researchRequestDTO, setResearchRequestDTO] = useState<ResearchRequestDTO>({
         title: "",
         area: "",
@@ -15,13 +17,23 @@ export default function RepNovaPesquisa() {
         criteria: { inclusion: [], exclusion: [] },
         start_date:"2024-01-01",
         end_date:"2025-12-31",
-        phases: '[{"number": 1, "title": "Safety evaluation", "description": "Description 1"}, {"number": 2, "title": "Effectiveness evaluation", "description": "Description 2"}]',
+        phases: [],
         currentPhase: 0,
         location: ""
     });
 
     const handleCreateResearch = async () => {
-        api.post("/research", researchRequestDTO)
+
+        console.log(researchRequestDTO.criteria)
+
+        const formData = new FormData();
+        formData.append("researchData", JSON.stringify(researchRequestDTO)); // Dados da pesquisa
+        if (file) {
+            formData.append("file", file); // PDF
+        }
+        api.post("/research", researchRequestDTO,{headers: {
+            "Content-Type": "multipart/form-data",
+        },})
             .then(response => {
                 console.log(response);
             })
@@ -58,6 +70,8 @@ export default function RepNovaPesquisa() {
                 : { ...prev, [field]: updatedArray };
         });
     };
+
+    
 
     return (
         <>
@@ -182,6 +196,21 @@ export default function RepNovaPesquisa() {
                                 type='text'
                                 name='location'
                                 onChange={(e) => handleChange("location", e.target.value)}
+                            />
+                        </div>
+
+                         {/* Campo para upload do arquivo */}
+                         <div className='session'>
+                            <label htmlFor="file">Anexar PDF</label>
+                            <input
+                                type="file"
+                                name="file"
+                                accept=".pdf"
+                                onChange={(e) => {
+                                    if (e.target.files) {
+                                        setFile(e.target.files[0]);
+                                    }
+                                }}
                             />
                         </div>
 

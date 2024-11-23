@@ -1,17 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
  
  
 interface PesquisaCardProps {
   titulo: string;
-  id: string;
+  code: number;
 }
  
-const PesquisaCard: React.FC<PesquisaCardProps> = ({ titulo, id }) => {
+const PesquisaCard: React.FC<PesquisaCardProps> = ({ titulo, code }) => {
   return (
    
     <div style={estiloCard}>
+       <Link to={`/representante/infoPesquisas?id=${code}`} className="link-to-pesq">
       <h3 style={{ color: '#028275' }}>{titulo}</h3>
-      <p style={{ color: 'black' }}>#{id}</p>
+      <p style={{ color: 'black' }}>#{code}</p>
+      </Link>
     </div>
   );
 };

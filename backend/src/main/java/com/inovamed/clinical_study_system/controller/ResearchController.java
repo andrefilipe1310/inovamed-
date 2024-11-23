@@ -49,18 +49,14 @@ public class ResearchController {
             HttpServletRequest request,
             @ModelAttribute ResearchRequestDTO researchRequestDTO,
             @RequestParam("file") List<MultipartFile> file) throws IOException {
-
+        System.out.println("Received DTO: " + researchRequestDTO);
         String authorizationHeader = request.getHeader("Authorization");
         String token = authorizationHeader.substring(7);
         Long userId = tokenService.getUserIdFromToken(token);
 
-        // Converter phases de JSON para List<Phases>
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<Phases> phases = objectMapper.readValue(researchRequestDTO.phases(), new TypeReference<List<Phases>>() {});
-
         // Agora passe phases convertida para o serviço de criação
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(createResearchService.execute(researchRequestDTO, file, userId, phases));
+                .body(createResearchService.execute(researchRequestDTO, file, userId));
     }
     @GetMapping("/all")
     public ResponseEntity<List<ResearchResponseDTO>> findAll(){

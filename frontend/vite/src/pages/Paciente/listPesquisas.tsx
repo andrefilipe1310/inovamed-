@@ -4,6 +4,7 @@ import PesquisaCard from './pesquisaCard';
 import { researchFeatures } from '../../types/ResearchTypes';
 import api from '../../config/axiosConfig';
 
+
 const ListaPesquisas: React.FC = () => {
   const [research, setResearch] = useState<researchFeatures[]>([]);
   
@@ -51,7 +52,9 @@ const ListaPesquisas: React.FC = () => {
         <h2 style={estiloCabecalho}>Pesquisas Inscritas</h2>
         <div style={estiloGrid}>
           {research.map((pesquisa) => (
-            <PesquisaCard key={pesquisa.code} titulo={pesquisa.title} id={pesquisa.code} />
+           
+            <PesquisaCard key={pesquisa.code} titulo={pesquisa.title} code={pesquisa.code} />
+           
           ))}
         </div>
       </div>

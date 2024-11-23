@@ -1,23 +1,20 @@
 [
     {
         "id": 1,
-        "titulo": "Pesquisa Clínica",
+        "titulo": "Estudo Alzheimer",
         "remetente": "DE: Dr, Rafael",
-        "previlcorpo": "Essa pesquisa visa mostrar as consequências do uso do medicamento X no organismo humano...",
-        "corpo": "A doença de Alzheimer é um tipo de demência, ou seja, é uma doença que causa uma diminuição crescente no funcionamento do cérebro. Por exemplo, em uma pessoa com doença de Alzheimer, a memória, o raciocínio (resolução de problemas) e a comunicação podem ser afetados. A doença de Alzheimer é o tipo mais comum de demência e cerca de 1 em 20 pessoas com 65 anos ou mais têm a doença. Pessoas com doença de Alzheimer perdem células nervosas e conexões em seu cérebro, o que prejudica sua memória, linguagem e processos de pensamento, além de afetar a forma como elas se sentem e se comportam. Acredita-se que duas estruturas no cérebro chamadas “placas” e “emaranhados” são as principais razões pelas quais as células nervosas sofrem danos em pessoas com Alzheimer."
+        "corpo": "Gostaria de convidá-lo(a) a participar de um estudo que estamos conduzindo sobre a eficácia de um novo tratamento em pacientes com Alzheimer em estágio inicial. Sua expertise na área seria de grande valor para o sucesso da pesquisa. O estudo acontecerá na Uninassau (Graças) e terá duração de 3 horas. Caso tenha interesse, por favor, entre em contato comigo para mais informações."
     },
     {
         "id": 2,
-        "titulo": "Pesquisa Clínica",
-        "remetente": "DE: Dr, Rafael",
-        "previlcorpo": "Essa pesquisa visa mostrar as consequências do uso do medicamento X no organismo humano...",
-        "corpo": "A doença de Alzheimer é um tipo de demência, ou seja, é uma doença que causa uma diminuição crescente no funcionamento do cérebro. Por exemplo, em uma pessoa com doença de Alzheimer, a memória, o raciocínio (resolução de problemas) e a comunicação podem ser afetados. A doença de Alzheimer é o tipo mais comum de demência e cerca de 1 em 20 pessoas com 65 anos ou mais têm a doença. Pessoas com doença de Alzheimer perdem células nervosas e conexões em seu cérebro, o que prejudica sua memória, linguagem e processos de pensamento, além de afetar a forma como elas se sentem e se comportam. Acredita-se que duas estruturas no cérebro chamadas “placas” e “emaranhados” são as principais razões pelas quais as células nervosas sofrem danos em pessoas com Alzheimer."
+        "titulo": "Solicito ajuda com um paciente",
+        "remetente": "DE: Dr, Armando",
+        "corpo": "Estou atendendo um paciente com Alzheimer que apresenta perda de memória, dificuldade para acompanhar conversações ou pensamentos complexos e agressividade. Já realizei os seguintes exames: O FDG-PET, exame de sangue  e avaliação neuropsicológica. Gostaria muito de sua opinião sobre o caso. Você teria disponibilidade para analisar os exames e discutir o caso comigo?"
     },
     {
         "id": 3,
-        "titulo": "Pesquisa Clínica",
-        "remetente": "DE: Dr, Rafael",
-        "previlcorpo": "Essa pesquisa visa mostrar as consequências do uso do medicamento X no organismo humano...",
-        "corpo": "A doença de Alzheimer é um tipo de demência, ou seja, é uma doença que causa uma diminuição crescente no funcionamento do cérebro. Por exemplo, em uma pessoa com doença de Alzheimer, a memória, o raciocínio (resolução de problemas) e a comunicação podem ser afetados. A doença de Alzheimer é o tipo mais comum de demência e cerca de 1 em 20 pessoas com 65 anos ou mais têm a doença. Pessoas com doença de Alzheimer perdem células nervosas e conexões em seu cérebro, o que prejudica sua memória, linguagem e processos de pensamento, além de afetar a forma como elas se sentem e se comportam. Acredita-se que duas estruturas no cérebro chamadas “placas” e “emaranhados” são as principais razões pelas quais as células nervosas sofrem danos em pessoas com Alzheimer."
+        "titulo": "Conclusão da pesquisa",
+        "remetente": "DE: Dr, Maria",
+        "corpo": "Prezada Dr Ana. Sua pesquisa clinica está perto de conclusão, gastaria de saber se posso entrar em contato com o paciente para marcar sua próxima consulta. Espero o retorno... Boa tarde!"
     }
 ]

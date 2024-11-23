@@ -6,7 +6,11 @@ com\inovamed\clinical_study_system\controller\AttachmentControllerTest$2.class
 com\inovamed\clinical_study_system\Doctor\DoctorControllerTests$DeleteDoctorTests.class
 com\inovamed\clinical_study_system\Doctor\DoctorServicesTest$CreateDoctorServiceTests.class
 com\inovamed\clinical_study_system\Doctor\DoctorServicesTest$FindDoctorByIdServiceTests.class
+<<<<<<< HEAD
 com\inovamed\clinical_study_system\Doctor\DoctorControllerTests$FindAllDoctorsTests.class
+=======
+com\inovamed\clinical_study_system\service\clinical_study_representative\UpdateClinicalRepresentativeServiceTest.class
+>>>>>>> e6a8a4b7cf1a0b935dc7d3b159ec18fd590c2037
 com\inovamed\clinical_study_system\Doctor\DoctorControllerTests$UpdateDoctorTests.class
 com\inovamed\clinical_study_system\Doctor\DoctorTests.class
 com\inovamed\clinical_study_system\ClinicalStudySystemApplicationTests.class

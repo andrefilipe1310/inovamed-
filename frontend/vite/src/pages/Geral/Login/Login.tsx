@@ -75,11 +75,6 @@ export default function Login() {
                     {errorMessage && <p style={{color:"red"}} className="error-message">{errorMessage}</p>}
                     <p>Esqueceu a senha? <a href="">Recuperar senha</a></p>
                     <p>Não é cadastrado? <Link to="/cadastro">Cadastrar</Link></p>
-                    <div style={{ display: 'flex', flexDirection: 'row', width: '80%', justifyContent: 'space-evenly' }}>
-                        <Link to='/paciente/listapesquisas'> Paciente</Link>
-                        <Link to='/medico/listapesquisas'> Médico </Link>
-                        <Link to='/representante/listapesquisas'> Representante</Link>
-                    </div>
                 </div>
             </div>
         </div>

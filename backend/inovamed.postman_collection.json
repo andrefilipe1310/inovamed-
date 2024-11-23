@@ -38,7 +38,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"email\":\"john@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"raw": "{\r\n   \"email\":\"clinical@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -97,7 +97,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Dr. Geraldo Silva\",\r\n  \"email\": \"geraldo.silva@example.com\",\r\n  \"doctorExperienceEnum\": \"NEVER\",\r\n  \"clinic\": \"Clínica Saúde e Vida\",\r\n  \"phone\": \"+55 11 91234-5678\",\r\n  \"password\": \"senhaSegura123\",\r\n    \"roles\":\"DOCTOR\",\r\n  \"specialty\": \"Cardiologia\",\r\n  \"Crm\": \"123456\"\r\n\r\n}",
+							"raw": "{\r\n  \"name\": \"Dr. Geraldo Silva\",\r\n  \"email\": \"doctor@gmail.com\",\r\n  \"doctorExperienceEnum\": \"NEVER\",\r\n  \"clinic\": \"Clínica Saúde e Vida\",\r\n  \"phone\": \"+55 11 91234-5678\",\r\n  \"password\": \"1234\",\r\n    \"roles\":\"DOCTOR\",\r\n  \"specialty\": \"Cardiologia\",\r\n  \"Crm\": \"123456\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -293,7 +293,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"gender\": \"Male\",\r\n  \"birth\": \"1990-05-15\",\r\n  \"phone\": \"+1234567890\",\r\n  \"password\": \"securePassword123\",\r\n  \"roles\":\"PATIENT\",\r\n  \"medicalHistory\": {\r\n   \r\n  },\r\n  \"doctorKey\": \"3d955050-eec8-4767-80e7-4e8deea48cd3\"\r\n}",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"patient@gmail.com\",\r\n  \"gender\": \"Male\",\r\n  \"birth\": \"1990-05-15\",\r\n  \"phone\": \"+1234567890\",\r\n  \"password\": \"1234\",\r\n  \"roles\":\"PATIENT\",\r\n  \"medicalHistory\": {\r\n   \r\n  },\r\n  \"doctorKey\": \"5752fc1e-fb4b-420e-a61f-c42c54afd250\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -404,7 +404,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"John Smith\",\r\n  \"email\":\"john@gmail.com\",\r\n  \"password\":\"1234\",\r\n  \"roles\":\"STUDY_REPRESENTATIVE\",\r\n  \"phone\": \"+1234567890\",\r\n  \"clinicalRole\": \"Principal Investigator\",\r\n  \"experience\": \"10 years in clinical research\"\r\n}",
+							"raw": "{\r\n  \"name\": \"John Smith\",\r\n  \"email\":\"clinical@gmail.com\",\r\n  \"password\":\"1234\",\r\n  \"roles\":\"STUDY_REPRESENTATIVE\",\r\n  \"phone\": \"+1234567890\",\r\n  \"clinicalRole\": \"Principal Investigator\",\r\n  \"experience\": \"10 years in clinical research\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -493,12 +493,12 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "\"Alzheimer Study Phase 1\"",
+									"value": "Alzheimer Study Phase 1",
 									"type": "text"
 								},
 								{
 									"key": "area",
-									"value": "\"Neurology\"",
+									"value": "Neurology",
 									"type": "text"
 								},
 								{
@@ -513,17 +513,17 @@
 								},
 								{
 									"key": "responsibleDoctors",
-									"value": "\"Dr. Smith\"",
+									"value": "Dr. Smith",
 									"type": "text"
 								},
 								{
 									"key": "responsibleDoctors",
-									"value": "\"Dr. Johnson\"",
+									"value": "Dr. Johnson",
 									"type": "text"
 								},
 								{
 									"key": "institutions",
-									"value": "\"Institute of Neurological Research\"",
+									"value": "Institute of Neurological Research",
 									"type": "text"
 								},
 								{
@@ -533,17 +533,17 @@
 								},
 								{
 									"key": "description",
-									"value": "\"This is a clinical study focused on phase 1 of Alzheimer's treatment.\"",
+									"value": "This is a clinical study focused on phase 1 of Alzheimer's treatment.",
 									"type": "text"
 								},
 								{
 									"key": "criteria.inclusion",
-									"value": "\"Patients with mild cognitive impairment\"",
+									"value": "Patients with mild cognitive impairment",
 									"type": "text"
 								},
 								{
 									"key": "criteria.exclusion",
-									"value": "\"Pregnancy\"",
+									"value": "Pregnancy",
 									"type": "text"
 								},
 								{
@@ -564,13 +564,13 @@
 								},
 								{
 									"key": "phases[0].title",
-									"value": "\"Safety evaluation\"",
+									"value": "Safety evaluation",
 									"type": "text",
 									"disabled": true
 								},
 								{
 									"key": "phases[0].description",
-									"value": "\"dnadfiojnfibvgdbbnnyy\"",
+									"value": "dnadfiojnfibvgdbbnnyy",
 									"type": "text",
 									"disabled": true
 								},
@@ -581,7 +581,7 @@
 								},
 								{
 									"key": "location",
-									"value": "\"New York, USA\"",
+									"value": "New York, USA",
 									"type": "text"
 								},
 								{
@@ -684,11 +684,21 @@
 				{
 					"name": "updateReseach",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"title\": \"Alzheimer Study Phase 1\",\r\n  \"area\": \"Neurology\",\r\n  \"numberOfPatients\": 100,\r\n  \"availableVacancies\": 10,\r\n  \"responsibleDoctors\": [\r\n    \"Dr. Smith\",\r\n    \"Dr. Johnson\"\r\n  ],\r\n  \"institutions\": [\r\n    \"Institute of Neurological Research\",\r\n    \"Alzheimer's Research Center\"\r\n  ],\r\n  \"description\": \"This is a clinical study focused on phase 1 of Alzheimer's treatment.\",\r\n  \"criteria\": {\r\n    \"inclusion\":\"Patients withfgdfgdfg mild cognitive impairment\",\r\n    \"exclusion\": \"Pregnancy\"\r\n  },\r\n  \"studyDuration\": {\r\n    \"start_date\": \"2024-01-01\",\r\n    \"end_date\": \"2025-12-31\"\r\n  },\r\n  \"phases\": [\r\n    {\r\n      \"number\": 1,\r\n      \"title\": \"Safety evaluation\",\r\n      \"description\": \"dnadfiojnfibvgdbbnnyy\"\r\n    \r\n    }\r\n  ],\r\n  \"currentPhase\": 1,\r\n  \"location\": \"New York, USA\",\r\n  \"attachments\": [\r\n    {\r\n      \"name\": \"study_protocol.pdf\",\r\n      \"link\": \"https://example.com/study_protocol.pdf\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"title\": \"Alzheimer Study Phase 2\",\r\n  \"area\": \"Neurology\",\r\n  \"numberOfPatients\": 100,\r\n  \"availableVacancies\": 10,\r\n  \"responsibleDoctors\": [\r\n    \"Dr. Smith\",\r\n    \"Dr. Johnson\"\r\n  ],\r\n  \"institutions\": [\r\n    \"Institute of Neurological Research\",\r\n    \"Alzheimer's Research Center\"\r\n  ],\r\n  \"description\": \"This is a clinical study focused on phase 1 of Alzheimer's treatment.\",\r\n  \"criteria\": {\r\n    \"inclusion\":[\"Patients withfgdfgdfg mild cognitive impairment\"],\r\n    \"exclusion\": [\"Pregnancy\"]\r\n  },\r\n  \"studyDuration\": {\r\n    \"start\": \"2024-01-01\",\r\n    \"end\": \"2025-12-31\"\r\n  },\r\n  \"phases\": [\r\n    {\r\n      \"number\": 1,\r\n      \"title\": \"Safety evaluation\",\r\n      \"description\": \"dnadfiojnfibvgdbbnnyy\"\r\n    \r\n    }\r\n  ],\r\n  \"currentPhase\": 1,\r\n  \"location\": \"New York, USA\"\r\n \r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -703,6 +713,63 @@
 							"path": [
 								"research",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByCodeResearch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/research/code/4190",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"research",
+								"code",
+								"4190"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findFeaturesResearchs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/research/feature",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"research",
+								"feature"
 							]
 						}
 					},
@@ -824,7 +891,8 @@
 								{
 									"key": "userId",
 									"value": "1",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "validFrom",
@@ -910,18 +978,56 @@
 			"name": "notification",
 			"item": [
 				{
-					"name": "getNotificationById",
+					"name": "findNotificationByPatient",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/Notification/1",
+							"raw": "{{url}}/notification/patient",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"Notification",
-								"1"
+								"notification",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findNotificationById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/notification/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"notification",
+								"2"
 							]
 						}
 					},
@@ -984,6 +1090,47 @@
 							],
 							"path": [
 								"notification"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "application",
+			"item": [
+				{
+					"name": "createApplication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"patientCode\":2,\r\n     \"doctorCode\":1,\r\n     \"researchCode\":2946,\r\n     \"message\":\"historico do paciente\",\r\n     \"statusApplication\":\"PENDING\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/application",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"application"
 							]
 						}
 					},
