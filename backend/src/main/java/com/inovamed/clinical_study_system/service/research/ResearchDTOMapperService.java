@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.research;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentFindResponseDTO;
@@ -72,26 +73,29 @@ public class ResearchDTOMapperService {
             try {
                 attachment.setArchive(file.getBytes());
             } catch (IOException e) {
+                System.out.println("aaaaaaaaaa");
                 throw new RuntimeException(e);
             }
             return  attachment;
         }).collect(Collectors.toList());
-        
+
 
 
         research.setCode(generateUniqueCode());
-        research.setTitle(researchRequestDTO.title());
-        research.setArea(researchRequestDTO.area());
-        research.setNumberOfPatients(researchRequestDTO.numberOfPatients());
-        research.setAvailableVacancies(researchRequestDTO.availableVacancies());
-        research.setResponsibleDoctors(researchRequestDTO.responsibleDoctors());
-        research.setInstitutions(researchRequestDTO.institutions());
-        research.setDescription(researchRequestDTO.description());
-        research.setCriteria(researchRequestDTO.criteria());
-        research.setStudyDuration(new StudyDuration(researchRequestDTO.start_date(),researchRequestDTO.end_date()));
-        research.setPhases(researchRequestDTO.phases());
-        research.setCurrentPhase(researchRequestDTO.currentPhase());
-        research.setLocation(researchRequestDTO.location());
+        research.setTitle(researchRequestDTO.getTitle());
+        research.setArea(researchRequestDTO.getArea());
+        research.setNumberOfPatients(researchRequestDTO.getNumberOfPatients());
+        research.setAvailableVacancies(researchRequestDTO.getAvailableVacancies());
+        research.setResponsibleDoctors(researchRequestDTO.getResponsibleDoctors());
+        research.setInstitutions(researchRequestDTO.getInstitutions());
+        research.setDescription(researchRequestDTO.getDescription());
+        //ObjectMapper objectMapper = new ObjectMapper();
+        //Criteria criteria = objectMapper.readValue(researchRequestDTO.getCriteria(), Criteria.class);
+        research.setCriteria(researchRequestDTO.getCriteria());
+        research.setStudyDuration(new StudyDuration(researchRequestDTO.getStart_date(),researchRequestDTO.getEnd_date()));
+        research.setPhases(researchRequestDTO.getPhases());
+        research.setCurrentPhase(researchRequestDTO.getCurrentPhase());
+        research.setLocation(researchRequestDTO.getLocation());
         research.setAttachments(attachments);
         research.setPatients(List.of());
         research.setClinicalRepresentative(clinicalRepresentative);

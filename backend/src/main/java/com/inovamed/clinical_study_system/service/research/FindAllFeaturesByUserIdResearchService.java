@@ -16,7 +16,8 @@ public class FindAllFeaturesByUserIdResearchService {
     private ResearchRepository researchRepository;
  
     public List<ResearchFeaturesResponseDTO> execute(Long userId){
-        return this.researchRepository.findAllById(List.of(userId)).stream().map(research -> {
+
+        return this.researchRepository.findAllByClinicalRepresentativeId(userId).stream().map(research -> {
             return new ResearchFeaturesResponseDTO(research.getTitle(),research.getCode());
         }).collect(Collectors.toList());
     }

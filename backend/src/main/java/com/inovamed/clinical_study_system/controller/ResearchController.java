@@ -44,17 +44,21 @@ public class ResearchController {
     @Autowired
     TokenService tokenService;
 
-    @PostMapping(produces = "application/json")
+    @PostMapping
     public ResponseEntity<ResearchResponseDTO> create(
             HttpServletRequest request,
-            @ModelAttribute ResearchRequestDTO researchRequestDTO,
-            @RequestParam("file") List<MultipartFile> file) throws IOException {
-        System.out.println("Received DTO: " + researchRequestDTO);
+            @RequestParam("researchData") String researchData,
+           @ModelAttribute @RequestParam("file") List<MultipartFile> file) throws IOException {
+        System.out.println(researchData);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ResearchRequestDTO researchRequestDTO = objectMapper.readValue(researchData, ResearchRequestDTO.class);
+
         String authorizationHeader = request.getHeader("Authorization");
         String token = authorizationHeader.substring(7);
         Long userId = tokenService.getUserIdFromToken(token);
 
         // Agora passe phases convertida para o serviço de criação
+
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(createResearchService.execute(researchRequestDTO, file, userId));
     }
