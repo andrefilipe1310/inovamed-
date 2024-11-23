@@ -1,6 +1,8 @@
 import Navbar from "../../components/Navbar";
 import { useSearchParams, Link } from "react-router-dom";
 import { useState } from "react";
+import dadospart from './participantesinfo_med.json';
+import { text } from "stream/consumers";
 export default function MedParticipantesConfig(){
     const [seachParams] = useSearchParams()
     const id = seachParams.get('id')
@@ -17,57 +19,44 @@ export default function MedParticipantesConfig(){
             setFiles((prevFiles) => prevFiles ? [...prevFiles, ...fileArray]: [...fileArray]);
             }
         }
+        interface ParticipanteMed {
+            id: number ;
+            nome: string;
+            idade: number;
+            genero: string;
+            email: string;
+            telefonedd: string;
+            telefonenumero: string;
+          }
+          const participanteMed:ParticipanteMed[] = dadospart
     return(
         <>
         <Navbar/>
-
         <div className='container-page'> 
-                    <h1 className="title-page">NOTIFICAÇÕES</h1>
-                    <div className="card-border">
+                    <h1 className="title-page">PARTICIPANTES</h1>
+                    {
+                    participanteMed.filter((partMed) => partMed.id === +id)
+                    .map((partMed) =>(
+                    <div className="card-border" key={partMed.id}>
                         <div className="container-notfic-all">
                             <label className="nome-part-med">Nome</label>
-                            <input className="input-nome"/>
+                            <input className="input-nome" value={partMed.nome ?? 'Nome não encontrado'} disabled/>
                             <label className="email-part-med">Email</label>
                             <div className="div-email-genero">
-                                <input className="input-email"/>
-                                <select>
-                                    <option selected>Gênero</option>
-                                    <option value="1">Masculino</option>
-                                    <option value="2">Feminio</option>
-                                </select>
+                                <input className="input-email" value={partMed.email ?? 'Email não encontrado'} disabled/>
+                                <input className="input-email" value={partMed.genero ?? 'Genero não encontrado'} disabled/>
                             </div>
                             <label className="telefone-part-med">Telefone</label>
                             <div className="div-telefone">
-                                <input className="input-telefone-dd"/>
-                                <input className="input-telefone-numero"/>
+                                <input className="input-telefone-dd" value={partMed.telefonedd ?? 'Genero não encontrado'} disabled/>
+                                <input className="input-telefone-numero" value={partMed.telefonenumero ?? 'Genero não encontrado'} disabled/>
                             </div>
                             <label htmlFor="titulo">Histórico Médico</label>
                             <textarea className="textarea-historico"></textarea>
-                            <label htmlFor="content">Medicamentos em uso</label>
-                            <textarea className="textarea-medicamentos"></textarea>
-                            <div className="div-label-alergias-cirurgias">
-                                <label>Alergias</label>
-                                <label className="label-cirurgias">Cirurgias anteriores</label>
-                            </div>
-                            <div className="div-alergias-cirurgias">
-                                <textarea className="textarea-alergia"></textarea>
-                                <textarea className="textarea-cirurgias"></textarea>
-                            </div>
-                            <div className="div-adicionar-part">
-                            <label>Resutados de exames recentes</label>
-                            <div className="files-arrange-part">
-                                <input type="file" name="files" multiple onChange={haddleFiles}/>
-                                +
-                            </div>
-                            </div>
-                            <div style={{display:"flex"}}>
-                                {files?.map((f)=>(
-                                    <div className="files-custom">{f.name}</div>
-                                ))}
-                            </div> 
                         </div>
                     </div>
-                    <button className="button-send-notification">Salvar</button>
+                    ))}
+                    <Link to={`/medico/participantes`}><button className="button-send-notification">Salvar</button></Link>
                 </div>
         </>
     )

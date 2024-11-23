@@ -1854,17 +1854,21 @@ font-size: 3vw !important;
 .div-email-genero{
 display: flex;
 flex-direction: row;
-align-items: center;
+align-items: center
 }
 .input-telefone-dd{
 width: 3vw;
+text-align: center;
+font-family: Montserrat-regular;
 }
 .input-telefone-numero{
-width: 30vw;
+width: 8vw;
 height: 2.5vw;
 margin-left: 1vw;
 border: #062168 solid 1px;
   border-radius: 15px;
+  text-align: center;
+  font-family: Montserrat-regular;
 }
 .textarea-medicamentos{
 height: 5vw !important;

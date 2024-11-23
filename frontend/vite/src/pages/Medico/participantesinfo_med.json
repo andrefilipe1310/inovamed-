@@ -3,42 +3,63 @@
         "id": 1,
         "nome": "Ana Júlia",
         "idade": 32,
-        "genero": "Feminino"
+        "genero": "Feminino",
+        "email": "anajulia@gmail.com",
+        "telefonedd": "81",
+        "telefonenumero": "976856432"
     },
     {
         "id": 2,
         "nome": "Carlos Emanuel",
         "idade": 43,
-        "genero": "Masculino"
+        "genero": "Masculino",
+        "email": "carlosemanuel@gmail.com",
+        "telefonedd": "81",
+        "telefonenumero": "9468253482"
     },
     {
         "id": 3,
         "nome": "Carolina Monte",
         "idade": 52,
-        "genero": "Feminino"
+        "genero": "Feminino",
+        "email": "carolinamonte@gmail.com",
+        "telefonedd": "81",
+        "telefonenumero": "917856432"
     },
     {
         "id": 4,
         "nome": "Maria Helena",
         "idade": 52,
-        "genero": "Feminino"
+        "genero": "Feminino",
+        "email": "mariahelena@gmail.com",
+        "telefonedd": "81",
+        "telefonenumero": "974855432"
     },
     {
         "id": 5,
         "nome": "João Pedro",
         "idade": 52,
-        "genero": "Feminino"
+        "genero": "Feminino",
+        "email": "participante@gmail.com",
+        "telefonedd": "81",
+        "telefonenumero": "972896732"
     },
     {
         "id": 6,
         "nome": "Gabriel Vinicíus",
         "idade": 52,
-        "genero": "Feminino"
+        "genero": "Feminino",
+        "email": "gabrielvinicius@gmail.com",
+        "telefonedd": "81",
+        "telefonenumero": "978866332"
     },
     {
         "id": 7,
         "nome": "Alice Silva",
         "idade": 52,
-        "genero": "Feminino"
+        "genero": "Feminino",
+        "email": "alicesilva@gmail.com",
+        "telefonedd": "81",
+        "telefonenumero": "972816482"
     }
   ]

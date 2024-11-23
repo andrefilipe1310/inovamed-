@@ -27,16 +27,16 @@ export default function MedParticipantes(){
                                         <p className="p-direito">{partMed.nome}</p>
                                     </div>
                                     <div className="p-participantes">
-                                        <p className="p-esquerdo">idade:</p>
+                                        <p className="p-esquerdo">Idade:</p>
                                         <p className="p-direito">{partMed.idade}</p>
                                     </div>
                                     <div className="p-participantes">
-                                        <p className="p-esquerdo">genero:</p>
+                                        <p className="p-esquerdo">Gênero:</p>
                                         <p className="p-direito">{partMed.genero}</p>
                                     </div>
                                     <div className="div-link-part">
                                         <Link to={`/medico/participantesconfiguracao?id=${partMed.id}`}><button className="button-link-part"><img src="../../public/config-icon.png" className="img-link-part"/></button></Link>
-                                        <Link to={`/medico/notificacao_med?id=${partMed.id}`}><button className="button-link-part"><img src="../../public/fechar.png" className="img-link-part"/></button></Link>
+                                        <button className="button-link-part"><img src="../../public/fechar.png" className="img-link-part"/></button>
                                     </div>                         
                                 </div>
                                 <div className='linha-card-part-med'>
