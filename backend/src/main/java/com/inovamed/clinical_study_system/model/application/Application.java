@@ -32,9 +32,10 @@ public class Application {
     private Patient patient;
     @Column(columnDefinition = "TEXT")
     String message;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private StatusApplication statusApplication;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "research_id", nullable = false)
     private Research research;
 
 

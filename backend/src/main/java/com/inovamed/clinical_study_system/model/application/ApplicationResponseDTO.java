@@ -1,5 +1,5 @@
 package com.inovamed.clinical_study_system.model.application;
 
-public record ApplicationRequestDTO( Long patientCode ,int researchCode, String message,
+public record ApplicationResponseDTO(Long patientCode, Long doctorCode,Long researchCode, String message,
                                      StatusApplication statusApplication) {
 }
