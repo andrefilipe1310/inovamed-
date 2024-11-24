@@ -22,6 +22,7 @@ import RegisterRepresentative from "./pages/Geral/Cadastro/RegisterRepresentativ
 import ResgisterPatient from "./pages/Geral/Cadastro/RegisterPatient"
 import RegisterDoctor from "./pages/Geral/Cadastro/RegisterDoctor"
 import InfoPesqPatient from "./pages/Paciente/infoPesqPatient"
+import PesquisaInfoMed from "./pages/Medico/pesquisaInfoMed"
 
 
 
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/medico/listapesquisas" element={<MedListPacientesPesquisas/>}></Route>
         <Route path="/medico/listapesquisainfo" element={<Medlistapesqinfo/>}></Route>
         <Route path="/medico/participantes" element={<MedParticipantes/>}></Route>
+        <Route path="/medico/infoPesquisas" element={<PesquisaInfoMed/>}></Route>
         <Route path="/medico/participantesconfiguracao" element={<MedParticipantesConfig/>}></Route>
         <Route path="/medico/criarnotificacao" element={<MedCriarNotificacao/>}></Route>
         <Route path="/medico/notificacoes" element={<MedNotificacao/>}></Route>

@@ -2,7 +2,7 @@ import Navbar from "../../components/Navbar";
 import { useSearchParams, Link } from "react-router-dom";
 import { useState } from "react";
 import dadospart from './participantesinfo_med.json';
-import { text } from "stream/consumers";
+
 export default function MedParticipantesConfig(){
     const [seachParams] = useSearchParams()
     const id = seachParams.get('id')

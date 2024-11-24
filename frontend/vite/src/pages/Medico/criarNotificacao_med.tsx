@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar";
 import criarnotificacao from './criarnotificacao_med.json'
-import { Link } from "react-router-dom";
+
 export default function MedCriarNotificacao(){
 
     interface notificacaomed {

@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import api from "../../config/axiosConfig";
-import listapesquisa from "./listaPacientePesquisas_med.json";
+
 import { Link } from "react-router-dom";
 import { researchFeatures } from "../../types/ResearchTypes";
 
 
 export default function MedListPacientesPesquisas() {
-  interface listapesq {
-    id: number;
-    titulo: string;
-  }
+
   const [researchs, setResearchs] = useState<researchFeatures[]>([]);
 
   const handleFindResearch = async () => {
@@ -29,7 +26,7 @@ export default function MedListPacientesPesquisas() {
     handleFindResearch();
   }, []);
 
-  const listapesq: listapesq[] = listapesquisa;
+ 
 
   return (
     <>
@@ -47,7 +44,7 @@ export default function MedListPacientesPesquisas() {
                {researchs.length>0 && researchs.map((pesq)=>(
                     <div className="card-border">
                         <div  className="container-card-pesqlist">
-                            <Link to={`/representante/infoPesquisas?id=${pesq.code}`} className="link-to-pesq">
+                            <Link to={`/medico/infoPesquisas?id=${pesq.code}`} className="link-to-pesq">
                                 <h2>{pesq.title}</h2>
                                 <p>#{pesq.code}</p>
                             </Link>
@@ -55,7 +52,7 @@ export default function MedListPacientesPesquisas() {
                     </div>
                 ))}
             </div>
-            <Link to="/representante/novapesquisa" className="button-nova-pesquisa"> NOVA PESQUISA</Link>
+            
         </div>
 
             </div>

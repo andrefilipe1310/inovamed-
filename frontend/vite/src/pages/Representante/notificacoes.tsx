@@ -59,7 +59,6 @@ export default function RepNotificacoes() {
     }
   };
 
-<<<<<<< HEAD
   const handleCreateNotification = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
