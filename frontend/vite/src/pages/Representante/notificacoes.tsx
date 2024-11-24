@@ -52,8 +52,16 @@ export default function RepNotificacoes(){
                                 </select>
                                 <select name="selectWho" id="" >
                                 <option value="" disabled selected>Selecione o paciente</option>
+                                <option value="">Nenhum</option>
                                     {infoPesq[cod].patients.map((info)=>(
                                         <option value={info.id}>{info.name}</option>
+                                    ))}
+                                </select>
+                                <select name="selectWho" id="" >
+                                <option value="" disabled selected>Selecione o doutor</option>
+                                <option value="">Nenhum</option>
+                                    {infoPesq[cod].responsibleDoctors.map((info)=>(
+                                        <option value={info}>{info}</option>
                                     ))}
                                 </select>
                             </div>
