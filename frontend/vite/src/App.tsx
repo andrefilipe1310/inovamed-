@@ -21,6 +21,7 @@ import RedirectUserType from "./pages/Geral/Cadastro/pageRedirectUserType"
 import RegisterRepresentative from "./pages/Geral/Cadastro/RegisterRepresentative"
 import ResgisterPatient from "./pages/Geral/Cadastro/RegisterPatient"
 import RegisterDoctor from "./pages/Geral/Cadastro/RegisterDoctor"
+import InfoPesqPatient from "./pages/Paciente/infoPesqPatient"
 
 
 
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/cadastro/medico" element={<RegisterDoctor/>}></Route>
         <Route path="/cadastro/paciente" element={<ResgisterPatient/>}></Route>
         <Route path="/paciente/notificacoes" element={<PacVerNotificacoes/>}></Route>
+        <Route path="/paciente/inforPesq" element={<InfoPesqPatient/>}></Route>
         <Route path="/paciente/listapesquisas" element={<PacListPesquisas/>}></Route>
         <Route path="/paciente/preferencias" element={<PacPreferencias/>}></Route>
         <Route path="/medico/listapesquisas" element={<MedListPacientesPesquisas/>}></Route>

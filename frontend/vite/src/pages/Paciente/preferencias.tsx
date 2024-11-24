@@ -42,8 +42,8 @@ export default function PacPreferencias() {
         
             <div className='container-page'>
                 <h1 className="h1notificacaopac" style={{ color: '#028275' }}>PREFERÊNCIAS</h1>
-                <div className='card-border'>
-                    <div className="container-card">
+                <div className='card-border' style={{background:"background: linear-gradient(to top,#028275,#000)"}}>
+                    <div className="container-card" style={{borderRadius:"35px"}}>
                         <h2>AUTORIZAÇÕES</h2>
                         {preferencias.map((info, index) => (
                             <div key={index} className='pesq-detailpac'>

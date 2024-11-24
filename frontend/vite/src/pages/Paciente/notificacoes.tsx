@@ -45,17 +45,11 @@ export default function PacCriarNotificacao() {
     <>
       <Navbar />
       <div
-        className="container-page-medico"
-        style={{
-          width: "100%",
-          margin: "0 12%",
-          padding: "1rem",
-          textAlign: "center",
-        }}
-      >
+        className="container-page">
         <h1
           className="h1notificacaopac"
           style={{
+            fontSize:"6vw",
             color: "#028275",
             marginBottom: "2rem",
           }}

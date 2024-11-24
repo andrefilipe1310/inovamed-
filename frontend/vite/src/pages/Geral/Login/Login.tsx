@@ -73,7 +73,6 @@ export default function Login() {
                     </div>
                     <button onClick={handleLogin} className="submit">Entrar</button>
                     {errorMessage && <p style={{color:"red"}} className="error-message">{errorMessage}</p>}
-                    <p>Esqueceu a senha? <a href="">Recuperar senha</a></p>
                     <p>Não é cadastrado? <Link to="/cadastro">Cadastrar</Link></p>
                 </div>
             </div>

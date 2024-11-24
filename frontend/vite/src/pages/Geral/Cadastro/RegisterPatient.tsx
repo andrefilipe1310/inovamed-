@@ -119,10 +119,9 @@ export default function ResgisterPatient() {
                     value={formData.gender}
                     onChange={handleChange}
                 >
-                    <option value="">Selecione</option>
+                    <option value="" disabled selected>Selecione</option>
                     <option value="masculino">Masculino</option>
                     <option value="feminino">Feminino</option>
-                    <option value="outro">Outro</option>
                 </select>
     
                 <label htmlFor="birthDate">

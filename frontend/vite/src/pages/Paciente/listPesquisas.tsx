@@ -3,9 +3,11 @@ import Navbar from "../../components/Navbar";
 import PesquisaCard from './pesquisaCard';
 import { researchFeatures } from '../../types/ResearchTypes';
 import api from '../../config/axiosConfig';
+import { Link } from 'react-router-dom';
 
 
 const ListaPesquisas: React.FC = () => {
+  const id = 1 
   const [research, setResearch] = useState<researchFeatures[]>([]);
   
   const fetchResearchFeatures = async () => {
@@ -28,7 +30,7 @@ const ListaPesquisas: React.FC = () => {
     backgroundImage: 'linear-gradient(to top, #028275, #126b56)',
     backgroundClip: 'text',
     color: 'transparent',
-    fontSize: '3vw',
+    fontSize: '6vw',
     textAlign: 'center',
     marginBottom: '20px',
   };
@@ -48,7 +50,7 @@ const ListaPesquisas: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div style={estiloContainer}>
+      <div className='container-page' >
         <h2 style={estiloCabecalho}>Pesquisas Inscritas</h2>
         <div style={estiloGrid}>
           {research.map((pesquisa) => (
@@ -57,6 +59,7 @@ const ListaPesquisas: React.FC = () => {
            
           ))}
         </div>
+        <Link to={`/paciente/inforPesq?id=${id}`}>to pesquisa</Link>
       </div>
     </>
   );

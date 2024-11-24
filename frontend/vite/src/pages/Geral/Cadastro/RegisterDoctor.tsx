@@ -15,6 +15,7 @@ export default function RegisterDoctor() {
         doctorExperienceEnum:"NEVER",
         password: "",
         phone: "",
+        gender:"",
         clinic: "",
         roles: "DOCTOR",
         specialty:"",
@@ -93,6 +94,20 @@ export default function RegisterDoctor() {
                     value={formData.email}
                     onChange={handleChange}
                 />
+                 <label htmlFor="gender">
+                    Gênero <i>Obrigatório</i>
+                </label>
+                <select
+                    id="gender"
+                    name="gender"
+                    required
+                    value={formData.gender}
+                    onChange={handleChange}
+                >
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                </select>
                 <>
                     <label htmlFor="clinic">
                      Clinica <i>Obrigatório</i>

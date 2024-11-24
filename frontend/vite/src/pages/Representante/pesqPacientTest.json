@@ -7,6 +7,10 @@
         "name": "John Doe",
         "email": "johndoe@example.com"
       }
+    ],
+    "responsibleDoctors": [
+      "Dr. Emma Thompson",
+      "Dr. John Smith"
     ]
     },
     {
@@ -14,14 +18,18 @@
         "patients": [
       {
         "id": 103,
-        "name": "Paul cherry",
+        "name": "jacson",
         "email": "paulcherry@example.com"
       },
       {
         "id": 101,
-        "name": "John Doe",
+        "name": "pedro",
         "email": "johndoe@example.com"
       }
+    ],
+    "responsibleDoctors": [
+      "Dr. Emma Thompson",
+      "Dr. John Smith"
     ]
     }
 ]
