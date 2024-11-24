@@ -2,7 +2,6 @@ com\inovamed\clinical_study_system\exception\AttachmentNotDeletedException.class
 com\inovamed\clinical_study_system\exception\SignatureErrorVerifyException.class
 com\inovamed\clinical_study_system\model\user\RegisterDTO.class
 com\inovamed\clinical_study_system\model\consent\ConsentType.class
-com\inovamed\clinical_study_system\controller\ResearchController$1.class
 com\inovamed\clinical_study_system\service\doctor\UpdateDoctorService.class
 com\inovamed\clinical_study_system\model\digital_signature\DigitalSignature.class
 com\inovamed\clinical_study_system\config\SimpleCORSFilter.class

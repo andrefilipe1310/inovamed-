@@ -1,5 +1,7 @@
 package com.inovamed.clinical_study_system.service.research;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
 import com.inovamed.clinical_study_system.model.attachment.AttachmentFindResponseDTO;
@@ -53,7 +55,7 @@ public class ResearchDTOMapperService {
 
     }
 
-    public Research toEntity(ResearchRequestDTO researchRequestDTO, List<MultipartFile> files, Long userId) throws IOException {
+    public Research toEntity(ResearchRequestDTO researchRequestDTO, List<MultipartFile> files, Long userId,  List<Phases> phases) throws IOException {
 
 
 
@@ -64,34 +66,38 @@ public class ResearchDTOMapperService {
 
         //criando o anexo que vem na pesquisa
 
+
         List<Attachment> attachments = files.stream().map(file -> {
             Attachment attachment = new Attachment();
+
             attachment.setUser(clinicalRepresentative);
             attachment.setName("Research "+file.getName()+" "+clinicalRepresentative.getPublicKey());
             attachment.setResearch(research);
             try {
+
                 attachment.setArchive(file.getBytes());
             } catch (IOException e) {
+
                 throw new RuntimeException(e);
             }
             return  attachment;
         }).collect(Collectors.toList());
-        
+
 
 
         research.setCode(generateUniqueCode());
-        research.setTitle(researchRequestDTO.title());
-        research.setArea(researchRequestDTO.area());
-        research.setNumberOfPatients(researchRequestDTO.numberOfPatients());
-        research.setAvailableVacancies(researchRequestDTO.availableVacancies());
-        research.setResponsibleDoctors(researchRequestDTO.responsibleDoctors());
-        research.setInstitutions(researchRequestDTO.institutions());
-        research.setDescription(researchRequestDTO.description());
-        research.setCriteria(researchRequestDTO.criteria());
-        research.setStudyDuration(new StudyDuration(researchRequestDTO.start_date(),researchRequestDTO.end_date()));
-        research.setPhases(researchRequestDTO.phases());
-        research.setCurrentPhase(researchRequestDTO.currentPhase());
-        research.setLocation(researchRequestDTO.location());
+        research.setTitle(researchRequestDTO.getTitle());
+        research.setArea(researchRequestDTO.getArea());
+        research.setNumberOfPatients(researchRequestDTO.getNumberOfPatients());
+        research.setAvailableVacancies(researchRequestDTO.getAvailableVacancies());
+        research.setResponsibleDoctors(researchRequestDTO.getResponsibleDoctors());
+        research.setInstitutions(researchRequestDTO.getInstitutions());
+        research.setDescription(researchRequestDTO.getDescription());
+        research.setCriteria(researchRequestDTO.getCriteria());
+        research.setStudyDuration(new StudyDuration(researchRequestDTO.getStart_date(),researchRequestDTO.getEnd_date()));
+        research.setPhases(phases);
+        research.setCurrentPhase(researchRequestDTO.getCurrentPhase().intValue());
+        research.setLocation(researchRequestDTO.getLocation());
         research.setAttachments(attachments);
         research.setPatients(List.of());
         research.setClinicalRepresentative(clinicalRepresentative);

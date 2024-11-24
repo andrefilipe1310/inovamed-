@@ -71,7 +71,7 @@ public class WebSecurityConfig {
                     authorize.requestMatchers(HttpMethod.GET,"/application").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
                     authorize.requestMatchers(HttpMethod.GET,"/application/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
 
-                    //authorize.anyRequest().permitAll();
+                    authorize.anyRequest().permitAll();
 
                 }).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 

@@ -14,24 +14,44 @@ export default function RepNovaPesquisa() {
         responsibleDoctors: [],
         institutions: [],
         description: "",
-        criteria: { inclusion: [], exclusion: [] },
+        criteria: { inclusion: [""], exclusion: [""] },
         start_date:"2024-01-01",
         end_date:"2025-12-31",
-        phases: [],
+        phases: [{number:1,title:"primeira",description:"primeira fase"}],
         currentPhase: 0,
-        location: ""
+        location: "",
+     
     });
 
     const handleCreateResearch = async () => {
 
-        console.log(researchRequestDTO.criteria)
-
+        
+        //researchRequestDTO.criteria = JSON.stringify(researchRequestDTO.criteria)
         const formData = new FormData();
-        formData.append("researchData", JSON.stringify(researchRequestDTO)); // Dados da pesquisa
+        formData.append("title",researchRequestDTO.title)
+        formData.append("area",researchRequestDTO.area)
+        formData.append("numberOfPatients",String(researchRequestDTO.numberOfPatients))
+        formData.append("availableVacancies",String(researchRequestDTO.availableVacancies))
+        formData.append("availableVacancies",String(researchRequestDTO.availableVacancies))
+        researchRequestDTO.responsibleDoctors.map((responsibleDoctor:string)=>{
+            formData.append("responsibleDoctors",responsibleDoctor)
+        })
+        researchRequestDTO.institutions.map((institution:string)=>{
+            formData.append("institutions",institution)
+        })
+        formData.append("criteria",JSON.stringify(researchRequestDTO.criteria))
+        formData.append("start_date",researchRequestDTO.start_date)
+        formData.append("end_date",researchRequestDTO.end_date)
+        formData.append("phases",JSON.stringify(researchRequestDTO.phases))
+        formData.append("currentPhase",String(researchRequestDTO.currentPhase))
+        formData.append("location",researchRequestDTO.location)
+        console.log(formData.get("phases"))
+       
         if (file) {
             formData.append("file", file); // PDF
         }
-        api.post("/research", researchRequestDTO,{headers: {
+        
+        api.post("/research", formData,{headers: {
             "Content-Type": "multipart/form-data",
         },})
             .then(response => {
@@ -39,7 +59,7 @@ export default function RepNovaPesquisa() {
             })
             .catch(error => {
                 console.error(error);
-                console.log(researchRequestDTO)
+               
             });
     };
 
@@ -209,6 +229,7 @@ export default function RepNovaPesquisa() {
                                 onChange={(e) => {
                                     if (e.target.files) {
                                         setFile(e.target.files[0]);
+                                        
                                     }
                                 }}
                             />

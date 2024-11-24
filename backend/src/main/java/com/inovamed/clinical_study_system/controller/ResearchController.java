@@ -43,20 +43,45 @@ public class ResearchController {
     FindAllFeaturesResearchService findAllFeaturesResearchService;
     @Autowired
     TokenService tokenService;
+    @PostMapping("/teste")
+    public  ResponseEntity<ResearchResponseDTO> teste(HttpServletRequest request,
+                                                      @RequestBody ResearchRequestDTO researchRequestDTO) throws IOException{
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        System.out.println(researchRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
 
-    @PostMapping(produces = "application/json")
+    }
+    @PostMapping
     public ResponseEntity<ResearchResponseDTO> create(
             HttpServletRequest request,
-            @ModelAttribute ResearchRequestDTO researchRequestDTO,
-            @RequestParam("file") List<MultipartFile> file) throws IOException {
-        System.out.println("Received DTO: " + researchRequestDTO);
+            @ModelAttribute ResearchCreateDTO researchCreateDTO,@ModelAttribute @RequestParam("phases") String phases,@ModelAttribute @RequestParam("criteria") String criteria
+            ,@RequestParam("file") List<MultipartFile> files) throws IOException,NumberFormatException  {
+
+        if (phases == null || phases.isBlank() || phases.equals("[]")) {
+            throw new IllegalArgumentException("O campo 'phases' está vazio ou não foi preenchido corretamente.");
+        }
+        // Agora passe phases convertida para o serviço de criação
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        TypeReference<List<Phases>> typeReferencePhase = new TypeReference<>() {};
+        List<Phases> phasesObjectMapper = objectMapper.readValue(researchCreateDTO.getPhases(), typeReferencePhase);
+
+        TypeReference<Criteria> typeReferenceCriteria = new TypeReference<>() {};
+        Criteria criteriaObjectMapper = objectMapper.readValue(researchCreateDTO.getCriteria(),typeReferenceCriteria);
+
         String authorizationHeader = request.getHeader("Authorization");
         String token = authorizationHeader.substring(7);
         Long userId = tokenService.getUserIdFromToken(token);
 
-        // Agora passe phases convertida para o serviço de criação
+
+        ResearchRequestDTO researchRequestDTO = new ResearchRequestDTO(researchCreateDTO,criteriaObjectMapper,phasesObjectMapper);
+
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(createResearchService.execute(researchRequestDTO, file, userId));
+                .body(createResearchService.execute(researchRequestDTO,files,userId,phasesObjectMapper));
+
+
     }
     @GetMapping("/all")
     public ResponseEntity<List<ResearchResponseDTO>> findAll(){
