@@ -8,6 +8,8 @@ import { ResearchResponseDTO } from "../../types/ResearchTypes"
 export default function PesquisaInfoMed(){
     const [seachParams] = useSearchParams()
     const id = seachParams.get('id')
+    const [pesqInfo, setPesqInfo] = useState<any[]>([]);
+    const [cod, setCod] = useState<number>(-1);
     let [research, setResearch] = useState<ResearchResponseDTO>()
     const [error, setError] = useState("")
 
@@ -54,6 +56,8 @@ export default function PesquisaInfoMed(){
             handleFindByCodeResearch();
         }
     }, [id]);
+
+
     return (
 
         <>
@@ -109,7 +113,28 @@ export default function PesquisaInfoMed(){
                                  </div>
                             ))}
                         </div>
-                        <button>Candidatar</button>
+
+                        <select
+                name="selectWho"
+                onChange={(e) =>
+                  setNotification((prev) => ({
+                    ...prev,
+                    patientsId: [Number(e.target.value)],
+                  }))
+                }
+              >
+                <option value="-1">Selecione o paciente</option>
+                {cod >= 0 &&
+                  pesqInfo[cod]?.patients.map((info: any) => (
+                    <option value={info.id} key={info.id}>
+                      {info.name}
+                    </option>
+                  ))}
+              </select>
+                        {research != null && research != null && (
+                            <button >Candidatar</button>
+                        )}
+                        
                         {error && <p style={{ color: 'red' }}>{error}</p>}
                     </div>
                 </div>
