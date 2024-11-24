@@ -151,6 +151,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         RestExceptionError threatError = new RestExceptionError(HttpStatus.CONFLICT, exception.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(threatError);
     }
+    @ExceptionHandler(UnauthorizedAccessException.class)
+    public  ResponseEntity<RestExceptionError> handlerUnauthorizedAccessException(UnauthorizedAccessException exception){
+        RestExceptionError threatError = new RestExceptionError(HttpStatus.UNAUTHORIZED,exception.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(threatError);
+    }
 
     // EMAIL EXCEPTIONS
 

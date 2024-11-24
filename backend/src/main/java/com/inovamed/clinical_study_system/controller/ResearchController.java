@@ -42,6 +42,8 @@ public class ResearchController {
     @Autowired
     FindAllFeaturesResearchService findAllFeaturesResearchService;
     @Autowired
+    FindPatientsAndDoctorIdsByResearchCodeService findPatientsAndDoctorIdsByResearchCodeService;
+    @Autowired
     TokenService tokenService;
     @PostMapping("/teste")
     public  ResponseEntity<ResearchResponseDTO> teste(HttpServletRequest request,
@@ -94,6 +96,13 @@ public class ResearchController {
         String token = authorizationHeader.substring(7);
         Long userId = tokenService.getUserIdFromToken(token);
         return ResponseEntity.status(HttpStatus.OK).body(this.findAllByUserIdResearchService.execute(userId));
+    }
+    @GetMapping("/{code}/participants")
+    public ResponseEntity<FindPatientsAndDoctorIdsResponseDTO> findPatientsAndDoctorsIdByCode(HttpServletRequest request, @PathVariable("code") int code){
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+        return ResponseEntity.status(HttpStatus.OK).body(this.findPatientsAndDoctorIdsByResearchCodeService.execute(code,userId));
     }
     @GetMapping("/code/{code}")
     public ResponseEntity<ResearchResponseDTO> findByCode(@PathVariable("code") int code){

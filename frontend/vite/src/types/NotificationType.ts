@@ -5,3 +5,10 @@ export type NotificationResponseDTO = {
   sender:string
   attachment: AttachmentFindResponseDTO[];
 };
+
+export type NotificationRequestDTO = {
+  title: string;
+  message: string;
+  doctorsId:number[]
+  patientsId:number[]
+}

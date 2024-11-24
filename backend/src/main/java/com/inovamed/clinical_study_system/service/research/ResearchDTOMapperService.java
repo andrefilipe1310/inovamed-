@@ -71,7 +71,7 @@ public class ResearchDTOMapperService {
             Attachment attachment = new Attachment();
 
             attachment.setUser(clinicalRepresentative);
-            attachment.setName("Research "+file.getName()+" "+clinicalRepresentative.getPublicKey());
+            attachment.setName("Research "+file.getOriginalFilename());
             attachment.setResearch(research);
             try {
 

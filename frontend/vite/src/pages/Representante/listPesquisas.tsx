@@ -11,7 +11,12 @@ export default function RepListaPesquisas(){
 
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
     const [pesqInfo, setPesqInfo] = useState<{title:string,code:number}[]>([])
-
+    const reduceTitle = (title:string):string =>{
+        if (title.length > 40) {
+            return title.substring(0,35)+"..."
+        }
+        return title
+    }
     const handleFindAllSearch = async () => {
         api.get("/research/feature")
         .then(response => {
@@ -55,7 +60,7 @@ export default function RepListaPesquisas(){
                     <div className="card-border">
                         <div  className="container-card-pesqlist">
                             <Link to={`/representante/infoPesquisas?id=${pesq.code}`} className="link-to-pesq">
-                                <h2>{pesq.title}</h2>
+                                <h2>{reduceTitle(pesq.title)}</h2>
                                 <p>#{pesq.code}</p>
                             </Link>
                         </div>

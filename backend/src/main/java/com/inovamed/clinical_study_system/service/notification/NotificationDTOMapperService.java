@@ -53,8 +53,8 @@ public class NotificationDTOMapperService {
         );
     }
 
-    public Notification toEntity(NotificationResquestDTO notificationResquestDTO, List<MultipartFile> files) throws IOException {
-        ClinicalStudyRepresentative clinicalRepresentative = clinicalRepository.findById(notificationResquestDTO.sender()).orElseThrow(
+    public Notification toEntity(NotificationResquestDTO notificationResquestDTO, List<MultipartFile> files, Long userid) throws IOException {
+        ClinicalStudyRepresentative clinicalRepresentative = clinicalRepository.findById(userid).orElseThrow(
                 ()->{
                     return new ClinicalRepresentativeNotFoundException();
                 }
@@ -65,7 +65,7 @@ public class NotificationDTOMapperService {
 
 
         Notification notification = new Notification();
-        notification.setSender(notificationResquestDTO.sender());
+        notification.setSender(userid);
         notification.setSenderCode(notification.getId());
         notification.setTitle(notificationResquestDTO.title());
         notification.setMessage(notificationResquestDTO.message());

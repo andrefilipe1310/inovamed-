@@ -33,8 +33,12 @@ public class NotificationController {
     TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<NotificationResponseDTO> create(@RequestParam("file") List<MultipartFile> files, @ModelAttribute NotificationResquestDTO notificationResquestDTO) throws IOException {
-        return ResponseEntity.status(HttpStatus.CREATED).body(createNotificationService.execute(notificationResquestDTO,files));
+    public ResponseEntity<NotificationResponseDTO> create(HttpServletRequest request,@RequestParam("file") List<MultipartFile> files, @ModelAttribute NotificationResquestDTO notificationResquestDTO) throws IOException {
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(createNotificationService.execute(notificationResquestDTO,files,userId));
     }
 
     @GetMapping("/patient")

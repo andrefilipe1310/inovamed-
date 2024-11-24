@@ -2,9 +2,11 @@ import { FormEvent, useState } from "react";
 import Navbar from "../../components/Navbar";
 import api from "../../config/axiosConfig";
 import { ResearchRequestDTO } from "../../types/ResearchTypes";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function RepNovaPesquisa() {
     const [file, setFile] = useState<File | null>(null); // Estado para o arquivo
+    const navigate = useNavigate()
 
     const [researchRequestDTO, setResearchRequestDTO] = useState<ResearchRequestDTO>({
         title: "",
@@ -55,7 +57,7 @@ export default function RepNovaPesquisa() {
             "Content-Type": "multipart/form-data",
         },})
             .then(response => {
-                console.log(response);
+                navigate("/representante/listapesquisas")
             })
             .catch(error => {
                 console.error(error);

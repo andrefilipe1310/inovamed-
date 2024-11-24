@@ -32,7 +32,7 @@ public class ResearchRequestDTO{
     private String location;
 
     public ResearchRequestDTO(ResearchCreateDTO researchCreateDTO, Criteria criteria, List<Phases> phases){
-        System.out.println("aqui "+getCurrentPhase());
+
         this.title = researchCreateDTO.getTitle();
         this.area = researchCreateDTO.getArea();
         this.numberOfPatients = researchCreateDTO.getNumberOfPatients();

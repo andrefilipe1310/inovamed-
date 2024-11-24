@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.inovamed.clinical_study_system.model.application.Application;
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
 import com.inovamed.clinical_study_system.model.clinical_study_representative.ClinicalStudyRepresentative;
+import com.inovamed.clinical_study_system.model.doctor.Doctor;
 import com.inovamed.clinical_study_system.model.patient.Patient;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -47,6 +48,8 @@ public class Research {
     private List<Attachment> attachments;
     @ManyToMany(mappedBy = "researches")
     private List<Patient> patients;
+    @ManyToMany(mappedBy = "researches")
+    private List<Doctor> doctors;
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "clinical_study_representative_id")

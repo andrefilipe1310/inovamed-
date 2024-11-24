@@ -2,6 +2,7 @@ package com.inovamed.clinical_study_system.model.doctor;
 import com.inovamed.clinical_study_system.model.application.Application;
 import com.inovamed.clinical_study_system.model.notification.Notification;
 import com.inovamed.clinical_study_system.model.patient.Patient;
+import com.inovamed.clinical_study_system.model.research.Research;
 import com.inovamed.clinical_study_system.model.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,7 +33,10 @@ public class Doctor extends User {
     private DoctorExperienceEnum doctorExperienceEnum;
     private String crm;
     private String phone;
-
+    @ManyToMany
+    @JoinTable(name = "tb_doctor_research",joinColumns = @JoinColumn(name = "doctor_id"),
+            inverseJoinColumns = @JoinColumn(name = "research_id"))
+    private List<Research> researches;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<Application> applicationsSubmitted;

@@ -17,7 +17,7 @@ public class CreateNotificationService {
     @Autowired
     private NotificationDTOMapperService notificationDTOMapperService;
 
-    public NotificationResponseDTO execute(NotificationResquestDTO notificationResquestDTO, List<MultipartFile> files) throws IOException {
-        return notificationDTOMapperService.toDTO(notificationRepository.save(notificationDTOMapperService.toEntity(notificationResquestDTO,files)));
+    public NotificationResponseDTO execute(NotificationResquestDTO notificationResquestDTO, List<MultipartFile> files, Long userId) throws IOException {
+        return notificationDTOMapperService.toDTO(notificationRepository.save(notificationDTOMapperService.toEntity(notificationResquestDTO,files,userId)));
     }
 }
