@@ -21,9 +21,10 @@ public class CreateResearchService {
     @Autowired
     private ResearchDTOMapperService researchDTOMapperService;
 
-    public ResearchResponseDTO execute(ResearchRequestDTO researchRequestDTO, List<MultipartFile> files, Long userId) throws IOException {
+    public ResearchResponseDTO execute(ResearchRequestDTO researchRequestDTO, List<MultipartFile> files, Long userId, List<Phases> phases) throws IOException {
 
-        Research research = researchDTOMapperService.toEntity(researchRequestDTO, files, userId);
+        Research research = researchDTOMapperService.toEntity(researchRequestDTO, files, userId,phases);
+
         return researchDTOMapperService.toDTO(this.researchRepository.save(research),false);
     }
 

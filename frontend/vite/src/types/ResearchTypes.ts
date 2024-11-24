@@ -3,7 +3,7 @@ export type researchFeatures = {
     code:number;
 }
 
-type Criteria = {
+export type Criteria = {
     inclusion: string[];
     exclusion: string[];
 };
@@ -51,7 +51,7 @@ export type ResearchRequestDTO = {
     responsibleDoctors:string[]
     institutions:string[]
     description:string
-    criteria:Criteria
+    criteria:Criteria|string
     start_date:string
     end_date:string
     phases:Phase[]

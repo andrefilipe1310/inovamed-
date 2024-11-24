@@ -1,5 +1,6 @@
 package com.inovamed.clinical_study_system.service.research;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.inovamed.clinical_study_system.exception.ClinicalRepresentativeNotFoundException;
 import com.inovamed.clinical_study_system.model.attachment.Attachment;
@@ -54,7 +55,7 @@ public class ResearchDTOMapperService {
 
     }
 
-    public Research toEntity(ResearchRequestDTO researchRequestDTO, List<MultipartFile> files, Long userId) throws IOException {
+    public Research toEntity(ResearchRequestDTO researchRequestDTO, List<MultipartFile> files, Long userId,  List<Phases> phases) throws IOException {
 
 
 
@@ -65,15 +66,18 @@ public class ResearchDTOMapperService {
 
         //criando o anexo que vem na pesquisa
 
+
         List<Attachment> attachments = files.stream().map(file -> {
             Attachment attachment = new Attachment();
+
             attachment.setUser(clinicalRepresentative);
             attachment.setName("Research "+file.getName()+" "+clinicalRepresentative.getPublicKey());
             attachment.setResearch(research);
             try {
+
                 attachment.setArchive(file.getBytes());
             } catch (IOException e) {
-                System.out.println("aaaaaaaaaa");
+
                 throw new RuntimeException(e);
             }
             return  attachment;
@@ -89,12 +93,10 @@ public class ResearchDTOMapperService {
         research.setResponsibleDoctors(researchRequestDTO.getResponsibleDoctors());
         research.setInstitutions(researchRequestDTO.getInstitutions());
         research.setDescription(researchRequestDTO.getDescription());
-        //ObjectMapper objectMapper = new ObjectMapper();
-        //Criteria criteria = objectMapper.readValue(researchRequestDTO.getCriteria(), Criteria.class);
         research.setCriteria(researchRequestDTO.getCriteria());
         research.setStudyDuration(new StudyDuration(researchRequestDTO.getStart_date(),researchRequestDTO.getEnd_date()));
-        research.setPhases(researchRequestDTO.getPhases());
-        research.setCurrentPhase(researchRequestDTO.getCurrentPhase());
+        research.setPhases(phases);
+        research.setCurrentPhase(researchRequestDTO.getCurrentPhase().intValue());
         research.setLocation(researchRequestDTO.getLocation());
         research.setAttachments(attachments);
         research.setPatients(List.of());
