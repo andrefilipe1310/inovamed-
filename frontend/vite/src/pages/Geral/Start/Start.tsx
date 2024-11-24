@@ -20,7 +20,7 @@ export default function Start() {
           <div>
             <h1>TRANSPARÊNCIA EM 1º LUGAR</h1>
             <p>
-            A Inovamed é reconhecida por sua transparência na divulgação de pesquisas científicas, proporcionando acesso aberto a dados e fontes, o que permite a verificação rigorosa dos resultados. O site adota práticas de revisão por pares criteriosas e públicas, garantindo uma ciência aberta e acessível.
+              A Inovamed é reconhecida por sua transparência na divulgação de pesquisas científicas, proporcionando acesso aberto a dados e fontes, o que permite a verificação rigorosa dos resultados. O site adota práticas de revisão por pares criteriosas e públicas, garantindo uma ciência aberta e acessível.
             </p>
           </div>
         </div>
@@ -30,6 +30,9 @@ export default function Start() {
             alt="Médico"
             className="doctor-image"
           />
+        </div>
+        <div className="login-button-container">
+          <Link to="/login" className="login-button">Login</Link>
         </div>
       </div>
 
