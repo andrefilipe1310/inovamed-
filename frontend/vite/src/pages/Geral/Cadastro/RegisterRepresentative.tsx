@@ -13,6 +13,7 @@ export default function RegisterRepresentative() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        gender:"",
         password: "",
         phone: "",
         clinicalRole: "",
@@ -88,6 +89,20 @@ export default function RegisterRepresentative() {
                     value={formData.email}
                     onChange={handleChange}
                 />
+                <label htmlFor="gender">
+                    Gênero <i>Obrigatório</i>
+                </label>
+                <select
+                    id="gender"
+                    name="gender"
+                    required
+                    value={formData.gender}
+                    onChange={handleChange}
+                >
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                </select>
                 <div className="phone-number">
                     <label htmlFor="phone">
                         N° para contato <i>Obrigatório</i>

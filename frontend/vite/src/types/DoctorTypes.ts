@@ -3,6 +3,7 @@ export type DoctorRequestDTO = {
     email:string
     doctorExperienceEnum:string
     clinic:string
+    gender:string,
     phone:string
     password:string
     roles:string

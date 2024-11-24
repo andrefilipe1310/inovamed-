@@ -227,12 +227,21 @@ align-items: center;
   .form-container label{
     font-family: Montserrat-Bold;
      font-size: 1vw;
-     margin: 0.5vw 0vw;
+     margin: 1vw 0vw;
      align-self: start;
      margin-left: 3vw;
      width: 100%;
   } 
   
+  .form-container select{
+    width: 90%;
+    height: 2.5vw;
+    border-radius: 15px;
+    border: #0B42CE 1px solid;
+    font-family: Montserrat-Bold;
+    font-size: 1vw;
+    text-align: center;
+  }
 
   .form-container .form{
     width: 40%;
@@ -242,7 +251,7 @@ align-items: center;
   } 
   .form-container textarea{
     resize: none;
-    width: 90%;
+    width: 100%;
     height: 15vw;
     border-radius: 15px;
     border: 1px solid  #0b42ce;
