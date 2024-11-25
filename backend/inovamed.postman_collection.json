@@ -225,6 +225,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "findPatientsByDoctorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/doctor/patients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"doctor",
+								"patients"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -356,6 +384,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "findPatientByCode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/patient/code/448b8f09-79f3-4e59-aa4b-58e7300397c6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"patient",
+								"code",
+								"448b8f09-79f3-4e59-aa4b-58e7300397c6"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -365,6 +412,16 @@
 				{
 					"name": "findAllClinicalRepresentative",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -539,12 +596,14 @@
 								{
 									"key": "criteria.inclusion",
 									"value": "Patients with mild cognitive impairment",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "criteria.exclusion",
 									"value": "Pregnancy",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "start_date",
@@ -590,8 +649,31 @@
 									"src": "/C:/Users/deco_/OneDrive/Área de Trabalho/andre-profissional/certificados/bootcamp claro - spring boot.pdf"
 								},
 								{
+									"key": "phases[0].number",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phases[0].title",
+									"value": "teste",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phases[0].description",
+									"value": "teste",
+									"type": "text",
+									"disabled": true
+								},
+								{
 									"key": "phases",
-									"value": "[{\"number\": 1, \"title\": \"Safety evaluation\", \"description\": \"Description 1\"}, {\"number\": 2, \"title\": \"Effectiveness evaluation\", \"description\": \"Description 2\"}]",
+									"value": "[{\"number\":1,\"title\":\"teste\",\"description\":\"teste\"},{\"number\":2,\"title\":\"teste\",\"description\":\"teste\"}]",
+									"type": "text"
+								},
+								{
+									"key": "criteria",
+									"value": "{\"inclusion\":[\"Patients with mild cognitive impairment\"],\"exclusion\":[\"Pregnancy\"]}",
 									"type": "text"
 								}
 							]
@@ -734,14 +816,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/research/code/4190",
+							"raw": "{{url}}/research/code/2946",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"research",
 								"code",
-								"4190"
+								"2946"
 							]
 						}
 					},
@@ -1006,6 +1088,34 @@
 					"response": []
 				},
 				{
+					"name": "findNotificationByDoctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/notification/patient",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"notification",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "findNotificationById",
 					"request": {
 						"auth": {
@@ -1054,16 +1164,17 @@
 								{
 									"key": "sender",
 									"value": "3",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "title",
-									"value": "\"teste\"",
+									"value": "teste",
 									"type": "text"
 								},
 								{
 									"key": "message",
-									"value": "\"Mensagem de teste\"",
+									"value": "Mensagem de teste",
 									"type": "text"
 								},
 								{
@@ -1131,6 +1242,125 @@
 							],
 							"path": [
 								"application"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findApplicationByResearch",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/application/research/2946",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"application",
+								"research",
+								"2946"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStatusApplication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"code\":2946, \r\n     \"applicationId\":1,\r\n     \"statusApplication\":\"APPROVAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/application/patient",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"application",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "medical history",
+			"item": [
+				{
+					"name": "createMedicalHistory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patientId\":3,\r\n    \"message\":\"teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/medical-history",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"medical-history"
 							]
 						}
 					},
