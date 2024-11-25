@@ -105,6 +105,9 @@ npm run dev
 
 6. **Acessar as rotas da aplicação (swagger)**
 - Abra seu navegador e acesse http://localhost:8080/swagger-ui/index.html
+
+7. **Acessar as rotas da aplicação (postman)**
+- Importe para dentro do postman o arquivo [inovamed.postman_collection.json](https://github.com/andrefilipe1310/inovamed/blob/main/backend/inovamed.postman_collection.json)
 ### Observações
 - Certifique-se de que o servidor do PostgreSQL esteja em execução antes de iniciar a aplicação.
 - Verifique as dependências e versões para evitar conflitos.
