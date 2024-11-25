@@ -60,11 +60,22 @@ export default function InfoPesqPatient(){
             <div className="container-page" >
                 {(research == null) && <div><p style={{ color: 'red' }}>{error}</p></div>}
                 {(research != null) && <div className="principal">
-                    <div className="container-pesq-all" style={{display:"flex", flexDirection:"column", width:"100%", alignItems:"center"}}>
-                    <h1 className="title-pesquisa" style={{textAlign:"center"}}>{research?.title} - {research?.code}</h1>
+                    <h1 className="title-pesquisa">{research?.title} - {research?.code}</h1>
                     <h2 className="subtitle-pesquisa">Pesquisa da área de {research?.area}</h2>
+                    <div style={{ display: "flex", width: "20vw", justifyContent: "space-evenly" }}>
+                        <div className="card-border">
+                            <div className="container-button">
+                                <Link to={`/representante/alterarpesquisa?id=${research?.code}`} className="button-to-edit"><img src="../../../public/pencil-icon.png" alt="" /></Link>
+                            </div>
+                        </div>
+                        <div className="card-border">
+                            <div className="container-button">
+                                <Link to={`/representante/infopaciente?id=${research?.code}`} className="button-to-edit"><img src="../../../public/users-icon.png" alt="" /></Link>
+                            </div>
+                        </div>
+                    </div>
                     <div className="section-1">
-                        <p><strong>Nº de pacientes:</strong> {research?.numberOfPatients}</p>
+                        <p><strong>Nº de paciente</strong> {research?.numberOfPatients}</p>
                         <p><strong>Médico resposnável:</strong> {research?.responsibleDoctors.map((doc) => (doc + ', '))}</p>
                     </div>
                     <p style={{ width: "80%" }}><strong>Instituição responsável:</strong> {research?.institutions.map((inst, index) => (<p style={{ display: "inline" }}>{inst}{index === research?.institutions.length - 1 ? '' : ', '}</p>))}</p>
@@ -97,7 +108,7 @@ export default function InfoPesqPatient(){
                         <div>
                             {(research == null || research == undefined) && <div>Nenhum arquivo para baixar</div> } 
                             {research?.attachments.map((attachment, index) => (
-                                 <div key={index} className="div-baixar">
+                                 <div key={index}>
                                  <p>{attachment.name}</p>
                                  <button onClick={() => downloadAttachment(attachment.name, attachment.archive)}>
                                    Baixar
@@ -107,10 +118,10 @@ export default function InfoPesqPatient(){
                         </div>
                         {error && <p style={{ color: 'red' }}>{error}</p>}
                     </div>
-                </div>
                 </div>}{/* principal */}
             </div>
 
         </>
     )
 }
+    

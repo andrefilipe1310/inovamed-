@@ -11,7 +11,7 @@ const PesquisaCard: React.FC<PesquisaCardProps> = ({ titulo, code }) => {
   return (
    
     <div style={estiloCard}>
-       <Link to={`/representante/infoPesquisas?id=${code}`} className="link-to-pesq">
+       <Link to={`/paciente/infoPesquisa?id=${code}`} className="link-to-pesq">
       <h3 style={{ color: '#028275' }}>{titulo}</h3>
       <p style={{ color: 'black' }}>#{code}</p>
       </Link>

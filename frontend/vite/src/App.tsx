@@ -37,7 +37,7 @@ export default function App() {
         <Route path="/cadastro/medico" element={<RegisterDoctor/>}></Route>
         <Route path="/cadastro/paciente" element={<ResgisterPatient/>}></Route>
         <Route path="/paciente/notificacoes" element={<PacVerNotificacoes/>}></Route>
-        <Route path="/paciente/inforPesq" element={<InfoPesqPatient/>}></Route>
+        <Route path="/paciente/inforPesquisas" element={<InfoPesqPatient/>}></Route>
         <Route path="/paciente/listapesquisas" element={<PacListPesquisas/>}></Route>
         <Route path="/paciente/preferencias" element={<PacPreferencias/>}></Route>
         <Route path="/medico/listapesquisas" element={<MedListPacientesPesquisas/>}></Route>

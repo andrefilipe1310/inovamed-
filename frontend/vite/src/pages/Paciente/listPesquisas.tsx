@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 const ListaPesquisas: React.FC = () => {
-  const id = 1 
+  
   const [research, setResearch] = useState<researchFeatures[]>([]);
   
   const fetchResearchFeatures = async () => {
@@ -54,12 +54,13 @@ const ListaPesquisas: React.FC = () => {
         <h2 style={estiloCabecalho}>Pesquisas Inscritas</h2>
         <div style={estiloGrid}>
           {research.map((pesquisa) => (
-           
+             <Link to={`/paciente/inforPesquisas?id=${pesquisa.code}`}>
             <PesquisaCard key={pesquisa.code} titulo={pesquisa.title} code={pesquisa.code} />
+            </Link>
            
           ))}
         </div>
-        <Link to={`/paciente/inforPesq?id=${id}`}>to pesquisa</Link>
+      
       </div>
     </>
   );
