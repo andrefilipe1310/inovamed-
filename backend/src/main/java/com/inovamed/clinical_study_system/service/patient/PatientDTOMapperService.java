@@ -23,6 +23,7 @@ public class PatientDTOMapperService {
         String doctorCrm = patient.getDoctor() != null ? patient.getDoctor().getCrm() : "";
 
         return new PatientResponseDTO(
+                patient.getId(),
                 patient.getName(),
                 patient.getEmail(),
                 patient.getPassword(),
@@ -35,6 +36,7 @@ public class PatientDTOMapperService {
                 patient.getAuthorizations(),
                 patient.getResearches(),
                 patient.getNotifications(),
+                patient.getMedicalHistory().getText(),
                 patient.getSignature(),
                 doctorName,
                 doctorCrm
@@ -60,6 +62,7 @@ public class PatientDTOMapperService {
         patient.setDoctor(doctor);
         patient.setDigitalSignatureConsent(patientRequestDTO.signature() == null);
         patient.setResponsibleDoctor(true);
+        patient.getMedicalHistory().setText("");
         patient.setAuthorizations(List.of("Permissão para usar dados","Permissão para notificar"));
         patient.setResearches(List.of());
         patient.setNotifications(List.of());

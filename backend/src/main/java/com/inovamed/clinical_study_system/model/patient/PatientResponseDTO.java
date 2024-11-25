@@ -8,12 +8,13 @@ import com.inovamed.clinical_study_system.model.user.UserRoles;
 import java.time.LocalDate;
 import java.util.List;
 
-public record PatientResponseDTO(String name, String email, String password, UserRoles roles, String code,
+public record PatientResponseDTO(Long id,String name, String email, String password, UserRoles roles, String code,
                                  String gender, LocalDate birth,
                                  Boolean digitalSignatureConsent,
                                  Boolean responsibleDoctor,
                                  List<String> authorizations,
                                  List<Research> researches,
                                  List<Notification> notifications,
+                                 String medicalHistory,
                                  DigitalSignature signature, String doctorName, String doctorCRM) {
 }

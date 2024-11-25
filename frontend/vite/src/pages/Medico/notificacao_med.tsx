@@ -15,7 +15,7 @@ export default function MedNotificacao(){
         api
           .get("/notification/doctor", {})
           .then((response) => {
-          
+            console.log("aquiiii "+response.data)
             setNotifications(response.data)
           })
           .catch((error) => {

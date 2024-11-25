@@ -3,7 +3,9 @@ package com.inovamed.clinical_study_system.controller;
 import com.inovamed.clinical_study_system.model.doctor.DoctorRequestDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorResponseDTO;
 import com.inovamed.clinical_study_system.model.doctor.DoctorUpdateDTO;
+import com.inovamed.clinical_study_system.model.patient.PatientResponseDTO;
 import com.inovamed.clinical_study_system.service.doctor.*;
+import com.inovamed.clinical_study_system.service.patient.FindAllPatientsByDoctorIdService;
 import com.inovamed.clinical_study_system.service.token.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class DoctorController {
     @Autowired
     private DeleteDoctorService deleteDoctorService;
     @Autowired
+    FindAllPatientsByDoctorIdService findAllPatientsByDoctorIdService;
+    @Autowired
     TokenService tokenService;
 
 
@@ -34,7 +38,14 @@ public class DoctorController {
     public ResponseEntity<DoctorResponseDTO> create(@RequestBody DoctorRequestDTO doctorRequestDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(createDoctorService.execute(doctorRequestDTO));
     }
+    @GetMapping("/patients")
+    public ResponseEntity<List<PatientResponseDTO>> findAllPatientsByDoctorId(HttpServletRequest request){
+        String authorizationHeader = request.getHeader("Authorization");
+        String token = authorizationHeader.substring(7);
+        Long userId = tokenService.getUserIdFromToken(token);
 
+        return ResponseEntity.status(HttpStatus.OK).body(findAllPatientsByDoctorIdService.execute(userId));
+    }
     @GetMapping
     public ResponseEntity<DoctorResponseDTO> findAll(HttpServletRequest request) {
         String authorizationHeader = request.getHeader("Authorization");

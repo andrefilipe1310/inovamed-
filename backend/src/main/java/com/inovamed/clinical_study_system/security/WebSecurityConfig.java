@@ -37,6 +37,7 @@ public class WebSecurityConfig {
                     // Patient Endpoints
                     authorize.requestMatchers(HttpMethod.GET, "/patient").hasAnyRole("DOCTOR","PATIENT");
                     authorize.requestMatchers(HttpMethod.GET, "/patient/**").hasAnyRole("DOCTOR", "PATIENT");
+                    authorize.requestMatchers(HttpMethod.GET, "/patient/code/**").hasAnyRole("DOCTOR", "PATIENT");
                     authorize.requestMatchers(HttpMethod.PUT, "/patient/**").hasRole("DOCTOR");
                     authorize.requestMatchers(HttpMethod.DELETE, "/patient/**").hasRole("DOCTOR");
 

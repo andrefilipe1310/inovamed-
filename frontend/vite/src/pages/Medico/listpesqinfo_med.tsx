@@ -3,7 +3,6 @@ import { useSearchParams, Link } from "react-router-dom";
 import { ResearchResponseDTO } from "../../types/ResearchTypes";
 import api from "../../config/axiosConfig";
 import { useState, useEffect } from "react";
-import apiUnauthorized from "../../config/axiosUnauthorizedConfig";
 
 
 export default function Medlistapesqinfo() {
@@ -78,7 +77,7 @@ export default function Medlistapesqinfo() {
                         </div>
                     </div>
                     <div className="section-1">
-                        <p><strong>Nº de pacientes:</strong> {research?.numberOfPatients}</p>
+                        <p><strong>Nº de paciente</strong> {research?.numberOfPatients}</p>
                         <p><strong>Médico resposnável:</strong> {research?.responsibleDoctors.map((doc) => (doc + ', '))}</p>
                     </div>
                     <p style={{ width: "80%" }}><strong>Instituição responsável:</strong> {research?.institutions.map((inst, index) => (<p style={{ display: "inline" }}>{inst}{index === research?.institutions.length - 1 ? '' : ', '}</p>))}</p>

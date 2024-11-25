@@ -14,13 +14,26 @@ export type  PatientRequestDTO = {
     doctorKey:string
 } 
 
+export type PatientResponse = {
+    name: string;
+    email: string;
+    password: string; 
+    roles: "PATIENT" | "DOCTOR" | "STUDY_REPRESENTATIVE"; 
+    code: string;
+    gender: "Male" | "Female" | "Other"; 
+    birth: [number, number, number]; 
+    digitalSignatureConsent: boolean; 
+    responsibleDoctor: boolean; 
+    authorizations: string[];
+    researches: any[]; 
+    notifications: any[]; 
+    signature: string | null;
+    doctorName: string; 
+    doctorCRM: string; 
+    medicalHistory:string
+  }
 
-/* 
-
-PatientRequestDTO (String name, String email, String gender,
-                                 LocalDate birth, String phone,
-                                 String password, UserRoles roles, MedicalHistory medicalHistory,
-                                 DigitalSignature signature,
-                                 String doctorKey){
-}
-*/
+  export type MedicalHistoryRequestDTO = {
+    patientCode:string
+    message:string
+  }

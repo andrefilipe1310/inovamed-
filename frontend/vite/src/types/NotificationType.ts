@@ -12,3 +12,10 @@ export type NotificationRequestDTO = {
   doctorsId:number[]
   patientsId:number[]
 }
+
+export type NotificationPatientResponseDTO = {
+  name:string,
+  code:string,
+  gender:string,
+  statusApplication:string
+}
