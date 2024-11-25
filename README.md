@@ -24,19 +24,74 @@ git clone https://github.com/seu-usuario/inovamed.git
  ```bash
 cd inovamed
 ```
-2. **Configure o banco de dados**
-- Crie um banco de dados no PostgreSQL chamado inovamed.
-- Atualize as credenciais do banco de dados no arquivo application.properties localizado em src/main/resources:
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/inovamed
-spring.datasource.username=seu_usuario
-spring.datasource.password=sua_senha
-```
-3. **Executar o Backend**
+
+2. **Executar o Backend**
 - Navegue até a pasta do backend e execute o seguinte comando:
 ```bash
 mvn spring-boot:run
 ```
+### Ambiente de Desenvolvimento (H2 Database)
+
+Para executar o projeto utilizando banco de dados em memória H2:
+
+```properties
+spring.profiles.active=dev
+```
+
+### Ambiente Local (PostgreSQL)
+
+Para executar com PostgreSQL localmente:
+
+1. Crie um banco de dados chamado `inovamed`
+2. Configure o profile:
+```properties
+spring.profiles.active=test
+```
+
+3. Configure as seguintes variáveis de ambiente:
+```bash
+DB_HOST=seu_host
+DB_NAME=inovamed
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=sua_senha
+```
+
+### Docker
+
+O projeto possui um Dockerfile na pasta `/backend` que pode ser utilizado para criar uma imagem Docker:
+
+```bash
+# Navegue até a pasta do backend
+cd backend
+
+# Construa a imagem
+docker build -t inovamed .
+
+# Execute o container
+docker run -p 8080:8080 \
+  -e DB_HOST=seu_host \
+  -e DB_NAME=inovamed \
+  -e DB_PORT=5432 \
+  -e DB_USERNAME=postgres \
+  -e DB_PASSWORD=sua_senha \
+  inovamed
+```
+
+## Ambiente Online
+
+O backend está disponível online através do seguinte endpoint:
+
+```
+https://inovamed-latest.onrender.com/
+```
+
+### Notas Importantes
+
+- Certifique-se de ter o PostgreSQL instalado localmente ao usar o profile `test`
+- Para desenvolvimento rápido, recomenda-se usar o profile `dev` com H2
+- Todas as variáveis de ambiente são obrigatórias ao usar PostgreSQL
+- O ambiente online já está configurado e pronto para uso
 4. **Executar o Frontend**
 - Navegue até a pasta do front-end e execute os seguintes comandos:
 ```bash
