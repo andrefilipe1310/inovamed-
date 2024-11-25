@@ -44,6 +44,7 @@ public class DoctorTests {
                 "11999999999",
                 new ArrayList<>(),
                 new ArrayList<>(),
+                new ArrayList<>(),
                 new ArrayList<>()
         );
         fullDoctor.setEmail("joao.silva@example.com");
