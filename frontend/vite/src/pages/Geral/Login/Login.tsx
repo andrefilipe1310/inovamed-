@@ -66,7 +66,13 @@ export default function Login() {
     return (
         <div className="container-all-login">
             <div className="logo-container"><img src="logo_branca.svg" alt="logo" /></div>
+            <div className="container" style={{backgroundColor:'#062168',color:'white',padding:'1em',borderRadius:'10px',marginBottom:'2em'}}>
+                    <strong>Usuarios prontos para logar:</strong> 
+                    patient@gmail.com | doctor@gmail.com | clinical@gmail.com <br/>
+                    <strong>senha:</strong> 1234
+                </div>
             <div className="card-border">
+              
                 <div className="container-login">
                     <div className="container-email-senha">
                         <label htmlFor="email">EMAIL</label>

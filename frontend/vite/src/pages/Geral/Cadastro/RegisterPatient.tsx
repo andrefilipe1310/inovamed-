@@ -11,7 +11,7 @@ export default function ResgisterPatient() {
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState<PatientRequestDTO>({
         name: "",
-        gender: "",
+        gender: "M",
         birth: "",
         email: "",
         phone: "",
@@ -120,8 +120,8 @@ export default function ResgisterPatient() {
                     onChange={handleChange}
                 >
                     <option value="" disabled selected>Selecione</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
                 </select>
     
                 <label htmlFor="birthDate">
