@@ -12,10 +12,10 @@ export default function Login() {
     const handleLogin = async (event: React.FormEvent) => {
         event.preventDefault()
         setErrorMessage(null) // Limpa a mensagem de erro ao tentar fazer login
-
+        console.log(user)
         api.post("/auth/login", user)
             .then(response => {
-                console.log(user)
+                
                 
                 if (response.data.token && response.data.role) {
                     localStorage.setItem("token",response.data.token)
