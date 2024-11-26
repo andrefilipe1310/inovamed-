@@ -3,13 +3,14 @@ package com.inovamed.clinical_study_system.config;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-@Component
+@Configuration
 public class SimpleCORSFilter implements Filter {
 
     @Override
@@ -24,9 +25,11 @@ public class SimpleCORSFilter implements Filter {
 
 
         String origin = request.getHeader("Origin");
-        System.out.println("origem em + "+origin);
-        List<String> allowedOrigins = Arrays.asList("https://inovamed-sigma.vercel.app","https://inovamed-sigma.vercel.app/", "http://localhost:5173");
+        System.out.println(origin+ " aqui 1");
+
+        List<String> allowedOrigins = Arrays.asList("https://inovamed-sigma.vercel.app/login","https://inovamed-sigma.vercel.app","https://inovamed-sigma.vercel.app/", "http://localhost:5173");
         if (allowedOrigins.contains(origin)) {
+            System.out.println(origin+ " aqui 2");
             response.setHeader("Access-Control-Allow-Origin", origin);
         }
 
@@ -35,9 +38,10 @@ public class SimpleCORSFilter implements Filter {
         response.setHeader("Access-Control-Allow-Credentials", "true");
 
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            System.out.println(" aqui 3");
             response.setStatus(HttpServletResponse.SC_OK);
-            System.out.println("aaaaaaaaaaaaa");
         } else {
+            System.out.println(" aqui 4");
             chain.doFilter(req, res);
         }
     }

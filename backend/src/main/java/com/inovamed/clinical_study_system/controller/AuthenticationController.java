@@ -33,7 +33,7 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Validated AutenticateDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
-
+        System.out.println(usernamePassword);
         // autenticar se nome e senha estão corretas
         var auth = authenticationManager.authenticate(usernamePassword);
 

@@ -17,37 +17,28 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import java.util.Arrays;
 import java.util.List;
-
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+
     @Autowired
     private SecurityFilter securityFilter;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.configurationSource(request -> {
-                    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-                    corsConfig.setAllowedOrigins(List.of("https://inovamed-sigma.vercel.app", "http://localhost:5173"));
-                    corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-                    corsConfig.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-                    corsConfig.setAllowCredentials(true);
-                    return corsConfig;
-                }))
+
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> {
-                    //public
+                    // Public Endpoints
                     authorize.requestMatchers(HttpMethod.OPTIONS).permitAll();
-                    authorize.requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register", "/doctor","/clinical-representative","patient").permitAll();
+                    authorize.requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register", "/doctor", "/clinical-representative", "/patient").permitAll();
                     authorize.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll();
 
-
-                    // Protected
                     // Patient Endpoints
-                    authorize.requestMatchers(HttpMethod.GET, "/patient").hasAnyRole("DOCTOR","PATIENT");
+                    authorize.requestMatchers(HttpMethod.GET, "/patient").hasAnyRole("DOCTOR", "PATIENT");
                     authorize.requestMatchers(HttpMethod.GET, "/patient/**").hasAnyRole("DOCTOR", "PATIENT");
                     authorize.requestMatchers(HttpMethod.GET, "/patient/code/**").hasAnyRole("DOCTOR", "PATIENT");
                     authorize.requestMatchers(HttpMethod.PUT, "/patient/**").hasRole("DOCTOR");
@@ -58,65 +49,48 @@ public class WebSecurityConfig {
                     authorize.requestMatchers(HttpMethod.GET, "/attachment/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
 
                     // Research Endpoints
-                    authorize.requestMatchers(HttpMethod.GET, "/research/code/**").hasAnyRole("STUDY_REPRESENTATIVE","PATIENT","DOCTOR");
-                    authorize.requestMatchers(HttpMethod.GET, "/research/feature-all").hasAnyRole("STUDY_REPRESENTATIVE","PATIENT","DOCTOR");
+                    authorize.requestMatchers(HttpMethod.GET, "/research/code/**").hasAnyRole("STUDY_REPRESENTATIVE", "PATIENT", "DOCTOR");
+                    authorize.requestMatchers(HttpMethod.GET, "/research/feature-all").hasAnyRole("STUDY_REPRESENTATIVE", "PATIENT", "DOCTOR");
                     authorize.requestMatchers(HttpMethod.POST, "/research").hasRole("STUDY_REPRESENTATIVE");
                     authorize.requestMatchers(HttpMethod.GET, "/research/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
-                    authorize.requestMatchers(HttpMethod.PUT,"/research/**").hasRole("STUDY_REPRESENTATIVE");
+                    authorize.requestMatchers(HttpMethod.PUT, "/research/**").hasRole("STUDY_REPRESENTATIVE");
+
                     // Notification Endpoint
                     authorize.requestMatchers(HttpMethod.POST, "/notification").hasRole("STUDY_REPRESENTATIVE");
-                    authorize.requestMatchers(HttpMethod.GET,"/notification/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
-                    authorize.requestMatchers(HttpMethod.GET,"/notification/patient").hasRole("PATIENT");
-                    authorize.requestMatchers(HttpMethod.GET,"/notification/doctor").hasRole("DOCTOR");
+                    authorize.requestMatchers(HttpMethod.GET, "/notification/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
+                    authorize.requestMatchers(HttpMethod.GET, "/notification/patient").hasRole("PATIENT");
+                    authorize.requestMatchers(HttpMethod.GET, "/notification/doctor").hasRole("DOCTOR");
+
                     // Digital Signature Endpoints
                     authorize.requestMatchers(HttpMethod.POST, "/digital-signature").hasRole("PATIENT");
                     authorize.requestMatchers(HttpMethod.GET, "/digital-signature/verify/**").hasRole("PATIENT");
                     authorize.requestMatchers(HttpMethod.DELETE, "/digital-signature/**").hasRole("PATIENT");
 
                     // Clinical representative Endpoints
+                    authorize.requestMatchers(HttpMethod.GET, "/clinical-representative/**").hasRole("STUDY_REPRESENTATIVE");
 
-                    authorize.requestMatchers(HttpMethod.GET,"/clinical-representative/**").hasRole("STUDY_REPRESENTATIVE");
                     // Doctor EndPoints
-                    authorize.requestMatchers(HttpMethod.GET,"/doctor/**").hasRole("DOCTOR");
+                    authorize.requestMatchers(HttpMethod.GET, "/doctor/**").hasRole("DOCTOR");
 
                     // Application Endpoints
-                    authorize.requestMatchers(HttpMethod.POST,"/application").hasRole( "DOCTOR");
-                    authorize.requestMatchers(HttpMethod.GET,"/application").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
-                    authorize.requestMatchers(HttpMethod.GET,"/application/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
+                    authorize.requestMatchers(HttpMethod.POST, "/application").hasRole("DOCTOR");
+                    authorize.requestMatchers(HttpMethod.GET, "/application").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
+                    authorize.requestMatchers(HttpMethod.GET, "/application/**").hasAnyRole("STUDY_REPRESENTATIVE", "DOCTOR", "PATIENT");
 
                     authorize.anyRequest().permitAll();
-
-                }).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
+                })
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    @Bean
-    public CorsFilter corsFilter() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(Arrays.asList(
-                "https://inovamed-sigma.vercel.app",
-                "http://localhost:5173"
-        ));
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-
-        return new CorsFilter(source);
-    }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 }
-
