@@ -6,7 +6,7 @@ export default function Start() {
     <div className="container-all-start">
       <div className="header-container">
         <img
-          src="../../../../public/logo_branca.svg"
+          src="./../../../../public/logo_branca.svg"
           alt="logo"
           className="logo-start"
         />
