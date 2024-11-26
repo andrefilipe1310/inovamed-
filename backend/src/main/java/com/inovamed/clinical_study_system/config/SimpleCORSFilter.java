@@ -21,7 +21,7 @@ public class SimpleCORSFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
 
         // Permitir qualquer origem
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", "https://inovamed-sigma.vercel.app");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
         response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
         response.setHeader("Access-Control-Allow-Credentials", "true");
