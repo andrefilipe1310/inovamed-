@@ -4,6 +4,7 @@ import '../../stylePages.css'
 import { useState } from "react"
 
 import apiUnauthorized from "../../../config/axiosUnauthorizedConfig"
+import api from "../../../config/axiosConfig"
 
 export default function Login() {
     const [user, setUser] = useState({ email: "", password: "" })
@@ -14,7 +15,7 @@ export default function Login() {
         event.preventDefault()
         setErrorMessage(null) // Limpa a mensagem de erro ao tentar fazer login
      
-        apiUnauthorized.post("/auth/login", user)
+        api.post("/auth/login", user)
             .then(response => {
                 
                 
@@ -40,6 +41,7 @@ export default function Login() {
                 
             })
             .catch(error => {
+                console.error(error.request.responseText)
                  console.error("Erro no login:", error);
                 if (!error.response) {
                     setErrorMessage("O servidor está offline. Tente novamente mais tarde.");
