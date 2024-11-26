@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import '../../stylePages.css'
 import { useState } from "react"
-import api from "../../../config/axiosConfig"
+
 import apiUnauthorized from "../../../config/axiosUnauthorizedConfig"
 
 export default function Login() {
