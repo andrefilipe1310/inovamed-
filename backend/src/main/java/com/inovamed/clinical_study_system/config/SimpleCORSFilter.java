@@ -20,8 +20,11 @@ public class SimpleCORSFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        // Permitir qualquer origem
-        response.setHeader("Access-Control-Allow-Origin", "https://inovamed-sigma.vercel.app");
+        String origin = request.getHeader("Origin");
+        if ("https://inovamed-sigma.vercel.app".equals(origin) || "http://localhost:5173".equals(origin)) {
+            response.setHeader("Access-Control-Allow-Origin", origin);
+        }
+
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
         response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
         response.setHeader("Access-Control-Allow-Credentials", "true");
@@ -32,6 +35,7 @@ public class SimpleCORSFilter implements Filter {
             chain.doFilter(req, res);
         }
     }
+
 
     @Override
     public void destroy() {
