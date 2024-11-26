@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import '../../stylePages.css'
 import { useState } from "react"
 import api from "../../../config/axiosConfig"
+import apiUnauthorized from "../../../config/axiosUnauthorizedConfig"
 
 export default function Login() {
     const [user, setUser] = useState({ email: "", password: "" })
@@ -13,7 +14,7 @@ export default function Login() {
         event.preventDefault()
         setErrorMessage(null) // Limpa a mensagem de erro ao tentar fazer login
      
-        api.post("/auth/login", user)
+        apiUnauthorized.post("/auth/login", user)
             .then(response => {
                 
                 
