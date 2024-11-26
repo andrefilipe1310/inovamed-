@@ -59,7 +59,7 @@ export default function ResgisterPatient() {
     return (
         <div className="form-container pac">
         <div className="logo-container-pac">
-            <img src="../../../../public/logo_branca.svg" alt="logo" />
+            <img src="logo_branca.svg" alt="logo" />
         </div>
         <h1 className="title-page-pac" style={{ marginTop: "0px" }}>CADASTRO</h1>
         <div className="form-pac">

@@ -6,7 +6,7 @@ export default function Start() {
     <div className="container-all-start">
       <div className="header-container">
         <img
-          src="./../../../../public/logo_branca.svg"
+          src="logo_branca.svg"
           alt="logo"
           className="logo-start"
         />
@@ -26,7 +26,7 @@ export default function Start() {
         </div>
         <div className="doctor-image-container">
           <img
-            src="../../../../public/medico.png"
+            src="medico.png"
             alt="Médico"
             className="doctor-image"
           />
@@ -38,7 +38,7 @@ export default function Start() {
 
       <div className="rodape">
         <img
-          src="../../../../public/logo_branca.svg"
+          src="logo_branca.svg"
           alt="logo"
           className="logo-start"
         />

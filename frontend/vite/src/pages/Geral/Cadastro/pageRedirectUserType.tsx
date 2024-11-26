@@ -7,7 +7,7 @@ export default function RedirectUserType(){
 
     return(
         <div style={{display:"flex", flexDirection:"column", alignItems:"center", paddingTop:"2vw"}}>
-            <div className="logo-container"><img src="../../../../public/logo_branca.svg" alt="logo" /></div>
+            <div className="logo-container"><img src="logo_branca.svg" alt="logo" /></div>
             <h1 className="title-page">CADASTRO</h1>
             <div className="card-border">
                 <div className="container-user-type-select">
