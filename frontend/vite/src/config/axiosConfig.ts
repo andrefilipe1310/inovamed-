@@ -10,6 +10,7 @@ const api = axios.create({
     withCredentials: true
 });
 
+
 // Adicionar o token dinamicamente a cada requisição
 api.interceptors.request.use(
     (config) => {
