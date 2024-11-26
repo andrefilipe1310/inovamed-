@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class SimpleCORSFilter implements Filter {
@@ -20,8 +22,11 @@ public class SimpleCORSFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
+
         String origin = request.getHeader("Origin");
-        if ("https://inovamed-sigma.vercel.app".equals(origin) || "http://localhost:5173".equals(origin)) {
+        System.out.println("origem em + "+origin);
+        List<String> allowedOrigins = Arrays.asList("https://inovamed-sigma.vercel.app","https://inovamed-sigma.vercel.app/", "http://localhost:5173");
+        if (allowedOrigins.contains(origin)) {
             response.setHeader("Access-Control-Allow-Origin", origin);
         }
 
@@ -31,6 +36,7 @@ public class SimpleCORSFilter implements Filter {
 
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
+            System.out.println("aaaaaaaaaaaaa");
         } else {
             chain.doFilter(req, res);
         }
