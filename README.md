@@ -86,7 +86,7 @@ O backend está disponível online através do seguinte endpoint:
 ```
 https://inovamed-latest.onrender.com
 ```
-O projeto online está online através da url:
+O projeto está online através da url:
 
 [https://inovamed-sigma.vercel.app](https://inovamed-sigma.vercel.app)
 
