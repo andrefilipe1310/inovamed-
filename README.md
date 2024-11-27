@@ -6,6 +6,7 @@ InovaMed é uma plataforma digital inovadora desenvolvida para conectar paciente
 - **Spring Boot 3**: Framework para construção de aplicações Java, utilizado para criar a API RESTful do projeto.
 - **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as informações da aplicação.
 - **React**: Biblioteca JavaScript utilizada para construir a interface do usuário (front-end), proporcionando uma experiência interativa e dinâmica.
+- **Docker**:  software de código aberto usado para implantar o aplicativo dentro de containers virtuais
 
 ## Como Instalar
 ### Pré-requisitos
@@ -139,19 +140,17 @@ npm run dev
   - **LinkedIn:** [André Filipe](https://linkedin.com/in/andre-filipe-/)
   - **Github:** [andrefilipef1310](https://github.com/andrefilipe1310/)
 
-- **Ariano Souza**
-  - **Função:** Desenvolvedor Front-end e Co-Gestor do projeto
-  - **Email:** arianosouzapro@gmail.com
-  - **LinkedIn:** [Ariano Souza](https://www.linkedin.com/in/ariano-souza-14777926b)
-  - **Github:** [ArianoSouza](https://github.com/ArianoSouza)
-
-
- - **Ayrton Fernandes**
+- **Ayrton Fernandes**
    - **Função:** Desenvolvedor Backend e Co-Gestor do projeto
    - **Email:** ayrtonleonardo14@gmail.com
    - **LinkedIn:** [Ayrton Leonardo](https://www.linkedin.com/in/ayrton-leonardo-956a4026b/)
    - **Github:** [AyrtonF](https://github.com/AyrtonF)
   
+- **Ariano Souza**
+  - **Função:** Desenvolvedor Front-end e Co-Gestor do projeto
+  - **Email:** arianosouzapro@gmail.com
+  - **LinkedIn:** [Ariano Souza](https://www.linkedin.com/in/ariano-souza-14777926b)
+  - **Github:** [ArianoSouza](https://github.com/ArianoSouza)
 
  - **Amanda Lima**
    - **Função:** Desenvolvedora Front-end 
