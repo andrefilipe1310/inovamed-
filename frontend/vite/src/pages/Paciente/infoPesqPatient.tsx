@@ -65,12 +65,12 @@ export default function InfoPesqPatient(){
                     <div style={{ display: "flex", width: "20vw", justifyContent: "space-evenly" }}>
                         <div className="card-border">
                             <div className="container-button">
-                                <Link to={`/representante/alterarpesquisa?id=${research?.code}`} className="button-to-edit"><img src="../../../public/pencil-icon.png" alt="" /></Link>
+                                <Link to={`/representante/alterarpesquisa?id=${research?.code}`} className="button-to-edit"><img src="../pencil-icon.png" alt="" /></Link>
                             </div>
                         </div>
                         <div className="card-border">
                             <div className="container-button">
-                                <Link to={`/representante/infopaciente?id=${research?.code}`} className="button-to-edit"><img src="../../../public/users-icon.png" alt="" /></Link>
+                                <Link to={`/representante/infopaciente?id=${research?.code}`} className="button-to-edit"><img src="../users-icon.png" alt="" /></Link>
                             </div>
                         </div>
                     </div>

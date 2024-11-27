@@ -64,7 +64,7 @@ export default function MedParticipantes(){
                                         <p className="p-direito">{partMed.gender}</p>
                                     </div>
                                     <div className="div-link-part" style={{display:'flex',justifyContent:'center'}}>
-                                        <Link to={`/medico/participantesconfiguracao?id=${partMed.code}`}><button className="button-link-part" ><img src="../../public/config-icon.png" className="img-link-part"/></button></Link>
+                                        <Link to={`/medico/participantesconfiguracao?id=${partMed.code}`}><button className="button-link-part" ><img src="config-icon.png" className="img-link-part"/></button></Link>
                                         
                                     </div>                         
                                 </div>

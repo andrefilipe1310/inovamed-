@@ -92,11 +92,11 @@ const handleFindNameDoctor = () => {
     return(
         <>
         <div style={styleDiv} className="div-opacity"></div>
-        <button style={styleButton} onClick={handleNavVisibility} className="handle-nav"><img src="../../public/menu_icon.png" alt="" /></button>
+        <button style={styleButton} onClick={handleNavVisibility} className="handle-nav"><img src="menu_icon.png" alt="" /></button>
         <div className="container-navbar" style={styleNav}>
             <button onClick={handleNavVisibility} style={styleCloseButton} className="button-close">x </button>
             <div className="container-perfil">
-                <img src="../../public/user-icon.svg" alt="user-icon" className="user-icon" />
+                <img src="user-icon.svg" alt="user-icon" className="user-icon" />
                 <h1>{name}</h1>
             </div>
             <div className="container-links">
@@ -114,7 +114,7 @@ const handleFindNameDoctor = () => {
         <div className="container-navbar" style={styleNav}>
             <button onClick={handleNavVisibility} style={styleCloseButton} className="button-close"> x</button>
             <div className="container-perfil">
-                <img src="../../public/user-icon.svg" alt="user-icon" className="user-icon" />
+                <img src="user-icon.svg" alt="user-icon" className="user-icon" />
                 <h1>{name}</h1>
             </div>
             <div className="container-links">
