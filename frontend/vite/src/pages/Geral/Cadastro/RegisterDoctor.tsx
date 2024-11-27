@@ -60,7 +60,7 @@ export default function RegisterDoctor() {
     return (
         <div className="form-container">
             <div className="logo-container">
-                <img src="logo_branca.svg" alt="logo" />
+                <img src="../logo_branca.svg" alt="logo" />
             </div>
             <h1 className="title-page" style={{ marginTop: "0px" }}>CADASTRO</h1>
             <div className="form-header">
